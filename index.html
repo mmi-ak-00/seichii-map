@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#ffe3ee">
+<title>🐱 聖ちぃ巡礼マップ</title>
+<meta name="description" content="ちぃちゃんの足跡をめぐろう♪ 地方からさがせる、聖ちぃ巡礼マップ。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="🐱 聖ちぃ巡礼マップ">
+<meta property="og:description" content="ちぃちゃんの足跡をめぐろう♪">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐱%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="paw" viewBox="0 0 24 24"><ellipse cx="12" cy="16.3" rx="6" ry="4.7"/><ellipse cx="4.8" cy="10.8" rx="2.5" ry="3.1"/><ellipse cx="9.3" cy="6.3" rx="2.6" ry="3.3"/><ellipse cx="14.7" cy="6.3" rx="2.6" ry="3.3"/><ellipse cx="19.2" cy="10.8" rx="2.5" ry="3.1"/></symbol></svg>
+<div class="bg" aria-hidden="true">
+<span class="bgpaw" style="--x:6%;--y:8%;--s:26px;--r:-18deg;--d:0.0s"><svg viewBox="0 0 24 24"><use href="#paw"/></svg></span>
+<span class="bgpaw" style="--x:88%;--y:5%;--s:20px;--r:14deg;--d:1.2s"><svg viewBox="0 0 24 24"><use href="#paw"/></svg></span>
+<span class="bgpaw" style="--x:93%;--y:30%;--s:28px;--r:22deg;--d:2.1s"><svg viewBox="0 0 24 24"><use href="#paw"/></svg></span>
+<span class="bgpaw" style="--x:3%;--y:42%;--s:22px;--r:-24deg;--d:0.6s"><svg viewBox="0 0 24 24"><use href="#paw"/></svg></span>
+<span class="bgpaw" style="--x:90%;--y:58%;--s:24px;--r:-12deg;--d:1.7s"><svg viewBox="0 0 24 24"><use href="#paw"/></svg></span>
+<span class="bgpaw" style="--x:7%;--y:72%;--s:28px;--r:16deg;--d:2.6s"><svg viewBox="0 0 24 24"><use href="#paw"/></svg></span>
+<span class="bgpaw" style="--x:84%;--y:86%;--s:22px;--r:-20deg;--d:0.9s"><svg viewBox="0 0 24 24"><use href="#paw"/></svg></span>
+<span class="bgpaw" style="--x:20%;--y:95%;--s:20px;--r:12deg;--d:2.0s"><svg viewBox="0 0 24 24"><use href="#paw"/></svg></span>
+</div>
+<main class="page">
+<header class="hero">
+<div class="title-badge">
+<span class="ear ear-l"></span><span class="ear ear-r"></span>
+<h1 class="title"><span aria-hidden="true">🐱</span> 聖ちぃ巡礼マップ</h1>
+</div>
+<p class="subtitle"><svg class="pico" viewBox="0 0 24 24" aria-hidden="true"><use href="#paw"/></svg>ちぃちゃんの足跡をめぐろう♪<svg class="pico" viewBox="0 0 24 24" aria-hidden="true"><use href="#paw"/></svg></p>
+</header>
+
+<section class="card map-card" aria-labelledby="map-title">
+<h2 id="map-title" class="pill">地方をえらんでね</h2>
+<svg class="map" viewBox="0 0 366 460" role="group" aria-label="日本地図。地方をタップするとその地方のページへ移動します" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9f6ff"/><stop offset="1" stop-color="#f6efff"/></linearGradient>
+<filter id="soft" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#f19dbd" flood-opacity=".45"/></filter>
+<path id="s-hokkaido" d="M265.8 32.5C267.8 33.7 278.4 44.5 281.3 47.1C284.3 49.7 291.9 56.5 295.0 58.4C298.1 60.3 309.5 65.6 312.6 66.3C315.6 66.9 323.2 65.9 325.2 65.1C327.2 64.4 332.1 58.7 332.6 58.8C333.1 58.9 330.8 64.7 330.1 66.3C329.4 67.8 324.1 72.7 325.2 74.1C326.4 75.5 340.6 79.4 341.8 80.2C343.0 81.0 339.7 81.0 336.9 82.0C334.2 83.0 318.7 88.1 314.5 89.9C310.3 91.7 297.2 97.7 295.0 100.0C292.8 102.3 294.0 112.3 292.1 112.8C290.1 113.4 278.6 107.2 275.5 105.6C272.4 104.1 263.7 97.2 260.9 97.1C258.1 97.0 250.3 103.6 247.6 104.5C244.9 105.4 234.7 105.2 234.0 105.6C233.2 106.1 238.8 107.9 239.8 109.0C240.8 110.1 244.8 114.7 243.9 116.2C243.0 117.7 231.9 124.5 230.6 124.3C229.4 124.1 231.5 116.5 231.0 114.2C230.6 111.9 225.3 104.5 225.8 101.1C226.2 97.8 233.3 82.6 235.5 80.9C237.8 79.2 246.2 84.1 248.2 84.2C250.1 84.4 253.8 83.7 255.0 82.0C256.3 80.3 260.3 72.1 260.9 67.4C261.5 62.6 260.4 38.2 260.9 34.8C261.4 31.3 263.7 31.3 265.8 32.5Z"/><path id="s-honshu" d="M257.0 124.1C258.3 126.4 257.9 141.0 258.9 145.0C260.0 149.0 267.6 160.5 267.7 164.1C267.8 167.7 260.9 178.0 259.9 181.0C258.9 184.0 259.1 192.9 257.9 194.5C256.8 196.1 249.3 195.6 248.2 196.8C247.1 197.9 247.3 203.1 247.2 205.8C247.1 208.5 247.9 220.6 247.2 223.8C246.5 226.9 240.9 234.9 240.4 237.3C239.9 239.6 241.8 245.8 242.3 247.4C242.9 248.9 246.2 251.8 245.7 253.0C245.1 254.2 237.6 258.4 236.5 259.8C235.4 261.1 235.5 265.4 234.6 266.5C233.6 267.6 228.0 271.0 226.8 271.0C225.5 271.0 223.3 267.3 221.9 266.5C220.4 265.7 213.2 262.8 212.1 263.1C211.1 263.5 211.6 268.5 211.1 269.9C210.7 271.3 207.9 277.2 207.2 277.3C206.6 277.4 204.6 272.1 204.3 271.0C204.0 269.9 204.8 266.6 204.3 266.5C203.8 266.4 200.5 268.8 199.4 269.9C198.4 271.0 195.5 277.1 194.0 277.8C192.4 278.4 186.2 276.6 183.8 276.6C181.5 276.6 171.9 278.5 170.2 277.8C168.5 277.0 168.1 269.0 167.3 268.8C166.5 268.5 162.4 273.9 162.4 275.5C162.4 277.1 168.1 282.7 167.3 284.5C166.5 286.3 156.7 291.5 154.6 293.5C152.5 295.5 148.3 304.1 146.2 304.1C144.2 304.1 135.3 295.3 134.1 293.5C132.9 291.7 133.6 287.3 134.1 285.6C134.6 283.9 139.4 277.5 139.0 276.6C138.6 275.7 131.7 276.9 130.2 276.6C128.8 276.4 126.4 274.2 124.4 274.4C122.3 274.6 112.2 278.1 109.8 278.9C107.3 279.7 102.6 281.5 100.0 282.3C97.4 283.0 85.8 286.2 83.4 286.8C81.1 287.3 78.1 287.4 76.6 287.9C75.1 288.3 70.7 290.8 68.8 291.3C66.9 291.7 59.8 292.3 58.1 292.4C56.4 292.5 52.5 293.3 51.8 292.4C51.2 291.5 50.6 284.4 51.2 283.4C51.9 282.4 56.2 283.0 58.1 282.3C59.9 281.5 68.1 276.6 69.8 275.5C71.4 274.4 73.4 272.1 74.6 271.0C75.9 269.9 81.3 265.5 82.4 264.2C83.6 263.0 85.4 259.4 86.3 258.6C87.3 257.8 91.0 256.6 92.2 256.4C93.4 256.2 95.7 256.4 98.1 256.4C100.4 256.4 113.1 256.6 115.6 256.4C118.1 256.2 121.4 254.6 123.4 254.1C125.3 253.6 133.6 250.9 135.1 251.2C136.6 251.5 137.0 256.9 138.0 257.5C139.0 258.1 143.5 257.8 144.8 257.5C146.2 257.2 151.1 255.1 151.7 254.1C152.3 253.1 150.4 248.7 150.7 247.4C151.0 246.0 153.4 242.1 154.6 240.6C155.8 239.2 161.3 234.2 162.4 232.8C163.5 231.3 164.6 227.8 165.3 226.0C166.0 224.2 168.1 216.1 169.2 214.8C170.4 213.4 176.7 211.6 177.0 212.5C177.3 213.4 172.2 222.2 172.1 223.8C172.1 225.3 174.6 228.4 176.1 228.3C177.5 228.1 184.9 223.5 186.8 222.6C188.6 221.7 193.2 220.0 194.6 219.2C195.9 218.5 199.0 216.3 200.4 214.8C201.9 213.2 207.4 205.5 209.2 203.5C211.0 201.5 216.5 196.5 218.0 194.5C219.4 192.5 222.8 185.1 223.8 183.3C224.8 181.5 227.2 177.9 227.7 176.5C228.2 175.2 229.2 171.6 228.7 169.8C228.2 168.0 222.8 160.3 222.8 158.5C222.8 156.7 228.2 153.4 228.7 151.8C229.2 150.1 227.0 144.0 227.7 141.6C228.4 139.3 234.0 128.5 235.5 128.1C237.1 127.7 241.8 136.8 243.3 137.6C244.9 138.4 250.4 136.8 251.1 136.0C251.8 135.2 250.7 130.7 250.1 129.2C249.6 127.8 244.6 121.9 245.3 121.4C246.0 120.9 255.6 121.7 257.0 124.1Z"/><path id="s-shikoku" d="M124.4 286.8C125.3 287.7 122.3 293.7 121.4 295.8C120.6 297.8 117.4 306.8 115.6 307.7C113.8 308.5 106.2 303.1 103.9 304.3C101.6 305.5 94.3 318.7 92.2 319.4C90.1 320.1 83.5 313.2 82.4 311.5C81.4 309.8 81.1 304.2 81.5 302.5C81.9 300.8 85.3 295.8 86.3 294.6C87.4 293.5 90.4 291.5 92.2 291.3C94.0 291.0 101.9 292.4 103.9 291.9C105.8 291.4 109.7 286.8 111.7 286.3C113.7 285.8 123.4 285.8 124.4 286.8Z"/><path id="s-kyushu" d="M52.2 292.8C54.8 292.7 64.8 297.6 66.8 299.1C68.9 300.7 72.2 306.6 72.7 308.1C73.2 309.7 72.4 313.0 71.7 314.9C71.0 316.8 66.8 324.9 65.9 327.3C64.9 329.6 63.0 336.3 62.0 338.5C60.9 340.8 56.7 347.7 55.1 349.8C53.6 351.8 47.4 359.2 46.4 358.8C45.3 358.3 45.3 345.6 44.4 345.3C43.5 344.9 38.3 355.8 37.6 355.4C36.9 354.9 37.2 343.6 37.6 340.8C38.0 337.9 41.2 329.4 41.5 327.3C41.8 325.1 41.7 320.2 40.5 319.4C39.4 318.6 31.1 320.3 29.8 319.4C28.5 318.5 27.6 312.1 27.8 310.4C28.1 308.7 31.4 303.5 32.7 302.5C34.1 301.5 39.5 301.2 41.5 300.3C43.5 299.3 49.7 292.9 52.2 292.8Z"/><path id="s-sado" d="M193.6 194.5C194.0 193.9 198.8 193.4 199.4 193.8C200.1 194.3 200.6 197.9 200.4 199.0C200.2 200.1 198.1 204.0 197.5 204.6C196.9 205.3 194.8 206.2 194.6 205.8C194.4 205.3 195.6 201.3 195.6 200.1C195.5 199.0 193.2 195.1 193.6 194.5Z"/><path id="s-awaji" d="M129.2 277.8C129.5 277.4 130.9 278.2 131.2 278.9C131.5 279.6 132.5 283.7 132.2 284.5C131.9 285.3 128.7 287.0 128.3 286.8C127.9 286.5 128.2 283.2 128.3 282.3C128.4 281.4 129.0 278.1 129.2 277.8Z"/><path id="s-oki" d="M92.0 386.0C93.3 386.5 99.2 390.4 99.0 392.0C98.8 393.6 91.9 399.9 90.0 402.0C88.1 404.1 82.2 411.0 80.0 413.0C77.8 415.0 70.2 420.5 68.0 422.0C65.8 423.5 59.8 427.6 58.0 428.0C56.2 428.4 50.4 427.0 50.0 426.0C49.6 425.0 52.4 419.8 54.0 418.0C55.6 416.2 63.6 410.2 66.0 408.0C68.4 405.8 76.0 398.1 78.0 396.0C80.0 393.9 84.6 388.0 86.0 387.0C87.4 386.0 90.7 385.5 92.0 386.0Z"/>
+<clipPath id="c-tohoku"><polygon points="199.4,111.3 277.4,111.3 277.4,226.0 228.7,220.4 217.0,222.6 219.9,210.3 222.8,201.3 219.9,188.9 199.4,187.8"/></clipPath><clipPath id="c-kanto"><polygon points="217.0,222.6 228.7,220.4 277.4,226.0 277.4,277.8 213.1,277.8 211.5,260.9 208.2,256.4 206.3,250.8 204.3,242.9 202.4,235.0 208.2,226.0 213.1,224.9"/></clipPath><clipPath id="c-chubu"><polygon points="140.0,194.5 219.9,188.9 222.8,201.3 219.9,210.3 217.0,222.6 213.1,224.9 208.2,226.0 202.4,235.0 204.3,242.9 206.3,250.8 208.2,256.4 211.5,260.9 213.1,277.8 213.1,281.1 167.3,281.1 166.3,268.8 160.4,264.2 156.6,259.8 150.7,254.1 140.9,256.4"/></clipPath><clipPath id="c-kinki"><polygon points="119.5,237.3 140.9,237.3 140.9,256.4 150.7,254.1 156.6,259.8 160.4,264.2 166.3,268.8 167.3,281.1 178.0,281.1 178.0,316.0 119.5,316.0"/></clipPath><clipPath id="c-chugoku"><polygon points="119.5,237.3 119.5,316.0 31.8,316.0 31.8,237.3"/></clipPath>
+</defs>
+<rect width="366" height="460" rx="26" fill="url(#sea)"/>
+<path d="M190 396q6 -7 12 0t12 0t12 0" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".85"/><path d="M240 438q6 -7 12 0t12 0t12 0" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".85"/><path d="M300 320q6 -7 12 0t12 0t12 0" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".85"/><path d="M30 300q6 -7 12 0t12 0t12 0" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".85"/><path d="M60 180q6 -7 12 0t12 0t12 0" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".85"/><path d="M165 40q6 -7 12 0t12 0t12 0" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".85"/>
+<use href="#paw" x="206.0" y="322.0" width="16" height="16" transform="rotate(30 214.0 330.0)" fill="#ffb5cf" opacity="0.55"/><use href="#paw" x="230.0" y="344.0" width="16" height="16" transform="rotate(40 238.0 352.0)" fill="#ffb5cf" opacity="0.55"/><use href="#paw" x="254.0" y="364.0" width="16" height="16" transform="rotate(30 262.0 372.0)" fill="#ffb5cf" opacity="0.55"/><use href="#paw" x="278.0" y="386.0" width="16" height="16" transform="rotate(40 286.0 394.0)" fill="#ffb5cf" opacity="0.55"/><use href="#paw" x="304.0" y="406.0" width="16" height="16" transform="rotate(30 312.0 414.0)" fill="#ffb5cf" opacity="0.55"/>
+<g class="sticker" filter="url(#soft)" fill="#fff" stroke="#fff" stroke-width="10" stroke-linejoin="round">
+<use href="#s-hokkaido"/><use href="#s-honshu"/><use href="#s-shikoku"/><use href="#s-kyushu"/><use href="#s-sado"/><use href="#s-awaji"/>
+</g>
+<rect x="12" y="372" width="132" height="78" rx="18" fill="#fff" fill-opacity=".7" stroke="#ffc9dc" stroke-width="2.5" stroke-dasharray="6 5"/>
+<g fill="#fff" stroke="#fff" stroke-width="9" stroke-linejoin="round"><use href="#s-oki"/><ellipse cx="111" cy="425" rx="6" ry="4"/><ellipse cx="127" cy="434" rx="6" ry="4"/></g>
+<g class="cat" transform="translate(96 118)"><g class="cat-bob">
+<g class="tail"><path d="M40 70C74 72 80 34 60 26" fill="none" stroke="#f3b8cc" stroke-width="15" stroke-linecap="round"/><path d="M40 70C74 72 80 34 60 26" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"/></g>
+<ellipse cx="0" cy="62" rx="40" ry="30" fill="#fff" stroke="#f3b8cc" stroke-width="3"/>
+<ellipse cx="-17" cy="86" rx="11" ry="7" fill="#fff" stroke="#f3b8cc" stroke-width="3"/><ellipse cx="17" cy="86" rx="11" ry="7" fill="#fff" stroke="#f3b8cc" stroke-width="3"/>
+<path d="M-45 -10L-40 -52L-8 -36Z" fill="#fff" stroke="#f3b8cc" stroke-width="3" stroke-linejoin="round"/><path d="M-37 -18L-35 -42L-19 -33Z" fill="#ffc2d6"/>
+<path d="M45 -10L40 -52L8 -36Z" fill="#fff" stroke="#f3b8cc" stroke-width="3" stroke-linejoin="round"/><path d="M37 -18L35 -42L19 -33Z" fill="#ffc2d6"/>
+<ellipse cx="0" cy="0" rx="49" ry="41" fill="#fff" stroke="#f3b8cc" stroke-width="3"/>
+<path d="M-7 -32v9M0 -34v11M7 -32v9" stroke="#f7cfae" stroke-width="3" stroke-linecap="round"/>
+<path d="M-28 0Q-20 -11 -11 0" fill="none" stroke="#5a4560" stroke-width="3.2" stroke-linecap="round"/><path d="M28 0Q20 -11 11 0" fill="none" stroke="#5a4560" stroke-width="3.2" stroke-linecap="round"/>
+<ellipse cx="-33" cy="11" rx="9" ry="5.5" fill="#ffbfd3" opacity=".75"/><ellipse cx="33" cy="11" rx="9" ry="5.5" fill="#ffbfd3" opacity=".75"/>
+<ellipse cx="0" cy="9" rx="4.5" ry="3.2" fill="#ff8fb0"/>
+<path d="M0 12Q-5 20 -12 15M0 12Q5 20 12 15" fill="none" stroke="#5a4560" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M-40 6L-60 1M-40 12L-61 14M-40 18L-58 27M40 6L60 1M40 12L61 14M40 18L58 27" stroke="#cfa9cf" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M-14 40L0 46L-14 54ZM14 40L0 46L14 54Z" fill="#ff8fb8" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><circle cx="0" cy="47" r="5" fill="#ffd966" stroke="#fff" stroke-width="2"/>
+</g></g>
+</g><g class="bubble"><path d="M30 30h96a11 11 0 0 1 11 11v13a11 11 0 0 1-11 11H62l-12 10 3-10H30a11 11 0 0 1-11-11V41a11 11 0 0 1 11-11z" fill="#fff" stroke="#ffd3e4" stroke-width="3"/><text x="78" y="53" text-anchor="middle" style="font-size:12.5px;font-weight:700;fill:#d94b86">どこにいくにゃ？</text></g>
+<a class="region" data-region="hokkaido" href="regions/hokkaido.html" aria-label="北海道"><use href="#s-hokkaido" class="shape"/><text class="lbl" x="285.2" y="87.6" text-anchor="middle" style="font-size:16px">北海道</text></a>
+<a class="region" data-region="tohoku" href="regions/tohoku.html" aria-label="東北"><use href="#s-honshu" class="shape" clip-path="url(#c-tohoku)"/><text class="lbl" x="245.3" y="176.9" text-anchor="middle" style="font-size:14px">東北</text></a>
+<a class="region" data-region="kanto" href="regions/kanto.html" aria-label="関東"><use href="#s-honshu" class="shape" clip-path="url(#c-kanto)"/><text class="lbl" x="227.7" y="245.9" text-anchor="middle" style="font-size:12px">関東</text></a>
+<a class="region" data-region="chubu" href="regions/chubu.html" aria-label="中部"><use href="#s-honshu" class="shape" clip-path="url(#c-chubu)"/><use href="#s-sado" class="shape"/><text class="lbl" x="179.9" y="248.9" text-anchor="middle" style="font-size:14px">中部</text></a>
+<a class="region" data-region="kinki" href="regions/kinki.html" aria-label="近畿"><use href="#s-honshu" class="shape" clip-path="url(#c-kinki)"/><use href="#s-awaji" class="shape"/><text class="lbl" x="141.9" y="274.1" text-anchor="middle" style="font-size:12px">近畿</text></a>
+<a class="region" data-region="chugoku-shikoku" href="regions/chugoku-shikoku.html" aria-label="中国・四国"><use href="#s-honshu" class="shape" clip-path="url(#c-chugoku)"/><use href="#s-shikoku" class="shape"/><text class="lbl" x="84.4" y="274.4" text-anchor="middle" style="font-size:13px">中国</text><text class="lbl" x="98.1" y="303.3" text-anchor="middle" style="font-size:12px">四国</text></a>
+<a class="region" data-region="kyushu-okinawa" href="regions/kyushu-okinawa.html" aria-label="九州・沖縄"><use href="#s-kyushu" class="shape"/><use href="#s-oki" class="shape"/><ellipse cx="111" cy="425" rx="6" ry="4" class="shape"/><ellipse cx="127" cy="434" rx="6" ry="4" class="shape"/><text class="lbl" x="54.2" y="323.9" text-anchor="middle" style="font-size:13px">九州</text><text class="lbl" x="78" y="446" text-anchor="middle" style="font-size:12px">沖縄</text></a>
+</svg>
+</section>
+
+<nav class="card list-card" aria-labelledby="list-title">
+<h2 id="list-title" class="pill pill-lav">地方からさがす</h2>
+<ul class="rlist">
+<li><a class="rbtn" data-region="hokkaido" href="regions/hokkaido.html"><span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#paw"/></svg></span><span class="name">北海道</span><span class="arrow" aria-hidden="true">›</span></a></li>
+<li><a class="rbtn" data-region="tohoku" href="regions/tohoku.html"><span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#paw"/></svg></span><span class="name">東北</span><span class="arrow" aria-hidden="true">›</span></a></li>
+<li><a class="rbtn" data-region="kanto" href="regions/kanto.html"><span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#paw"/></svg></span><span class="name">関東</span><span class="arrow" aria-hidden="true">›</span></a></li>
+<li><a class="rbtn" data-region="chubu" href="regions/chubu.html"><span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#paw"/></svg></span><span class="name">中部</span><span class="arrow" aria-hidden="true">›</span></a></li>
+<li><a class="rbtn" data-region="kinki" href="regions/kinki.html"><span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#paw"/></svg></span><span class="name">近畿</span><span class="arrow" aria-hidden="true">›</span></a></li>
+<li><a class="rbtn" data-region="chugoku-shikoku" href="regions/chugoku-shikoku.html"><span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#paw"/></svg></span><span class="name">中国・四国</span><span class="arrow" aria-hidden="true">›</span></a></li>
+<li><a class="rbtn" data-region="kyushu-okinawa" href="regions/kyushu-okinawa.html"><span class="dot" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#paw"/></svg></span><span class="name">九州・沖縄</span><span class="arrow" aria-hidden="true">›</span></a></li>
+</ul>
+</nav>
+
+<footer class="foot">
+<p class="paws" aria-hidden="true">🐾 🐾 🐾</p>
+<p>※ファンによる非公式サイトです</p>
+</footer>
+</main>
+<script src="js/main.js"></script>
+</body>
+</html>
