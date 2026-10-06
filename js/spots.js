@@ -22,9 +22,13 @@ window.SPOTS = [
     "name": "Muffin&Bowls cafe CUPS 表参道",
     "address": "東京都渋谷区神宮前3-5-1",
     "work": "いちごタルト（かき氷）",
-    "note": "テスト",
+    "note": "",
     "lon": 139.7126,
     "lat": 35.669,
-    "photos": []
+    "photos": [
+      "pmuwkzu7y0.jpg",
+      "pmuwkzu921.jpg",
+      "pmuwkzua72.jpg"
+    ]
   }
 ];
