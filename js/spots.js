@@ -442,18 +442,26 @@ window.SPOTS = [
     "region": "kanto",
     "name": "香港飲茶専門店 西遊記",
     "address": "神奈川県横浜市中区山下町149-1-4",
-    "work": "叉焼メロンパン",
+    "works": [
+      "叉焼メロンパン"
+    ],
     "note": "",
     "sources": [
       {
         "name": "Instagram",
         "url": "https://www.instagram.com/p/DQwlZMrkx9L/?img_index=5&stkn=azZ0cXp6b2ZhaGt0",
         "date": "2025-11-07"
+      },
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/1987871832830279942?s=46",
+        "date": "2025-11-10"
       }
     ],
     "photos": [
       "pmuwu26960.jpg",
-      "pmuwu269m1.jpg"
+      "pmuwu269m1.jpg",
+      "pmuwv7j6b3.jpg"
     ],
     "lon": 139.64575,
     "lat": 35.44364,
