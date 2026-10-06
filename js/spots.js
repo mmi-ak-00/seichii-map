@@ -340,7 +340,9 @@ window.SPOTS = [
     "region": "other",
     "name": "I'm donut？",
     "address": "",
-    "work": "抹茶ラテ",
+    "works": [
+      "抹茶ラテ"
+    ],
     "note": "※期間限定コラボカフェ",
     "sources": [
       {
@@ -356,6 +358,14 @@ window.SPOTS = [
       "pmuwr32995.jpg"
     ],
     "chain": true,
+    "noPlace": true,
+    "pref": [
+      "東京",
+      "神奈川",
+      "長野",
+      "京都",
+      "福岡"
+    ],
     "id": "pmuwr363da27"
   },
   {
