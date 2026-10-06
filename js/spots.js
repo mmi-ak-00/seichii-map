@@ -647,7 +647,7 @@ window.SPOTS = [
         "date": "2025-12-14"
       },
       {
-        "name": "Instagram（リール）",
+        "name": "Instagram(リール)",
         "url": "https://www.instagram.com/reel/DSaFWbJkTsD/?stkn=OWw3dTRlb2Z0MDNz",
         "date": "2025-12-18"
       }
