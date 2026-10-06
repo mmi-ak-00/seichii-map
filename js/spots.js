@@ -541,5 +541,25 @@ window.SPOTS = [
     "lon": 136.89986,
     "lat": 35.15953,
     "id": "pmuwvmaytagf"
+  },
+  {
+    "region": "chubu",
+    "name": "カレーのあさくま 大須店",
+    "address": "愛知県名古屋市中区大須2-29-9",
+    "note": "",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DTfnGtKEblF/?img_index=5&stkn=Nmp4MzNpd2l4dnk2",
+        "date": "2026-01-14"
+      }
+    ],
+    "photos": [
+      "pmuwvsmhk8.jpg"
+    ],
+    "chain": true,
+    "lon": 136.90054,
+    "lat": 35.15888,
+    "id": "pmuwvso4u9k3"
   }
 ];
