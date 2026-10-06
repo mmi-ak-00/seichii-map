@@ -562,16 +562,22 @@ window.SPOTS = [
     "note": "※食べ歩き限定",
     "sources": [
       {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2008509236180099404?s=46",
+        "date": "2026-01-06"
+      },
+      {
         "name": "Instagram",
         "url": "https://www.instagram.com/p/DTfnGtKEblF/?img_index=2&stkn=Nmp4MzNpd2l4dnk2",
         "date": "2026-01-14"
       }
     ],
     "photos": [
+      "pmuwvd29w6.jpg",
       "pmuwvd28x4.jpg",
-      "pmuwvd29e5.jpg",
-      "pmuwvd29w6.jpg"
+      "pmuwvd29e5.jpg"
     ],
+    "thumb": "pmuwvd28x4.jpg",
     "chain": true,
     "lon": 136.90449,
     "lat": 35.15791,
