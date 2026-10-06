@@ -26,9 +26,10 @@ window.SPOTS = [
     "lon": 139.7126,
     "lat": 35.669,
     "photos": [
-      "pmuwkzu7y0.jpg",
-      "pmuwkzu921.jpg",
-      "pmuwkzua72.jpg"
-    ]
+      "pmuwmbeen0.jpg",
+      "pmuwmbef61.jpg",
+      "pmuwmbefp2.jpg"
+    ],
+    "id": "nedd0ji"
   }
 ];
