@@ -1202,5 +1202,27 @@ window.SPOTS = [
     "lon": 139.70166,
     "lat": 35.66917,
     "id": "pmux5twho4p0"
+  },
+  {
+    "region": "chugoku-shikoku",
+    "name": "MIYAJIMA BREWERY",
+    "address": "広島県廿日市市宮島町459-2 3F",
+    "works": [
+      "広島レモンビール or IPA"
+    ],
+    "note": "",
+    "sources": [
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2055260477215928423?s=46",
+        "date": "2026-05-15"
+      }
+    ],
+    "photos": [
+      "pmux60fb236.jpg"
+    ],
+    "lon": 132.30998,
+    "lat": 34.27261,
+    "id": "pmux63x54z5n"
   }
 ];
