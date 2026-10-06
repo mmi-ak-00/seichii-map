@@ -1221,5 +1221,24 @@ window.SPOTS = [
     "lon": 132.30998,
     "lat": 34.27261,
     "id": "pmux63x54z5n"
+  },
+  {
+    "region": "kanto",
+    "name": "竹下通り",
+    "address": "東京都渋谷区神宮前1丁目",
+    "note": "",
+    "sources": [
+      {
+        "name": "TikTok",
+        "url": "https://vt.tiktok.com/ZSb4coQag/",
+        "date": "2026-09-23"
+      }
+    ],
+    "photos": [
+      "pmux6abkz0.jpg"
+    ],
+    "lon": 139.70531,
+    "lat": 35.67155,
+    "id": "pmux6av3i3m7"
   }
 ];
