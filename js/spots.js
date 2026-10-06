@@ -254,8 +254,8 @@ window.SPOTS = [
       }
     ],
     "photos": [
-      "pmuwqlvei0.jpg",
-      "pmuwqlvev1.jpg"
+      "pmuwqlvev1.jpg",
+      "pmuwqlvei0.jpg"
     ],
     "chain": true,
     "id": "pmuwqlwurqfn"
