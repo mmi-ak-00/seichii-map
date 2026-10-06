@@ -853,7 +853,7 @@ window.SPOTS = [
         "date": "2026-01-11"
       },
       {
-        "name": "Instagram(れなち)",
+        "name": "Instagram(立花玲奈)",
         "url": "https://www.instagram.com/p/DZXWzVVE7PJ/?img_index=5&stkn=MWZ5YWtqMGpodXMxMQ==",
         "date": "2026-06-09"
       }
@@ -873,12 +873,12 @@ window.SPOTS = [
     "note": "",
     "sources": [
       {
-        "name": "X",
+        "name": "X(1)",
         "url": "https://x.com/chii_nyan02/status/2005611860436119817?s=46",
         "date": "2025-12-29"
       },
       {
-        "name": "X",
+        "name": "X(2)",
         "url": "https://x.com/chii_nyan02/status/2011931539853263027?s=46",
         "date": "2026-01-16"
       }
@@ -902,7 +902,7 @@ window.SPOTS = [
     "note": "",
     "sources": [
       {
-        "name": "X",
+        "name": "X(1)",
         "url": "https://x.com/chii_nyan02/status/2014105274869518529?s=46",
         "date": "2026-01-22"
       },
@@ -912,7 +912,7 @@ window.SPOTS = [
         "date": "2026-01-24"
       },
       {
-        "name": "X",
+        "name": "X(2)",
         "url": "https://x.com/chii_nyan02/status/2020626445564096817?s=46",
         "date": "2026-02-09"
       }
