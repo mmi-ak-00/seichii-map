@@ -724,5 +724,33 @@ window.SPOTS = [
     "lon": 139.79628,
     "lat": 35.71154,
     "id": "pmuwyjsd2gk2"
+  },
+  {
+    "region": "kanto",
+    "name": "浅草蛸たこ×ころも兄弟",
+    "address": "東京都台東区浅草1-32-11 九十一ビル 1F",
+    "works": [
+      "賞味期限3分のたこせん"
+    ],
+    "note": "",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DXRnnu0kfqz/?stkn=aGJjZGhhMnB5YWNo",
+        "date": "2026-04-18"
+      },
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2057953537490088141?s=46",
+        "date": "2026-05-23"
+      }
+    ],
+    "photos": [
+      "pmuwys3dk14.jpg",
+      "pmuwys3dv15.jpg"
+    ],
+    "lon": 139.79707,
+    "lat": 35.71227,
+    "id": "pmuwys4x5eke"
   }
 ];
