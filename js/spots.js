@@ -1169,5 +1169,38 @@ window.SPOTS = [
     "lon": 139.71776,
     "lat": 35.67193,
     "id": "pmux4bsun38m"
+  },
+  {
+    "region": "kanto",
+    "name": "代々木公園",
+    "address": "東京都渋谷区代々木神園町2-1",
+    "note": "",
+    "sources": [
+      {
+        "name": "X(1)",
+        "url": "https://x.com/chii_nyan02/status/2041100787074630089?s=46",
+        "date": "2026-04-06"
+      },
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DW891ihEXS2/?img_index=4&stkn=MWR0YnU4NWl5NXg3aw==",
+        "date": "2026-04-10"
+      },
+      {
+        "name": "X(2)",
+        "url": "https://x.com/chii_nyan02/status/2044172266393743372?s=46",
+        "date": "2026-04-15"
+      }
+    ],
+    "photos": [
+      "pmux5tq1231.jpg",
+      "pmux5tq2532.jpg",
+      "pmux5tq3033.jpg",
+      "pmux5tq3j34.jpg",
+      "pmux5tq3x35.jpg"
+    ],
+    "lon": 139.70166,
+    "lat": 35.66917,
+    "id": "pmux5twho4p0"
   }
 ];
