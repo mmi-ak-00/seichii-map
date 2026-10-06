@@ -516,5 +516,28 @@ window.SPOTS = [
     "lon": 136.90449,
     "lat": 35.15791,
     "id": "pmuwv5t8rxh0"
+  },
+  {
+    "region": "chubu",
+    "name": "昔の矢場とん 大須観音本店",
+    "address": "愛知県名古屋市中区大須2-21-32",
+    "works": [
+      "昔セット（串カツみそ味４本）"
+    ],
+    "note": "",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DTfnGtKEblF/?img_index=2&stkn=Nmp4MzNpd2l4dnk2",
+        "date": "2026-01-14"
+      }
+    ],
+    "photos": [
+      "pmuwvm78m7.jpg"
+    ],
+    "chain": true,
+    "lon": 136.89986,
+    "lat": 35.15953,
+    "id": "pmuwvmaytagf"
   }
 ];
