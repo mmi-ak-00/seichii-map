@@ -267,7 +267,10 @@ window.SPOTS = [
     "region": "kanto",
     "name": "café paro paro",
     "address": "東京都渋谷区神宮前2丁目6-6 秀和外苑レジデンス 104",
-    "work": "あんこバター（ベーグル）",
+    "works": [
+      "あんこバター（ベーグル）",
+      "LATTE ICE（ドリンク）"
+    ],
     "note": "",
     "sources": [
       {
