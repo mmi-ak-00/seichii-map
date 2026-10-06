@@ -1,0 +1,27 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>zipで更新</title>
+<style>body{font:16px/1.7 sans-serif;max-width:420px;margin:0 auto;padding:16px;background:#fff7fb;color:#5b4a55}button{font:inherit;font-weight:700;padding:12px;width:100%;border:0;border-radius:99px;background:#ff8fb8;color:#fff;margin-top:12px}button:disabled{opacity:.5}#m{white-space:pre-wrap;margin-top:12px}</style></head><body>
+<h1>🐱 zipで更新</h1>
+<p>Claudeから届いた chii-site.zip を選んで、GitHubに送ります。スポットと写真はそのまま残ります。GitHubの設定は、管理画面で保存したものを使います。</p>
+<input type="file" id="z" accept=".zip"><button id="go" disabled>zipの中身を送る</button><p id="m"></p>
+<script>
+var $=function(i){return document.getElementById(i)},m=$('m'),gh=null;
+try{gh=JSON.parse(localStorage.getItem('chii-admin-gh-v1'))}catch(e){}
+if(!gh||!gh.repo||!gh.token)m.textContent='GitHubの設定が見つかりません。先に管理画面（/admin/）で設定してね。';
+$('z').onchange=function(){$('go').disabled=!(gh&&gh.token&&$('z').files.length)};
+function api(p,o){o=o||{};return fetch('https://api.github.com/repos/'+gh.repo+p,{method:o.method||'GET',headers:{Authorization:'Bearer '+gh.token,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:o.body?JSON.stringify(o.body):void 0}).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(r.status+' '+(j.message||''));return j})})}
+function b64(u8){return new Promise(function(ok){var f=new FileReader();f.onload=function(){ok(f.result.split(',')[1])};f.readAsDataURL(new Blob([u8]))})}
+function readZip(file){return file.arrayBuffer().then(function(buf){var dv=new DataView(buf),u=new Uint8Array(buf),n=u.length,e=-1,i;for(i=n-22;i>=Math.max(0,n-70000);i--)if(dv.getUint32(i,true)===0x06054b50){e=i;break}
+if(e<0)throw new Error('zipとして読めません');var c=dv.getUint16(e+10,true),o=dv.getUint32(e+16,true),L=[];
+for(var k=0;k<c;k++){var me=dv.getUint16(o+10,true),cs=dv.getUint32(o+20,true),nl=dv.getUint16(o+28,true),el=dv.getUint16(o+30,true),cl=dv.getUint16(o+32,true),lo=dv.getUint32(o+42,true);L.push({n:new TextDecoder().decode(u.subarray(o+46,o+46+nl)),me:me,cs:cs,lo:lo});o+=46+nl+el+cl}
+return L.reduce(function(p,t){return p.then(function(a){if(/\/$/.test(t.n))return a;var st=t.lo+30+dv.getUint16(t.lo+26,true)+dv.getUint16(t.lo+28,true),raw=u.subarray(st,st+t.cs);
+var d=t.me===0?Promise.resolve(raw):new Response(new Blob([raw]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer().then(function(b){return new Uint8Array(b)});
+return d.then(function(x){a.push({p:t.n.replace(/^\.?\//,''),d:x});return a})})},Promise.resolve([]))})}
+$('go').onclick=function(){var b=$('go');b.disabled=true;m.textContent='読んでいます…';var br=gh.branch||'main';
+readZip($('z').files[0]).then(function(L){L=L.filter(function(x){return x.p&&!/(^|\/)\.|__MACOSX/.test(x.p)&&x.p!=='js/spots.js'&&!/^photos\//.test(x.p)});
+if(!L.some(function(x){return x.p==='index.html'}))throw new Error('index.html が入っていません');
+var head,base,tree=[],i=0;
+return api('/git/ref/heads/'+br).then(function(r){head=r.object.sha;return api('/git/commits/'+head)}).then(function(c){base=c.tree.sha;
+return L.reduce(function(p,x){return p.then(function(){m.textContent='送っています… '+(++i)+' / '+L.length;return b64(x.d).then(function(s){return api('/git/blobs',{method:'POST',body:{content:s,encoding:'base64'}})}).then(function(r){tree.push({path:x.p,mode:'100644',type:'blob',sha:r.sha})})})},Promise.resolve())})
+.then(function(){return api('/git/trees',{method:'POST',body:{base_tree:base,tree:tree}})}).then(function(t){return api('/git/commits',{method:'POST',body:{message:'zipで更新',tree:t.sha,parents:[head]}})}).then(function(c){return api('/git/refs/heads/'+br,{method:'PATCH',body:{sha:c.sha}})})
+.then(function(){m.textContent='送れました ✓ 1〜2分で公開されます。'})}).catch(function(e){m.textContent='うまくいきませんでした：'+(e.message||e);b.disabled=false})};
+</script></body></html>
