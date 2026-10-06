@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   var STORE = 'chii-visited-v1';
-  var API = '../api/';
+  var API = '/api/';
   var nick = null;
   var ready = false;
 
@@ -49,7 +49,13 @@
   document.head.appendChild(css);
 
   var top = document.querySelector('.rp-top');
-  if (!top) return;
+  if (!top) {
+    var pg = document.querySelector('main.page');
+    if (!pg) return;
+    top = document.createElement('div');
+    top.style.cssText = 'display:flex;justify-content:flex-end;margin-top:2px';
+    pg.insertBefore(top, pg.firstChild);
+  }
   var wrap = document.createElement('div'); wrap.className = 'acct';
   var btn = document.createElement('button'); btn.type = 'button'; btn.className = 'acct-btn'; btn.textContent = 'ログイン';
   wrap.appendChild(btn); top.appendChild(wrap);
