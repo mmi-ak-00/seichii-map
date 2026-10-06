@@ -59,7 +59,11 @@
   function select(name, fromPin) {
     selected = (selected === name && !fromPin) ? null : name;
     if (fromPin && selected === null) selected = name;
-    Object.keys(cards).forEach(function (k) { cards[k].classList.toggle('is-sel', k === selected); });
+    Object.keys(cards).forEach(function (k) {
+      cards[k].classList.toggle('is-sel', k === selected);
+      var hd = cards[k].querySelector('.spot-head');
+      if (hd) hd.setAttribute('aria-expanded', k === selected ? 'true' : 'false');
+    });
     Object.keys(pinEls).forEach(function (k) {
       var on = k === selected;
       pinEls[k].classList.toggle('is-sel', on);
@@ -76,17 +80,31 @@
   }
 
   function card(s) {
-    var li = el('li', 'spot');
-    li.tabIndex = 0;
-    cards[s.name] = li;
-    li.addEventListener('click', function (e) {
-      if (e.target.closest && e.target.closest('a,button')) return;
-      select(s.name, false);
-    });
-    li.addEventListener('keydown', function (e) {
-      if (e.target !== li) return;
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(s.name, false); }
-    });
+    var box = el('li', 'spot');
+    var li = el('div', 'spot-body');
+    cards[s.name] = box;
+
+    // たたんだ状態：1枚目の写真（なければ肉球）とスポット名だけ
+    var h3 = el('h3', 'sp-h');
+    var head = el('button', 'spot-head');
+    head.type = 'button';
+    head.setAttribute('aria-expanded', 'false');
+    var th = el('span', 'sp-th');
+    function noPhoto() { th.textContent = ''; th.classList.add('is-none'); th.appendChild(pawIcon()); }
+    if (s.photos && s.photos.length) {
+      var ti = el('img');
+      ti.alt = ''; ti.loading = 'lazy';
+      ti.src = '../photos/' + encodeURI(s.photos[0]);
+      ti.addEventListener('error', noPhoto);
+      th.appendChild(ti);
+    } else noPhoto();
+    head.appendChild(th);
+    head.appendChild(el('span', 'sp-nm', s.name));
+    head.appendChild(el('span', 'sp-vd', '✓'));
+    head.appendChild(el('span', 'sp-chev', '›'));
+    head.addEventListener('click', function () { select(s.name, false); });
+    h3.appendChild(head);
+    box.appendChild(h3);
 
     if (s.photos && s.photos.length) {
       var ph = el('div', 'phs');
@@ -107,7 +125,6 @@
       li.appendChild(ph);
     }
 
-    li.appendChild(el('h3', null, s.name));
     if (s.work) {
       var tag = el('span', 'tag');
       tag.appendChild(pawIcon());
@@ -150,6 +167,7 @@
     function paint() {
       var on = !!visited[s.name];
       v.classList.toggle('is-done', on);
+      box.classList.toggle('is-visited', on);
       v.setAttribute('aria-pressed', on ? 'true' : 'false');
       v.textContent = on ? '✓ 行ったにゃ♡' : '行ったにゃ？';
     }
@@ -161,7 +179,8 @@
     });
     act.appendChild(v);
     li.appendChild(act);
-    return li;
+    box.appendChild(li);
+    return box;
   }
 
   spots.forEach(function (s) { list.appendChild(card(s)); });
