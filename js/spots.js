@@ -87,14 +87,23 @@ window.SPOTS = [
     "address": "東京都豊島区西池袋5-28-3 ノアビル 1F",
     "work": "桃レアチーズティー（かき氷）",
     "note": "",
-    "srcName": "Instagram",
-    "srcUrl": "https://www.instagram.com/p/DcbOS-5kwRM/?img_index=5&stkn=MXB1ZG9lcmw4dmJybg==",
-    "postDate": "2026-08-24",
-    "lon": 139.69862,
-    "lat": 35.73051,
+    "sources": [
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2087684434233614460?s=46",
+        "date": "2026-08-13"
+      },
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DcbOS-5kwRM/?img_index=5&stkn=MXB1ZG9lcmw4dmJybg==",
+        "date": "2026-08-24"
+      }
+    ],
     "photos": [
       "pmuwns7oi0.jpg"
     ],
+    "lon": 139.69862,
+    "lat": 35.73051,
     "id": "pmuwnsbjh1zi"
   },
   {
