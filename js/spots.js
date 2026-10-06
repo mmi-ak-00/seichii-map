@@ -832,5 +832,30 @@ window.SPOTS = [
     "lon": 139.80456,
     "lat": 35.75108,
     "id": "pmux093fobgu"
+  },
+  {
+    "region": "kyushu-okinawa",
+    "name": "ジャングリア沖縄",
+    "address": "沖縄県国頭郡今帰仁村字呉我山553番地1",
+    "note": "",
+    "sources": [
+      {
+        "name": "TikTok(エイアイカ)",
+        "url": "https://vt.tiktok.com/ZSb4qh4ca/",
+        "date": "2026-01-11"
+      },
+      {
+        "name": "Instagram(れなち)",
+        "url": "https://www.instagram.com/p/DZXWzVVE7PJ/?img_index=5&stkn=MWZ5YWtqMGpodXMxMQ==",
+        "date": "2026-06-09"
+      }
+    ],
+    "photos": [
+      "pmux0pg8k3.jpg",
+      "pmux0pg914.jpg"
+    ],
+    "lon": 127.96958,
+    "lat": 26.64299,
+    "id": "pmux0ru7upk8"
   }
 ];
