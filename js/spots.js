@@ -85,7 +85,9 @@ window.SPOTS = [
     "region": "kanto",
     "name": "氷連",
     "address": "東京都豊島区西池袋5-28-3 ノアビル 1F",
-    "work": "桃レアチーズティー（かき氷）",
+    "works": [
+      "桃レアチーズティー（かき氷）"
+    ],
     "note": "",
     "sources": [
       {
@@ -94,13 +96,19 @@ window.SPOTS = [
         "date": "2026-08-13"
       },
       {
+        "name": "TikTok",
+        "url": "https://vt.tiktok.com/ZSb4g4Ysm/",
+        "date": "2026-08-17"
+      },
+      {
         "name": "Instagram",
         "url": "https://www.instagram.com/p/DcbOS-5kwRM/?img_index=5&stkn=MXB1ZG9lcmw4dmJybg==",
         "date": "2026-08-24"
       }
     ],
     "photos": [
-      "pmuwns7oi0.jpg"
+      "pmuwns7oi0.jpg",
+      "pmux1sopt16.jpg"
     ],
     "lon": 139.69862,
     "lat": 35.73051,
