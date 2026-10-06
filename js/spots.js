@@ -348,6 +348,11 @@ window.SPOTS = [
     "note": "",
     "sources": [
       {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2007795551744807327?s=46",
+        "date": "2026-01-04"
+      },
+      {
         "name": "TikTok",
         "url": "https://vt.tiktok.com/ZSb4MTwFJ/",
         "date": "2026-01-06"
@@ -359,6 +364,7 @@ window.SPOTS = [
       }
     ],
     "photos": [
+      "pmuwt886e4.jpg",
       "pmuwroo9611.jpg",
       "pmuwroo9o12.jpg",
       "pmuwrooa513.jpg"
