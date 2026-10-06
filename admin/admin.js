@@ -217,9 +217,15 @@
     row.appendChild(inp('src-url', 'url', 'リンク（https://…）', o.url, '引用先のリンク'));
     var d = inp('src-date', 'date', '', o.date, '投稿日');
     row.appendChild(d);
-    var x = el('button', 'btn src-x', '✕ この引用先を消す'); x.type = 'button';
+    var bar = el('div', 'src-bar');
+    var up = el('button', 'btn', '↑ 上へ'); up.type = 'button';
+    var dn = el('button', 'btn', '↓ 下へ'); dn.type = 'button';
+    up.addEventListener('click', function () { var p = row.previousElementSibling; if (p) row.parentNode.insertBefore(row, p); });
+    dn.addEventListener('click', function () { var n = row.nextElementSibling; if (n) row.parentNode.insertBefore(n, row); });
+    var x = el('button', 'btn src-x', '✕ 消す'); x.type = 'button';
     x.addEventListener('click', function () { row.remove(); });
-    row.appendChild(x);
+    bar.appendChild(up); bar.appendChild(dn); bar.appendChild(x);
+    row.appendChild(bar);
     $('srcs').appendChild(row);
     return row;
   }
@@ -344,7 +350,16 @@
       var img = el('img'); img.src = p.url; img.alt = '選んだ写真 ' + (i + 1);
       var b = el('button', null, '×'); b.type = 'button'; b.setAttribute('aria-label', '写真 ' + (i + 1) + ' をはずす');
       b.addEventListener('click', function () { cur.splice(i, 1); cleanStore(); renderThumbs(); });
-      li.appendChild(img); li.appendChild(b); ul.appendChild(li);
+      li.appendChild(img); li.appendChild(b);
+      var mv = el('div', 'mv');
+      var l = el('button', null, '‹'); l.type = 'button'; l.setAttribute('aria-label', '写真 ' + (i + 1) + ' を前へ');
+      var r = el('button', null, '›'); r.type = 'button'; r.setAttribute('aria-label', '写真 ' + (i + 1) + ' を後ろへ');
+      l.disabled = i === 0; r.disabled = i === cur.length - 1;
+      l.addEventListener('click', function () { var t = cur[i]; cur[i] = cur[i - 1]; cur[i - 1] = t; renderThumbs(); });
+      r.addEventListener('click', function () { var t = cur[i]; cur[i] = cur[i + 1]; cur[i + 1] = t; renderThumbs(); });
+      mv.appendChild(l); mv.appendChild(el('span', null, String(i + 1))); mv.appendChild(r);
+      li.appendChild(mv);
+      ul.appendChild(li);
     });
   }
   $('f-photos').addEventListener('change', function (e) {
