@@ -315,11 +315,17 @@ window.SPOTS = [
         "name": "Instagram",
         "url": "https://www.instagram.com/p/DTQNAVTkYXH/?img_index=4&stkn=MWZkM3FybWRsdHNhOQ==",
         "date": "2026-01-08"
+      },
+      {
+        "name": "TikTok",
+        "url": "https://vt.tiktok.com/ZSb4MTwFJ/",
+        "date": "2026-01-06"
       }
     ],
     "photos": [
-      "pmuwrdgr39.jpg",
-      "pmuwrdgrk10.jpg"
+      "pmuwroo9611.jpg",
+      "pmuwroo9o12.jpg",
+      "pmuwrooa513.jpg"
     ],
     "lon": 137.16518,
     "lat": 35.34062,
