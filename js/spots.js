@@ -632,6 +632,16 @@ window.SPOTS = [
     "note": "※クリスマス限定フード有",
     "sources": [
       {
+        "name": "X(1)",
+        "url": "https://x.com/chii_nyan02/status/1996214178479231036?s=46",
+        "date": "2025-12-03"
+      },
+      {
+        "name": "X(2)",
+        "url": "https://x.com/chii_nyan02/status/1998524175909270011?s=46",
+        "date": "2025-12-10"
+      },
+      {
         "name": "Instagram",
         "url": "https://www.instagram.com/p/DSP0LXAEaxM/?img_index=6&stkn=Nnh5cjdyOGh5eDIy",
         "date": "2025-12-14"
