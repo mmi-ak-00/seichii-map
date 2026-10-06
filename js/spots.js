@@ -688,5 +688,30 @@ window.SPOTS = [
     "lon": 139.79437,
     "lat": 35.7152,
     "id": "pmuwye1dfjrz"
+  },
+  {
+    "region": "kanto",
+    "name": "くろげ 浅草雷門店",
+    "address": "東京都台東区浅草1-20-2",
+    "works": [
+      "雷門チーズメンチ"
+    ],
+    "note": "",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DXRnnu0kfqz/?stkn=aGJjZGhhMnB5YWNo",
+        "date": "2026-04-18"
+      }
+    ],
+    "photos": [
+      "pmuwyjqbs11.jpg",
+      "pmuwyjqc812.jpg"
+    ],
+    "thumb": "pmuwyjqc812.jpg",
+    "chain": true,
+    "lon": 139.79628,
+    "lat": 35.71154,
+    "id": "pmuwyjsd2gk2"
   }
 ];
