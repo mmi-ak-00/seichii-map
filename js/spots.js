@@ -203,5 +203,27 @@ window.SPOTS = [
     ],
     "chain": true,
     "id": "pmuwpd926bfm"
+  },
+  {
+    "region": "kanto",
+    "name": "café paro paro",
+    "address": "東京都渋谷区神宮前2丁目6-6 秀和外苑レジデンス 104",
+    "work": "あんこバター（ベーグル）",
+    "note": "",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DYHrnl-kR6q/?img_index=4&stkn=MXh6a3hqcjYzbHV3cQ==",
+        "date": "2026-05-09"
+      }
+    ],
+    "photos": [
+      "pmuwpmimj2.jpg",
+      "pmuwpmimx3.jpg",
+      "pmuwpmine4.jpg"
+    ],
+    "lon": 139.71223,
+    "lat": 35.6725,
+    "id": "pmuwpmjt9f1s"
   }
 ];
