@@ -376,7 +376,7 @@ window.SPOTS = [
   {
     "region": "chubu",
     "name": "PancakeHouse HoiHoi",
-    "address": "愛知県名古屋市中区栄5丁目4-2 レジデンシア栄南1A",
+    "address": "",
     "work": "",
     "note": "",
     "sources": [
@@ -390,6 +390,8 @@ window.SPOTS = [
       "pmuwswdt22.jpg"
     ],
     "chain": true,
+    "noPlace": true,
+    "pref": "愛知",
     "id": "pmuwswmg6wji"
   },
   {
