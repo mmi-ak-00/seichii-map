@@ -211,7 +211,9 @@ window.SPOTS = [
     "region": "other",
     "name": "楊国福",
     "address": "",
-    "work": "",
+    "works": [
+      "麻辣担"
+    ],
     "note": "",
     "sources": [
       {
@@ -235,6 +237,16 @@ window.SPOTS = [
       "pmuwpc8jk1.jpg"
     ],
     "chain": true,
+    "noPlace": true,
+    "pref": [
+      "埼玉",
+      "東京",
+      "神奈川",
+      "京都",
+      "大阪",
+      "兵庫",
+      "福岡"
+    ],
     "id": "pmuwpd926bfm"
   },
   {
@@ -266,9 +278,13 @@ window.SPOTS = [
     "id": "pmuwpmjt9f1s"
   },
   {
-    "region": "chubu",
+    "region": "other",
     "name": "岐阜タンメン",
     "address": "",
+    "works": [
+      "岐阜タンメン",
+      "半チャーハン"
+    ],
     "note": "",
     "sources": [
       {
@@ -295,6 +311,16 @@ window.SPOTS = [
     "thumb": "pmuwsqq9b1.jpg",
     "chain": true,
     "noPlace": true,
+    "pref": [
+      "富山",
+      "石川",
+      "福井",
+      "長野",
+      "岐阜",
+      "静岡",
+      "愛知",
+      "三重"
+    ],
     "id": "pmuwqlwurqfn"
   },
   {
