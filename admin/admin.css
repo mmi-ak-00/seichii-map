@@ -1,0 +1,84 @@
+/* 管理ページ */
+.admin .lead{margin:16px 6px 0;font-size:13.5px;line-height:1.8;color:#8a5b94;text-align:center}
+.admin .card{padding:30px 16px 18px}
+.admin .field{display:grid;gap:6px;margin-top:16px}
+.admin .field:first-of-type{margin-top:6px}
+.admin label,.admin .lab{font-size:14px;font-weight:700}
+.admin em{margin-left:4px;padding:1px 8px;border-radius:999px;background:var(--pink);color:#fff;font-size:11px;font-style:normal;vertical-align:1px}
+.admin input[type=text],.admin input[type=password],.admin select,.admin textarea{
+  width:100%;min-height:46px;padding:10px 14px;border:3px solid var(--line);border-radius:18px;background:#fff;color:var(--plum);
+  font:inherit;font-size:16px;line-height:1.5}
+.admin textarea{resize:vertical}
+.admin input:focus-visible,.admin select:focus-visible,.admin textarea:focus-visible,.admin summary:focus-visible{outline:3px solid var(--pink-d);outline-offset:2px}
+.admin input[type=file]{font:inherit;font-size:14px;max-width:100%}
+.admin input[type=file]::file-selector-button{margin-right:10px;padding:8px 16px;border:3px solid var(--line);border-radius:999px;background:#fff;color:var(--plum);font:inherit;font-weight:700}
+.admin .hint{margin:0;font-size:13px;line-height:1.6;color:#8a7490}
+.admin .center{text-align:center;justify-content:center}
+.admin .btns{display:flex;flex-wrap:wrap;gap:10px}
+.admin .btns.center{justify-content:center}
+.admin .btn[disabled]{opacity:.55;cursor:default}
+.admin .btn-main{background:var(--pink);border-color:var(--pink);color:#fff;box-shadow:0 3px 0 #f06fa0}
+.admin .btn-main:active{box-shadow:0 1px 0 #f06fa0}
+.admin details{margin-top:8px;font-size:14px}
+.admin summary{cursor:pointer;font-weight:700;color:#8a5b94;min-height:32px;display:flex;align-items:center}
+.admin .two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.admin .two>div{display:grid;gap:4px;min-width:0}
+.admin form .btns{margin-top:14px}
+.admin .err{margin:14px 0 0;min-height:1.4em;color:#d03a6c;font-weight:700;font-size:14px}
+.admin .err:empty{margin:0;min-height:0}
+.admin .mode{margin:0 0 4px;padding:8px 14px;border-radius:16px;background:#fff0f6;border:2px dashed var(--pink);font-size:14px;font-weight:700;color:var(--pink-d)}
+.pickmap{border-radius:22px;overflow:hidden;border:3px solid var(--line);touch-action:manipulation}
+.pickmap svg{display:block;width:100%;height:auto;cursor:crosshair}
+.pickmap .tip{margin:0;padding:8px 12px;background:#fff;font-size:13px;color:#8a7490}
+.mark-c{fill:#ff6fa5;stroke:#fff}
+.pickmap .shape.cur{fill:#ffc9dc}
+.thumbs{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.thumbs li{position:relative}
+.thumbs img{display:block;width:92px;height:92px;object-fit:cover;border-radius:16px;border:3px solid var(--line)}
+.thumbs button{position:absolute;top:-8px;right:-8px;width:32px;height:32px;border-radius:50%;border:2px solid #fff;background:var(--plum);color:#fff;font:inherit;font-size:16px;line-height:1;cursor:pointer}
+.thumbs button:focus-visible{outline:3px solid var(--pink-d);outline-offset:2px}
+.grp{margin:18px 0 0;font-size:14px;font-weight:700;color:#8a5b94}
+.grp:first-child{margin-top:0}
+.items{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:10px}
+.item{display:grid;gap:8px;padding:12px 14px;background:#fff;border:3px solid var(--line);border-radius:20px;box-shadow:0 3px 0 var(--line)}
+.item b{display:block;font-size:15.5px;line-height:1.45;overflow-wrap:anywhere}
+.item small{display:block;color:#8a7490;font-size:12.5px;overflow-wrap:anywhere}
+.item .btns .btn{min-height:40px;padding:5px 14px;font-size:13.5px}
+.btn-del{color:#c0345f}
+#gh-set{margin-top:14px}
+#gh-set .steps b{color:var(--pink-d)}
+body:not(.view-form) .v-form{display:none}
+body.view-form .v-home{display:none}
+.backrow{margin:0 0 6px}
+.admin .qwrap{margin-top:14px}
+.admin input[type=search]{width:100%;min-height:46px;padding:10px 14px;border:3px solid var(--line);border-radius:18px;background:#fff;color:var(--plum);font:inherit;font-size:16px}
+.admin input[type=search]:focus-visible{outline:3px solid var(--pink-d);outline-offset:2px}
+.rows{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px}
+.row{appearance:none;width:100%;text-align:left;font:inherit;color:var(--plum);cursor:pointer;display:flex;align-items:center;gap:10px;min-height:54px;padding:8px 12px 8px 14px;background:#fff;border:3px solid var(--line);border-radius:18px;box-shadow:0 3px 0 var(--line)}
+.row:active{box-shadow:0 1px 0 var(--line);transform:translateY(2px)}
+.row:focus-visible{outline:3px solid var(--pink-d);outline-offset:2px}
+.row .rt{flex:1;min-width:0;display:grid;gap:1px}
+.row .rt b{font-size:15px;line-height:1.4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .rt small{font-size:12px;color:#8a7490;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .ph{flex:none;font-size:12px;font-weight:700;color:var(--pink-d);background:#ffe3ee;border-radius:999px;padding:2px 8px}
+.row .chev{flex:none;font-size:22px;line-height:1;color:var(--pink)}
+.qinfo{display:grid;gap:4px;padding:12px;margin-top:2px;border-radius:16px;background:#fff7fb;border:2px dashed var(--pink)}
+.qinfo .field{margin-top:8px}
+.qinfo .field:first-child{margin-top:0}
+.qinfo .chk{display:flex;gap:8px;align-items:flex-start;margin-top:10px;font-size:13px;font-weight:700;line-height:1.5}
+.qinfo .chk input{width:20px;height:20px;margin-top:1px;flex:none}
+.qinfo .btns{margin-top:10px}
+.qph{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.thumbs-s{margin:0}
+.thumbs-s img{width:64px;height:64px;border-radius:12px;border-width:2px}
+.thumbs-s button{width:30px;height:30px;top:-9px;right:-9px;font-size:15px}
+.item .btn-add{border-style:dashed}
+.undo{margin:10px 0 0;padding:10px 14px;border-radius:16px;background:#fff0f6;border:2px dashed var(--pink);font-size:14px;font-weight:700;color:var(--pink-d);display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.undo[hidden]{display:none}
+.undo .btn{min-height:40px;padding:5px 14px;font-size:13.5px}
+.btn-del.sure{background:#c0345f;border-color:#c0345f;color:#fff}
+.dirty{margin:0 0 12px;text-align:center;font-weight:700;color:#8a7490}
+.dirty.on{color:var(--pink-d)}
+.steps{margin:18px 0 12px;padding-left:1.4em;font-size:14px;line-height:1.8}
+.steps li{margin-top:4px}
+#js-out{width:100%;margin-top:8px;padding:10px;border:3px solid var(--line);border-radius:14px;font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;color:var(--plum);background:#fff}

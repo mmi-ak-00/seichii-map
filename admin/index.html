@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#ffe3ee">
+<title>管理ページ｜🐱 聖ちぃ巡礼マップ</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐱%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="paw" viewBox="0 0 24 24"><ellipse cx="12" cy="16.3" rx="6" ry="4.7"/><ellipse cx="4.8" cy="10.8" rx="2.5" ry="3.1"/><ellipse cx="9.3" cy="6.3" rx="2.6" ry="3.3"/><ellipse cx="14.7" cy="6.3" rx="2.6" ry="3.3"/><ellipse cx="19.2" cy="10.8" rx="2.5" ry="3.1"/></symbol></svg>
+<main class="page admin">
+
+<div class="rp-top">
+<a class="back" href="../index.html"><span class="chev" aria-hidden="true">‹</span>サイトへ</a>
+</div>
+
+<header class="rp-head">
+<div class="title-badge">
+<span class="ear ear-l"></span><span class="ear ear-r"></span>
+<h1 class="title">管理ページ</h1>
+</div>
+<p class="lead">スポットを追加・直して、「公開する」で反映します。<br>ここで直した内容は、「公開する」を押すまでサイトには出ません。</p>
+</header>
+
+<section class="card v-form" id="card-form" aria-labelledby="t-form">
+<h2 id="t-form" class="pill">スポットを追加</h2>
+<p class="backrow"><button type="button" class="btn" id="b-back">‹ 一覧にもどる</button></p>
+<form id="spot-form" novalidate>
+<p class="mode" id="mode" hidden></p>
+
+<div class="field">
+<label for="f-region">地方</label>
+<select id="f-region"><option value="hokkaido">北海道</option><option value="tohoku">東北</option><option value="kanto">関東</option><option value="chubu">中部</option><option value="kinki">近畿</option><option value="chugoku-shikoku">中国・四国</option><option value="kyushu-okinawa">九州・沖縄</option></select>
+</div>
+<div class="field">
+<label for="f-name">スポット名 <em>必須</em></label>
+<input id="f-name" type="text" autocomplete="off">
+</div>
+<div class="field">
+<label for="f-addr">住所 <em>必須</em></label>
+<input id="f-addr" type="text" autocomplete="off" placeholder="例：東京都渋谷区神宮前3-5-1">
+</div>
+<div class="field">
+<label for="f-work">作品名・メニュー名</label>
+<input id="f-work" type="text" autocomplete="off" placeholder="例：いちごタルト（かき氷）">
+</div>
+<div class="field">
+<label for="f-note">ひとこと</label>
+<textarea id="f-note" rows="3"></textarea>
+</div>
+
+<div class="field">
+<span class="lab">位置 <em>必須</em></span>
+<div class="btns">
+<button type="button" class="btn" id="b-search">住所から位置をさがす</button>
+<button type="button" class="btn" id="b-pick">地図でえらぶ</button>
+</div>
+<p class="hint" id="pos-msg" role="status">まだ決まっていません。</p>
+<div id="pickmap" class="pickmap" hidden></div>
+<details>
+<summary>位置を数字で直す</summary>
+<div class="two">
+<div><label for="f-lon">経度</label><input id="f-lon" type="text" inputmode="decimal" autocomplete="off"></div>
+<div><label for="f-lat">緯度</label><input id="f-lat" type="text" inputmode="decimal" autocomplete="off"></div>
+</div>
+</details>
+</div>
+
+<div class="field">
+<label for="f-photos">写真（なくてもOK）</label>
+<input id="f-photos" type="file" accept="image/*" multiple>
+<p class="hint">人の顔や自宅が写っていないか、公開してよい写真かを確認してね。大きい写真は自動で小さくして、撮影した場所の情報も消します。</p>
+<ul class="thumbs" id="thumbs"></ul>
+</div>
+
+<p class="err" id="f-err" role="alert"></p>
+<div class="btns">
+<button type="submit" class="btn btn-main" id="b-save">追加する</button>
+<button type="button" class="btn" id="b-cancel">やめる</button>
+<button type="button" class="btn btn-del" id="b-del" hidden>このスポットを削除</button>
+</div>
+</form>
+</section>
+
+<section class="card v-home" aria-labelledby="t-list">
+<h2 id="t-list" class="pill pill-lav">登録ずみ</h2>
+<div class="btns center"><button type="button" class="btn btn-main" id="b-new">＋ スポットを追加</button></div>
+<div class="field qwrap" id="q-wrap" hidden><label for="q">さがす</label><input id="q" type="search" autocomplete="off" placeholder="名前・住所・作品名"></div>
+<p class="hint center" id="list-msg" role="status">読み込み中…</p>
+<p class="undo" id="undo" role="status" hidden></p>
+<div id="list"></div>
+</section>
+
+<section class="card v-home" aria-labelledby="t-build">
+<h2 id="t-build" class="pill">公開する</h2>
+<p class="dirty" id="dirty" role="status">変更はまだありません。</p>
+<div class="btns center">
+<button type="button" class="btn btn-main" id="b-pub" disabled>公開する（GitHubへ送る）</button>
+</div>
+<p class="hint center" id="pub-msg" role="status">先に、下の「GitHubの設定」を済ませてね。</p>
+
+<details id="gh-set">
+<summary>GitHubの設定（最初の1回だけ）</summary>
+<ol class="steps">
+<li><b>GitHub でリポジトリを作る</b>：右上の「＋」→「New repository」。名前は自由（例：chii-site）。<b>「Add a README file」にチェック</b>を入れて作ります（空のままだと送れません）。</li>
+<li><b>トークン（鍵）を作る</b>：GitHub の「Settings」→「Developer settings」→「Personal access tokens」→「Fine-grained tokens」→「Generate new token」。「Repository access」は <b>Only select repositories</b> で、いま作ったリポジトリだけを選びます。「Permissions」→「Repository permissions」の <b>Contents</b> を <b>Read and write</b> にして作成し、表示された文字列をコピーします（もう一度は見られません）。</li>
+<li><b>下の3つの欄に入れる</b>：「ユーザー名/リポジトリ名」「ブランチ」「トークン」を入れて、「保存して接続テスト」を押します。</li>
+<li>テストが通ったら、<b>「サイト全体を送る（最初の1回）」</b>を押します。サイトの全ファイルとスポットの写真が GitHub に入ります。</li>
+<li><b>Cloudflare Pages を GitHub につなぐ</b>：Cloudflare の「Workers &amp; Pages」→「Create」→「Pages」→「Connect to Git」で、このリポジトリを選びます。「Framework preset」は None、「Build command」は空、「Build output directory」は <b>/</b> にして「Save and Deploy」。</li>
+<li>できあがったアドレス（○○.pages.dev）が、これからの公開アドレスです。以前のアドレスと違う場合は、新しい方を使ってね。</li>
+</ol>
+<div class="field"><label for="f-gh-repo">ユーザー名/リポジトリ名</label><input id="f-gh-repo" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="例：yourname/chii-site"></div>
+<div class="field"><label for="f-gh-branch">ブランチ</label><input id="f-gh-branch" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" value="main"></div>
+<div class="field"><label for="f-gh-token">トークン</label><input id="f-gh-token" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="github_pat_…"></div>
+<p class="hint">トークンは、いま使っているこの端末のブラウザにだけ保存します（サイトや GitHub には出ません）。別の端末で使うときは、そこでもう一度入れてね。共有のパソコンでは、使い終わったら下の「設定を消す」を押してください。</p>
+<div class="btns">
+<button type="button" class="btn btn-main" id="b-gh-test">保存して接続テスト</button>
+<button type="button" class="btn" id="b-gh-full" disabled>サイト全体を送る（最初の1回）</button>
+<button type="button" class="btn btn-del" id="b-gh-clear">設定を消す</button>
+</div>
+<p class="hint" id="gh-msg" role="status"></p>
+</details>
+
+<details>
+<summary>ZIPで手動更新する（予備）</summary>
+<div class="btns center" style="margin-top:10px">
+<button type="button" class="btn" id="b-build">更新ファイルを作る</button>
+</div>
+<p class="hint center" id="build-msg" role="status"></p>
+<div class="btns center"><a class="btn btn-main" id="dl" hidden>ZIPを保存する</a></div>
+<ol class="steps">
+<li>「更新ファイルを作る」を押して、できたZIPを保存します。</li>
+<li>Cloudflare で、ZIPを直接アップロードする方式のプロジェクトを開き、「新しいデプロイを作成（Create new deployment）」にZIPをドラッグ＆ドロップします。</li>
+</ol>
+<p class="hint center">GitHub につないだプロジェクトには、ZIPのアップロードは使えません。</p>
+<details>
+<summary>spots.js の中身を見る</summary>
+<textarea id="js-out" rows="10" readonly spellcheck="false"></textarea>
+</details>
+</details>
+</section>
+
+</main>
+<script src="admin.js"></script>
+</body>
+</html>
