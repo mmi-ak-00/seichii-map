@@ -243,7 +243,7 @@ window.SPOTS = [
         "date": "2026-09-17"
       },
       {
-        "name": "Instagram",
+        "name": "Instagram(リール)",
         "url": "https://www.instagram.com/reel/Ddg0X6mTc2d/?stkn=djh1OGRqdGFxc2Nq",
         "date": "2026-09-20"
       }
