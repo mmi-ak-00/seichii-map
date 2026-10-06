@@ -259,5 +259,27 @@ window.SPOTS = [
     ],
     "chain": true,
     "id": "pmuwqlwurqfn"
+  },
+  {
+    "region": "other",
+    "name": "I'm donut？",
+    "address": "",
+    "work": "",
+    "note": "※期間限定コラボカフェ",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DY4fuVMk-z8/?img_index=4&stkn=dTA4Y3poa2xrZzE4",
+        "date": "2026-05-28"
+      }
+    ],
+    "photos": [
+      "pmuwr32802.jpg",
+      "pmuwr328g3.jpg",
+      "pmuwr328t4.jpg",
+      "pmuwr32995.jpg"
+    ],
+    "chain": true,
+    "id": "pmuwr363da27"
   }
 ];
