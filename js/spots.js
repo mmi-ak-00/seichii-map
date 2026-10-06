@@ -192,7 +192,7 @@ window.SPOTS = [
     "sources": [
       {
         "name": "TikTok",
-        "url": "https://www.tiktok.com/t/ZS9D9c4wpJBJ5-Abb0Q/",
+        "url": "https://vt.tiktok.com/ZSb421W9s/",
         "date": "2026-08-10"
       },
       {
