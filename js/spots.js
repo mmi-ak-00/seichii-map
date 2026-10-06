@@ -868,11 +868,18 @@ window.SPOTS = [
         "name": "X",
         "url": "https://x.com/chii_nyan02/status/2005611860436119817?s=46",
         "date": "2025-12-29"
+      },
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2011931539853263027?s=46",
+        "date": "2026-01-16"
       }
     ],
     "photos": [
-      "pmux0wg515.jpg"
+      "pmux0wg515.jpg",
+      "pmux1lb3d15.jpg"
     ],
+    "thumb": "pmux1lb3d15.jpg",
     "lon": 127.64978,
     "lat": 26.17591,
     "id": "pmux0wzkze3i"
