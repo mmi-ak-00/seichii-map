@@ -156,12 +156,18 @@ window.SPOTS = [
     "note": "",
     "sources": [
       {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2082081003812933983?s=46",
+        "date": "2026-07-28"
+      },
+      {
         "name": "Instagram",
         "url": "https://www.instagram.com/p/DbiqFJdE2jT/?img_index=2&stkn=MWt3YXY0NGd4ZzRzdA==",
         "date": "2026-08-02"
       }
     ],
     "photos": [
+      "pmuwsp1k10.jpg",
       "pmuwob6924.jpg",
       "pmuwob69r5.jpg",
       "pmuwob6a66.jpg"
