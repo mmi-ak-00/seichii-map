@@ -196,6 +196,43 @@
     drawMark();
   }
 
+
+  /* ---------- 引用先（いくつでも） ---------- */
+  function srcsOf(s) {
+    if (Array.isArray(s.sources) && s.sources.length) return s.sources;
+    if (s.srcName || s.srcUrl || s.postDate) return [{ name: s.srcName || '', url: s.srcUrl || '', date: s.postDate || '' }];
+    return [];
+  }
+  function addSrcRow(o) {
+    o = o || {};
+    var row = el('div', 'srcrow');
+    function inp(cls, type, ph, val, label) {
+      var i = document.createElement('input');
+      i.type = type; i.className = cls; i.placeholder = ph; i.value = val || '';
+      i.autocomplete = 'off'; i.setAttribute('aria-label', label);
+      if (type === 'url') { i.inputMode = 'url'; i.autocapitalize = 'off'; }
+      return i;
+    }
+    row.appendChild(inp('src-name', 'text', '名前（例：ちぃちゃんのInstagram）', o.name, '引用先の名前'));
+    row.appendChild(inp('src-url', 'url', 'リンク（https://…）', o.url, '引用先のリンク'));
+    var d = inp('src-date', 'date', '', o.date, '投稿日');
+    row.appendChild(d);
+    var x = el('button', 'btn src-x', '✕ この引用先を消す'); x.type = 'button';
+    x.addEventListener('click', function () { row.remove(); });
+    row.appendChild(x);
+    $('srcs').appendChild(row);
+    return row;
+  }
+  function readSrcs() {
+    var out = [];
+    Array.prototype.forEach.call($('srcs').querySelectorAll('.srcrow'), function (r) {
+      var o = { name: r.querySelector('.src-name').value.trim(), url: r.querySelector('.src-url').value.trim(), date: r.querySelector('.src-date').value };
+      if (o.name || o.url || o.date) out.push(o);
+    });
+    return out;
+  }
+  $('b-addsrc').addEventListener('click', function () { addSrcRow().querySelector('.src-name').focus(); });
+
   function syncChain() {
     var on = $('f-chain').checked || $('f-region').value === 'other';
     $('wrap-pos').hidden = on;
@@ -332,7 +369,8 @@
   function resetForm() {
     editing = -1; pos = null; cur = [];
     $('f-chain').checked = false; syncChain();
-    ['f-name', 'f-addr', 'f-work', 'f-note', 'f-srcname', 'f-srcurl', 'f-postdate', 'f-lon', 'f-lat'].forEach(function (i) { $(i).value = ''; });
+    $('srcs').textContent = '';
+    ['f-name', 'f-addr', 'f-work', 'f-note', 'f-lon', 'f-lat'].forEach(function (i) { $(i).value = ''; });
     $('pos-msg').textContent = 'まだ決まっていません。';
     $('f-err').textContent = '';
     $('mode').hidden = true; $('b-del').hidden = true; $('b-save').textContent = '追加する';
@@ -350,9 +388,7 @@
     $('f-work').value = s.work || '';
     $('f-note').value = s.note || '';
     $('f-chain').checked = !!s.chain; syncChain();
-    $('f-srcname').value = s.srcName || '';
-    $('f-srcurl').value = s.srcUrl || '';
-    $('f-postdate').value = s.postDate || '';
+    srcsOf(s).forEach(addSrcRow);
     if (isFinite(s.lon) && isFinite(s.lat)) setPos(+s.lon, +s.lat);
     cur = (s.photos || []).map(function (n) {
       return store[n] ? { name: n, url: URL.createObjectURL(store[n]), isNew: true } : { name: n, url: '../photos/' + encodeURI(n), isNew: false };
@@ -391,16 +427,19 @@
     if (!name) { err.textContent = 'スポット名を入れてね。'; $('f-name').focus(); return; }
     var isChain = $('f-chain').checked, loose = isChain || $('f-region').value === 'other';
     if (!addr && !loose) { err.textContent = '住所を入れてね。'; $('f-addr').focus(); return; }
-    var sUrl = $('f-srcurl').value.trim();
-    if (sUrl && !/^https?:\/\/[^\s]+$/i.test(sUrl)) { err.textContent = '引用先のリンクは、https:// から始まるアドレスを入れてね。'; $('f-srcurl').focus(); return; }
+    var srcs = readSrcs();
+    for (var k = 0; k < srcs.length; k++) {
+      if (srcs[k].url && !/^https?:\/\/[^\s]+$/i.test(srcs[k].url)) { err.textContent = '引用先のリンクは、https:// から始まるアドレスを入れてね。'; var us = document.querySelectorAll('#srcs .src-url'); if (us[k]) us[k].focus(); return; }
+    }
     readPosInputs();
     if (!pos && !loose) { err.textContent = '位置を決めてね。「住所から位置をさがす」か「地図でえらぶ」を押してね。'; return; }
     var s = {
       region: $('f-region').value, name: name, address: addr,
       work: $('f-work').value.trim(), note: $('f-note').value.trim(),
-      srcName: $('f-srcname').value.trim(), srcUrl: sUrl, postDate: $('f-postdate').value,
+      sources: srcs,
       photos: cur.map(function (p) { return p.name; })
     };
+    if (!srcs.length) delete s.sources;
     if (isChain) s.chain = true;
     if (!isChain && (!loose || pos)) { s.lon = +pos.lon.toFixed(5); s.lat = +pos.lat.toFixed(5); }
     var msg;

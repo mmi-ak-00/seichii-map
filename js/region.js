@@ -117,18 +117,24 @@
     if (s.chain) li.appendChild(el('p', 'chain', '🏪 チェーン店（場所はいろいろ）'));
     if (s.address) li.appendChild(el('p', 'addr', s.address));
     if (s.note) li.appendChild(el('p', 'note-t', s.note));
-    if (s.srcUrl || s.srcName || s.postDate) {
-      var src = el('p', 'src');
-      src.appendChild(document.createTextNode('📎 引用：'));
-      var okUrl = /^https?:\/\//i.test(s.srcUrl || '');
-      if (okUrl) {
-        var sa = el('a', null, s.srcName || '引用先を見る');
-        sa.href = s.srcUrl; sa.target = '_blank'; sa.rel = 'noopener noreferrer';
-        src.appendChild(sa);
-      } else if (s.srcName) src.appendChild(document.createTextNode(s.srcName));
-      var pd = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s.postDate || '');
-      if (pd) src.appendChild(document.createTextNode((okUrl || s.srcName ? '（' : '') + '投稿日 ' + pd[1] + '年' + (+pd[2]) + '月' + (+pd[3]) + '日' + (okUrl || s.srcName ? '）' : '')));
-      li.appendChild(src);
+    var srcList = (Array.isArray(s.sources) && s.sources.length) ? s.sources
+      : ((s.srcName || s.srcUrl || s.postDate) ? [{ name: s.srcName, url: s.srcUrl, date: s.postDate }] : []);
+    if (srcList.length) {
+      var srcBox = el('div', 'srcs');
+      srcList.forEach(function (o) {
+        var src = el('p', 'src');
+        src.appendChild(document.createTextNode('📎 引用：'));
+        var okUrl = /^https?:\/\//i.test(o.url || '');
+        if (okUrl) {
+          var sa = el('a', null, o.name || '引用先を見る');
+          sa.href = o.url; sa.target = '_blank'; sa.rel = 'noopener noreferrer';
+          src.appendChild(sa);
+        } else if (o.name) src.appendChild(document.createTextNode(o.name));
+        var pd = /^(\d{4})-(\d{2})-(\d{2})$/.exec(o.date || '');
+        if (pd) src.appendChild(document.createTextNode((okUrl || o.name ? '（' : '') + '投稿日 ' + pd[1] + '年' + (+pd[2]) + '月' + (+pd[3]) + '日' + (okUrl || o.name ? '）' : '')));
+        srcBox.appendChild(src);
+      });
+      li.appendChild(srcBox);
     }
 
     var act = el('div', 'act');

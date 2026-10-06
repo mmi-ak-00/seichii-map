@@ -61,16 +61,10 @@
 <textarea id="f-note" rows="3"></textarea>
 </div>
 <div class="field">
-<label for="f-srcname">引用先の名前</label>
-<input id="f-srcname" type="text" autocomplete="off" placeholder="例：ちぃちゃんのInstagram">
-</div>
-<div class="field">
-<label for="f-srcurl">引用先のリンク</label>
-<input id="f-srcurl" type="url" inputmode="url" autocomplete="off" autocapitalize="off" placeholder="例：https://www.instagram.com/p/…">
-</div>
-<div class="field">
-<label for="f-postdate">投稿日</label>
-<input id="f-postdate" type="date">
+<span class="lab">引用先（いくつでもOK）</span>
+<div id="srcs"></div>
+<div class="btns"><button type="button" class="btn" id="b-addsrc">＋ 引用先を足す</button></div>
+<p class="hint">名前・リンク・投稿日は、どれも空でかまいません。ぜんぶ空の行は保存しません。</p>
 </div>
 
 <div class="field" id="wrap-pos">
