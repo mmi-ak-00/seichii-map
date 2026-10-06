@@ -483,5 +483,30 @@ window.SPOTS = [
     "lon": 139.69777,
     "lat": 35.69582,
     "id": "pmuwuk2jg88s"
+  },
+  {
+    "region": "chubu",
+    "name": "ロッキンロビン 大須店",
+    "address": "愛知県名古屋市中区大須3丁目44-20 小田ビル1F",
+    "works": [
+      "食べ歩きスライダーズ"
+    ],
+    "note": "※食べ歩き限定",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DTfnGtKEblF/?img_index=2&stkn=Nmp4MzNpd2l4dnk2",
+        "date": "2026-01-14"
+      }
+    ],
+    "photos": [
+      "pmuwv5qyr0.jpg",
+      "pmuwv5qzs1.jpg",
+      "pmuwv5r0t2.jpg"
+    ],
+    "chain": true,
+    "lon": 136.90449,
+    "lat": 35.15791,
+    "id": "pmuwv5t8rxh0"
   }
 ];
