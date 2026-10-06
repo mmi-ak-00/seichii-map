@@ -457,5 +457,29 @@ window.SPOTS = [
     "lon": 139.64575,
     "lat": 35.44364,
     "id": "pmuwu27gocke"
+  },
+  {
+    "region": "kanto",
+    "name": "caldo",
+    "address": "東京都新宿区西新宿7-8-6 新宿ヴィンテージビル1F",
+    "works": [
+      "クラシックパンケーキ"
+    ],
+    "note": "",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DRR6Zg2Eco6/?stkn=Y3Vyejd2ZzVoMTAx",
+        "date": "2025-11-20"
+      }
+    ],
+    "photos": [
+      "pmuwujx340.jpg",
+      "pmuwujx3r1.jpg",
+      "pmuwujx492.jpg"
+    ],
+    "lon": 139.69777,
+    "lat": 35.69582,
+    "id": "pmuwuk2jg88s"
   }
 ];
