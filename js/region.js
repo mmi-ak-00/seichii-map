@@ -2,7 +2,16 @@
   'use strict';
 
   var key = document.body.getAttribute('data-page');
-  var spots = (window.SPOTS || []).filter(function (s) { return s.region === key; });
+  var REGP = {"tohoku": ["青森", "秋田", "岩手", "山形", "宮城", "福島"], "kanto": ["群馬", "栃木", "茨城", "埼玉", "東京", "神奈川", "千葉"], "chubu": ["長野", "新潟", "岐阜", "静岡", "愛知", "山梨", "富山", "石川", "福井"], "kinki": ["兵庫", "京都", "滋賀", "三重", "奈良", "和歌山", "大阪"], "chugoku-shikoku": ["鳥取", "島根", "岡山", "広島", "山口", "徳島", "香川", "愛媛", "高知"], "kyushu-okinawa": ["福岡", "佐賀", "長崎", "熊本", "大分", "宮崎", "鹿児島", "沖縄"], "hokkaido": ["北海道"]};
+  function PL0(s) { return Array.isArray(s.pref) ? s.pref : (s.pref ? [s.pref] : []); }
+  // 「その他」で都道府県をえらんだお店も、その県がある地方のページに「その他」の印つきで出す
+  function fromOther(s) {
+    if (key === 'other' || s.region !== 'other' || !REGP[key]) return false;
+    return PL0(s).some(function (p) { return REGP[key].indexOf(p) >= 0; });
+  }
+  var spots = (window.SPOTS || []).filter(function (s) { return s.region === key || fromOther(s); });
+  // 「その他」から来たお店は、同じ県の中でも下にならべる（元の順番はそのまま）
+  spots = spots.map(function (s, i) { return [s, i]; }).sort(function (a, b) { return (a[0].region === 'other' && key !== 'other' ? 1 : 0) - (b[0].region === 'other' && key !== 'other' ? 1 : 0) || a[1] - b[1]; }).map(function (x) { return x[0]; });
   var STORE = 'chii-visited-v1';
   var visited = {};
   try { visited = JSON.parse(localStorage.getItem(STORE) || '{}') || {}; } catch (e) { visited = {}; }
@@ -101,6 +110,7 @@
     } else noPhoto();
     head.appendChild(th);
     head.appendChild(el('span', 'sp-nm', s.name));
+    if (s.region === 'other' && key !== 'other') head.appendChild(el('span', 'sp-oth', 'その他'));
     head.appendChild(el('span', 'sp-vd', '✓'));
     head.appendChild(el('span', 'sp-chev', '›'));
     head.addEventListener('click', function () { select(s.name, false); });
@@ -205,7 +215,7 @@
     var vb0 = vb.slice();
     var r = vb[2] / 330 * 8;
     spots.forEach(function (s) {
-      if (typeof s.lon !== 'number' || typeof s.lat !== 'number') return;
+      if (s.region === 'other' || typeof s.lon !== 'number' || typeof s.lat !== 'number') return;
       var x, y;
       if (s.lat < 28) {
         // 沖縄は左下の枠（別の縮尺）に描いているので、枠の中の位置に直す
