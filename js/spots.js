@@ -457,7 +457,9 @@ window.SPOTS = [
     "region": "kanto",
     "name": "鵬天閣",
     "address": "",
-    "work": "海鮮と豚肉2種盛りセット",
+    "works": [
+      "海鮮と豚肉2種盛りセット（小籠包）"
+    ],
     "note": "",
     "sources": [
       {
