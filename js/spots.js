@@ -1116,5 +1116,24 @@ window.SPOTS = [
     "lon": 139.70172,
     "lat": 35.66177,
     "id": "pmux3w92upuh"
+  },
+  {
+    "region": "kanto",
+    "name": "TINTO COFFEE",
+    "address": "東京都渋谷区渋谷2丁目8-10 青山ビル・グーテ 1F",
+    "note": "",
+    "sources": [
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2026429521608814912?s=46",
+        "date": "2026-02-25"
+      }
+    ],
+    "photos": [
+      "pmux42dgy23.jpg"
+    ],
+    "lon": 139.70743,
+    "lat": 35.66063,
+    "id": "pmux42hu52vc"
   }
 ];
