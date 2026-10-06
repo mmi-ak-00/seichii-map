@@ -57,11 +57,10 @@ window.SPOTS = [
     "region": "chubu",
     "name": "伊奈波神社",
     "address": "岐阜県岐阜市伊奈波通1丁目1",
-    "work": "",
     "note": "",
     "sources": [
       {
-        "name": "YouTube",
+        "name": "YouTube(エイアイカ)",
         "url": "https://youtu.be/5uxOKYfOors?si=63XvCocL52ODttHN",
         "date": "2026-09-19"
       },
