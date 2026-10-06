@@ -985,7 +985,12 @@ window.SPOTS = [
       {
         "name": "X",
         "url": "https://x.com/chii_nyan02/status/2033538815428878567?s=46",
-        "date": "2026-10-16"
+        "date": "2026-03-16"
+      },
+      {
+        "name": "X(立花玲奈)",
+        "url": "https://x.com/_rena615/status/2034474407582961685?s=46",
+        "date": "2026-03-19"
       },
       {
         "name": "Instagram",
