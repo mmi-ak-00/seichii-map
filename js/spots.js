@@ -138,5 +138,21 @@ window.SPOTS = [
       "pmuwob6a66.jpg"
     ],
     "id": "pmuwob7qo2qr"
+  },
+  {
+    "region": "chubu",
+    "name": "珈琲と紅茶 あるてあ",
+    "address": "岐阜県岐阜市鵜川町5-3",
+    "work": "",
+    "note": "",
+    "srcName": "X",
+    "srcUrl": "https://x.com/chii_nyan02/status/2095282580493136349?s=46",
+    "postDate": "2026-09-03",
+    "lon": 136.77054,
+    "lat": 35.44238,
+    "photos": [
+      "pmuwoh2p90.jpg"
+    ],
+    "id": "pmuwoh4b5y7t"
   }
 ];
