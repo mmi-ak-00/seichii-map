@@ -31,5 +31,20 @@ window.SPOTS = [
       "pmuwmbefp2.jpg"
     ],
     "id": "nedd0ji"
+  },
+  {
+    "region": "chubu",
+    "name": "こふり",
+    "address": "岐阜県岐阜市鏡島南4-5-5",
+    "work": "ドバイチョコ（かき氷）",
+    "note": "",
+    "lon": 136.71194,
+    "lat": 35.40206,
+    "photos": [
+      "pmuwmk76l0.jpg",
+      "pmuwmk76z1.jpg",
+      "pmuwmk77d2.jpg"
+    ],
+    "id": "pmuwmkl318wn"
   }
 ];
