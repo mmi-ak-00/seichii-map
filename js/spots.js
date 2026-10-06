@@ -798,5 +798,27 @@ window.SPOTS = [
     "lon": 139.70094,
     "lat": 35.6918,
     "id": "pmuwzpzaqamm"
+  },
+  {
+    "region": "kanto",
+    "name": "マリオンクレープ 北千住マルイ店",
+    "address": "東京都足立区千住3-92 北千住マルイ 1F",
+    "note": "",
+    "sources": [
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2045133933436961186?s=46",
+        "date": "2026-04-17"
+      }
+    ],
+    "photos": [
+      "pmux08yh10.jpg",
+      "pmux08yh81.jpg"
+    ],
+    "thumb": "pmux08yh81.jpg",
+    "chain": true,
+    "lon": 139.80456,
+    "lat": 35.75108,
+    "id": "pmux093fobgu"
   }
 ];
