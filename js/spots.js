@@ -264,7 +264,7 @@ window.SPOTS = [
     "region": "other",
     "name": "I'm donut？",
     "address": "",
-    "work": "",
+    "work": "抹茶ラテ",
     "note": "※期間限定コラボカフェ",
     "sources": [
       {
