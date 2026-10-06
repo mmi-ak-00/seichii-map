@@ -12,6 +12,7 @@
     "css/style.css",
     "index.html",
     "js/account.js",
+    "js/counts.js",
     "js/main.js",
     "js/region.js",
     "js/spots.js",

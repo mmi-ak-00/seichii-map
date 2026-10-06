@@ -89,7 +89,7 @@ body::before{ /* 水玉 */
 
 /* 地方リスト */
 .list-card{padding:30px 14px 16px}
-.rlist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rlist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px 12px}
 .rlist li:last-child{grid-column:1/-1}
 .rbtn{display:flex;align-items:center;gap:8px;min-height:58px;padding:9px 10px;border-radius:22px;
   background:#fff;border:3px solid var(--line);box-shadow:0 4px 0 var(--line);color:var(--plum);
@@ -99,6 +99,9 @@ body::before{ /* 水玉 */
   background:var(--c);box-shadow:inset 0 0 0 2px rgba(255,255,255,.7)}
 .rbtn .dot svg{width:18px;height:18px;fill:#fff;filter:drop-shadow(0 1px 0 rgba(90,69,96,.18))}
 .rbtn .name{line-height:1.25}
+.rbtn{position:relative}
+.rbtn .cnt{position:absolute;top:-9px;right:-3px;min-width:24px;padding:1px 8px;border-radius:999px;background:#fff;border:2.5px solid var(--c-hi);color:var(--pink-d);font-size:12.5px;font-weight:800;line-height:1.45;text-align:center;font-variant-numeric:tabular-nums;box-shadow:0 2px 0 var(--line)}
+.rbtn .cnt.is-zero{color:#c9b3c0;border-color:var(--line);font-weight:700}
 .rbtn .arrow{margin-left:auto;font-size:20px;line-height:1;color:#e0a7c1}
 .rbtn.is-active,.rbtn:active{transform:translateY(2px);box-shadow:0 2px 0 var(--line);border-color:var(--c-hi)}
 .rbtn:focus-visible{outline:3px solid var(--pink-d);outline-offset:2px}
