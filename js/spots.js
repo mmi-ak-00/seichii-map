@@ -249,6 +249,7 @@ window.SPOTS = [
       "pmuwpc8j30.jpg",
       "pmuwpc8jk1.jpg"
     ],
+    "thumb": "pmuwpc8jk1.jpg",
     "chain": true,
     "noPlace": true,
     "pref": [
