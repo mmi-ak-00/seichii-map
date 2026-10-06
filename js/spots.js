@@ -666,5 +666,27 @@ window.SPOTS = [
     "lon": 139.87433,
     "lat": 35.63126,
     "id": "pmuwy4ay8epu"
+  },
+  {
+    "region": "kanto",
+    "name": "浅草うなな",
+    "address": "東京都台東区浅草2-7-21",
+    "works": [
+      "鰻焼おにぎり"
+    ],
+    "note": "",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DXRnnu0kfqz/?stkn=aGJjZGhhMnB5YWNo",
+        "date": "2026-04-18"
+      }
+    ],
+    "photos": [
+      "pmuwydxbs10.jpg"
+    ],
+    "lon": 139.79437,
+    "lat": 35.7152,
+    "id": "pmuwye1dfjrz"
   }
 ];
