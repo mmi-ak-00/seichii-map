@@ -1095,5 +1095,26 @@ window.SPOTS = [
     "lon": 132.46455,
     "lat": 34.38918,
     "id": "pmux3qcm8m5a"
+  },
+  {
+    "region": "kanto",
+    "name": "渋谷ハチ公口自転車駐車場",
+    "address": "東京都渋谷区渋谷1-26・27先",
+    "note": "",
+    "sources": [
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2039100490966094063?s=46",
+        "date": "2026-04-01"
+      }
+    ],
+    "photos": [
+      "pmux3vws621.jpg",
+      "pmux3vwsc22.jpg"
+    ],
+    "thumb": "pmux3vwsc22.jpg",
+    "lon": 139.70172,
+    "lat": 35.66177,
+    "id": "pmux3w92upuh"
   }
 ];
