@@ -1207,9 +1207,6 @@ window.SPOTS = [
     "region": "chugoku-shikoku",
     "name": "MIYAJIMA BREWERY",
     "address": "広島県廿日市市宮島町459-2 3F",
-    "works": [
-      "広島レモンビール or IPA"
-    ],
     "note": "",
     "sources": [
       {
