@@ -1028,5 +1028,26 @@ window.SPOTS = [
     "lon": 139.75215,
     "lat": 35.70315,
     "id": "pmux382kiepv"
+  },
+  {
+    "region": "kanto",
+    "name": "ZOZOマリンスタジアム",
+    "address": "千葉県千葉市美浜区美浜1",
+    "note": "",
+    "sources": [
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2040045921833226670?s=46",
+        "date": "2026-04-03"
+      }
+    ],
+    "photos": [
+      "pmux3dgaj12.jpg",
+      "pmux3dgau13.jpg",
+      "pmux3dgb814.jpg"
+    ],
+    "lon": 140.03113,
+    "lat": 35.64552,
+    "id": "pmux3dkrbpaj"
   }
 ];
