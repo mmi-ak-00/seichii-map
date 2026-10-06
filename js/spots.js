@@ -245,6 +245,11 @@ window.SPOTS = [
         "date": "2026-08-10"
       },
       {
+        "name": "TikTok(エイアイ過多)",
+        "url": "https://vt.tiktok.com/ZSb4WVXRC/",
+        "date": "2026-08-12"
+      },
+      {
         "name": "X",
         "url": "https://x.com/chii_nyan02/status/2100547882868953287?s=46",
         "date": "2026-09-17"
