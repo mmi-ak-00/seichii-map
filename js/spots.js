@@ -857,5 +857,24 @@ window.SPOTS = [
     "lon": 127.96958,
     "lat": 26.64299,
     "id": "pmux0ru7upk8"
+  },
+  {
+    "region": "kyushu-okinawa",
+    "name": "瀬長島ウミカジテラス",
+    "address": "沖縄県豊見城市瀬長174-6",
+    "note": "",
+    "sources": [
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2005611860436119817?s=46",
+        "date": "2025-12-29"
+      }
+    ],
+    "photos": [
+      "pmux0wg515.jpg"
+    ],
+    "lon": 127.64978,
+    "lat": 26.17591,
+    "id": "pmux0wzkze3i"
   }
 ];
