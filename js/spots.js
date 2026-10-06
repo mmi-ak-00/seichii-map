@@ -308,7 +308,7 @@ window.SPOTS = [
     "note": "",
     "sources": [
       {
-        "name": "TikTok",
+        "name": "TikTok(エイアイ過多)",
         "url": "https://vt.tiktok.com/ZSb4jLkrB/",
         "date": "2026-06-16"
       },
