@@ -248,9 +248,15 @@ window.SPOTS = [
         "name": "Instagram",
         "url": "https://www.instagram.com/p/DYHrnl-kR6q/?img_index=4&stkn=MXh6a3hqcjYzbHV3cQ==",
         "date": "2026-05-09"
+      },
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2049618917853970606?s=46",
+        "date": "2026-04-30"
       }
     ],
     "photos": [
+      "pmuwt1rfy3.jpg",
       "pmuwpmimj2.jpg",
       "pmuwpmimx3.jpg",
       "pmuwpmine4.jpg"
