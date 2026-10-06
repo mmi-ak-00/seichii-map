@@ -353,12 +353,18 @@ window.SPOTS = [
     "note": "※期間限定コラボカフェ",
     "sources": [
       {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2059405961144697144?s=46",
+        "date": "2026-05-27"
+      },
+      {
         "name": "Instagram",
         "url": "https://www.instagram.com/p/DY4fuVMk-z8/?img_index=4&stkn=dTA4Y3poa2xrZzE4",
         "date": "2026-05-28"
       }
     ],
     "photos": [
+      "pmux0fkvs2.jpg",
       "pmuwr32802.jpg",
       "pmuwr328g3.jpg",
       "pmuwr328t4.jpg",
