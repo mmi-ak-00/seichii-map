@@ -94,7 +94,7 @@
       var idx = [];
       spots.forEach(function (s, i) {
         if (s.region !== r[0]) return;
-        if (ft && [s.name, s.address, s.work, s.note].join(' ').toLowerCase().indexOf(ft) < 0) return;
+        if (ft && [s.name, s.address, worksOf(s).join(' '), s.note].join(' ').toLowerCase().indexOf(ft) < 0) return;
         idx.push(i);
       });
       if (!idx.length) return;
@@ -117,7 +117,7 @@
         b.setAttribute('aria-label', s.name + ' を直す');
         var t = el('span', 'rt');
         t.appendChild(el('b', null, s.name));
-        var sub = [s.chain ? 'チェーン店' : '', s.work, s.address].filter(Boolean).join(' ／ ');
+        var sub = [s.chain ? 'チェーン店' : '', worksOf(s).join('・'), s.address].filter(Boolean).join(' ／ ');
         if (sub) t.appendChild(el('small', null, sub));
         b.appendChild(t);
         var np = (s.photos || []).length;
@@ -207,6 +207,37 @@
     drawMark();
   }
 
+
+
+  /* ---------- 作品名・メニュー名（いくつでも） ---------- */
+  function worksOf(s) {
+    if (Array.isArray(s.works) && s.works.length) return s.works.filter(Boolean);
+    return s.work ? [s.work] : [];
+  }
+  function addWorkRow(v) {
+    var row = el('div', 'workrow');
+    var i = document.createElement('input');
+    i.type = 'text'; i.className = 'work-in'; i.autocomplete = 'off'; i.value = typeof v === 'string' ? v : '';
+    i.placeholder = '例：いちごタルト（かき氷）'; i.setAttribute('aria-label', 'メニュー名');
+    row.appendChild(i);
+    var bar = el('div', 'work-bar');
+    var up = el('button', 'btn', '↑'); up.type = 'button'; up.setAttribute('aria-label', '上へ');
+    var dn = el('button', 'btn', '↓'); dn.type = 'button'; dn.setAttribute('aria-label', '下へ');
+    var x = el('button', 'btn', '✕'); x.type = 'button'; x.setAttribute('aria-label', 'このメニューを消す');
+    up.addEventListener('click', function () { var p = row.previousElementSibling; if (p) row.parentNode.insertBefore(row, p); });
+    dn.addEventListener('click', function () { var n = row.nextElementSibling; if (n) row.parentNode.insertBefore(n, row); });
+    x.addEventListener('click', function () { row.remove(); });
+    bar.appendChild(up); bar.appendChild(dn); bar.appendChild(x);
+    row.appendChild(bar);
+    $('works').appendChild(row);
+    return row;
+  }
+  function readWorks() {
+    var out = [];
+    Array.prototype.forEach.call($('works').querySelectorAll('.work-in'), function (i) { var t = i.value.trim(); if (t) out.push(t); });
+    return out;
+  }
+  $('b-addwork').addEventListener('click', function () { addWorkRow().querySelector('input').focus(); });
 
   /* ---------- 引用先（いくつでも） ---------- */
   function srcsOf(s) {
@@ -406,9 +437,10 @@
 
   function resetForm() {
     editing = -1; pos = null; cur = [];
+    $('works').textContent = '';
     $('f-chain').checked = false; $('f-noplace').checked = false; $('f-pref').value = ''; syncChain();
     $('srcs').textContent = '';
-    ['f-name', 'f-addr', 'f-work', 'f-note', 'f-lon', 'f-lat'].forEach(function (i) { $(i).value = ''; });
+    ['f-name', 'f-addr', 'f-note', 'f-lon', 'f-lat'].forEach(function (i) { $(i).value = ''; });
     $('pos-msg').textContent = 'まだ決まっていません。';
     $('f-err').textContent = '';
     $('mode').hidden = true; $('b-del').hidden = true; $('b-save').textContent = '追加する';
@@ -423,7 +455,7 @@
     $('f-region').value = s.region;
     $('f-name').value = s.name || '';
     $('f-addr').value = s.address || '';
-    $('f-work').value = s.work || '';
+    worksOf(s).forEach(addWorkRow);
     $('f-note').value = s.note || '';
     $('f-chain').checked = !!s.chain;
     $('f-noplace').checked = !!s.noPlace || (!!s.chain && !s.address && !isFinite(s.lon));   // 前の形（チェーン店＝場所なし）も引き継ぐ
@@ -475,11 +507,12 @@
     if (!pos && !loose) { err.textContent = '位置を決めてね。「住所から位置をさがす」か「地図でえらぶ」を押してね。'; return; }
     var s = {
       region: $('f-region').value, name: name, address: addr,
-      work: $('f-work').value.trim(), note: $('f-note').value.trim(),
+      works: readWorks(), note: $('f-note').value.trim(),
       sources: srcs,
       photos: cur.map(function (p) { return p.name; })
     };
     if (!srcs.length) delete s.sources;
+    if (!s.works.length) delete s.works;
     if (isChain) s.chain = true;
     if (noPlace) { s.noPlace = true; if ($('f-pref').value) s.pref = $('f-pref').value; }
     if (!noPlace && pos) { s.lon = +pos.lon.toFixed(5); s.lat = +pos.lat.toFixed(5); }

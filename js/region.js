@@ -125,11 +125,17 @@
       li.appendChild(ph);
     }
 
-    if (s.work) {
-      var tag = el('span', 'tag');
-      tag.appendChild(pawIcon());
-      tag.appendChild(document.createTextNode(s.work));
-      li.appendChild(tag);
+    var workList = (Array.isArray(s.works) && s.works.length) ? s.works : (s.work ? [s.work] : []);
+    if (workList.length) {
+      var tags = el('div', 'tags');
+      workList.forEach(function (w) {
+        if (!w) return;
+        var tag = el('span', 'tag');
+        tag.appendChild(pawIcon());
+        tag.appendChild(document.createTextNode(w));
+        tags.appendChild(tag);
+      });
+      li.appendChild(tags);
     }
     if (s.chain) li.appendChild(el('p', 'chain', '🏪 チェーン店'));
     if (s.noPlace && s.pref) li.appendChild(el('p', 'addr', s.pref));

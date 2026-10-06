@@ -207,6 +207,7 @@ body::before{ /* 水玉 */
 .spot.is-sel .sp-chev{transform:rotate(90deg)}
 .spot-body{display:none;gap:10px;padding:12px 4px 6px}
 .spot.is-sel .spot-body{display:grid}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
 .tag{justify-self:start;display:inline-flex;align-items:center;gap:6px;max-width:100%;padding:4px 14px 4px 9px;border-radius:999px;background:var(--c);
   font-size:13.5px;font-weight:700;overflow-wrap:anywhere}
 .tag svg{flex:none;width:15px;height:15px;fill:#fff;filter:drop-shadow(0 1px 0 rgba(90,69,96,.2))}
