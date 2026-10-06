@@ -619,5 +619,42 @@ window.SPOTS = [
     "lon": 136.90054,
     "lat": 35.15888,
     "id": "pmuwvso4u9k3"
+  },
+  {
+    "region": "kanto",
+    "name": "ディズニーランド",
+    "address": "千葉県浦安市舞浜1-1",
+    "works": [
+      "チョコレートチュロス",
+      "ポップコーン レギュラーボックス",
+      "チョコレートとバニラムースのタルト"
+    ],
+    "note": "※クリスマス限定フード有",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DSP0LXAEaxM/?img_index=6&stkn=Nnh5cjdyOGh5eDIy",
+        "date": "2025-12-14"
+      },
+      {
+        "name": "Instagram（リール）",
+        "url": "https://www.instagram.com/reel/DSaFWbJkTsD/?stkn=OWw3dTRlb2Z0MDNz",
+        "date": "2025-12-18"
+      }
+    ],
+    "photos": [
+      "pmuwy494z0.jpg",
+      "pmuwy495i1.jpg",
+      "pmuwy49622.jpg",
+      "pmuwy496m3.jpg",
+      "pmuwy49764.jpg",
+      "pmuwy497r5.jpg",
+      "pmuwy498b6.jpg",
+      "pmuwy498s7.jpg",
+      "pmuwy49998.jpg"
+    ],
+    "lon": 139.87433,
+    "lat": 35.63126,
+    "id": "pmuwy4ay8epu"
   }
 ];
