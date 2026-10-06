@@ -120,5 +120,23 @@ window.SPOTS = [
       "pmuwo3q6r3.jpg"
     ],
     "id": "pmuwo3rihoqe"
+  },
+  {
+    "region": "kanto",
+    "name": "Cafe Lumiere",
+    "address": "東京都武蔵野市吉祥寺南町1-2-2 東山ビル4F",
+    "work": "Lumiere特製　焼き氷",
+    "note": "",
+    "srcName": "Instagram",
+    "srcUrl": "https://www.instagram.com/p/DbiqFJdE2jT/?img_index=2&stkn=MWt3YXY0NGd4ZzRzdA==",
+    "postDate": "2026-08-02",
+    "lon": 139.58012,
+    "lat": 35.70232,
+    "photos": [
+      "pmuwob6924.jpg",
+      "pmuwob69r5.jpg",
+      "pmuwob6a66.jpg"
+    ],
+    "id": "pmuwob7qo2qr"
   }
 ];
