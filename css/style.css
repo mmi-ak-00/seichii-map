@@ -172,6 +172,7 @@ body::before{ /* 水玉 */
 .pin-ring{fill:none;stroke:#ffd23f;stroke-width:1.4px;opacity:0;pointer-events:none}
 .pin.is-done .pin-c{fill:#4fc3a8}
 .pin.is-sel .pin-c{fill:#ffb020}
+.pin.is-sel.is-done .pin-c{fill:#4fc3a8;stroke:#ffb020}
 .pin.is-sel .pin-p{fill:#fff}
 .pin.is-sel .pin-body{transform:scale(1.5);transform-box:fill-box;transform-origin:center;animation:pinhop .5s ease-out}
 .pin.is-sel .pin-ring{opacity:.9;animation:pinring 1.4s ease-out infinite}

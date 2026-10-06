@@ -157,9 +157,18 @@
     var vb0 = vb.slice();
     var r = vb[2] / 330 * 8;
     spots.forEach(function (s) {
-      if (typeof s.lon !== 'number' || typeof s.lat !== 'number' || s.lat < 28) return;
-      var x = 22 + (s.lon - 129.4) * 19.5;
-      var y = 28 + (45.7 - s.lat) * 22.5;
+      if (typeof s.lon !== 'number' || typeof s.lat !== 'number') return;
+      var x, y;
+      if (s.lat < 28) {
+        // 沖縄は左下の枠（別の縮尺）に描いているので、枠の中の位置に直す
+        // 枠に描いているのは沖縄本島まわりだけ。ほかの島（宮古・石垣など）はピンを出しません
+        if (s.region !== 'kyushu-okinawa' || s.lon < 127.4 || s.lon > 128.6 || s.lat < 25.9 || s.lat > 27.1) return;
+        x = 59.7 + (s.lon - 127.64) * 53.0;
+        y = 382 + (26.88 - s.lat) * 60.0;
+      } else {
+        x = 22 + (s.lon - 129.4) * 19.5;
+        y = 28 + (45.7 - s.lat) * 22.5;
+      }
       var g = document.createElementNS(NS, 'g');
       g.setAttribute('class', 'pin');
       g.setAttribute('role', 'button');
@@ -247,6 +256,7 @@
     for (var i = 0; i < names.length; i++) {
       if (s.address && s.address.indexOf(names[i]) >= 0) return names[i];
     }
+    if (typeof s.lat === 'number' && s.lat < 28) return '沖縄';
     if (typeof s.lon === 'number' && typeof s.lat === 'number' && svg) {
       var x = 22 + (s.lon - 129.4) * 19.5, y = 28 + (45.7 - s.lat) * 22.5;
       var pt = svg.createSVGPoint(); pt.x = x; pt.y = y;
