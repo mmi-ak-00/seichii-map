@@ -281,5 +281,48 @@ window.SPOTS = [
     ],
     "chain": true,
     "id": "pmuwr363da27"
+  },
+  {
+    "region": "chubu",
+    "name": "KOYO BASE",
+    "address": "岐阜県土岐市泉町久尻1496-5",
+    "work": "ひのき牛と飛騨豚のハンバーグとお野菜のセット",
+    "note": "",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DTQNAVTkYXH/?img_index=2&stkn=MWZkM3FybWRsdHNhOQ==",
+        "date": "2026-01-08"
+      }
+    ],
+    "photos": [
+      "pmuwrbld96.jpg",
+      "pmuwrbldq7.jpg",
+      "pmuwrble78.jpg"
+    ],
+    "lon": 137.16991,
+    "lat": 35.35616,
+    "id": "pmuwrbmoxtm2"
+  },
+  {
+    "region": "chubu",
+    "name": "土岐プレミアム・アウトレット",
+    "address": "岐阜県土岐市土岐ヶ丘1-2",
+    "work": "",
+    "note": "",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DTQNAVTkYXH/?img_index=4&stkn=MWZkM3FybWRsdHNhOQ==",
+        "date": "2026-01-08"
+      }
+    ],
+    "photos": [
+      "pmuwrdgr39.jpg",
+      "pmuwrdgrk10.jpg"
+    ],
+    "lon": 137.16518,
+    "lat": 35.34062,
+    "id": "pmuwrdhxxobz"
   }
 ];
