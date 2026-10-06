@@ -775,5 +775,28 @@ window.SPOTS = [
     "lon": 139.79597,
     "lat": 35.71154,
     "id": "pmuwz4oc0s0v"
+  },
+  {
+    "region": "kanto",
+    "name": "HAND BAKES ルミネ新宿店",
+    "address": "東京都新宿区新宿3-38-2 ルミネ新宿LUMINE2 3F",
+    "works": [
+      "レアチーズチョコオレオタルト"
+    ],
+    "note": "",
+    "sources": [
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2038389623320432670?s=46",
+        "date": "2026-03-30"
+      }
+    ],
+    "photos": [
+      "pmuwzneef1.jpg"
+    ],
+    "chain": true,
+    "lon": 139.70094,
+    "lat": 35.6918,
+    "id": "pmuwzpzaqamm"
   }
 ];
