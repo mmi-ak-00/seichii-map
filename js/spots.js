@@ -376,9 +376,11 @@ window.SPOTS = [
   },
   {
     "region": "chubu",
-    "name": "PancakeHouse HoiHoi",
-    "address": "",
-    "work": "",
+    "name": "PancakeHouse HoiHoi 栄本店",
+    "address": "愛知県名古屋市中区栄5丁目4-2 レジデンシア栄南1A",
+    "works": [
+      "オムタコライス"
+    ],
     "note": "",
     "sources": [
       {
@@ -391,8 +393,8 @@ window.SPOTS = [
       "pmuwswdt22.jpg"
     ],
     "chain": true,
-    "noPlace": true,
-    "pref": "愛知",
+    "lon": 136.91208,
+    "lat": 35.16589,
     "id": "pmuwswmg6wji"
   },
   {
