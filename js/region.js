@@ -94,7 +94,8 @@
     if (s.photos && s.photos.length) {
       var ti = el('img');
       ti.alt = ''; ti.loading = 'lazy';
-      ti.src = '../photos/' + encodeURI(s.photos[0]);
+      var thName = (s.thumb && s.photos.indexOf(s.thumb) >= 0) ? s.thumb : s.photos[0];
+      ti.src = '../photos/' + encodeURI(thName);
       ti.addEventListener('error', noPhoto);
       th.appendChild(ti);
     } else noPhoto();

@@ -397,13 +397,14 @@
       img.src = url;
     });
   }
+  var curThumb = '';   // 一覧（たたんだ状態）のサムネにする写真。空なら1枚目
   function renderThumbs() {
     var ul = $('thumbs'); ul.textContent = '';
     cur.forEach(function (p, i) {
       var li = el('li');
       var img = el('img'); img.src = p.url; img.alt = '選んだ写真 ' + (i + 1);
       var b = el('button', null, '×'); b.type = 'button'; b.setAttribute('aria-label', '写真 ' + (i + 1) + ' をはずす');
-      b.addEventListener('click', function () { cur.splice(i, 1); cleanStore(); renderThumbs(); });
+      b.addEventListener('click', function () { if (curThumb === cur[i].name) curThumb = ''; cur.splice(i, 1); cleanStore(); renderThumbs(); });
       li.appendChild(img); li.appendChild(b);
       var mv = el('div', 'mv');
       var l = el('button', null, '‹'); l.type = 'button'; l.setAttribute('aria-label', '写真 ' + (i + 1) + ' を前へ');
@@ -413,6 +414,12 @@
       r.addEventListener('click', function () { var t = cur[i]; cur[i] = cur[i + 1]; cur[i + 1] = t; renderThumbs(); });
       mv.appendChild(l); mv.appendChild(el('span', null, String(i + 1))); mv.appendChild(r);
       li.appendChild(mv);
+      var isTh = (curThumb ? curThumb === p.name : i === 0);
+      var tb = el('button', 'th-b' + (isTh ? ' on' : ''), isTh ? '★ サムネ' : '☆ サムネに');
+      tb.type = 'button'; tb.setAttribute('aria-pressed', isTh ? 'true' : 'false');
+      tb.setAttribute('aria-label', '写真 ' + (i + 1) + ' を一覧のサムネにする');
+      tb.addEventListener('click', function () { curThumb = p.name; renderThumbs(); });
+      li.appendChild(tb);
       ul.appendChild(li);
     });
   }
@@ -436,7 +443,7 @@
   });
 
   function resetForm() {
-    editing = -1; pos = null; cur = [];
+    editing = -1; pos = null; cur = []; curThumb = '';
     $('works').textContent = '';
     $('f-chain').checked = false; $('f-noplace').checked = false; $('f-pref').value = ''; syncChain();
     $('srcs').textContent = '';
@@ -451,7 +458,7 @@
   function startEdit(i) {
     var s = spots[i];
     resetForm();
-    editing = i; openRegs[s.region] = true;
+    editing = i; openRegs[s.region] = true; curThumb = s.thumb || '';
     $('f-region').value = s.region;
     $('f-name').value = s.name || '';
     $('f-addr').value = s.address || '';
@@ -511,6 +518,7 @@
       sources: srcs,
       photos: cur.map(function (p) { return p.name; })
     };
+    if (curThumb && s.photos.indexOf(curThumb) > 0) s.thumb = curThumb;
     if (!srcs.length) delete s.sources;
     if (!s.works.length) delete s.works;
     if (isChain) s.chain = true;

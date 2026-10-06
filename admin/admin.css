@@ -38,6 +38,8 @@
 .thumbs button{position:absolute;top:-8px;right:-8px;width:32px;height:32px;border-radius:50%;border:2px solid #fff;background:var(--plum);color:#fff;font:inherit;font-size:16px;line-height:1;cursor:pointer}
 .thumbs .mv{display:flex;align-items:center;justify-content:space-between;margin-top:6px;font-weight:700;font-size:13px;color:var(--plum)}
 .thumbs .mv button{position:static;width:36px;height:36px;border:2px solid var(--line);background:#fff;color:var(--pink-d);font-size:20px;line-height:1}
+.thumbs .th-b{position:static;display:block;width:100%;margin-top:6px;height:auto;min-height:34px;padding:4px 6px;border-radius:999px;border:2px solid var(--line);background:#fff;color:#8a7490;font:inherit;font-size:12.5px;font-weight:700}
+.thumbs .th-b.on{background:var(--pink);border-color:var(--pink);color:#fff}
 .thumbs .mv button:disabled{opacity:.3;cursor:default}
 .thumbs button:focus-visible{outline:3px solid var(--pink-d);outline-offset:2px}
 .grp{margin:10px 0 0;font-size:15px;font-weight:700}
