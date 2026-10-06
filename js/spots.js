@@ -992,5 +992,41 @@ window.SPOTS = [
     "lon": 139.70201,
     "lat": 35.69623,
     "id": "pmux2unm3aih"
+  },
+  {
+    "region": "kanto",
+    "name": "東京ドーム",
+    "address": "東京都文京区後楽1-3-61",
+    "note": "",
+    "sources": [
+      {
+        "name": "TikTok",
+        "url": "https://vt.tiktok.com/ZSb4G6ENu/",
+        "date": "2025-11-15"
+      },
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DRe5R8HEXjx/?img_index=5&stkn=MWRtNDVjaWN1czFmZQ==",
+        "date": "2025-11-25"
+      },
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/1993308870203392230?s=46",
+        "date": "2025-11-25"
+      }
+    ],
+    "photos": [
+      "pmux37iil4.jpg",
+      "pmux37ijn5.jpg",
+      "pmux37iks6.jpg",
+      "pmux37ils7.jpg",
+      "pmux37imv8.jpg",
+      "pmux37inx9.jpg",
+      "pmux37io510.jpg"
+    ],
+    "thumb": "pmux37ils7.jpg",
+    "lon": 139.75215,
+    "lat": 35.70315,
+    "id": "pmux382kiepv"
   }
 ];
