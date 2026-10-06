@@ -383,8 +383,7 @@ window.SPOTS = [
     "photos": [
       "pmuwswdt22.jpg"
     ],
-    "lon": 136.91208,
-    "lat": 35.16589,
+    "chain": true,
     "id": "pmuwswmg6wji"
   }
 ];
