@@ -116,6 +116,19 @@
     }
     if (s.address) li.appendChild(el('p', 'addr', s.address));
     if (s.note) li.appendChild(el('p', 'note-t', s.note));
+    if (s.srcUrl || s.srcName || s.postDate) {
+      var src = el('p', 'src');
+      src.appendChild(document.createTextNode('📎 引用：'));
+      var okUrl = /^https?:\/\//i.test(s.srcUrl || '');
+      if (okUrl) {
+        var sa = el('a', null, s.srcName || '引用先を見る');
+        sa.href = s.srcUrl; sa.target = '_blank'; sa.rel = 'noopener noreferrer';
+        src.appendChild(sa);
+      } else if (s.srcName) src.appendChild(document.createTextNode(s.srcName));
+      var pd = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s.postDate || '');
+      if (pd) src.appendChild(document.createTextNode((okUrl || s.srcName ? '（' : '') + '投稿日 ' + pd[1] + '年' + (+pd[2]) + '月' + (+pd[3]) + '日' + (okUrl || s.srcName ? '）' : '')));
+      li.appendChild(src);
+    }
 
     var act = el('div', 'act');
     var q = encodeURIComponent(s.name + ' ' + (s.address || ''));

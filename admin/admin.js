@@ -322,7 +322,7 @@
 
   function resetForm() {
     editing = -1; pos = null; cur = [];
-    ['f-name', 'f-addr', 'f-work', 'f-note', 'f-lon', 'f-lat'].forEach(function (i) { $(i).value = ''; });
+    ['f-name', 'f-addr', 'f-work', 'f-note', 'f-srcname', 'f-srcurl', 'f-postdate', 'f-lon', 'f-lat'].forEach(function (i) { $(i).value = ''; });
     $('pos-msg').textContent = 'まだ決まっていません。';
     $('f-err').textContent = '';
     $('mode').hidden = true; $('b-del').hidden = true; $('b-save').textContent = '追加する';
@@ -339,6 +339,9 @@
     $('f-addr').value = s.address || '';
     $('f-work').value = s.work || '';
     $('f-note').value = s.note || '';
+    $('f-srcname').value = s.srcName || '';
+    $('f-srcurl').value = s.srcUrl || '';
+    $('f-postdate').value = s.postDate || '';
     if (isFinite(s.lon) && isFinite(s.lat)) setPos(+s.lon, +s.lat);
     cur = (s.photos || []).map(function (n) {
       return store[n] ? { name: n, url: URL.createObjectURL(store[n]), isNew: true } : { name: n, url: '../photos/' + encodeURI(n), isNew: false };
@@ -376,11 +379,14 @@
     if (!loaded) { err.textContent = '登録ずみのスポットを読み込めていないので、保存できません。'; return; }
     if (!name) { err.textContent = 'スポット名を入れてね。'; $('f-name').focus(); return; }
     if (!addr) { err.textContent = '住所を入れてね。'; $('f-addr').focus(); return; }
+    var sUrl = $('f-srcurl').value.trim();
+    if (sUrl && !/^https?:\/\/[^\s]+$/i.test(sUrl)) { err.textContent = '引用先のリンクは、https:// から始まるアドレスを入れてね。'; $('f-srcurl').focus(); return; }
     readPosInputs();
     if (!pos) { err.textContent = '位置を決めてね。「住所から位置をさがす」か「地図でえらぶ」を押してね。'; return; }
     var s = {
       region: $('f-region').value, name: name, address: addr,
       work: $('f-work').value.trim(), note: $('f-note').value.trim(),
+      srcName: $('f-srcname').value.trim(), srcUrl: sUrl, postDate: $('f-postdate').value,
       lon: +pos.lon.toFixed(5), lat: +pos.lat.toFixed(5),
       photos: cur.map(function (p) { return p.name; })
     };

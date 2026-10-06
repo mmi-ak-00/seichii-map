@@ -181,6 +181,7 @@ body::before{ /* 水玉 */
 @keyframes pinring{0%{transform:scale(1);opacity:.9}100%{transform:scale(2.4);opacity:0}}
 .pin-ring{transform-box:fill-box;transform-origin:center}
 .spot{cursor:pointer;transition:border-color .2s,box-shadow .2s,transform .2s}
+.src{margin:6px 0 0;font-size:13px;color:#8a7683;line-height:1.6;word-break:break-all}.src a{color:var(--pink-d);font-weight:700}
 .spot.is-sel{border-color:#ffb020;box-shadow:0 4px 0 #ffd98a;transform:translateY(-2px)}
 .spot:focus-visible{outline:3px solid var(--pink-d);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){.pin.is-sel .pin-body,.pin.is-sel .pin-ring{animation:none}}
