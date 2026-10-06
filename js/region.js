@@ -114,7 +114,7 @@
       tag.appendChild(document.createTextNode(s.work));
       li.appendChild(tag);
     }
-    if (s.chain) li.appendChild(el('p', 'chain', '🏪 チェーン店（場所はいろいろ）'));
+    if (s.chain) li.appendChild(el('p', 'chain', '🏪 チェーン店'));
     if (s.address) li.appendChild(el('p', 'addr', s.address));
     if (s.note) li.appendChild(el('p', 'note-t', s.note));
     var srcList = (Array.isArray(s.sources) && s.sources.length) ? s.sources
