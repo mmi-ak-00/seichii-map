@@ -41,26 +41,16 @@ window.SPOTS = [
     "address": "岐阜県岐阜市鏡島南4-5-5",
     "work": "ドバイチョコ（かき氷）",
     "note": "",
-    "sources": [
-      {
-        "name": "Instagram",
-        "url": "https://www.instagram.com/p/Dc8biwEkwcl/?stkn=MTUxc3piMzV2MmJ5OA==",
-        "date": "2026-09-06"
-      },
-      {
-        "name": "X",
-        "url": "https://x.com/chii_nyan02/status/2096728568181223508?s=46",
-        "date": "2026-09-07"
-      }
-    ],
+    "srcName": "Instagram",
+    "srcUrl": "https://www.instagram.com/p/Dc8biwEkwcl/?stkn=MTUxc3piMzV2MmJ5OA==",
+    "postDate": "2026-09-06",
+    "lon": 136.71194,
+    "lat": 35.40206,
     "photos": [
       "pmuwmk76l0.jpg",
       "pmuwmk76z1.jpg",
-      "pmuwmk77d2.jpg",
-      "pmuwsiebx0.jpg"
+      "pmuwmk77d2.jpg"
     ],
-    "lon": 136.71194,
-    "lat": 35.40206,
     "id": "pmuwmkl318wn"
   },
   {
@@ -113,15 +103,24 @@ window.SPOTS = [
     "address": "東京都世田谷区三軒茶屋1丁目27-33",
     "work": "とうもろこし × チーズケーキ（かき氷）",
     "note": "",
-    "srcName": "Instagram",
-    "srcUrl": "https://www.instagram.com/p/DcbOS-5kwRM/?img_index=5&stkn=MXB1ZG9lcmw4dmJybg==",
-    "postDate": "2026-08-24",
-    "lon": 139.67227,
-    "lat": 35.6407,
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DcbOS-5kwRM/?img_index=5&stkn=MXB1ZG9lcmw4dmJybg==",
+        "date": "2026-08-24"
+      },
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2092381622121505124?s=46",
+        "date": "2026-08-26"
+      }
+    ],
     "photos": [
       "pmuwnur261.jpg",
       "pmuwnur2k2.jpg"
     ],
+    "lon": 139.67227,
+    "lat": 35.6407,
     "id": "pmuwnuspfzhm"
   },
   {
