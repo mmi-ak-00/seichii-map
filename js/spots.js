@@ -968,5 +968,29 @@ window.SPOTS = [
       "奈良"
     ],
     "id": "pmux1iunm9w8"
+  },
+  {
+    "region": "kanto",
+    "name": "LINO cafe&bar",
+    "address": "東京都新宿区歌舞伎町2-38-2",
+    "works": [
+      "キャラメルナッツラテ"
+    ],
+    "note": "",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DWi7vSike_H/?stkn=MTZmanM1MWgyOHZuZA==",
+        "date": "2026-03-31"
+      }
+    ],
+    "photos": [
+      "pmux2rbmp3.jpg",
+      "pmux2rbmb2.jpg"
+    ],
+    "thumb": "pmux2rbmb2.jpg",
+    "lon": 139.70201,
+    "lat": 35.69623,
+    "id": "pmux2unm3aih"
   }
 ];
