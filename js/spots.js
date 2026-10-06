@@ -391,5 +391,27 @@ window.SPOTS = [
     ],
     "chain": true,
     "id": "pmuwswmg6wji"
+  },
+  {
+    "region": "kanto",
+    "name": "鵬天閣",
+    "address": "",
+    "work": "海鮮と豚肉2種盛りセット",
+    "note": "",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DQwlZMrkx9L/?stkn=azZ0cXp6b2ZhaGt0",
+        "date": "2025-11-07"
+      }
+    ],
+    "photos": [
+      "pmuwtmb9n0.jpg",
+      "pmuwtmba61.jpg"
+    ],
+    "chain": true,
+    "noPlace": true,
+    "pref": "神奈川",
+    "id": "pmuwtmcx196m"
   }
 ];
