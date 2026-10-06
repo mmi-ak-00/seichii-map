@@ -139,7 +139,7 @@
       li.appendChild(tags);
     }
     if (s.chain) li.appendChild(el('p', 'chain', '🏪 チェーン店'));
-    if (s.noPlace && s.pref) li.appendChild(el('p', 'addr', s.pref));
+    if (s.pref && (s.noPlace || s.region === 'other')) li.appendChild(el('p', 'addr', s.pref));
     if (s.address) li.appendChild(el('p', 'addr', s.address));
     if (s.note) li.appendChild(el('p', 'note-t', s.note));
     var srcList = (Array.isArray(s.sources) && s.sources.length) ? s.sources
@@ -387,4 +387,44 @@
   }
   window.addEventListener('hashchange', fromHash);
   fromHash();
+
+  // 「その他」ページ（地図なし）：入っている都道府県のボタンで絞りこみ
+  if (!svg && key === 'other') {
+    var ORDER = ['北海道','青森','岩手','宮城','秋田','山形','福島','茨城','栃木','群馬','埼玉','千葉','東京','神奈川','新潟','富山','石川','福井','山梨','長野','岐阜','静岡','愛知','三重','滋賀','京都','大阪','兵庫','奈良','和歌山','鳥取','島根','岡山','広島','山口','徳島','香川','愛媛','高知','福岡','佐賀','長崎','熊本','大分','宮崎','鹿児島','沖縄'];
+    var used = {};
+    spots.forEach(function (s) { if (s.pref) used[s.pref] = (used[s.pref] || 0) + 1; });
+    var usedNames = ORDER.filter(function (n) { return used[n]; });
+    if (usedNames.length) {
+      var obar = el('div', 'prefbar');
+      obar.setAttribute('role', 'group'); obar.setAttribute('aria-label', '都道府県でしぼりこむ');
+      var ochips = {};
+      function oApply(n) {
+        Object.keys(ochips).forEach(function (k) { ochips[k].setAttribute('aria-pressed', k === (n || '') ? 'true' : 'false'); });
+        var shown = 0, done = 0;
+        spots.forEach(function (s) {
+          var ok = !n || s.pref === n;
+          cards[s.name].hidden = !ok;
+          if (ok) { shown++; if (visited[s.name]) done++; }
+        });
+        if (selected && cards[selected] && cards[selected].hidden) select(selected, true);
+        nAll.textContent = shown; nAll2.textContent = shown; nDone.textContent = done;
+        curOther = n;
+      }
+      var curOther = null;
+      function mk(label, n, cnt) {
+        var b = el('button', 'pchip');
+        b.type = 'button'; b.setAttribute('aria-pressed', 'false');
+        b.appendChild(document.createTextNode(label));
+        b.appendChild(el('b', null, String(cnt)));
+        b.addEventListener('click', function () { oApply(curOther === n ? null : n); });
+        obar.appendChild(b); ochips[n || ''] = b;
+      }
+      mk('ぜんぶ', null, spots.length);
+      usedNames.forEach(function (n) { mk(n, n, used[n]); });
+      ochips[''].setAttribute('aria-pressed', 'true');
+      list.parentNode.insertBefore(obar, list);
+      var _c2 = count;
+      count = function () { if (curOther) { var s2 = 0, d2 = 0; spots.forEach(function (x) { if (x.pref === curOther) { s2++; if (visited[x.name]) d2++; } }); nAll.textContent = s2; nAll2.textContent = s2; nDone.textContent = d2; } else _c2(); };
+    }
+  }
 })();
