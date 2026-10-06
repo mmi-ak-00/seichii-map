@@ -80,6 +80,7 @@
     return k || '';
   }
   var filterText = '';
+  var openRegs = {};   // 地方ごとの「ひらく／とじる」
   function renderList() {
     var box = $('list');
     box.textContent = '';
@@ -98,8 +99,17 @@
       });
       if (!idx.length) return;
       shown += idx.length;
-      box.appendChild(el('h3', 'grp', r[1] + '（' + idx.length + '件）'));
+      var isOpen = ft ? true : (openRegs[r[0]] === undefined ? spots.length <= 6 : openRegs[r[0]]);
+      var gh = el('h3', 'grp');
+      var gb = el('button', 'grp-b'); gb.type = 'button';
+      gb.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      gb.appendChild(el('span', 'grp-n', r[1]));
+      gb.appendChild(el('span', 'grp-c', idx.length + '件'));
+      gb.appendChild(el('span', 'grp-chev', '›'));
+      (function (key) { gb.addEventListener('click', function () { if (ft) return; openRegs[key] = !(openRegs[key] === undefined ? spots.length <= 6 : openRegs[key]); renderList(); }); })(r[0]);
+      gh.appendChild(gb); box.appendChild(gh);
       var ul = el('ul', 'rows');
+      ul.hidden = !isOpen;
       idx.forEach(function (i) {
         var s = spots[i];
         var li = el('li');
@@ -397,7 +407,7 @@
   function startEdit(i) {
     var s = spots[i];
     resetForm();
-    editing = i;
+    editing = i; openRegs[s.region] = true;
     $('f-region').value = s.region;
     $('f-name').value = s.name || '';
     $('f-addr').value = s.address || '';
@@ -458,6 +468,7 @@
     if (!srcs.length) delete s.sources;
     if (isChain) s.chain = true;
     if (!isChain && (!loose || pos)) { s.lon = +pos.lon.toFixed(5); s.lat = +pos.lat.toFixed(5); }
+    openRegs[s.region] = true;
     var msg;
     function hs(t) { var h = 5381; for (var i = 0; i < t.length; i++) h = ((h << 5) + h + t.charCodeAt(i)) >>> 0; return h.toString(36); }
     if (editing >= 0) { s.id = spots[editing].id || ('n' + hs(spots[editing].name)); }
