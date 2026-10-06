@@ -876,5 +876,74 @@ window.SPOTS = [
     "lon": 127.64978,
     "lat": 26.17591,
     "id": "pmux0wzkze3i"
+  },
+  {
+    "region": "kanto",
+    "name": "nui box",
+    "address": "東京都新宿区新宿1-12-8",
+    "works": [
+      "深煎りほうじ茶ラテ"
+    ],
+    "note": "",
+    "sources": [
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2014105274869518529?s=46",
+        "date": "2026-01-22"
+      },
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DT5cfMukY-A/?stkn=ZWhvaGFlYXE5cjI1",
+        "date": "2026-01-24"
+      },
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2020626445564096817?s=46",
+        "date": "2026-02-09"
+      }
+    ],
+    "photos": [
+      "pmux1dfpl6.jpg",
+      "pmux1dfpx7.jpg",
+      "pmux1dfqd8.jpg",
+      "pmux1dfqt9.jpg",
+      "pmux1dfr910.jpg"
+    ],
+    "lon": 139.71207,
+    "lat": 35.68897,
+    "id": "pmux1ds1c6gp"
+  },
+  {
+    "region": "other",
+    "name": "スガキヤ",
+    "address": "",
+    "works": [
+      "ソフトクリーム"
+    ],
+    "note": "",
+    "sources": [
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2013238580991160556?s=46",
+        "date": "2026-01-19"
+      }
+    ],
+    "photos": [
+      "pmux1itb411.jpg"
+    ],
+    "chain": true,
+    "pref": [
+      "神奈川",
+      "岐阜",
+      "静岡",
+      "愛知",
+      "三重",
+      "滋賀",
+      "京都",
+      "大阪",
+      "兵庫",
+      "奈良"
+    ],
+    "id": "pmux1iunm9w8"
   }
 ];
