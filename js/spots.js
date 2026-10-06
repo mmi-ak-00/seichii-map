@@ -71,5 +71,38 @@ window.SPOTS = [
       "pmuwnjf893.jpg"
     ],
     "id": "pmuwnguo93n6"
+  },
+  {
+    "region": "kanto",
+    "name": "氷連",
+    "address": "東京都豊島区西池袋5-28-3 ノアビル 1F",
+    "work": "桃レアチーズティー（かき氷）",
+    "note": "",
+    "srcName": "Instagram",
+    "srcUrl": "https://www.instagram.com/p/DcbOS-5kwRM/?img_index=5&stkn=MXB1ZG9lcmw4dmJybg==",
+    "postDate": "2026-08-24",
+    "lon": 139.69862,
+    "lat": 35.73051,
+    "photos": [
+      "pmuwns7oi0.jpg"
+    ],
+    "id": "pmuwnsbjh1zi"
+  },
+  {
+    "region": "kanto",
+    "name": "cafe The SUN LIVES HERE",
+    "address": "東京都世田谷区三軒茶屋1丁目27-33",
+    "work": "とうもろこし × チーズケーキ（かき氷）",
+    "note": "",
+    "srcName": "Instagram",
+    "srcUrl": "https://www.instagram.com/p/DcbOS-5kwRM/?img_index=5&stkn=MXB1ZG9lcmw4dmJybg==",
+    "postDate": "2026-08-24",
+    "lon": 139.67227,
+    "lat": 35.6407,
+    "photos": [
+      "pmuwnur261.jpg",
+      "pmuwnur2k2.jpg"
+    ],
+    "id": "pmuwnuspfzhm"
   }
 ];
