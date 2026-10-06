@@ -415,5 +415,26 @@ window.SPOTS = [
     "noPlace": true,
     "pref": "神奈川",
     "id": "pmuwtmcx196m"
+  },
+  {
+    "region": "kanto",
+    "name": "開華楼 横浜博覧館店",
+    "address": "神奈川県横浜市中区山下町145番地 横浜博覧館1階",
+    "work": "三色ごま団子串",
+    "note": "",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DQwlZMrkx9L/?img_index=3&stkn=azZ0cXp6b2ZhaGt0",
+        "date": "2025-11-07"
+      }
+    ],
+    "photos": [
+      "pmuwtup4x2.jpg"
+    ],
+    "chain": true,
+    "lon": 139.64471,
+    "lat": 35.44264,
+    "id": "pmuwtuxfoj9p"
   }
 ];
