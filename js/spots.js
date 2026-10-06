@@ -23,6 +23,9 @@ window.SPOTS = [
     "address": "東京都渋谷区神宮前3-5-1",
     "work": "いちごタルト（かき氷）",
     "note": "",
+    "srcName": "Instagram",
+    "srcUrl": "https://www.instagram.com/p/Db8VwbzEwLD/?stkn=MTJrMXI5bjd4d3Bzbw==",
+    "postDate": "2026-08-12",
     "lon": 139.7126,
     "lat": 35.669,
     "photos": [
@@ -38,6 +41,9 @@ window.SPOTS = [
     "address": "岐阜県岐阜市鏡島南4-5-5",
     "work": "ドバイチョコ（かき氷）",
     "note": "",
+    "srcName": "Instagram",
+    "srcUrl": "https://www.instagram.com/p/Dc8biwEkwcl/?stkn=MTUxc3piMzV2MmJ5OA==",
+    "postDate": "2026-09-06",
     "lon": 136.71194,
     "lat": 35.40206,
     "photos": [
