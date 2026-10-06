@@ -801,7 +801,8 @@ window.SPOTS = [
     "name": "HAND BAKES ルミネ新宿店",
     "address": "東京都新宿区新宿3-38-2 ルミネ新宿LUMINE2 3F",
     "works": [
-      "レアチーズチョコオレオタルト"
+      "レアチーズチョコオレオタルト",
+      "（ラテ系）"
     ],
     "note": "",
     "sources": [
@@ -809,10 +810,17 @@ window.SPOTS = [
         "name": "X",
         "url": "https://x.com/chii_nyan02/status/2038389623320432670?s=46",
         "date": "2026-03-30"
+      },
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DWi7vSike_H/?stkn=MTZmanM1MWgyOHZuZA==",
+        "date": "2026-03-31"
       }
     ],
     "photos": [
-      "pmuwzneef1.jpg"
+      "pmuwzneef1.jpg",
+      "pmux2me7s0.jpg",
+      "pmux2me861.jpg"
     ],
     "chain": true,
     "lon": 139.70094,
