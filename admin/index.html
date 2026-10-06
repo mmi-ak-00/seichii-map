@@ -45,8 +45,15 @@
 <input id="f-name" type="text" autocomplete="off">
 </div>
 <div class="field">
-<label class="chk"><input type="checkbox" id="f-chain"> チェーン店など、場所がきまっていない</label>
+<label class="chk"><input type="checkbox" id="f-chain"> チェーン店</label>
+<p class="hint">オンにすると、カードに「🏪 チェーン店」と出ます。住所や位置を決めたお店でも使えます。</p>
+<label class="chk"><input type="checkbox" id="f-noplace"> 場所がきまっていない</label>
 <p class="hint">オンにすると、住所と位置は入れなくてOKです。地図にピンは出さず、「近くのお店をさがす」ボタンで探せるようになります。</p>
+<div id="wrap-pref" hidden>
+<label for="f-pref">都道府県（わかれば）</label>
+<select id="f-pref"></select>
+<p class="hint">えらぶと、その県のボタンで絞り込んだときに出ます。えらばないと、どの県の絞り込みでも出ます。</p>
+</div>
 </div>
 <div class="field">
 <label for="f-addr">住所 <em id="em-addr">必須</em></label>

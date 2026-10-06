@@ -250,12 +250,24 @@
   }
   $('b-addsrc').addEventListener('click', function () { addSrcRow().querySelector('.src-name').focus(); });
 
+  var PREFS = {"tohoku": ["青森", "秋田", "岩手", "山形", "宮城", "福島"], "kanto": ["群馬", "栃木", "茨城", "埼玉", "東京", "神奈川", "千葉"], "chubu": ["長野", "新潟", "岐阜", "静岡", "愛知", "山梨", "富山", "石川", "福井"], "kinki": ["兵庫", "京都", "滋賀", "三重", "奈良", "和歌山", "大阪"], "chugoku-shikoku": ["鳥取", "島根", "岡山", "広島", "山口", "徳島", "香川", "愛媛", "高知"], "kyushu-okinawa": ["福岡", "佐賀", "長崎", "熊本", "大分", "宮崎", "鹿児島", "沖縄"]};
+  function fillPrefs(keep) {
+    var sel = $('f-pref'), list = PREFS[$('f-region').value] || [];
+    var cur = keep !== undefined ? keep : sel.value;
+    sel.textContent = '';
+    var o0 = document.createElement('option'); o0.value = ''; o0.textContent = '（きめない）'; sel.appendChild(o0);
+    list.forEach(function (n) { var o = document.createElement('option'); o.value = n; o.textContent = n; sel.appendChild(o); });
+    sel.value = list.indexOf(cur) >= 0 ? cur : '';
+  }
   function syncChain() {
-    var on = $('f-chain').checked || $('f-region').value === 'other';
+    var np = $('f-noplace').checked, on = np || $('f-region').value === 'other';
     $('wrap-pos').hidden = on;
     $('em-addr').hidden = on;
+    fillPrefs();
+    $('wrap-pref').hidden = !(np && (PREFS[$('f-region').value] || []).length);
   }
   $('f-chain').addEventListener('change', syncChain);
+  $('f-noplace').addEventListener('change', syncChain);
   $('f-region').addEventListener('change', syncChain);
   function readPosInputs() {
     var lo = parseFloat($('f-lon').value), la = parseFloat($('f-lat').value);
@@ -394,7 +406,7 @@
 
   function resetForm() {
     editing = -1; pos = null; cur = [];
-    $('f-chain').checked = false; syncChain();
+    $('f-chain').checked = false; $('f-noplace').checked = false; $('f-pref').value = ''; syncChain();
     $('srcs').textContent = '';
     ['f-name', 'f-addr', 'f-work', 'f-note', 'f-lon', 'f-lat'].forEach(function (i) { $(i).value = ''; });
     $('pos-msg').textContent = 'まだ決まっていません。';
@@ -413,7 +425,9 @@
     $('f-addr').value = s.address || '';
     $('f-work').value = s.work || '';
     $('f-note').value = s.note || '';
-    $('f-chain').checked = !!s.chain; syncChain();
+    $('f-chain').checked = !!s.chain;
+    $('f-noplace').checked = !!s.noPlace || (!!s.chain && !s.address && !isFinite(s.lon));   // 前の形（チェーン店＝場所なし）も引き継ぐ
+    fillPrefs(s.pref || ''); syncChain(); $('f-pref').value = s.pref || '';
     srcsOf(s).forEach(addSrcRow);
     if (isFinite(s.lon) && isFinite(s.lat)) setPos(+s.lon, +s.lat);
     cur = (s.photos || []).map(function (n) {
@@ -451,7 +465,7 @@
     var name = $('f-name').value.trim(), addr = $('f-addr').value.trim();
     if (!loaded) { err.textContent = '登録ずみのスポットを読み込めていないので、保存できません。'; return; }
     if (!name) { err.textContent = 'スポット名を入れてね。'; $('f-name').focus(); return; }
-    var isChain = $('f-chain').checked, loose = isChain || $('f-region').value === 'other';
+    var isChain = $('f-chain').checked, noPlace = $('f-noplace').checked, loose = noPlace || $('f-region').value === 'other';
     if (!addr && !loose) { err.textContent = '住所を入れてね。'; $('f-addr').focus(); return; }
     var srcs = readSrcs();
     for (var k = 0; k < srcs.length; k++) {
@@ -467,7 +481,8 @@
     };
     if (!srcs.length) delete s.sources;
     if (isChain) s.chain = true;
-    if (!isChain && (!loose || pos)) { s.lon = +pos.lon.toFixed(5); s.lat = +pos.lat.toFixed(5); }
+    if (noPlace) { s.noPlace = true; if ($('f-pref').value) s.pref = $('f-pref').value; }
+    if (!noPlace && pos) { s.lon = +pos.lon.toFixed(5); s.lat = +pos.lat.toFixed(5); }
     openRegs[s.region] = true;
     var msg;
     function hs(t) { var h = 5381; for (var i = 0; i < t.length; i++) h = ((h << 5) + h + t.charCodeAt(i)) >>> 0; return h.toString(36); }

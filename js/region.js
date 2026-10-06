@@ -132,6 +132,7 @@
       li.appendChild(tag);
     }
     if (s.chain) li.appendChild(el('p', 'chain', '🏪 チェーン店'));
+    if (s.noPlace && s.pref) li.appendChild(el('p', 'addr', s.pref));
     if (s.address) li.appendChild(el('p', 'addr', s.address));
     if (s.note) li.appendChild(el('p', 'note-t', s.note));
     var srcList = (Array.isArray(s.sources) && s.sources.length) ? s.sources
@@ -155,8 +156,9 @@
     }
 
     var act = el('div', 'act');
-    var q = encodeURIComponent(s.chain ? s.name : s.name + ' ' + (s.address || ''));
-    var map = el('a', 'btn', s.chain ? '近くのお店をさがす ↗' : '地図アプリで開く ↗');
+    var noSpot = s.noPlace || (s.chain && !s.address && typeof s.lon !== 'number');
+    var q = encodeURIComponent(noSpot ? s.name : s.name + ' ' + (s.address || ''));
+    var map = el('a', 'btn', noSpot ? '近くのお店をさがす ↗' : '地図アプリで開く ↗');
     map.href = 'https://www.google.com/maps/search/?api=1&query=' + q;
     map.target = '_blank';
     map.rel = 'noopener noreferrer';
@@ -290,7 +292,9 @@
     }
     anim = requestAnimationFrame(step);
   }
+  function floats(s) { return !s.pref && (s.noPlace || (s.chain && !s.address && typeof s.lon !== 'number')); }
   function prefOfSpot(s) {
+    if (s.pref) return s.pref;
     var names = hits.map(function (h) { return h.getAttribute('data-pref'); });
     for (var i = 0; i < names.length; i++) {
       if (s.address && s.address.indexOf(names[i]) >= 0) return names[i];
@@ -344,7 +348,7 @@
     labelsEl.forEach(function (t) { t.style.display = (n && t.textContent !== n) ? 'none' : ''; });
     var shown = 0, done = 0;
     spots.forEach(function (s) {
-      var ok = !n || s.chain || prefOf[s.name] === n;
+      var ok = !n || floats(s) || prefOf[s.name] === n;
       cards[s.name].hidden = !ok;
       if (pinEls[s.name]) pinEls[s.name].style.display = ok ? '' : 'none';
       if (ok) { shown++; if (visited[s.name]) done++; }
@@ -368,7 +372,7 @@
     }
   }
   var _count = count;
-  count = function () { _count(); if (curPref !== null) { var s = 0, d = 0; spots.forEach(function (x) { if (x.chain || prefOf[x.name] === curPref) { s++; if (visited[x.name]) d++; } }); nAll.textContent = s; nAll2.textContent = s; nDone.textContent = d; } };
+  count = function () { _count(); if (curPref !== null) { var s = 0, d = 0; spots.forEach(function (x) { if (floats(x) || prefOf[x.name] === curPref) { s++; if (visited[x.name]) d++; } }); nAll.textContent = s; nAll2.textContent = s; nDone.textContent = d; } };
   function fromHash() {
     var h = location.hash.replace(/^#/, '');
     try { h = decodeURIComponent(h); } catch (e) {}
