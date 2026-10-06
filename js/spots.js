@@ -104,5 +104,21 @@ window.SPOTS = [
       "pmuwnur2k2.jpg"
     ],
     "id": "pmuwnuspfzhm"
+  },
+  {
+    "region": "kanto",
+    "name": "IDOL",
+    "address": "東京都港区南青山5-11-9 レキシントン青山ビル B1F",
+    "work": "",
+    "note": "",
+    "srcName": "Instagram",
+    "srcUrl": "https://www.instagram.com/p/Db8VwbzEwLD/?img_index=5&stkn=MTJrMXI5bjd4d3Bzbw==",
+    "postDate": "2026-08-12",
+    "lon": 139.71199,
+    "lat": 35.66189,
+    "photos": [
+      "pmuwo3q6r3.jpg"
+    ],
+    "id": "pmuwo3rihoqe"
   }
 ];
