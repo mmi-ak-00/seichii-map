@@ -1073,5 +1073,27 @@ window.SPOTS = [
     "lon": 132.30998,
     "lat": 34.27261,
     "id": "pmux3fvrlo8g"
+  },
+  {
+    "region": "chugoku-shikoku",
+    "name": "広島牡蠣と和牛ラーメン 衝青天",
+    "address": "広島県広島市中区流川町8-4 日宝ミンクスビル 1F",
+    "works": [
+      "広島牡蠣塩ラーメン"
+    ],
+    "note": "※写真は広島ふるさとまつり出演時",
+    "sources": [
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2009941241962869153?s=46",
+        "date": "2026-01-10"
+      }
+    ],
+    "photos": [
+      "pmux3psbz16.jpg"
+    ],
+    "lon": 132.46455,
+    "lat": 34.38918,
+    "id": "pmux3qcm8m5a"
   }
 ];
