@@ -458,14 +458,21 @@ window.SPOTS = [
     "note": "",
     "sources": [
       {
+        "name": "TikTok",
+        "url": "https://vt.tiktok.com/ZSb438kKn/",
+        "date": "2026-06-15"
+      },
+      {
         "name": "X",
         "url": "https://x.com/chii_nyan02/status/2066659542860251550?s=46",
         "date": "2026-06-16"
       }
     ],
     "photos": [
+      "pmux6gqad1.jpg",
       "pmuwswdt22.jpg"
     ],
+    "thumb": "pmuwswdt22.jpg",
     "chain": true,
     "lon": 136.91208,
     "lat": 35.16589,
