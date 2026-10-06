@@ -169,5 +169,30 @@ window.SPOTS = [
     ],
     "chain": true,
     "id": "pmuwovi9r44u"
+  },
+  {
+    "region": "other",
+    "name": "楊国福",
+    "address": "",
+    "work": "",
+    "note": "",
+    "sources": [
+      {
+        "name": "TikTok",
+        "url": "https://vt.tiktok.com/ZSb4N86VE/",
+        "date": "2026-08-10"
+      },
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2100547882868953287?s=46",
+        "date": "2026-09-17"
+      }
+    ],
+    "photos": [
+      "pmuwpc8j30.jpg",
+      "pmuwpc8jk1.jpg"
+    ],
+    "chain": true,
+    "id": "pmuwpd926bfm"
   }
 ];
