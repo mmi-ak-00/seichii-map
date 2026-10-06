@@ -196,15 +196,28 @@ window.SPOTS = [
     "region": "other",
     "name": "李暁七マーラータン",
     "address": "",
-    "work": "",
+    "works": [
+      "麻辣担"
+    ],
     "note": "",
-    "srcName": "X",
-    "srcUrl": "https://x.com/chii_nyan02/status/2102531776065486886?s=46",
-    "postDate": "2026-09-23",
+    "sources": [
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2102531776065486886?s=46",
+        "date": "2026-09-23"
+      }
+    ],
     "photos": [
       "pmuwovh7q0.jpg"
     ],
     "chain": true,
+    "noPlace": true,
+    "pref": [
+      "埼玉",
+      "東京",
+      "富山",
+      "大阪"
+    ],
     "id": "pmuwovi9r44u"
   },
   {
