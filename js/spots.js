@@ -508,9 +508,9 @@ window.SPOTS = [
       }
     ],
     "photos": [
-      "pmuwv5qyr0.jpg",
-      "pmuwv5qzs1.jpg",
-      "pmuwv5r0t2.jpg"
+      "pmuwvd28x4.jpg",
+      "pmuwvd29e5.jpg",
+      "pmuwvd29w6.jpg"
     ],
     "chain": true,
     "lon": 136.90449,
