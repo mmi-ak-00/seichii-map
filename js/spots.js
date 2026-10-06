@@ -1135,5 +1135,30 @@ window.SPOTS = [
     "lon": 139.70743,
     "lat": 35.66063,
     "id": "pmux42hu52vc"
+  },
+  {
+    "region": "kanto",
+    "name": "外苑前いちょう並木",
+    "address": "東京都港区北青山2丁目",
+    "note": "",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DRuaA7Wk3wO/?stkn=MWU5NWI5dDNidWU1Mg==",
+        "date": "2025-12-02"
+      }
+    ],
+    "photos": [
+      "pmux4bpod24.jpg",
+      "pmux4bpov25.jpg",
+      "pmux4bppi26.jpg",
+      "pmux4bpq127.jpg",
+      "pmux4bpqi28.jpg",
+      "pmux4bpr229.jpg",
+      "pmux4bprj30.jpg"
+    ],
+    "lon": 139.71776,
+    "lat": 35.67193,
+    "id": "pmux4bsun38m"
   }
 ];
