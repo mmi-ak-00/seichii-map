@@ -312,14 +312,14 @@ window.SPOTS = [
     "note": "",
     "sources": [
       {
-        "name": "Instagram",
-        "url": "https://www.instagram.com/p/DTQNAVTkYXH/?img_index=4&stkn=MWZkM3FybWRsdHNhOQ==",
-        "date": "2026-01-08"
-      },
-      {
         "name": "TikTok",
         "url": "https://vt.tiktok.com/ZSb4MTwFJ/",
         "date": "2026-01-06"
+      },
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DTQNAVTkYXH/?img_index=4&stkn=MWZkM3FybWRsdHNhOQ==",
+        "date": "2026-01-08"
       }
     ],
     "photos": [
