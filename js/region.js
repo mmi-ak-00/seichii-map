@@ -11,8 +11,20 @@
     return EX(s).some(function (p) { return REGP[key].indexOf(p) >= 0; });
   }
   var spots = (window.SPOTS || []).filter(function (s) { return s.region === key || fromOther(s); });
-  // 「その他」から来たお店は、同じ県の中でも下にならべる（元の順番はそのまま）
-  spots = spots.map(function (s, i) { return [s, i]; }).sort(function (a, b) { return (a[0].region !== key ? 1 : 0) - (b[0].region !== key ? 1 : 0) || a[1] - b[1]; }).map(function (x) { return x[0]; });
+  // ならび順：引用元の投稿日がいちばん古いものを、そのスポットの日付にして、新しい順（上が最近・下が昔）。
+  // 日付のないスポットは日付のあるものの下。「その他」から来たお店は、いちばん下。
+  function oldest(s) {
+    var l = (Array.isArray(s.sources) && s.sources.length) ? s.sources : (s.postDate ? [{ date: s.postDate }] : []);
+    var m = '';
+    l.forEach(function (o) { var d = (o && /^\d{4}-\d{2}-\d{2}$/.test(o.date || '')) ? o.date : ''; if (d && (!m || d < m)) m = d; });
+    return m;
+  }
+  spots = spots.map(function (s, i) { return [s, i, oldest(s), s.region !== key ? 1 : 0]; }).sort(function (a, b) {
+    if (a[3] !== b[3]) return a[3] - b[3];
+    if (!a[2] !== !b[2]) return a[2] ? -1 : 1;
+    if (a[2] !== b[2]) return a[2] > b[2] ? -1 : 1;
+    return a[1] - b[1];
+  }).map(function (x) { return x[0]; });
   var STORE = 'chii-visited-v1';
   var visited = {};
   try { visited = JSON.parse(localStorage.getItem(STORE) || '{}') || {}; } catch (e) { visited = {}; }
