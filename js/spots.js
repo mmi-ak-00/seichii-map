@@ -272,14 +272,20 @@ window.SPOTS = [
         "date": "2026-06-16"
       },
       {
-        "name": "X",
+        "name": "X(1)",
+        "url": "https://x.com/chii_nyan02/status/2067581366359953667?s=46",
+        "date": "2026-06-18"
+      },
+      {
+        "name": "X(2)",
         "url": "https://x.com/chii_nyan02/status/2098186053849063632?s=46",
         "date": "2026-09-11"
       }
     ],
     "photos": [
-      "pmuwqlvev1.jpg",
-      "pmuwqlvei0.jpg"
+      "pmuwsqq9b1.jpg",
+      "pmuwqlvei0.jpg",
+      "pmuwqlvev1.jpg"
     ],
     "chain": true,
     "id": "pmuwqlwurqfn"
@@ -354,5 +360,25 @@ window.SPOTS = [
     "lon": 137.16518,
     "lat": 35.34062,
     "id": "pmuwrdhxxobz"
+  },
+  {
+    "region": "chubu",
+    "name": "PancakeHouse HoiHoi",
+    "address": "愛知県名古屋市中区栄5丁目4-2 レジデンシア栄南1A",
+    "work": "",
+    "note": "",
+    "sources": [
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2066659542860251550?s=46",
+        "date": "2026-06-16"
+      }
+    ],
+    "photos": [
+      "pmuwswdt22.jpg"
+    ],
+    "lon": 136.91208,
+    "lat": 35.16589,
+    "id": "pmuwswmg6wji"
   }
 ];
