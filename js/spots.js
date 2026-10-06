@@ -752,5 +752,28 @@ window.SPOTS = [
     "lon": 139.79707,
     "lat": 35.71227,
     "id": "pmuwys4x5eke"
+  },
+  {
+    "region": "kanto",
+    "name": "浅草花月堂 雷門店",
+    "address": "東京都台東区浅草1-18-11 1F~2F",
+    "works": [
+      "元祖ジャンボめろんぱん"
+    ],
+    "note": "※和傘の壁は雷門店限定",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DXRnnu0kfqz/?img_index=5&stkn=aGJjZGhhMnB5YWNo",
+        "date": "2026-04-18"
+      }
+    ],
+    "photos": [
+      "pmuwz3pu216.jpg"
+    ],
+    "chain": true,
+    "lon": 139.79597,
+    "lat": 35.71154,
+    "id": "pmuwz4oc0s0v"
   }
 ];
