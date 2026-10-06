@@ -110,7 +110,10 @@ window.SPOTS = [
     "region": "kanto",
     "name": "cafe The SUN LIVES HERE",
     "address": "東京都世田谷区三軒茶屋1丁目27-33",
-    "work": "とうもろこし × チーズケーキ（かき氷）",
+    "works": [
+      "とうもろこし × チーズケーキ（かき氷）",
+      "ラテ（ドリンク）"
+    ],
     "note": "",
     "sources": [
       {
