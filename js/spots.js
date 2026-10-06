@@ -59,17 +59,26 @@ window.SPOTS = [
     "address": "岐阜県岐阜市伊奈波通1丁目1",
     "work": "",
     "note": "",
-    "srcName": "Instagram",
-    "srcUrl": "https://www.instagram.com/p/Ddtt_V6E9ny/?img_index=4&stkn=ZG00MXloMDBvY3l3",
-    "postDate": "2026-09-25",
-    "lon": 136.7697,
-    "lat": 35.42786,
+    "sources": [
+      {
+        "name": "YouTube",
+        "url": "https://youtu.be/5uxOKYfOors?si=63XvCocL52ODttHN",
+        "date": "2026-09-19"
+      },
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/Ddtt_V6E9ny/?stkn=ZG00MXloMDBvY3l3",
+        "date": "2026-09-25"
+      }
+    ],
     "photos": [
       "pmuwnjf6j0.jpg",
       "pmuwnjf781.jpg",
       "pmuwnjf7o2.jpg",
       "pmuwnjf893.jpg"
     ],
+    "lon": 136.7697,
+    "lat": 35.42786,
     "id": "pmuwnguo93n6"
   },
   {
