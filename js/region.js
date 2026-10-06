@@ -5,13 +5,14 @@
   var REGP = {"tohoku": ["青森", "秋田", "岩手", "山形", "宮城", "福島"], "kanto": ["群馬", "栃木", "茨城", "埼玉", "東京", "神奈川", "千葉"], "chubu": ["長野", "新潟", "岐阜", "静岡", "愛知", "山梨", "富山", "石川", "福井"], "kinki": ["兵庫", "京都", "滋賀", "三重", "奈良", "和歌山", "大阪"], "chugoku-shikoku": ["鳥取", "島根", "岡山", "広島", "山口", "徳島", "香川", "愛媛", "高知"], "kyushu-okinawa": ["福岡", "佐賀", "長崎", "熊本", "大分", "宮崎", "鹿児島", "沖縄"], "hokkaido": ["北海道"]};
   function PL0(s) { return Array.isArray(s.pref) ? s.pref : (s.pref ? [s.pref] : []); }
   // 「その他」で都道府県をえらんだお店も、その県がある地方のページに「その他」の印つきで出す
+  function EX(s) { return s.region === 'other' ? PL0(s) : (Array.isArray(s.more) ? s.more : []); }
   function fromOther(s) {
-    if (key === 'other' || s.region !== 'other' || !REGP[key]) return false;
-    return PL0(s).some(function (p) { return REGP[key].indexOf(p) >= 0; });
+    if (key === 'other' || s.region === key || !REGP[key]) return false;
+    return EX(s).some(function (p) { return REGP[key].indexOf(p) >= 0; });
   }
   var spots = (window.SPOTS || []).filter(function (s) { return s.region === key || fromOther(s); });
   // 「その他」から来たお店は、同じ県の中でも下にならべる（元の順番はそのまま）
-  spots = spots.map(function (s, i) { return [s, i]; }).sort(function (a, b) { return (a[0].region === 'other' && key !== 'other' ? 1 : 0) - (b[0].region === 'other' && key !== 'other' ? 1 : 0) || a[1] - b[1]; }).map(function (x) { return x[0]; });
+  spots = spots.map(function (s, i) { return [s, i]; }).sort(function (a, b) { return (a[0].region !== key ? 1 : 0) - (b[0].region !== key ? 1 : 0) || a[1] - b[1]; }).map(function (x) { return x[0]; });
   var STORE = 'chii-visited-v1';
   var visited = {};
   try { visited = JSON.parse(localStorage.getItem(STORE) || '{}') || {}; } catch (e) { visited = {}; }
@@ -110,7 +111,7 @@
     } else noPhoto();
     head.appendChild(th);
     head.appendChild(el('span', 'sp-nm', s.name));
-    if (s.region === 'other' && key !== 'other') head.appendChild(el('span', 'sp-oth', 'その他'));
+    if (s.region !== key) head.appendChild(el('span', 'sp-oth', s.region === 'other' ? 'その他' : '他県'));
     head.appendChild(el('span', 'sp-vd', '✓'));
     head.appendChild(el('span', 'sp-chev', '›'));
     head.addEventListener('click', function () { select(s.name, false); });
@@ -151,6 +152,7 @@
     if (s.chain) li.appendChild(el('p', 'chain', '🏪 チェーン店'));
     if (PL(s).length && (s.noPlace || s.region === 'other')) li.appendChild(el('p', 'addr', PL(s).join('・')));
     if (s.address) li.appendChild(el('p', 'addr', s.address));
+    if (s.region !== 'other' && EX(s).length) li.appendChild(el('p', 'addr', 'ほかの県にも：' + EX(s).join('・')));
     if (s.note) li.appendChild(el('p', 'note-t', s.note));
     var srcList = (Array.isArray(s.sources) && s.sources.length) ? s.sources
       : ((s.srcName || s.srcUrl || s.postDate) ? [{ name: s.srcName, url: s.srcUrl, date: s.postDate }] : []);
@@ -158,15 +160,17 @@
       var srcBox = el('div', 'srcs');
       srcList.forEach(function (o) {
         var src = el('p', 'src');
-        src.appendChild(document.createTextNode('📎 引用：'));
+        src.appendChild(el('span', 'nw', '📎 引用：'));
+        var bd = el('span', 'bd');
         var okUrl = /^https?:\/\//i.test(o.url || '');
         if (okUrl) {
           var sa = el('a', null, o.name || '引用先を見る');
           sa.href = o.url; sa.target = '_blank'; sa.rel = 'noopener noreferrer';
-          src.appendChild(sa);
-        } else if (o.name) src.appendChild(document.createTextNode(o.name));
+          bd.appendChild(sa);
+        } else if (o.name) bd.appendChild(document.createTextNode(o.name));
         var pd = /^(\d{4})-(\d{2})-(\d{2})$/.exec(o.date || '');
-        if (pd) src.appendChild(document.createTextNode((okUrl || o.name ? '（' : '') + '投稿日 ' + pd[1] + '年' + (+pd[2]) + '月' + (+pd[3]) + '日' + (okUrl || o.name ? '）' : '')));
+        if (pd) bd.appendChild(el('span', 'dt', (okUrl || o.name ? '（' : '') + '投稿日 ' + pd[1] + '年' + (+pd[2]) + '月' + (+pd[3]) + '日' + (okUrl || o.name ? '）' : '')));
+        src.appendChild(bd);
         srcBox.appendChild(src);
       });
       li.appendChild(srcBox);
@@ -215,7 +219,7 @@
     var vb0 = vb.slice();
     var r = vb[2] / 330 * 8;
     spots.forEach(function (s) {
-      if (s.region === 'other' || typeof s.lon !== 'number' || typeof s.lat !== 'number') return;
+      if (s.region !== key || typeof s.lon !== 'number' || typeof s.lat !== 'number') return;
       var x, y;
       if (s.lat < 28) {
         // 沖縄は左下の枠（別の縮尺）に描いているので、枠の中の位置に直す
@@ -310,8 +314,9 @@
     anim = requestAnimationFrame(step);
   }
   function PL(s) { return Array.isArray(s.pref) ? s.pref : (s.pref ? [s.pref] : []); }
-  function floats(s) { return !PL(s).length && (s.noPlace || (s.chain && !s.address && typeof s.lon !== 'number')); }
+  function floats(s) { return s.region === key && !PL(s).length && (s.noPlace || (s.chain && !s.address && typeof s.lon !== 'number')); }
   function prefOfSpot(s) {
+    if (s.region !== key) return EX(s).slice();
     if (PL(s).length) return PL(s).slice();
     var names = hits.map(function (h) { return h.getAttribute('data-pref'); });
     for (var i = 0; i < names.length; i++) {

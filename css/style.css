@@ -187,7 +187,7 @@ body::before{ /* 水玉 */
 .spot{transition:border-color .2s,box-shadow .2s,transform .2s}
 .sp-oth{flex:none;font-size:11px;font-weight:800;color:#7d5cc0;background:#efe6fb;border-radius:999px;padding:2px 8px}
 .chain{margin:4px 0 0;font-size:13px;font-weight:700;color:#9a7ad6}
-.src{margin:6px 0 0;font-size:13px;color:#8a7683;line-height:1.6;word-break:break-all}.src a{color:var(--pink-d);font-weight:700}
+.src{margin:6px 0 0;font-size:13px;color:#8a7683;line-height:1.7;overflow-wrap:anywhere}.src{display:flex;align-items:flex-start;gap:0}.src .nw{white-space:nowrap;flex:none}.src .bd{flex:1;min-width:0}.src .dt{white-space:nowrap;display:inline-block;margin-left:2px}.src a{color:var(--pink-d);font-weight:700}
 .spot.is-sel{border-color:#ffb020;box-shadow:0 4px 0 #ffd98a;transform:translateY(-2px)}
 .spot:focus-visible{outline:3px solid var(--pink-d);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){.pin.is-sel .pin-body,.pin.is-sel .pin-ring{animation:none}}
