@@ -8,8 +8,10 @@
     "admin/admin.css",
     "admin/admin.js",
     "admin/index.html",
+    "admin/update.html",
     "css/style.css",
     "index.html",
+    "js/account.js",
     "js/main.js",
     "js/region.js",
     "js/spots.js",
@@ -383,10 +385,55 @@
       photos: cur.map(function (p) { return p.name; })
     };
     var msg;
+    function hs(t) { var h = 5381; for (var i = 0; i < t.length; i++) h = ((h << 5) + h + t.charCodeAt(i)) >>> 0; return h.toString(36); }
+    if (editing >= 0) { s.id = spots[editing].id || ('n' + hs(spots[editing].name)); }
+    else { s.id = 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5); }
     if (editing >= 0) { spots[editing] = s; msg = '「' + name + '」を直しました。'; }
     else { spots.push(s); msg = '「' + name + '」を追加しました。'; }
     setDirty();
     showHome(msg);
+  });
+
+
+
+  /* ---------- zip を読んで GitHub へ送る ---------- */
+  function readZip(file) {
+    return file.arrayBuffer().then(function (buf) {
+      var dv = new DataView(buf), u8 = new Uint8Array(buf), n = u8.length, eocd = -1;
+      for (var i = n - 22; i >= Math.max(0, n - 70000); i--) { if (dv.getUint32(i, true) === 0x06054b50) { eocd = i; break; } }
+      if (eocd < 0) throw new Error('zipとして読めませんでした。');
+      var cnt = dv.getUint16(eocd + 10, true), off = dv.getUint32(eocd + 16, true), ents = [];
+      for (var k = 0; k < cnt; k++) {
+        if (dv.getUint32(off, true) !== 0x02014b50) throw new Error('zipの中身が壊れています。');
+        var meth = dv.getUint16(off + 10, true), csz = dv.getUint32(off + 20, true), nl = dv.getUint16(off + 28, true), el = dv.getUint16(off + 30, true), cl = dv.getUint16(off + 32, true), lo = dv.getUint32(off + 42, true);
+        var name = new TextDecoder().decode(u8.subarray(off + 46, off + 46 + nl));
+        ents.push({ name: name, meth: meth, csz: csz, lo: lo });
+        off += 46 + nl + el + cl;
+      }
+      return ents.reduce(function (pr, e) {
+        return pr.then(function (acc) {
+          if (/\/$/.test(e.name)) return acc;
+          var ln = dv.getUint16(e.lo + 26, true), le = dv.getUint16(e.lo + 28, true), st = e.lo + 30 + ln + le;
+          var raw = u8.subarray(st, st + e.csz), data;
+          if (e.meth === 0) data = Promise.resolve(raw);
+          else if (e.meth === 8) data = new Response(new Blob([raw]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer().then(function (b) { return new Uint8Array(b); });
+          else throw new Error('このzipの形式には対応していません。');
+          return data.then(function (d) { acc.push({ path: e.name.replace(/^\.?\//, ''), data: d }); return acc; });
+        });
+      }, Promise.resolve([]));
+    });
+  }
+  $('f-zip').addEventListener('change', function () { ghUpdateButtons(); });
+  $('b-gh-zip').addEventListener('click', function () {
+    var f = $('f-zip').files[0]; if (!f) return;
+    $('pub-msg').textContent = 'zipを読んでいます…';
+    readZip(f).then(function (ents) {
+      var jobs = ents.filter(function (e) {
+        return e.path && !/(^|\/)\.|__MACOSX/.test(e.path) && e.path !== 'js/spots.js' && !/^photos\//.test(e.path);
+      }).map(function (e) { return { path: e.path, blob: new Blob([e.data]) }; });
+      if (!jobs.some(function (j) { return j.path === 'index.html'; })) throw new Error('index.html が入っていません。サイトのzipか確認してね。');
+      publish(false, jobs);
+    }).catch(function (e) { $('pub-msg').textContent = (e && e.message) || 'zipを読めませんでした。'; });
   });
 
   /* ---------- GitHub へ公開 ---------- */
@@ -405,6 +452,7 @@
   function ghUpdateButtons() {
     $('b-pub').disabled = !(ghReady() && loaded) || building;
     $('b-gh-full').disabled = !(ghReady() && loaded) || building;
+    $('b-gh-zip').disabled = !(ghReady() && loaded) || building || !$('f-zip').files.length;
     if (!dirty && ghReady()) $('pub-msg').textContent = $('pub-msg').textContent || '';
   }
   function api(path, opt) {
@@ -457,7 +505,7 @@
       });
     });
   }
-  function publish(full) {
+  function publish(full, extra) {
     if (building || !loaded || !ghReady()) return;
     building = true; ghUpdateButtons();
     var msg = $('pub-msg');
@@ -474,7 +522,8 @@
       var refd = referenced();
       var jobs = [];
       jobs.push({ path: 'js/spots.js', text: jsText });
-      if (needFull) SITE_FILES.forEach(function (p) { if (p !== 'js/spots.js') jobs.push({ path: p, fetch: true }); });
+      (extra || []).forEach(function (j) { jobs.push(j); });
+      if (needFull) SITE_FILES.forEach(function (p) { if (p !== 'js/spots.js' && !(extra || []).some(function (x) { return x.path === p; })) jobs.push({ path: p, fetch: true }); });
       Object.keys(refd).forEach(function (n) {
         var p = 'photos/' + n;
         if (h.paths[p]) return;

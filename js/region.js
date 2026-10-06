@@ -137,6 +137,7 @@
     v.addEventListener('click', function () {
       if (visited[s.name]) delete visited[s.name]; else visited[s.name] = 1;
       save(); paint(); count(); paintPins();
+      if (window.ChiiAcct) window.ChiiAcct.push(s, !!visited[s.name]);
     });
     act.appendChild(v);
     li.appendChild(act);

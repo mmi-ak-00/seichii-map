@@ -48,6 +48,7 @@
 #gh-set{margin-top:14px}
 #gh-set .steps b{color:var(--pink-d)}
 body:not(.view-form) .v-form{display:none}
+.ulist{list-style:none;margin:10px 0 0;padding:0}.urow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 0;border-top:2px dashed var(--line)}.urow span{flex:1 1 100%;font-weight:700}
 body.view-form .v-home{display:none}
 .backrow{margin:0 0 6px}
 .admin .qwrap{margin-top:14px}
