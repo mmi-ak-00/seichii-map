@@ -1049,5 +1049,24 @@ window.SPOTS = [
     "lon": 140.03113,
     "lat": 35.64552,
     "id": "pmux3dkrbpaj"
+  },
+  {
+    "region": "chugoku-shikoku",
+    "name": "厳島神社",
+    "address": "広島県廿日市市宮島町1-1",
+    "note": "",
+    "sources": [
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2052516807286849806?s=46",
+        "date": "2026-05-08"
+      }
+    ],
+    "photos": [
+      "pmux3feis15.jpg"
+    ],
+    "lon": 132.30998,
+    "lat": 34.27261,
+    "id": "pmux3fvrlo8g"
   }
 ];
