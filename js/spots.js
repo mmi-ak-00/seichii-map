@@ -269,7 +269,6 @@ window.SPOTS = [
     "region": "chubu",
     "name": "岐阜タンメン",
     "address": "",
-    "work": "",
     "note": "",
     "sources": [
       {
@@ -289,11 +288,13 @@ window.SPOTS = [
       }
     ],
     "photos": [
-      "pmuwsqq9b1.jpg",
       "pmuwqlvei0.jpg",
+      "pmuwsqq9b1.jpg",
       "pmuwqlvev1.jpg"
     ],
+    "thumb": "pmuwsqq9b1.jpg",
     "chain": true,
+    "noPlace": true,
     "id": "pmuwqlwurqfn"
   },
   {
