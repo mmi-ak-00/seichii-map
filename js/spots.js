@@ -234,5 +234,30 @@ window.SPOTS = [
     "lon": 139.71223,
     "lat": 35.6725,
     "id": "pmuwpmjt9f1s"
+  },
+  {
+    "region": "chubu",
+    "name": "岐阜タンメン",
+    "address": "",
+    "work": "",
+    "note": "",
+    "sources": [
+      {
+        "name": "TikTok",
+        "url": "https://vt.tiktok.com/ZSb4jLkrB/",
+        "date": "2026-06-16"
+      },
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2098186053849063632?s=46",
+        "date": "2026-09-11"
+      }
+    ],
+    "photos": [
+      "pmuwqlvei0.jpg",
+      "pmuwqlvev1.jpg"
+    ],
+    "chain": true,
+    "id": "pmuwqlwurqfn"
   }
 ];
