@@ -52,5 +52,24 @@ window.SPOTS = [
       "pmuwmk77d2.jpg"
     ],
     "id": "pmuwmkl318wn"
+  },
+  {
+    "region": "chubu",
+    "name": "伊奈波神社",
+    "address": "岐阜県岐阜市伊奈波通1丁目1",
+    "work": "",
+    "note": "",
+    "srcName": "Instagram",
+    "srcUrl": "https://www.instagram.com/p/Ddtt_V6E9ny/?img_index=4&stkn=ZG00MXloMDBvY3l3",
+    "postDate": "2026-09-25",
+    "lon": 136.7697,
+    "lat": 35.42786,
+    "photos": [
+      "pmuwngtg10.jpg",
+      "pmuwngth91.jpg",
+      "pmuwngtif2.jpg",
+      "pmuwngtl63.jpg"
+    ],
+    "id": "pmuwnguo93n6"
   }
 ];
