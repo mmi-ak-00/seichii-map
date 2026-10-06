@@ -139,7 +139,7 @@
       li.appendChild(tags);
     }
     if (s.chain) li.appendChild(el('p', 'chain', '🏪 チェーン店'));
-    if (s.pref && (s.noPlace || s.region === 'other')) li.appendChild(el('p', 'addr', s.pref));
+    if (PL(s).length && (s.noPlace || s.region === 'other')) li.appendChild(el('p', 'addr', PL(s).join('・')));
     if (s.address) li.appendChild(el('p', 'addr', s.address));
     if (s.note) li.appendChild(el('p', 'note-t', s.note));
     var srcList = (Array.isArray(s.sources) && s.sources.length) ? s.sources
@@ -299,22 +299,23 @@
     }
     anim = requestAnimationFrame(step);
   }
-  function floats(s) { return !s.pref && (s.noPlace || (s.chain && !s.address && typeof s.lon !== 'number')); }
+  function PL(s) { return Array.isArray(s.pref) ? s.pref : (s.pref ? [s.pref] : []); }
+  function floats(s) { return !PL(s).length && (s.noPlace || (s.chain && !s.address && typeof s.lon !== 'number')); }
   function prefOfSpot(s) {
-    if (s.pref) return s.pref;
+    if (PL(s).length) return PL(s).slice();
     var names = hits.map(function (h) { return h.getAttribute('data-pref'); });
     for (var i = 0; i < names.length; i++) {
-      if (s.address && s.address.indexOf(names[i]) >= 0) return names[i];
+      if (s.address && s.address.indexOf(names[i]) >= 0) return [names[i]];
     }
-    if (typeof s.lat === 'number' && s.lat < 28) return '沖縄';
+    if (typeof s.lat === 'number' && s.lat < 28) return ['沖縄'];
     if (typeof s.lon === 'number' && typeof s.lat === 'number' && svg) {
       var x = 22 + (s.lon - 129.4) * 19.5, y = 28 + (45.7 - s.lat) * 22.5;
       var pt = svg.createSVGPoint(); pt.x = x; pt.y = y;
       for (var j = 0; j < hits.length; j++) {
-        if (hits[j].isPointInFill && hits[j].tagName === 'path' && hits[j].isPointInFill(pt)) return hits[j].getAttribute('data-pref');
+        if (hits[j].isPointInFill && hits[j].tagName === 'path' && hits[j].isPointInFill(pt)) return [hits[j].getAttribute('data-pref')];
       }
     }
-    return null;
+    return [];
   }
   var prefOf = {};
   spots.forEach(function (s) { prefOf[s.name] = prefOfSpot(s); });
@@ -332,7 +333,7 @@
     bar.appendChild(all); chips[''] = all;
     hits.forEach(function (h) {
       var n = h.getAttribute('data-pref');
-      var cnt = spots.filter(function (s) { return prefOf[s.name] === n; }).length;
+      var cnt = spots.filter(function (s) { return prefOf[s.name].indexOf(n) >= 0; }).length;
       var b = el('button', 'pchip' + (cnt ? '' : ' is-empty'));
       b.type = 'button'; b.setAttribute('aria-pressed', 'false');
       b.appendChild(document.createTextNode(n));
@@ -355,7 +356,7 @@
     labelsEl.forEach(function (t) { t.style.display = (n && t.textContent !== n) ? 'none' : ''; });
     var shown = 0, done = 0;
     spots.forEach(function (s) {
-      var ok = !n || floats(s) || prefOf[s.name] === n;
+      var ok = !n || floats(s) || prefOf[s.name].indexOf(n) >= 0;
       cards[s.name].hidden = !ok;
       if (pinEls[s.name]) pinEls[s.name].style.display = ok ? '' : 'none';
       if (ok) { shown++; if (visited[s.name]) done++; }
@@ -379,7 +380,7 @@
     }
   }
   var _count = count;
-  count = function () { _count(); if (curPref !== null) { var s = 0, d = 0; spots.forEach(function (x) { if (floats(x) || prefOf[x.name] === curPref) { s++; if (visited[x.name]) d++; } }); nAll.textContent = s; nAll2.textContent = s; nDone.textContent = d; } };
+  count = function () { _count(); if (curPref !== null) { var s = 0, d = 0; spots.forEach(function (x) { if (floats(x) || prefOf[x.name].indexOf(curPref) >= 0) { s++; if (visited[x.name]) d++; } }); nAll.textContent = s; nAll2.textContent = s; nDone.textContent = d; } };
   function fromHash() {
     var h = location.hash.replace(/^#/, '');
     try { h = decodeURIComponent(h); } catch (e) {}
@@ -392,7 +393,7 @@
   if (!svg && key === 'other') {
     var ORDER = ['北海道','青森','岩手','宮城','秋田','山形','福島','茨城','栃木','群馬','埼玉','千葉','東京','神奈川','新潟','富山','石川','福井','山梨','長野','岐阜','静岡','愛知','三重','滋賀','京都','大阪','兵庫','奈良','和歌山','鳥取','島根','岡山','広島','山口','徳島','香川','愛媛','高知','福岡','佐賀','長崎','熊本','大分','宮崎','鹿児島','沖縄'];
     var used = {};
-    spots.forEach(function (s) { if (s.pref) used[s.pref] = (used[s.pref] || 0) + 1; });
+    spots.forEach(function (s) { PL(s).forEach(function (p) { used[p] = (used[p] || 0) + 1; }); });
     var usedNames = ORDER.filter(function (n) { return used[n]; });
     if (usedNames.length) {
       var obar = el('div', 'prefbar');
@@ -402,7 +403,7 @@
         Object.keys(ochips).forEach(function (k) { ochips[k].setAttribute('aria-pressed', k === (n || '') ? 'true' : 'false'); });
         var shown = 0, done = 0;
         spots.forEach(function (s) {
-          var ok = !n || s.pref === n;
+          var ok = !n || PL(s).indexOf(n) >= 0;
           cards[s.name].hidden = !ok;
           if (ok) { shown++; if (visited[s.name]) done++; }
         });
@@ -424,7 +425,7 @@
       ochips[''].setAttribute('aria-pressed', 'true');
       list.parentNode.insertBefore(obar, list);
       var _c2 = count;
-      count = function () { if (curOther) { var s2 = 0, d2 = 0; spots.forEach(function (x) { if (x.pref === curOther) { s2++; if (visited[x.name]) d2++; } }); nAll.textContent = s2; nAll2.textContent = s2; nDone.textContent = d2; } else _c2(); };
+      count = function () { if (curOther) { var s2 = 0, d2 = 0; spots.forEach(function (x) { if (PL(x).indexOf(curOther) >= 0) { s2++; if (visited[x.name]) d2++; } }); nAll.textContent = s2; nAll2.textContent = s2; nDone.textContent = d2; } else _c2(); };
     }
   }
 })();
