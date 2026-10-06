@@ -22,9 +22,10 @@
     "regions/kanto.html",
     "regions/kinki.html",
     "regions/kyushu-okinawa.html",
+    "regions/other.html",
     "regions/tohoku.html"
   ];
-  var REGIONS = [["hokkaido", "北海道"], ["tohoku", "東北"], ["kanto", "関東"], ["chubu", "中部"], ["kinki", "近畿"], ["chugoku-shikoku", "中国・四国"], ["kyushu-okinawa", "九州・沖縄"]];
+  var REGIONS = [["hokkaido", "北海道"], ["tohoku", "東北"], ["kanto", "関東"], ["chubu", "中部"], ["kinki", "近畿"], ["chugoku-shikoku", "中国・四国"], ["kyushu-okinawa", "九州・沖縄"], ["other", "その他"]];
 
   function $(id) { return document.getElementById(id); }
   function el(tag, cls, text) {
@@ -105,7 +106,7 @@
         b.setAttribute('aria-label', s.name + ' を直す');
         var t = el('span', 'rt');
         t.appendChild(el('b', null, s.name));
-        var sub = [s.work, s.address].filter(Boolean).join(' ／ ');
+        var sub = [s.chain ? 'チェーン店' : '', s.work, s.address].filter(Boolean).join(' ／ ');
         if (sub) t.appendChild(el('small', null, sub));
         b.appendChild(t);
         var np = (s.photos || []).length;
@@ -194,6 +195,14 @@
     $('pos-msg').textContent = (label ? label + ' ' : '') + '位置を決めました（経度 ' + lon.toFixed(4) + ' / 緯度 ' + lat.toFixed(4) + '）';
     drawMark();
   }
+
+  function syncChain() {
+    var on = $('f-chain').checked || $('f-region').value === 'other';
+    $('wrap-pos').hidden = on;
+    $('em-addr').hidden = on;
+  }
+  $('f-chain').addEventListener('change', syncChain);
+  $('f-region').addEventListener('change', syncChain);
   function readPosInputs() {
     var lo = parseFloat($('f-lon').value), la = parseFloat($('f-lat').value);
     if (isFinite(lo) && isFinite(la) && lo > 120 && lo < 150 && la > 20 && la < 47) pos = { lon: lo, lat: la };
@@ -322,6 +331,7 @@
 
   function resetForm() {
     editing = -1; pos = null; cur = [];
+    $('f-chain').checked = false; syncChain();
     ['f-name', 'f-addr', 'f-work', 'f-note', 'f-srcname', 'f-srcurl', 'f-postdate', 'f-lon', 'f-lat'].forEach(function (i) { $(i).value = ''; });
     $('pos-msg').textContent = 'まだ決まっていません。';
     $('f-err').textContent = '';
@@ -339,6 +349,7 @@
     $('f-addr').value = s.address || '';
     $('f-work').value = s.work || '';
     $('f-note').value = s.note || '';
+    $('f-chain').checked = !!s.chain; syncChain();
     $('f-srcname').value = s.srcName || '';
     $('f-srcurl').value = s.srcUrl || '';
     $('f-postdate').value = s.postDate || '';
@@ -378,18 +389,20 @@
     var name = $('f-name').value.trim(), addr = $('f-addr').value.trim();
     if (!loaded) { err.textContent = '登録ずみのスポットを読み込めていないので、保存できません。'; return; }
     if (!name) { err.textContent = 'スポット名を入れてね。'; $('f-name').focus(); return; }
-    if (!addr) { err.textContent = '住所を入れてね。'; $('f-addr').focus(); return; }
+    var isChain = $('f-chain').checked, loose = isChain || $('f-region').value === 'other';
+    if (!addr && !loose) { err.textContent = '住所を入れてね。'; $('f-addr').focus(); return; }
     var sUrl = $('f-srcurl').value.trim();
     if (sUrl && !/^https?:\/\/[^\s]+$/i.test(sUrl)) { err.textContent = '引用先のリンクは、https:// から始まるアドレスを入れてね。'; $('f-srcurl').focus(); return; }
     readPosInputs();
-    if (!pos) { err.textContent = '位置を決めてね。「住所から位置をさがす」か「地図でえらぶ」を押してね。'; return; }
+    if (!pos && !loose) { err.textContent = '位置を決めてね。「住所から位置をさがす」か「地図でえらぶ」を押してね。'; return; }
     var s = {
       region: $('f-region').value, name: name, address: addr,
       work: $('f-work').value.trim(), note: $('f-note').value.trim(),
       srcName: $('f-srcname').value.trim(), srcUrl: sUrl, postDate: $('f-postdate').value,
-      lon: +pos.lon.toFixed(5), lat: +pos.lat.toFixed(5),
       photos: cur.map(function (p) { return p.name; })
     };
+    if (isChain) s.chain = true;
+    if (!isChain && (!loose || pos)) { s.lon = +pos.lon.toFixed(5); s.lat = +pos.lat.toFixed(5); }
     var msg;
     function hs(t) { var h = 5381; for (var i = 0; i < t.length; i++) h = ((h << 5) + h + t.charCodeAt(i)) >>> 0; return h.toString(36); }
     if (editing >= 0) { s.id = spots[editing].id || ('n' + hs(spots[editing].name)); }

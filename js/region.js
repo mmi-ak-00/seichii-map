@@ -114,6 +114,7 @@
       tag.appendChild(document.createTextNode(s.work));
       li.appendChild(tag);
     }
+    if (s.chain) li.appendChild(el('p', 'chain', '🏪 チェーン店（場所はいろいろ）'));
     if (s.address) li.appendChild(el('p', 'addr', s.address));
     if (s.note) li.appendChild(el('p', 'note-t', s.note));
     if (s.srcUrl || s.srcName || s.postDate) {
@@ -131,8 +132,8 @@
     }
 
     var act = el('div', 'act');
-    var q = encodeURIComponent(s.name + ' ' + (s.address || ''));
-    var map = el('a', 'btn', '地図アプリで開く ↗');
+    var q = encodeURIComponent(s.chain ? s.name : s.name + ' ' + (s.address || ''));
+    var map = el('a', 'btn', s.chain ? '近くのお店をさがす ↗' : '地図アプリで開く ↗');
     map.href = 'https://www.google.com/maps/search/?api=1&query=' + q;
     map.target = '_blank';
     map.rel = 'noopener noreferrer';
@@ -318,7 +319,7 @@
     labelsEl.forEach(function (t) { t.style.display = (n && t.textContent !== n) ? 'none' : ''; });
     var shown = 0, done = 0;
     spots.forEach(function (s) {
-      var ok = !n || prefOf[s.name] === n;
+      var ok = !n || s.chain || prefOf[s.name] === n;
       cards[s.name].hidden = !ok;
       if (pinEls[s.name]) pinEls[s.name].style.display = ok ? '' : 'none';
       if (ok) { shown++; if (visited[s.name]) done++; }
@@ -342,7 +343,7 @@
     }
   }
   var _count = count;
-  count = function () { _count(); if (curPref !== null) { var s = 0, d = 0; spots.forEach(function (x) { if (prefOf[x.name] === curPref) { s++; if (visited[x.name]) d++; } }); nAll.textContent = s; nAll2.textContent = s; nDone.textContent = d; } };
+  count = function () { _count(); if (curPref !== null) { var s = 0, d = 0; spots.forEach(function (x) { if (x.chain || prefOf[x.name] === curPref) { s++; if (visited[x.name]) d++; } }); nAll.textContent = s; nAll2.textContent = s; nDone.textContent = d; } };
   function fromHash() {
     var h = location.hash.replace(/^#/, '');
     try { h = decodeURIComponent(h); } catch (e) {}

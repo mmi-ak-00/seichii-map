@@ -79,6 +79,7 @@ body::before{ /* 水玉 */
 [data-region="kinki"],.r-kinki{--c:#e4d3ff;--c-hi:#d1b9ff}
 [data-region="chugoku-shikoku"],.r-chugoku-shikoku{--c:#ffdcc4;--c-hi:#ffc8a3}
 [data-region="kyushu-okinawa"],.r-kyushu-okinawa{--c:#c6f0ec;--c-hi:#a6e5df}
+[data-region="other"],.r-other{--c:#e9e5f3;--c-hi:#d8d2e8}
 
 /* ねこ */
 .cat-bob{animation:bob 3.2s ease-in-out infinite alternate}
@@ -181,6 +182,7 @@ body::before{ /* 水玉 */
 @keyframes pinring{0%{transform:scale(1);opacity:.9}100%{transform:scale(2.4);opacity:0}}
 .pin-ring{transform-box:fill-box;transform-origin:center}
 .spot{cursor:pointer;transition:border-color .2s,box-shadow .2s,transform .2s}
+.chain{margin:4px 0 0;font-size:13px;font-weight:700;color:#9a7ad6}
 .src{margin:6px 0 0;font-size:13px;color:#8a7683;line-height:1.6;word-break:break-all}.src a{color:var(--pink-d);font-weight:700}
 .spot.is-sel{border-color:#ffb020;box-shadow:0 4px 0 #ffd98a;transform:translateY(-2px)}
 .spot:focus-visible{outline:3px solid var(--pink-d);outline-offset:2px}

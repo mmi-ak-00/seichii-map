@@ -38,14 +38,18 @@
 
 <div class="field">
 <label for="f-region">地方</label>
-<select id="f-region"><option value="hokkaido">北海道</option><option value="tohoku">東北</option><option value="kanto">関東</option><option value="chubu">中部</option><option value="kinki">近畿</option><option value="chugoku-shikoku">中国・四国</option><option value="kyushu-okinawa">九州・沖縄</option></select>
+<select id="f-region"><option value="hokkaido">北海道</option><option value="tohoku">東北</option><option value="kanto">関東</option><option value="chubu">中部</option><option value="kinki">近畿</option><option value="chugoku-shikoku">中国・四国</option><option value="kyushu-okinawa">九州・沖縄</option><option value="other">その他</option></select>
 </div>
 <div class="field">
 <label for="f-name">スポット名 <em>必須</em></label>
 <input id="f-name" type="text" autocomplete="off">
 </div>
 <div class="field">
-<label for="f-addr">住所 <em>必須</em></label>
+<label class="chk"><input type="checkbox" id="f-chain"> チェーン店など、場所がきまっていない</label>
+<p class="hint">オンにすると、住所と位置は入れなくてOKです。地図にピンは出さず、「近くのお店をさがす」ボタンで探せるようになります。</p>
+</div>
+<div class="field">
+<label for="f-addr">住所 <em id="em-addr">必須</em></label>
 <input id="f-addr" type="text" autocomplete="off" placeholder="例：東京都渋谷区神宮前3-5-1">
 </div>
 <div class="field">
@@ -69,7 +73,7 @@
 <input id="f-postdate" type="date">
 </div>
 
-<div class="field">
+<div class="field" id="wrap-pos">
 <span class="lab">位置 <em>必須</em></span>
 <div class="btns">
 <button type="button" class="btn" id="b-search">住所から位置をさがす</button>
