@@ -5,7 +5,7 @@
   var REGP = {"tohoku": ["青森", "秋田", "岩手", "山形", "宮城", "福島"], "kanto": ["群馬", "栃木", "茨城", "埼玉", "東京", "神奈川", "千葉"], "chubu": ["長野", "新潟", "岐阜", "静岡", "愛知", "山梨", "富山", "石川", "福井"], "kinki": ["兵庫", "京都", "滋賀", "三重", "奈良", "和歌山", "大阪"], "chugoku-shikoku": ["鳥取", "島根", "岡山", "広島", "山口", "徳島", "香川", "愛媛", "高知"], "kyushu-okinawa": ["福岡", "佐賀", "長崎", "熊本", "大分", "宮崎", "鹿児島", "沖縄"], "hokkaido": ["北海道"]};
   function PL0(s) { return Array.isArray(s.pref) ? s.pref : (s.pref ? [s.pref] : []); }
   // 「その他」で都道府県をえらんだお店も、その県がある地方のページに「その他」の印つきで出す
-  function EX(s) { return s.region === 'other' ? PL0(s) : (Array.isArray(s.more) ? s.more : []); }
+  function EX(s) { return s.region === 'other' ? PL0(s) : []; }
   function fromOther(s) {
     if (key === 'other' || s.region === key || !REGP[key]) return false;
     return EX(s).some(function (p) { return REGP[key].indexOf(p) >= 0; });
@@ -123,7 +123,7 @@
     } else noPhoto();
     head.appendChild(th);
     head.appendChild(el('span', 'sp-nm', s.name));
-    if (s.region !== key) head.appendChild(el('span', 'sp-oth', s.region === 'other' ? 'その他' : '他県'));
+    if (s.region !== key) head.appendChild(el('span', 'sp-oth', 'その他'));
     head.appendChild(el('span', 'sp-vd', '✓'));
     head.appendChild(el('span', 'sp-chev', '›'));
     head.addEventListener('click', function () { select(s.name, false); });
@@ -164,7 +164,6 @@
     if (s.chain) li.appendChild(el('p', 'chain', '🏪 チェーン店'));
     if (PL(s).length && (s.noPlace || s.region === 'other')) li.appendChild(el('p', 'addr', PL(s).join('・')));
     if (s.address) li.appendChild(el('p', 'addr', s.address));
-    if (s.region !== 'other' && EX(s).length) li.appendChild(el('p', 'addr', 'ほかの県にも：' + EX(s).join('・')));
     if (s.note) li.appendChild(el('p', 'note-t', s.note));
     var srcList = (Array.isArray(s.sources) && s.sources.length) ? s.sources
       : ((s.srcName || s.srcUrl || s.postDate) ? [{ name: s.srcName, url: s.srcUrl, date: s.postDate }] : []);
