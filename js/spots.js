@@ -502,7 +502,9 @@ window.SPOTS = [
     ],
     "chain": true,
     "noPlace": true,
-    "pref": "神奈川",
+    "more": [
+      "神奈川"
+    ],
     "id": "pmuwtmcx196m"
   },
   {
