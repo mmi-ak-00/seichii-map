@@ -1269,5 +1269,21 @@ window.SPOTS = [
     "lon": 136.92119,
     "lat": 35.1712,
     "id": "pmuxszjsfzgj"
+  },
+  {
+    "region": "kanto",
+    "name": "HARBS ニュウマン高輪店",
+    "address": "東京都港区高輪2-21-1 ニュウマン高輪 South 3F",
+    "works": [
+      "アーモンドマロンケーキ"
+    ],
+    "note": "※秋期限定メニュー\n※他店舗の可能性有",
+    "photos": [
+      "pmuxtapvq1.jpg"
+    ],
+    "chain": true,
+    "lon": 139.73959,
+    "lat": 35.63556,
+    "id": "pmuxtav7bkk8"
   }
 ];
