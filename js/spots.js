@@ -1469,5 +1469,27 @@ window.SPOTS = [
     "lon": 139.71486,
     "lat": 35.67805,
     "id": "pmuymip3vobm"
+  },
+  {
+    "region": "chugoku-shikoku",
+    "name": "旅館 さくらや",
+    "address": "広島県廿日市市宮島町853-1",
+    "works": [
+      "焼きがき"
+    ],
+    "note": "",
+    "sources": [
+      {
+        "name": "TikTok(エイアイ過多)",
+        "url": "https://vt.tiktok.com/ZSbb4PHy2/",
+        "date": "2026-05-09"
+      }
+    ],
+    "photos": [
+      "pmuyn43bz0.jpg"
+    ],
+    "lon": 132.32211,
+    "lat": 34.30059,
+    "id": "pmuyn45acgp1"
   }
 ];
