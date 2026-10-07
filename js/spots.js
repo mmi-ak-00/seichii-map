@@ -506,7 +506,9 @@ window.SPOTS = [
     "region": "kanto",
     "name": "開華楼 横浜博覧館店",
     "address": "神奈川県横浜市中区山下町145番地 横浜博覧館1階",
-    "work": "三色ごま団子串",
+    "works": [
+      "三色ごま団子串"
+    ],
     "note": "",
     "sources": [
       {
@@ -519,6 +521,9 @@ window.SPOTS = [
       "pmuwtup4x2.jpg"
     ],
     "chain": true,
+    "more": [
+      "神奈川"
+    ],
     "lon": 139.64471,
     "lat": 35.44264,
     "id": "pmuwtuxfoj9p"
@@ -803,6 +808,9 @@ window.SPOTS = [
       "pmuwz3pu216.jpg"
     ],
     "chain": true,
+    "more": [
+      "東京"
+    ],
     "lon": 139.79597,
     "lat": 35.71154,
     "id": "pmuwz4oc0s0v"
