@@ -121,6 +121,8 @@ window.SPOTS = [
       "pmuwns7oi0.jpg",
       "pmux1sopt16.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/tokyo/A1322/A132202/13271809/",
+    "hp": "https://www.instagram.com/hyoren_koori?stkn=aGthNXJocWxqbXhm",
     "lon": 139.69862,
     "lat": 35.73051,
     "id": "pmuwnsbjh1zi"
