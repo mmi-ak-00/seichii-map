@@ -1451,6 +1451,7 @@ window.SPOTS = [
       "pmuym79iq3.jpg",
       "pmuym79ie2.jpg"
     ],
+    "hp": "https://petitmura.com/",
     "lon": 139.57457,
     "lat": 35.70461,
     "id": "pmuym8qh5ntl"
