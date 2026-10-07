@@ -295,12 +295,24 @@
       l.appendChild(i); l.appendChild(document.createTextNode(n)); box.appendChild(l);
     });
   }
+  function pickedMore() { return Array.prototype.map.call($('f-more').querySelectorAll('input:checked'), function (i) { return i.value; }); }
+  function fillMore(keep) {
+    var box = $('f-more'), cur = keep !== undefined ? keep : pickedMore();
+    box.textContent = '';
+    (PREFS.other || []).forEach(function (n) {
+      var l = document.createElement('label'), i = document.createElement('input');
+      i.type = 'checkbox'; i.value = n; i.checked = cur.indexOf(n) >= 0;
+      l.appendChild(i); l.appendChild(document.createTextNode(n)); box.appendChild(l);
+    });
+  }
   function syncChain() {
     var np = $('f-noplace').checked, on = np || $('f-region').value === 'other';
     $('wrap-pos').hidden = on;
     $('em-addr').hidden = on;
     fillPrefs();
-    $('wrap-pref').hidden = !((np || isOther() || $('f-chain').checked) && (PREFS[$('f-region').value] || []).length);
+    fillMore();
+    $('wrap-more').hidden = !($('f-chain').checked && !isOther());
+    $('wrap-pref').hidden = !((np || isOther()) && (PREFS[$('f-region').value] || []).length);
   }
   $('f-chain').addEventListener('change', syncChain);
   $('f-noplace').addEventListener('change', syncChain);
@@ -450,7 +462,7 @@
   function resetForm() {
     editing = -1; pos = null; cur = []; curThumb = '';
     $('works').textContent = '';
-    $('f-chain').checked = false; $('f-noplace').checked = false; fillPrefs([]); syncChain();
+    $('f-chain').checked = false; $('f-noplace').checked = false; fillPrefs([]); fillMore([]); syncChain();
     $('srcs').textContent = '';
     ['f-name', 'f-addr', 'f-note', 'f-lon', 'f-lat'].forEach(function (i) { $(i).value = ''; });
     $('pos-msg').textContent = 'まだ決まっていません。';
@@ -471,7 +483,7 @@
     $('f-note').value = s.note || '';
     $('f-chain').checked = !!s.chain;
     $('f-noplace').checked = !!s.noPlace || (!!s.chain && !s.address && !isFinite(s.lon));   // 前の形（チェーン店＝場所なし）も引き継ぐ
-    fillPrefs(prefsOf(s)); syncChain();
+    fillPrefs(prefsOf(s)); fillMore(Array.isArray(s.more) ? s.more : []); syncChain();
     srcsOf(s).forEach(addSrcRow);
     if (isFinite(s.lon) && isFinite(s.lat)) setPos(+s.lon, +s.lat);
     cur = (s.photos || []).map(function (n) {
@@ -528,7 +540,8 @@
     if (!s.works.length) delete s.works;
     if (isChain) s.chain = true;
     if (noPlace) s.noPlace = true;
-    if (noPlace || isChain || loose) { var pp = pickedPrefs(); if (pp.length) s.pref = pp.length === 1 ? pp[0] : pp; }
+    if (noPlace || loose) { var pp = pickedPrefs(); if (pp.length) s.pref = pp.length === 1 ? pp[0] : pp; }
+    if (isChain && !isOther()) { var mm = pickedMore(); if (mm.length) s.more = mm; }
     if (!noPlace && pos) { s.lon = +pos.lon.toFixed(5); s.lat = +pos.lat.toFixed(5); }
     openRegs[s.region] = true;
     var msg;
