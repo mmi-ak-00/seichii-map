@@ -1400,5 +1400,30 @@ window.SPOTS = [
     "lon": 139.76732,
     "lat": 35.67424,
     "id": "pmuym0lm36bv"
+  },
+  {
+    "region": "kanto",
+    "name": "吉祥寺プティット村",
+    "address": "東京都武蔵野市吉祥寺本町2-33-2 吉祥寺プティット村",
+    "note": "",
+    "sources": [
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2082965755818336500?s=46",
+        "date": "2026-07-31"
+      },
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DbiqFJdE2jT/?img_index=8&stkn=MWt3YXY0NGd4ZzRzdA==",
+        "date": "2026-08-02"
+      }
+    ],
+    "photos": [
+      "pmuym79iq3.jpg",
+      "pmuym79ie2.jpg"
+    ],
+    "lon": 139.57457,
+    "lat": 35.70461,
+    "id": "pmuym8qh5ntl"
   }
 ];
