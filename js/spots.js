@@ -1444,5 +1444,24 @@ window.SPOTS = [
     "lon": 139.5742,
     "lat": 35.70101,
     "id": "pmuymeosojkk"
+  },
+  {
+    "region": "kanto",
+    "name": "MUFGスタジアム（国立競技場）",
+    "address": "東京都新宿区霞ヶ丘町10-1",
+    "note": "",
+    "sources": [
+      {
+        "name": "TikTok",
+        "url": "https://vt.tiktok.com/ZSbbXLbs1/",
+        "date": "2026-07-28"
+      }
+    ],
+    "photos": [
+      "pmuyminth5.jpg"
+    ],
+    "lon": 139.71486,
+    "lat": 35.67805,
+    "id": "pmuymip3vobm"
   }
 ];
