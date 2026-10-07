@@ -1533,5 +1533,37 @@ window.SPOTS = [
     "lon": 135.50253,
     "lat": 34.66869,
     "id": "pmuynhec0q3f"
+  },
+  {
+    "region": "kinki",
+    "name": "神戸ハーバーランド",
+    "address": "兵庫県神戸市中央区東川崎町1丁目",
+    "note": "",
+    "sources": [
+      {
+        "name": "TikTok(エイアイカ)(1)",
+        "url": "https://vt.tiktok.com/ZSbbbdwuc/",
+        "date": "2025-11-03"
+      },
+      {
+        "name": "TikTok(エイアイカ)(2)",
+        "url": "https://vt.tiktok.com/ZSbbqK2C6/",
+        "date": "2025-11-05"
+      },
+      {
+        "name": "TikTok(エイアイカ)(3)",
+        "url": "https://vt.tiktok.com/ZSbbb1fS4/",
+        "date": "2025-11-14"
+      }
+    ],
+    "photos": [
+      "pmuyofpk73.jpg",
+      "pmuyofpko4.jpg",
+      "pmuyofpl15.jpg"
+    ],
+    "thumb": "pmuyofpko4.jpg",
+    "lon": 135.18196,
+    "lat": 34.67908,
+    "id": "pmuyofyp12he"
   }
 ];
