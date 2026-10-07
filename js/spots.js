@@ -1152,11 +1152,17 @@ window.SPOTS = [
         "name": "X",
         "url": "https://x.com/chii_nyan02/status/2039100490966094063?s=46",
         "date": "2026-04-01"
+      },
+      {
+        "name": "TikTok",
+        "url": "https://vt.tiktok.com/ZSbbXLbs1/",
+        "date": "2026-04-01"
       }
     ],
     "photos": [
       "pmux3vws621.jpg",
-      "pmux3vwsc22.jpg"
+      "pmux3vwsc22.jpg",
+      "pmuymkx426.jpg"
     ],
     "thumb": "pmux3vwsc22.jpg",
     "lon": 139.70172,
