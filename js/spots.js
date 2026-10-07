@@ -187,7 +187,9 @@ window.SPOTS = [
     "region": "kanto",
     "name": "Cafe Lumiere",
     "address": "東京都武蔵野市吉祥寺南町1-2-2 東山ビル4F",
-    "work": "Lumiere特製　焼き氷（かき氷）",
+    "works": [
+      "Lumiere特製　焼き氷（かき氷）"
+    ],
     "note": "",
     "sources": [
       {
@@ -207,6 +209,8 @@ window.SPOTS = [
       "pmuwob69r5.jpg",
       "pmuwob6a66.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/tokyo/A1320/A132001/13147519/",
+    "hp": "https://www.instagram.com/cafe_lumiere_kichijyoji?stkn=OTRlanNiaHg2cHZh",
     "lon": 139.58012,
     "lat": 35.70232,
     "id": "pmuwob7qo2qr"
