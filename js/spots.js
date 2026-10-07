@@ -1342,7 +1342,7 @@ window.SPOTS = [
       }
     ],
     "photos": [
-      "pmuy9ap0x0.jpg",
+      "pmuyc8ixe4.jpg",
       "pmuy9ap1l1.jpg",
       "pmuy9ap292.jpg"
     ],
