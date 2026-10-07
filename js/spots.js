@@ -1375,5 +1375,30 @@ window.SPOTS = [
     "lon": 132.30998,
     "lat": 34.27261,
     "id": "pmuy9hvg8st8"
+  },
+  {
+    "region": "kanto",
+    "name": "鯉々",
+    "address": "東京都中央区銀座1-6-10 広島ブランドショップ TAU 2F",
+    "note": "",
+    "sources": [
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2036437544892858557?s=46",
+        "date": "2026-03-24"
+      },
+      {
+        "name": "X(柳本愛 ラストブルー)",
+        "url": "https://x.com/55_ai_55_ai/status/2036424967064346801?s=46",
+        "date": "2026-03-24"
+      }
+    ],
+    "photos": [
+      "pmuylyi8h0.jpg",
+      "pmuylyi8w1.jpg"
+    ],
+    "lon": 139.76732,
+    "lat": 35.67424,
+    "id": "pmuym0lm36bv"
   }
 ];
