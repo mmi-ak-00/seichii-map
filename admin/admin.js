@@ -464,7 +464,7 @@
     $('works').textContent = '';
     $('f-chain').checked = false; $('f-noplace').checked = false; fillPrefs([]); fillMore([]); syncChain();
     $('srcs').textContent = '';
-    ['f-name', 'f-addr', 'f-note', 'f-lon', 'f-lat'].forEach(function (i) { $(i).value = ''; });
+    ['f-name', 'f-addr', 'f-note', 'f-lon', 'f-lat', 'f-tabelog', 'f-hp'].forEach(function (i) { $(i).value = ''; });
     $('pos-msg').textContent = 'まだ決まっていません。';
     $('f-err').textContent = '';
     $('mode').hidden = true; $('b-del').hidden = true; $('b-save').textContent = '追加する';
@@ -481,6 +481,7 @@
     $('f-addr').value = s.address || '';
     worksOf(s).forEach(addWorkRow);
     $('f-note').value = s.note || '';
+    $('f-tabelog').value = s.tabelog || ''; $('f-hp').value = s.hp || '';
     $('f-chain').checked = !!s.chain;
     $('f-noplace').checked = !!s.noPlace || (!!s.chain && !s.address && !isFinite(s.lon));   // 前の形（チェーン店＝場所なし）も引き継ぐ
     fillPrefs(prefsOf(s)); fillMore(Array.isArray(s.more) ? s.more : []); syncChain();
@@ -527,6 +528,8 @@
     for (var k = 0; k < srcs.length; k++) {
       if (srcs[k].url && !/^https?:\/\/[^\s]+$/i.test(srcs[k].url)) { err.textContent = '引用先のリンクは、https:// から始まるアドレスを入れてね。'; var us = document.querySelectorAll('#srcs .src-url'); if (us[k]) us[k].focus(); return; }
     }
+    var tb = $('f-tabelog').value.trim(), hpv = $('f-hp').value.trim();
+    if ((tb && !/^https?:\/\/[^\s]+$/i.test(tb)) || (hpv && !/^https?:\/\/[^\s]+$/i.test(hpv))) { err.textContent = '食べログ・ホームページのリンクは、https:// から始まるアドレスを入れてね。'; return; }
     readPosInputs();
     if (!pos && !loose) { err.textContent = '位置を決めてね。「住所から位置をさがす」か「地図でえらぶ」を押してね。'; return; }
     var s = {
@@ -536,6 +539,8 @@
       photos: cur.map(function (p) { return p.name; })
     };
     if (curThumb && s.photos.indexOf(curThumb) > 0) s.thumb = curThumb;
+    if (tb) s.tabelog = tb;
+    if (hpv) s.hp = hpv;
     if (!srcs.length) delete s.sources;
     if (!s.works.length) delete s.works;
     if (isChain) s.chain = true;

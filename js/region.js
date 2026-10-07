@@ -26,6 +26,9 @@
     return a[1] - b[1];
   }).map(function (x) { return x[0]; });
   var STORE = 'chii-visited-v1';
+  var WSTORE = 'chii-want-v1', want = {};
+  try { want = JSON.parse(localStorage.getItem(WSTORE) || '{}') || {}; } catch (e) { want = {}; }
+  function wsave() { try { localStorage.setItem(WSTORE, JSON.stringify(want)); } catch (e) {} }
   var visited = {};
   try { visited = JSON.parse(localStorage.getItem(STORE) || '{}') || {}; } catch (e) { visited = {}; }
   function save() { try { localStorage.setItem(STORE, JSON.stringify(visited)); } catch (e) {} }
@@ -124,6 +127,7 @@
     head.appendChild(th);
     head.appendChild(el('span', 'sp-nm', s.name));
     if (s.region !== key) head.appendChild(el('span', 'sp-oth', 'その他'));
+    head.appendChild(el('span', 'sp-pn', '📌'));
     head.appendChild(el('span', 'sp-vd', '✓'));
     head.appendChild(el('span', 'sp-chev', '›'));
     head.addEventListener('click', function () { select(s.name, false); });
@@ -195,7 +199,9 @@
     map.href = 'https://www.google.com/maps/search/?api=1&query=' + q;
     map.target = '_blank';
     map.rel = 'noopener noreferrer';
-    act.appendChild(map);
+    var row1 = el('div', 'act-r'), row2 = el('div', 'act-r');
+    row1.classList.add('is-set');
+    row1.appendChild(map);
 
     var v = el('button', 'btn btn-visit');
     v.type = 'button';
@@ -212,13 +218,46 @@
       save(); paint(); count(); paintPins();
       if (window.ChiiAcct) window.ChiiAcct.push(s, !!visited[s.name]);
     });
-    act.appendChild(v);
+    var pb = el('button', 'btn btn-pinned btn-pn');
+    pb.type = 'button';
+    function paintPn() {
+      var on = !!want[s.name];
+      pb.classList.toggle('is-done', on);
+      box.classList.toggle('is-pinned', on);
+      pb.setAttribute('aria-pressed', on ? 'true' : 'false');
+      pb.textContent = '📌ピン';
+      pb.setAttribute('aria-label', on ? 'ピン留めを外す' : '行きたいところとしてピン留めする');
+      pb.title = on ? 'ピン留め中（押すと外れます）' : 'ピン留めする（行きたいところを一覧の上に出します）';
+    }
+    paintPn();
+    pb.addEventListener('click', function () {
+      if (want[s.name]) delete want[s.name]; else want[s.name] = 1;
+      wsave(); paintPn(); reorder();
+    });
+    row1.appendChild(v);
+    row2.appendChild(pb);
+    [['tabelog', '🍴食べログ'], ['hp', '🔗HP']].forEach(function (k) {
+      var u = s[k[0]];
+      if (!u || !/^https?:\/\//i.test(u)) return;
+      var a = el('a', 'btn btn-lk', k[1]);
+      a.href = u; a.target = '_blank'; a.rel = 'noopener noreferrer';
+      row2.appendChild(a);
+    });
+    act.appendChild(row2); act.appendChild(row1);
     li.appendChild(act);
     box.appendChild(li);
     return box;
   }
 
   spots.forEach(function (s) { list.appendChild(card(s)); });
+  // ピン留めしたスポットは、一覧のいちばん上へ（そのなかでは、いつもの並び順）
+  var baseOrder = spots.slice();
+  function reorder() {
+    baseOrder.map(function (s, i) { return [s, i]; })
+      .sort(function (a, b) { return (!!want[b[0].name] - !!want[a[0].name]) || (a[1] - b[1]); })
+      .forEach(function (x) { list.appendChild(cards[x[0].name]); });
+  }
+  reorder();
   empty.hidden = spots.length > 0;
   list.hidden = spots.length === 0;
   count();
