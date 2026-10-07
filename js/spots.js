@@ -1500,8 +1500,8 @@ window.SPOTS = [
     "sources": [
       {
         "name": "TikTok(エイアイ過多)",
-        "url": "",
-        "date": ""
+        "url": "https://vt.tiktok.com/ZSbbVMcE3/",
+        "date": "2026-04-30"
       }
     ],
     "photos": [
@@ -1514,5 +1514,24 @@ window.SPOTS = [
     "lon": 135.50238,
     "lat": 34.6688,
     "id": "pmuync0rvxvw"
+  },
+  {
+    "region": "kinki",
+    "name": "中座くいだおれビル",
+    "address": "大阪府大阪市中央区道頓堀1丁目7-21",
+    "note": "",
+    "sources": [
+      {
+        "name": "TikTok(エイアイ過多)",
+        "url": "https://vt.tiktok.com/ZSbbVMcE3/",
+        "date": "2026-04-30"
+      }
+    ],
+    "photos": [
+      "pmuyngovk2.jpg"
+    ],
+    "lon": 135.50253,
+    "lat": 34.66869,
+    "id": "pmuynhec0q3f"
   }
 ];
