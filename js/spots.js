@@ -1349,5 +1349,27 @@ window.SPOTS = [
     "lon": 139.69817,
     "lat": 35.69376,
     "id": "pmuy9artj4w2"
+  },
+  {
+    "region": "chugoku-shikoku",
+    "name": "博多屋",
+    "address": "広島県廿日市市宮島町459",
+    "works": [
+      "宮島じゃけぇ（こしあん）"
+    ],
+    "note": "",
+    "sources": [
+      {
+        "name": "TikTok",
+        "url": "https://vt.tiktok.com/ZSbbdaVwu/",
+        "date": "2026-05-16"
+      }
+    ],
+    "photos": [
+      "pmuy9hnw03.jpg"
+    ],
+    "lon": 132.30998,
+    "lat": 34.27261,
+    "id": "pmuy9hvg8st8"
   }
 ];
