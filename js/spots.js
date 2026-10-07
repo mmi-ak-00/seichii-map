@@ -152,6 +152,12 @@ window.SPOTS = [
       "pmuwnur261.jpg",
       "pmuwnur2k2.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/tokyo/A1317/A131706/13145455/",
+    "hp": "https://www.cafethesunliveshere.com/",
+    "chain": true,
+    "more": [
+      "東京"
+    ],
     "lon": 139.67227,
     "lat": 35.6407,
     "id": "pmuwnuspfzhm"
