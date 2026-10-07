@@ -665,6 +665,9 @@ window.SPOTS = [
       "pmuwvsmhk8.jpg"
     ],
     "chain": true,
+    "more": [
+      "愛知"
+    ],
     "lon": 136.90054,
     "lat": 35.15888,
     "id": "pmuwvso4u9k3"
