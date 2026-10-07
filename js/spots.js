@@ -1247,5 +1247,27 @@ window.SPOTS = [
     "lon": 139.70531,
     "lat": 35.67155,
     "id": "pmux6av3i3m7"
+  },
+  {
+    "region": "chubu",
+    "name": "AOI cafe",
+    "address": "愛知県名古屋市東区葵1-17-14",
+    "works": [
+      "鉄板ナポリタン"
+    ],
+    "note": "",
+    "sources": [
+      {
+        "name": "TikTok(エイアイ過多)",
+        "url": "https://vt.tiktok.com/ZSb4jLkrB/",
+        "date": "2026-06-16"
+      }
+    ],
+    "photos": [
+      "pmuxszeqy0.jpg"
+    ],
+    "lon": 136.92119,
+    "lat": 35.1712,
+    "id": "pmuxszjsfzgj"
   }
 ];
