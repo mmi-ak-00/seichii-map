@@ -1475,6 +1475,7 @@ window.SPOTS = [
     "photos": [
       "pmuymemns4.jpg"
     ],
+    "hp": "https://www.kensetsu.metro.tokyo.lg.jp/jimusho/seibuk/inokashira",
     "lon": 139.5742,
     "lat": 35.70101,
     "id": "pmuymeosojkk"
@@ -1494,6 +1495,7 @@ window.SPOTS = [
     "photos": [
       "pmuyminth5.jpg"
     ],
+    "hp": "https://jns-e.com/",
     "lon": 139.71486,
     "lat": 35.67805,
     "id": "pmuymip3vobm"
