@@ -1491,5 +1491,28 @@ window.SPOTS = [
     "lon": 132.32211,
     "lat": 34.30059,
     "id": "pmuyn45acgp1"
+  },
+  {
+    "region": "kinki",
+    "name": "新世界 串カツ いっとく 道頓堀戎橋店",
+    "address": "大阪府大阪市中央区道頓堀1-6-10",
+    "note": "",
+    "sources": [
+      {
+        "name": "TikTok(エイアイ過多)",
+        "url": "",
+        "date": ""
+      }
+    ],
+    "photos": [
+      "pmuynbrn21.jpg"
+    ],
+    "chain": true,
+    "more": [
+      "大阪"
+    ],
+    "lon": 135.50238,
+    "lat": 34.6688,
+    "id": "pmuync0rvxvw"
   }
 ];
