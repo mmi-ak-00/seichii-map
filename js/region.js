@@ -123,7 +123,7 @@
     } else noPhoto();
     head.appendChild(th);
     head.appendChild(el('span', 'sp-nm', s.name));
-    if (s.region !== key) head.appendChild(el('span', 'sp-oth', s.region === 'other' ? 'その他' : '他県'));
+    if (s.region !== key) head.appendChild(el('span', 'sp-oth', 'その他'));
     head.appendChild(el('span', 'sp-vd', '✓'));
     head.appendChild(el('span', 'sp-chev', '›'));
     head.addEventListener('click', function () { select(s.name, false); });
@@ -164,7 +164,7 @@
     if (s.chain) li.appendChild(el('p', 'chain', '🏪 チェーン店'));
     if (PL(s).length && (s.noPlace || s.region === 'other')) li.appendChild(el('p', 'addr', PL(s).join('・')));
     if (s.address) li.appendChild(el('p', 'addr', s.address));
-    if (s.region !== 'other' && EX(s).length) li.appendChild(el('p', 'addr', 'ほかの県にも：' + EX(s).join('・')));
+    if (s.region !== 'other' && EX(s).length) li.appendChild(el('p', 'addr', '店舗エリア一覧：' + EX(s).join('・')));
     if (s.note) li.appendChild(el('p', 'note-t', s.note));
     var srcList = (Array.isArray(s.sources) && s.sources.length) ? s.sources
       : ((s.srcName || s.srcUrl || s.postDate) ? [{ name: s.srcName, url: s.srcUrl, date: s.postDate }] : []);
