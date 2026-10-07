@@ -1294,6 +1294,7 @@ window.SPOTS = [
     "photos": [
       "pmux6abkz0.jpg"
     ],
+    "hp": "https://www.takeshita-street.com/",
     "lon": 139.70531,
     "lat": 35.67155,
     "id": "pmux6av3i3m7"
