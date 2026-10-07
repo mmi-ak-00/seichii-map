@@ -177,6 +177,8 @@ window.SPOTS = [
     "photos": [
       "pmuwo3q6r3.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/tokyo/A1306/A130602/13145525/",
+    "hp": "https://restaurant.idoltokyo.jp/omotesando/",
     "lon": 139.71199,
     "lat": 35.66189,
     "id": "pmuwo3rihoqe"
