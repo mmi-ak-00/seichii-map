@@ -474,6 +474,9 @@ window.SPOTS = [
     ],
     "thumb": "pmuwswdt22.jpg",
     "chain": true,
+    "more": [
+      "愛知"
+    ],
     "lon": 136.91208,
     "lat": 35.16589,
     "id": "pmuwswmg6wji"
@@ -609,6 +612,9 @@ window.SPOTS = [
     ],
     "thumb": "pmuwvd28x4.jpg",
     "chain": true,
+    "more": [
+      "愛知"
+    ],
     "lon": 136.90449,
     "lat": 35.15791,
     "id": "pmuwv5t8rxh0"
@@ -632,6 +638,13 @@ window.SPOTS = [
       "pmuwvm78m7.jpg"
     ],
     "chain": true,
+    "more": [
+      "東京",
+      "富山",
+      "愛知",
+      "三重",
+      "大阪"
+    ],
     "lon": 136.89986,
     "lat": 35.15953,
     "id": "pmuwvmaytagf"
