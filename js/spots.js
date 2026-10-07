@@ -1319,5 +1319,35 @@ window.SPOTS = [
     "lon": 139.73959,
     "lat": 35.63556,
     "id": "pmuxtav7bkk8"
+  },
+  {
+    "region": "kanto",
+    "name": "WPÜ CAFE",
+    "address": "東京都新宿区西新宿7-10-5",
+    "works": [
+      "ガトーショコラ（アイスクリーム）",
+      "カフェラテ"
+    ],
+    "note": "",
+    "sources": [
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2030970632062820607?s=46",
+        "date": "2026-03-09"
+      },
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DVqo4QdETE5/?stkn=MTgwbXdrdG1qcG4zcw==",
+        "date": "2026-03-09"
+      }
+    ],
+    "photos": [
+      "pmuy9ap0x0.jpg",
+      "pmuy9ap1l1.jpg",
+      "pmuy9ap292.jpg"
+    ],
+    "lon": 139.69817,
+    "lat": 35.69376,
+    "id": "pmuy9artj4w2"
   }
 ];
