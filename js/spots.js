@@ -1425,5 +1425,24 @@ window.SPOTS = [
     "lon": 139.57457,
     "lat": 35.70461,
     "id": "pmuym8qh5ntl"
+  },
+  {
+    "region": "kanto",
+    "name": "井の頭恩賜公園",
+    "address": "東京都武蔵野市御殿山1丁目18-31",
+    "note": "",
+    "sources": [
+      {
+        "name": "TikTok",
+        "url": "https://vt.tiktok.com/ZSbbXYvmt/",
+        "date": "2026-07-27"
+      }
+    ],
+    "photos": [
+      "pmuymemns4.jpg"
+    ],
+    "lon": 139.5742,
+    "lat": 35.70101,
+    "id": "pmuymeosojkk"
   }
 ];
