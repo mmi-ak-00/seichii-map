@@ -21,18 +21,30 @@ window.SPOTS = [
     "region": "kanto",
     "name": "Muffin&Bowls cafe CUPS",
     "address": "東京都渋谷区神宮前3-5-1",
-    "work": "いちごタルト（かき氷）",
+    "works": [
+      "いちごタルト（かき氷）"
+    ],
     "note": "",
-    "srcName": "Instagram",
-    "srcUrl": "https://www.instagram.com/p/Db8VwbzEwLD/?stkn=MTJrMXI5bjd4d3Bzbw==",
-    "postDate": "2026-08-12",
-    "lon": 139.7126,
-    "lat": 35.669,
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/Db8VwbzEwLD/?stkn=MTJrMXI5bjd4d3Bzbw==",
+        "date": "2026-08-12"
+      }
+    ],
     "photos": [
       "pmuwmbeen0.jpg",
       "pmuwmbef61.jpg",
       "pmuwmbefp2.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/tokyo/A1306/A130602/13320295/",
+    "hp": "https://www.instagram.com/cups_omotesando?stkn=MXVkZ3A1dXo0MHQ0Mg==",
+    "chain": true,
+    "more": [
+      "東京"
+    ],
+    "lon": 139.7126,
+    "lat": 35.669,
     "id": "nedd0ji"
   },
   {
