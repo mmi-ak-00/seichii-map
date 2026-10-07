@@ -1282,6 +1282,14 @@ window.SPOTS = [
       "pmuxtapvq1.jpg"
     ],
     "chain": true,
+    "more": [
+      "東京",
+      "神奈川",
+      "愛知",
+      "京都",
+      "大阪",
+      "兵庫"
+    ],
     "lon": 139.73959,
     "lat": 35.63556,
     "id": "pmuxtav7bkk8"
