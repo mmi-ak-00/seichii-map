@@ -119,7 +119,7 @@ window.SPOTS = [
     "address": "東京都世田谷区三軒茶屋1丁目27-33",
     "works": [
       "とうもろこし × チーズケーキ（かき氷）",
-      "ラテ（ドリンク）"
+      "ラテ"
     ],
     "note": "",
     "sources": [
@@ -146,16 +146,19 @@ window.SPOTS = [
     "region": "kanto",
     "name": "IDOL",
     "address": "東京都港区南青山5-11-9 レキシントン青山ビル B1F",
-    "work": "",
     "note": "",
-    "srcName": "Instagram",
-    "srcUrl": "https://www.instagram.com/p/Db8VwbzEwLD/?img_index=5&stkn=MTJrMXI5bjd4d3Bzbw==",
-    "postDate": "2026-08-12",
-    "lon": 139.71199,
-    "lat": 35.66189,
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/Db8VwbzEwLD/?img_index=5&stkn=MTJrMXI5bjd4d3Bzbw==",
+        "date": "2026-08-12"
+      }
+    ],
     "photos": [
       "pmuwo3q6r3.jpg"
     ],
+    "lon": 139.71199,
+    "lat": 35.66189,
     "id": "pmuwo3rihoqe"
   },
   {
@@ -284,7 +287,7 @@ window.SPOTS = [
     "address": "東京都渋谷区神宮前2丁目6-6 秀和外苑レジデンス 104",
     "works": [
       "あんこバター（ベーグル）",
-      "ラテ（コーヒー）"
+      "ラテ"
     ],
     "note": "",
     "sources": [
