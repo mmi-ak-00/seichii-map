@@ -804,8 +804,6 @@ window.SPOTS = [
       "pmuwymtrj13.jpg"
     ],
     "thumb": "pmuwyjqc812.jpg",
-    "tabelog": "https://s.tabelog.com/tokyo/A1311/A131102/13231645/",
-    "hp": "https://www.instagram.com/asakusa777?stkn=MW00cGNrbTVkcWh4eQ==",
     "chain": true,
     "lon": 139.79628,
     "lat": 35.71154,

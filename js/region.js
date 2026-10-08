@@ -241,12 +241,12 @@
       if (still || !d) { if (d) window.scrollBy(0, d); return; }
       var offs = {}; Object.keys(olds).forEach(function (k) { offs[k] = olds[k] - cards[k].getBoundingClientRect().top; });
       var y0 = window.pageYOffset, T0 = null, DUR = 450;
-      Object.keys(offs).forEach(function (k) { cards[k].classList.add('is-flip'); cards[k].style.transform = 'translateY(' + offs[k] + 'px)'; });
+      Object.keys(offs).forEach(function (k) { cards[k].classList.add('is-flip'); if (cards[k] === box) box.classList.add('is-lift'); cards[k].style.transform = 'translateY(' + offs[k] + 'px)'; });
       function step(t) {
         if (T0 === null) T0 = t;
         var p = Math.min(1, (t - T0) / DUR), e = 1 - Math.pow(1 - p, 3);
         window.scrollTo(0, y0 + d * e);
-        Object.keys(offs).forEach(function (k) { cards[k].style.transform = p < 1 ? 'translateY(' + (offs[k] * (1 - e)) + 'px)' : ''; if (p >= 1) cards[k].classList.remove('is-flip'); });
+        Object.keys(offs).forEach(function (k) { cards[k].style.transform = p < 1 ? 'translateY(' + (offs[k] * (1 - e)) + 'px)' : ''; if (p >= 1) { cards[k].classList.remove('is-flip'); cards[k].classList.remove('is-lift'); } });
         if (p < 1) requestAnimationFrame(step);
       }
       requestAnimationFrame(step);
