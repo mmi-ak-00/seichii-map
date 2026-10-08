@@ -232,7 +232,10 @@
     paintPn();
     pb.addEventListener('click', function () {
       if (want[s.name]) delete want[s.name]; else want[s.name] = 1;
+      var t0 = box.getBoundingClientRect().top;
       wsave(); paintPn(); reorder();
+      var d = box.getBoundingClientRect().top - t0;
+      if (d) window.scrollBy(0, d);   // 押したスポットが指の下のまま、ページも一緒に動く
     });
     row1.appendChild(v);
     row2.appendChild(pb);
