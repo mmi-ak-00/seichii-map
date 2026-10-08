@@ -1658,6 +1658,9 @@ window.SPOTS = [
     "photos": [
       "pmuynbrn21.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/osaka/A2701/A270202/27139874/",
+    "hp": "https://ittoku94.co.jp/",
+    "insta": "https://www.instagram.com/ittokudotonboriebisubashi?stkn=czdhcm9oMXlxbGZn",
     "chain": true,
     "more": [
       "大阪"
@@ -1681,6 +1684,8 @@ window.SPOTS = [
     "photos": [
       "pmuyngovk2.jpg"
     ],
+    "hp": "https://nakaza-cuidaore.com/",
+    "insta": "https://www.instagram.com/nakaza_cuidaore?stkn=bDdxMG82dXVmYWt3",
     "lon": 135.50253,
     "lat": 34.66869,
     "id": "pmuynhec0q3f"
@@ -1713,6 +1718,8 @@ window.SPOTS = [
       "pmuyofpl15.jpg"
     ],
     "thumb": "pmuyofpko4.jpg",
+    "hp": "https://harborland.co.jp/",
+    "insta": "https://www.instagram.com/kobeharborland?stkn=MWFmcWM1M2tpNm42NA==",
     "lon": 135.18196,
     "lat": 34.67908,
     "id": "pmuyofyp12he"
