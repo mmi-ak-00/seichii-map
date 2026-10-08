@@ -1249,6 +1249,7 @@ window.SPOTS = [
     "photos": [
       "pmux3feis15.jpg"
     ],
+    "hp": "https://www.itsukushimajinja.jp/jp-sp/",
     "lon": 132.30998,
     "lat": 34.27261,
     "id": "pmux3fvrlo8g"
@@ -1271,6 +1272,9 @@ window.SPOTS = [
     "photos": [
       "pmux3psbz16.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/hiroshima/A3401/A340109/34028644/",
+    "hp": "https://seitenwotsuke.com/",
+    "insta": "https://www.instagram.com/seitenwotsuke?stkn=M3BqbzhlYWpjODVi",
     "lon": 132.46455,
     "lat": 34.38918,
     "id": "pmux3qcm8m5a"
@@ -1398,6 +1402,9 @@ window.SPOTS = [
     "photos": [
       "pmux60fb236.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/hiroshima/A3402/A340202/34031392/",
+    "hp": "https://miyajima-brewery.com/",
+    "insta": "https://www.instagram.com/miyajima.brewery?stkn=ZHY2a2VhNmJsbHJy",
     "lon": 132.30998,
     "lat": 34.27261,
     "id": "pmux63x54z5n"
@@ -1523,6 +1530,9 @@ window.SPOTS = [
     "photos": [
       "pmuy9hnw03.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/hiroshima/A3402/A340202/34005288/",
+    "hp": "https://miyajimahakataya.com/",
+    "insta": "https://www.instagram.com/hakataya_miyajima?stkn=MXRxOGtlY3JsMnZvMg==",
     "lon": 132.30998,
     "lat": 34.27261,
     "id": "pmuy9hvg8st8"
@@ -1639,6 +1649,8 @@ window.SPOTS = [
     "photos": [
       "pmuyn43bz0.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/hiroshima/A3402/A340202/34019642/",
+    "hp": "https://www.cs-homes.co.jp/",
     "lon": 132.32211,
     "lat": 34.30059,
     "id": "pmuyn45acgp1"
