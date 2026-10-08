@@ -518,8 +518,8 @@ window.SPOTS = [
   },
   {
     "region": "kanto",
-    "name": "鵬天閣",
-    "address": "",
+    "name": "鵬天閣 新館",
+    "address": "神奈川県横浜市中区山下町192-15",
     "works": [
       "海鮮と豚肉2種盛りセット（小籠包）"
     ],
@@ -535,11 +535,14 @@ window.SPOTS = [
       "pmuwtmb9n0.jpg",
       "pmuwtmba61.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/kanagawa/A1401/A140105/14040668/",
+    "hp": "https://houtenkaku.com/",
     "chain": true,
-    "noPlace": true,
     "more": [
       "神奈川"
     ],
+    "lon": 139.64662,
+    "lat": 35.44296,
     "id": "pmuwtmcx196m"
   },
   {
