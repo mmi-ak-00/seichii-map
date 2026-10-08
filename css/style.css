@@ -322,6 +322,7 @@ body::before{ /* 水玉 */
 .sh-opt{margin:0 0 4px}
 .sh-sel,.sh-date{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px 12px;border:2.5px solid var(--line);border-radius:14px;min-height:46px;background:#fff;color:var(--plum)}
 .sh-lb{display:block;font-size:13px;font-weight:700;margin:0 0 10px}.sh-lb .sh-date{margin-top:4px}
+.sh-date{display:block;min-width:0;max-width:100%;-webkit-appearance:none;appearance:none;text-align:left;line-height:1.2}.sh-lb{box-sizing:border-box;max-width:100%}
 .sh-file{display:block;width:100%;box-sizing:border-box;font:inherit;font-size:14px;margin-top:4px}
 .sh-list{display:grid;gap:6px;max-height:260px;overflow:auto;padding:2px}
 .sh-ck{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:14px;border:2px solid var(--line);background:#fff;font-size:14px;font-weight:700;min-height:42px}
