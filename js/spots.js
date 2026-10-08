@@ -880,7 +880,8 @@ window.SPOTS = [
       "pmuwz3pu216.jpg"
     ],
     "tabelog": "https://s.tabelog.com/tokyo/A1311/A131102/13161092/",
-    "hp": "https://www.instagram.com/asakusa.kagetsudo?stkn=Mng1ZTR2d2x3OTNy",
+    "hp": "https://asakusa-kagetudo.com/",
+    "insta": "https://www.instagram.com/asakusa.kagetsudo?stkn=Mng1ZTR2d2x3OTNy",
     "chain": true,
     "more": [
       "東京"
