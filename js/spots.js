@@ -122,7 +122,7 @@ window.SPOTS = [
       "pmux1sopt16.jpg"
     ],
     "tabelog": "https://s.tabelog.com/tokyo/A1322/A132202/13271809/",
-    "hp": "https://www.instagram.com/hyoren_koori?stkn=aGthNXJocWxqbXhm",
+    "insta": "https://www.instagram.com/hyoren_koori?stkn=aGthNXJocWxqbXhm",
     "lon": 139.69862,
     "lat": 35.73051,
     "id": "pmuwnsbjh1zi"
@@ -154,6 +154,7 @@ window.SPOTS = [
     ],
     "tabelog": "https://s.tabelog.com/tokyo/A1317/A131706/13145455/",
     "hp": "https://www.cafethesunliveshere.com/",
+    "insta": "https://www.instagram.com/cafethesunliveshere?stkn=NHU5MXNoNnFrMGc=",
     "chain": true,
     "more": [
       "東京"
@@ -178,7 +179,8 @@ window.SPOTS = [
       "pmuwo3q6r3.jpg"
     ],
     "tabelog": "https://s.tabelog.com/tokyo/A1306/A130602/13145525/",
-    "hp": "https://www.instagram.com/idoltokyo?stkn=cW1qNHBmcmhmYzRj",
+    "hp": "https://restaurant.idoltokyo.jp/omotesando/",
+    "insta": "https://www.instagram.com/idoltokyo?stkn=cW1qNHBmcmhmYzRj",
     "lon": 139.71199,
     "lat": 35.66189,
     "id": "pmuwo3rihoqe"
@@ -210,7 +212,8 @@ window.SPOTS = [
       "pmuwob6a66.jpg"
     ],
     "tabelog": "https://s.tabelog.com/tokyo/A1320/A132001/13147519/",
-    "hp": "https://www.instagram.com/cafe_lumiere_kichijyoji?stkn=OTRlanNiaHg2cHZh",
+    "hp": "https://lumiere-kichijyoji.com/",
+    "insta": "https://www.instagram.com/cafe_lumiere_kichijyoji?stkn=OTRlanNiaHg2cHZh",
     "lon": 139.58012,
     "lat": 35.70232,
     "id": "pmuwob7qo2qr"
