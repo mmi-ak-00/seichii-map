@@ -258,12 +258,15 @@
     });
     row1.appendChild(v);
     h3.appendChild(pb);
-    [['tabelog', '食べログ'], ['hp', '🔗HP'], ['insta', 'Instagram']].forEach(function (k) {
+    [['tabelog', '食べログ'], ['hp', 'HP'], ['insta', 'Instagram']].forEach(function (k) {
       var u = s[k[0]];
       if (!u || !/^https?:\/\//i.test(u)) return;
       var a = el('a', 'btn btn-lk', k[1]);
       if (k[0] === 'tabelog') {
         a.insertAdjacentHTML('afterbegin', '<svg class="ic-bowl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11h17a8.5 8.5 0 0 1-17 0z"/><path d="M9 20.5h6"/><path d="M8.5 7.5c0-1 .8-1.2.8-2.2M12 7.5c0-1 .8-1.2.8-2.2M15.5 7.5c0-1 .8-1.2.8-2.2"/></svg>');
+      }
+      if (k[0] === 'hp') {
+        a.insertAdjacentHTML('afterbegin', '<svg class="ic-hp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11.2 12 4l8.5 7.2"/><path d="M5.5 10v9.5h13V10"/><path d="M10 19.5v-5h4v5"/></svg>');
       }
       if (k[0] === 'insta') {
         a.className = 'btn btn-lk btn-ig';
