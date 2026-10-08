@@ -549,7 +549,7 @@
   function curView() { return svg.getAttribute('viewBox').split(' ').map(Number); }
   function clampView(v) {
     var aspect = v[3] / v[2];
-    var w = Math.max(vb0[2] / 6, Math.min(vb0[2], v[2])), h = w * aspect;
+    var w = Math.max(vb0[2] / 16, Math.min(vb0[2], v[2])), h = w * aspect;
     var x = Math.max(vb0[0], Math.min(vb0[0] + vb0[2] - w, v[0]));
     var y = Math.max(vb0[1], Math.min(vb0[1] + vb0[3] - h, v[1]));
     return [x, y, w, h];
@@ -559,7 +559,7 @@
     var v = curView(), rc = svg.getBoundingClientRect();
     var px = (cx - rc.left) / rc.width, py = (cy - rc.top) / rc.height;
     var ax = v[0] + px * v[2], ay = v[1] + py * v[3];
-    var w = Math.max(vb0[2] / 6, Math.min(vb0[2], v[2] / q)), h = w * v[3] / v[2];
+    var w = Math.max(vb0[2] / 16, Math.min(vb0[2], v[2] / q)), h = w * v[3] / v[2];
     userView([ax - px * w, ay - py * h, w, h]);
   }
   function panPx(dx, dy) {
@@ -605,7 +605,7 @@
     });
   }
   function openCluster(members, cx, cy) {
-    var v = curView(), minW = vb0[2] / 6;
+    var v = curView(), minW = vb0[2] / 16;
     var same = members.every(function (p) { return Math.hypot(p.x - members[0].x, p.y - members[0].y) < 0.05; });
     if (same || v[2] / 2 < minW) {
       clusterSet = members.map(function (p) { return p.name; });
