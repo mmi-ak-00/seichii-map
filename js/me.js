@@ -146,6 +146,28 @@
         var li = h('li'), t = h('span', 'nm', s.name);
         var ad = (Array.isArray(s.pref) ? s.pref.join('・') : (s.pref || s.address || ''));
         if (ad) t.appendChild(h('span', 'ad', ad));
+        var dw = h('span', 'dtw'); t.appendChild(dw);
+        function paintDate() {
+          dw.textContent = ''; var cur = readDates()[s.name];
+          var eb = h('button', 'dt', '📅 ' + (cur ? cur.replace(/-/g, '/') : '日付を入れる') + (cur ? ' ✎' : '')); eb.type = 'button';
+          eb.setAttribute('aria-label', '行った日を変える');
+          eb.addEventListener('click', function () {
+            dw.textContent = '';
+            var inp = h('input', 'dt-in'); inp.type = 'date'; inp.value = cur || ''; inp.max = '2100-12-31';
+            var ok = h('button', 'dt-ok', '保存'); ok.type = 'button';
+            var no = h('button', null, 'やめる'); no.type = 'button';
+            ok.addEventListener('click', function () {
+              if (!/^\d{4}-\d{2}-\d{2}$/.test(inp.value)) { inp.focus(); return; }
+              var dd = readDates(); dd[s.name] = inp.value; writeDates(dd);
+              if (nick) call('visited', 'PUT', { id: idOf(s), on: true, date: inp.value });
+              paintDate();
+            });
+            no.addEventListener('click', paintDate);
+            dw.appendChild(inp); dw.appendChild(ok); dw.appendChild(no); inp.focus();
+          });
+          dw.appendChild(eb);
+        }
+        paintDate();
         li.appendChild(t);
         var b = h('button', null, 'とりけす'); b.type = 'button';
         b.addEventListener('click', function () {
