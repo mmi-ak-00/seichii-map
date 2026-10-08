@@ -324,7 +324,7 @@
           var file = null; try { file = new File([blob], name, { type: 'image/png' }); } catch (e) {}
           if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
             var sh = h('button', 'me-sub sh-sh', 'シェアする'); sh.type = 'button';
-            sh.addEventListener('click', function () { navigator.share({ files: [file], text: '#聖ちぃ巡礼マップ' }).catch(function () {}); });
+            sh.addEventListener('click', function () { navigator.share({ files: [file], text: '#聖ちぃ巡礼' }).catch(function () {}); });
             row.appendChild(sh);
           }
           out.appendChild(row);
