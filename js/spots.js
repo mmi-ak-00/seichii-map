@@ -1513,6 +1513,7 @@ window.SPOTS = [
       "pmuym79ie2.jpg"
     ],
     "hp": "https://petitmura.com/",
+    "insta": "https://www.instagram.com/kichijoji_petitmura?stkn=eTJ6ZmJiemthemRp",
     "lon": 139.57457,
     "lat": 35.70461,
     "id": "pmuym8qh5ntl"
