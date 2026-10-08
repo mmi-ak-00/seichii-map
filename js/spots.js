@@ -848,7 +848,7 @@ window.SPOTS = [
     "works": [
       "元祖ジャンボめろんぱん"
     ],
-    "note": "※和傘の壁は雷門店限定",
+    "note": "",
     "sources": [
       {
         "name": "Instagram",
