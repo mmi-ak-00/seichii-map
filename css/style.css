@@ -255,3 +255,9 @@ body::before{ /* 水玉 */
 .more{padding:30px 14px 16px}
 .more .rlist li:last-child{grid-column:auto}
 .noscript{margin:18px 0 0;padding:12px 16px;border-radius:18px;background:#fff;border:2px dashed var(--pink);text-align:center;font-size:14px}
+.totop{position:fixed;right:14px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;width:42px;height:42px;padding:0;display:flex;align-items:center;justify-content:center;border:3px solid var(--line);border-radius:50%;background:#fff;color:var(--pink-d);cursor:pointer;box-shadow:0 3px 0 var(--line);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .2s,transform .2s;-webkit-tap-highlight-color:transparent}
+.totop.is-on{opacity:.95;transform:none;pointer-events:auto}
+.totop:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line)}
+.totop:focus-visible{outline:3px solid var(--pink-d);outline-offset:2px}
+.totop svg{width:20px;height:20px;display:block}
+@media (prefers-reduced-motion:reduce){.totop{transition:none}}

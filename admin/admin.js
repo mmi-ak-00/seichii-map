@@ -16,6 +16,7 @@
     "js/main.js",
     "js/region.js",
     "js/spots.js",
+    "js/totop.js",
     "photos/README.txt",
     "regions/chubu.html",
     "regions/chugoku-shikoku.html",
