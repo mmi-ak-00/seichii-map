@@ -282,13 +282,19 @@ window.SPOTS = [
     "id": "pmuwovi9r44u"
   },
   {
-    "region": "other",
-    "name": "楊国福",
-    "address": "",
+    "region": "kanto",
+    "name": "楊国福 東京新宿店",
+    "address": "東京都新宿区歌舞伎町1-11-6 川田ビル 1F~4F",
     "works": [
-      "麻辣担"
+      "牛骨スープ",
+      "しいたけ",
+      "カニ団子",
+      "えび団子",
+      "プンモジャ",
+      "じゃがいも",
+      "魚団子"
     ],
-    "note": "",
+    "note": "※メニューは動画内で紹介していたもののみ",
     "sources": [
       {
         "name": "TikTok",
@@ -316,9 +322,11 @@ window.SPOTS = [
       "pmuwpc8jk1.jpg"
     ],
     "thumb": "pmuwpc8jk1.jpg",
+    "tabelog": "https://s.tabelog.com/tokyo/A1304/A130401/13297112/",
+    "hp": "https://www.daitengen-jp.com/",
+    "insta": "https://www.instagram.com/ygf_shinjuku?stkn=cnE0d3Q1bDRmcjhk",
     "chain": true,
-    "noPlace": true,
-    "pref": [
+    "more": [
       "埼玉",
       "東京",
       "神奈川",
@@ -327,6 +335,8 @@ window.SPOTS = [
       "兵庫",
       "福岡"
     ],
+    "lon": 139.70274,
+    "lat": 35.69514,
     "id": "pmuwpd926bfm"
   },
   {
