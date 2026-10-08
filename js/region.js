@@ -482,7 +482,11 @@
   }
   function go(n) {
     var h = n ? '#' + encodeURIComponent(n) : '#';
-    if (location.hash === h || (!n && !location.hash)) apply(n); else location.hash = h;
+    if (location.hash === h || (!n && !location.hash)) { apply(n); return; }
+    // ページはうごかさずに、アドレスだけ書きかえる（location.hash だと「ぜんぶ」でページの先頭へ戻ってしまう）
+    try { history.pushState(null, '', n ? h : location.pathname + location.search); }
+    catch (e) { location.hash = h; return; }
+    apply(n);
   }
   function apply(n) {
     if (n && !chips[n]) n = null;
