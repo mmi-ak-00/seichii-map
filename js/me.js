@@ -15,18 +15,29 @@
   }
   function h(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
   function card(title) { var c = h('section', 'me-card'); if (title) { var p = h('h2', 'pill', title); c.appendChild(p); } return c; }
+  var DSTORE = 'chii-vdate-v1';
+  function readDates() { try { return JSON.parse(localStorage.getItem(DSTORE) || '{}') || {}; } catch (e) { return {}; } }
+  function writeDates(o) { try { localStorage.setItem(DSTORE, JSON.stringify(o)); } catch (e) {} }
   var nick = null, notConf = false;
+  function next0(set) { var n = {}; spots().forEach(function (s) { if (set[idOf(s)]) n[s.name] = 1; }); return n; }
+  function localDatesById() { var d = readDates(), o = {}; spots().forEach(function (s) { if (d[s.name]) o[idOf(s)] = d[s.name]; }); return o; }
+  function applyDates(ids, ds) {
+    var set = {}; ids.forEach(function (i) { set[i] = 1; }); ds = ds || {};
+    var od = readDates(), nd = {};
+    spots().forEach(function (s) { var i = idOf(s); if (set[i]) { var d = ds[i] || od[s.name]; if (d) nd[s.name] = d; } });
+    writeDates(nd);
+  }
 
   function mergeAndGo(r) {
     // この端末の「行ったにゃ」をアカウントに合流させてから、表示をそろえる
     var loc = readLocal(), mine = spots().filter(function (s) { return loc[s.name]; }).map(idOf);
-    function fin(ids) {
+    function fin(ids, ds) {
       var set = {}; ids.forEach(function (i) { set[i] = 1; });
-      var next = {}; spots().forEach(function (s) { if (set[idOf(s)]) next[s.name] = 1; });
-      writeLocal(next); nick = r.nick; render();
+      applyDates(ids, ds);
+      writeLocal(next0(set)); nick = r.nick; render();
     }
-    if (mine.length) call('visited/merge', 'POST', { ids: mine }).then(function (m) { fin(m.ok ? m.visited : (r.visited || [])); });
-    else fin(r.visited || []);
+    if (mine.length) call('visited/merge', 'POST', { ids: mine, dates: localDatesById() }).then(function (m) { fin(m.ok ? m.visited : (r.visited || []), m.ok ? m.dates : r.dates); });
+    else fin(r.visited || [], r.dates);
   }
   function showCode(code, then, title) {
     root.textContent = '';
@@ -139,6 +150,7 @@
         var b = h('button', null, 'とりけす'); b.type = 'button';
         b.addEventListener('click', function () {
           var v = readLocal(); delete v[s.name]; writeLocal(v);
+          var dd = readDates(); delete dd[s.name]; writeDates(dd);
           if (nick) call('visited', 'PUT', { id: idOf(s), on: false });
           recordsView();
         });
@@ -148,6 +160,8 @@
     });
     root.appendChild(lc);
 
+    var sc = card('シェア画像'); var sh = h('div', 'sh-host'); sc.appendChild(sh); root.appendChild(sc);
+    if (window.ChiiShare) window.ChiiShare.mount(sh, function () { return { spots: spots(), visited: readLocal(), dates: readDates(), nick: nick, setDate: function (s, d) { var dd = readDates(); dd[s.name] = d; writeDates(dd); if (nick) call('visited', 'PUT', { id: idOf(s), on: true, date: d }); } }; });
     var ac = card(nick ? 'アカウント' : 'ログイン');
     if (!nick) {
       var lb = h('button', 'me-go', 'ログイン・はじめて'); lb.type = 'button'; lb.addEventListener('click', function () { loginView('login'); }); ac.appendChild(lb);
@@ -177,7 +191,7 @@
     if (r && r.ok && r.nick) {
       nick = r.nick;
       var set = {}; (r.visited || []).forEach(function (i) { set[i] = 1; });
-      var next = {}; spots().forEach(function (s) { if (set[idOf(s)]) next[s.name] = 1; }); writeLocal(next);
+      applyDates(r.visited || [], r.dates); writeLocal(next0(set));
     } else if (r && r.error === 'not_configured') notConf = true;
     render();
   });

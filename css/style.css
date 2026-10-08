@@ -317,6 +317,17 @@ body::before{ /* 水玉 */
 .me-empty{white-space:pre-line;margin:6px 0 0;padding:18px 10px;text-align:center;font-size:13.5px;line-height:1.7;color:#8a7683}
 .me-who{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 0 6px;font-size:18px;font-weight:800}
 .me-loc{margin:0 0 4px;padding:8px 12px;border-radius:14px;background:#fff0f6;font-size:12.5px;line-height:1.6;color:#8a5b94;text-align:center}
+.sh-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:0 0 12px}.sh-tabs button{appearance:none;font:inherit;font-weight:700;font-size:13px;border:2.5px solid var(--line);background:#fff;color:var(--pink-d);border-radius:999px;padding:6px 2px;min-height:42px;cursor:pointer}
+.sh-tabs button[aria-selected="true"]{background:var(--pink);border-color:var(--pink);color:#fff}
+.sh-opt{margin:0 0 4px}
+.sh-sel,.sh-date{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px 12px;border:2.5px solid var(--line);border-radius:14px;min-height:46px;background:#fff;color:var(--plum)}
+.sh-lb{display:block;font-size:13px;font-weight:700;margin:0 0 10px}.sh-lb .sh-date{margin-top:4px}
+.sh-file{display:block;width:100%;box-sizing:border-box;font:inherit;font-size:14px;margin-top:4px}
+.sh-list{display:grid;gap:6px;max-height:260px;overflow:auto;padding:2px}
+.sh-ck{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:14px;border:2px solid var(--line);background:#fff;font-size:14px;font-weight:700;min-height:42px}
+.sh-ck input{width:20px;height:20px;flex:none;accent-color:#ff6fa5}.sh-ck small{font-weight:500;color:#8a7683}
+.sh-out{margin-top:14px}.sh-img{display:block;width:100%;height:auto;border-radius:18px;border:3px solid var(--line);background:#fff}
+.sh-row{display:flex;gap:10px;margin-top:10px}.sh-row>*{flex:1;margin-top:0;display:flex;align-items:center;justify-content:center;text-decoration:none;box-sizing:border-box}
 .totop{position:fixed;right:14px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;width:42px;height:42px;padding:0;display:flex;align-items:center;justify-content:center;border:3px solid var(--line);border-radius:50%;background:#fff;color:var(--pink-d);cursor:pointer;box-shadow:0 3px 0 var(--line);opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .2s,transform .2s;-webkit-tap-highlight-color:transparent}
 .totop.is-on{opacity:.95;transform:none;pointer-events:auto}
 .totop:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line)}

@@ -24,14 +24,22 @@
   }
 
   // サーバーの記録を、この端末の表示にそろえる（変わったときだけ再読み込み）
-  function applyServer(ids) {
+  var DS = 'chii-vdate-v1';
+  function readDates() { try { return JSON.parse(localStorage.getItem(DS) || '{}') || {}; } catch (e) { return {}; } }
+  function localDates() { var d = readDates(), o = {}; allSpots().forEach(function (s) { if (d[s.name]) o[idOf(s)] = d[s.name]; }); return o; }
+  function applyServer(ids, dates) {
     var set = {}; ids.forEach(function (i) { set[i] = 1; });
-    var next = {};
-    allSpots().forEach(function (s) { if (set[idOf(s)]) next[s.name] = 1; });
+    var next = {}, nd = {}, od = readDates(); dates = dates || {};
+    allSpots().forEach(function (s) {
+      var i = idOf(s);
+      if (set[i]) { next[s.name] = 1; var d = dates[i] || od[s.name]; if (d) nd[s.name] = d; }
+    });
     var cur = readLocal();
     var a = Object.keys(next).sort().join('\n'), b = Object.keys(cur).sort().join('\n');
+    var a2 = JSON.stringify(nd), b2 = JSON.stringify(od);
     writeLocal(next);
-    return a !== b;
+    try { localStorage.setItem(DS, a2); } catch (e) {}
+    return a !== b || a2 !== b2;
   }
 
   /* ---------- 見た目 ---------- */
@@ -90,10 +98,10 @@
   function afterAuth(r) {
     nick = r.nick;
     var mine = localIds();
-    var fin = function (ids) { applyServer(ids); location.reload(); };
+    var fin = function (ids, ds) { applyServer(ids, ds); location.reload(); };
     var go = function () {
-      if (mine.length) call('visited/merge', 'POST', { ids: mine }).then(function (m) { fin(m.ok ? m.visited : (r.visited || [])); });
-      else fin(r.visited || []);
+      if (mine.length) call('visited/merge', 'POST', { ids: mine, dates: localDates() }).then(function (m) { fin(m.ok ? m.visited : (r.visited || []), m.ok ? m.dates : r.dates); });
+      else fin(r.visited || [], r.dates);
     };
     if (r.code) showCode(r.code, go); else go();
   }
@@ -197,9 +205,9 @@
 
   // 「行ったにゃ」を押したとき、ログイン中ならサーバーにも保存
   window.ChiiAcct = {
-    push: function (s, on) {
+    push: function (s, on, date) {
       if (!nick) return;
-      call('visited', 'PUT', { id: idOf(s), on: !!on }).then(function (r) {
+      call('visited', 'PUT', { id: idOf(s), on: !!on, date: on ? (date || readDates()[s.name]) : undefined }).then(function (r) {
         if (!r.ok && r.error === 'login') { nick = null; paintBtn(); }
       });
     }
@@ -208,7 +216,7 @@
   call('me', 'GET').then(function (r) {
     if (r && r.ok && r.nick) {
       nick = r.nick; paintBtn();
-      if (applyServer(r.visited || [])) location.reload();
+      if (applyServer(r.visited || [], r.dates)) location.reload();
     } else if (r && r.error === 'not_configured') { wrap.hidden = true; }
   });
 })();

@@ -248,8 +248,13 @@
     paint();
     v.addEventListener('click', function () {
       if (visited[s.name]) delete visited[s.name]; else visited[s.name] = 1;
+      try {
+        var dd = JSON.parse(localStorage.getItem('chii-vdate-v1') || '{}') || {};
+        if (visited[s.name]) { var t = new Date(); dd[s.name] = t.getFullYear() + '-' + ('0' + (t.getMonth() + 1)).slice(-2) + '-' + ('0' + t.getDate()).slice(-2); } else delete dd[s.name];
+        localStorage.setItem('chii-vdate-v1', JSON.stringify(dd));
+      } catch (e) {}
       save(); paint(); count(); paintPins();
-      if (window.ChiiAcct) window.ChiiAcct.push(s, !!visited[s.name]);
+      if (window.ChiiAcct) window.ChiiAcct.push(s, !!visited[s.name], (function(){ try { return (JSON.parse(localStorage.getItem('chii-vdate-v1') || '{}') || {})[s.name]; } catch (e) {} })());
     });
     var pb = el('button', 'btn btn-pinned btn-pn');
     pb.type = 'button';

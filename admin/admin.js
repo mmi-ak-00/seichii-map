@@ -17,6 +17,8 @@
     "js/me.js",
     "js/menu.js",
     "js/region.js",
+    "js/share.js",
+    "js/sharemap.js",
     "js/spots.js",
     "js/totop.js",
     "me.html",

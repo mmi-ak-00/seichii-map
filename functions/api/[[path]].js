@@ -90,6 +90,23 @@ async function bump(env, key, ttl) {
   await env.USERS.put(key, String(v), { expirationTtl: ttl });
 }
 
+function okDate(d) { return typeof d === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(d) && d >= '2000-01-01' && d <= '2100-12-31'; }
+function cleanDates(o) {
+  const out = {};
+  if (!o || typeof o !== 'object') return out;
+  let n = 0;
+  for (const k of Object.keys(o)) {
+    if (!k || k.length > 64 || !/^[\w.\-]+$/.test(k) || !okDate(o[k])) continue;
+    out[k] = o[k]; if (++n >= MAX_VISITED) break;
+  }
+  return out;
+}
+function datesOf(u) {
+  const vis = new Set(u.visited || []), out = {}, d = u.dates || {};
+  for (const k of Object.keys(d)) if (vis.has(k)) out[k] = d[k];
+  return out;
+}
+
 function cleanIds(arr) {
   const out = [];
   const seen = new Set();
@@ -135,7 +152,7 @@ export async function onRequest(context) {
     if (route === 'me' && method === 'GET') {
       const s = await session(env, request);
       if (!s) return json({ ok: true, nick: null });
-      return json({ ok: true, nick: s.user.nick, visited: s.user.visited || [] });
+      return json({ ok: true, nick: s.user.nick, visited: s.user.visited || [], dates: datesOf(s.user) });
     }
 
     // ---- 新規登録 ----
@@ -175,7 +192,7 @@ export async function onRequest(context) {
       if (!ok) { await bump(env, 'f:' + norm, 600); return fail(401, 'wrong', 'ニックネームか合言葉が違います。'); }
       await env.USERS.delete('f:' + norm);
       const ck = await startSession(env, url, norm, user);
-      return json({ ok: true, nick: user.nick, visited: user.visited || [] }, 200, { 'set-cookie': ck });
+      return json({ ok: true, nick: user.nick, visited: user.visited || [], dates: datesOf(user) }, 200, { 'set-cookie': ck });
     }
 
     // ---- ログアウト ----
@@ -195,6 +212,9 @@ export async function onRequest(context) {
       const set = new Set(s.user.visited || []);
       if (b.on) set.add(ids[0]); else set.delete(ids[0]);
       s.user.visited = [...set].slice(0, MAX_VISITED);
+      const dts = s.user.dates || {};
+      if (b.on && okDate(b.date)) dts[ids[0]] = b.date; else if (!b.on) delete dts[ids[0]];
+      s.user.dates = dts;
       await putUser(env, s.norm, s.user);
       return json({ ok: true, count: s.user.visited.length });
     }
@@ -207,8 +227,11 @@ export async function onRequest(context) {
       const set = new Set(s.user.visited || []);
       cleanIds(b.ids).forEach((x) => set.add(x));
       s.user.visited = [...set].slice(0, MAX_VISITED);
+      const dts = s.user.dates || {}, add = cleanDates(b.dates);
+      for (const k of Object.keys(add)) if (set.has(k) && !dts[k]) dts[k] = add[k];
+      s.user.dates = dts;
       await putUser(env, s.norm, s.user);
-      return json({ ok: true, visited: s.user.visited });
+      return json({ ok: true, visited: s.user.visited, dates: datesOf(s.user) });
     }
 
     // ---- 合言葉を忘れたとき：再設定コードで本人が再設定 ----
@@ -232,7 +255,7 @@ export async function onRequest(context) {
       await putUser(env, norm, user);
       await env.USERS.delete('f:' + norm);
       const ck = await startSession(env, url, norm, user);
-      return json({ ok: true, nick: user.nick, visited: user.visited || [], code }, 200, { 'set-cookie': ck });
+      return json({ ok: true, nick: user.nick, visited: user.visited || [], dates: datesOf(user), code }, 200, { 'set-cookie': ck });
     }
 
     // ---- 再設定コードを作り直す（ログイン中・合言葉が必要） ----
