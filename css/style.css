@@ -38,7 +38,7 @@ body::before{ /* 水玉 */
 /* ヘッダー */
 .hero{text-align:center}
 .title-wrap{position:relative;display:inline-block;margin-top:34px}
-.age-bubble{position:absolute;left:14px;top:-52px;z-index:3;width:88px;height:54px;transform:rotate(-4deg);pointer-events:none;
+.age-bubble{position:absolute;left:14px;top:-58px;z-index:3;width:88px;height:54px;transform:rotate(0deg);pointer-events:none;
   animation:bub 4s ease-in-out infinite}
 .age-cloud{position:absolute;inset:0;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 2px 0 rgba(255,195,218,.7))}
 .age-bubble span{position:absolute;left:2px;right:0;top:14px;line-height:16px;text-align:center;font-size:12px;font-weight:700;color:#8a5b94;white-space:nowrap}
@@ -46,7 +46,7 @@ body::before{ /* 水玉 */
 .tmouth{transform-box:fill-box;transform-origin:50% 0;animation:talk 4s linear infinite}
 @keyframes talk{0%,48%,100%{transform:scaleY(.25)}4%{transform:scaleY(1)}8%{transform:scaleY(.3)}12%{transform:scaleY(1)}16%{transform:scaleY(.35)}20%{transform:scaleY(1)}24%{transform:scaleY(.3)}28%{transform:scaleY(1)}32%{transform:scaleY(.35)}36%{transform:scaleY(1)}40%{transform:scaleY(.3)}44%{transform:scaleY(.9)}}
 @keyframes cbob{0%,48%,100%{transform:translateY(0) rotate(0)}6%,18%,30%,42%{transform:translateY(-1px) rotate(-3deg)}12%,24%,36%{transform:translateY(0) rotate(2deg)}}
-@keyframes bub{0%,48%,100%{transform:rotate(-4deg) scale(1)}6%,18%,30%,42%{transform:rotate(-4deg) scale(1.04)}12%,24%,36%{transform:rotate(-4deg) scale(1)}}
+@keyframes bub{0%,48%,100%{transform:rotate(0deg) scale(1)}6%,18%,30%,42%{transform:rotate(0deg) scale(1.04)}12%,24%,36%{transform:rotate(0deg) scale(1)}}
 @media (prefers-reduced-motion:reduce){.tcat,.tmouth,.age-bubble{animation:none}.tmouth{transform:scaleY(.8)}}
 .title-badge{position:relative;display:inline-block;isolation:isolate;margin-top:0;
   padding:13px 24px 11px;background:#fff;border:3px solid var(--line);border-radius:32px;
