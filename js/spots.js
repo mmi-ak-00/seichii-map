@@ -449,6 +449,8 @@ window.SPOTS = [
       "pmuwr328t4.jpg",
       "pmuwr32995.jpg"
     ],
+    "hp": "https://peaceput.com/brand/im-donut/",
+    "insta": "https://www.instagram.com/i.m.donut?stkn=MWVoeHhyNTN3OWUwYg==",
     "chain": true,
     "noPlace": true,
     "pref": [
@@ -1142,7 +1144,10 @@ window.SPOTS = [
     "photos": [
       "pmux1itb411.jpg"
     ],
+    "hp": "https://www.sugakico.co.jp/",
+    "insta": "https://www.instagram.com/sugakiya_suchan?dlrf=MWx5N3prdGd0NmZicA==",
     "chain": true,
+    "noPlace": true,
     "pref": [
       "神奈川",
       "岐阜",
