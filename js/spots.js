@@ -597,6 +597,9 @@ window.SPOTS = [
       "pmuwu269m1.jpg",
       "pmuwv7j6b3.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/kanagawa/A1401/A140105/14080918/",
+    "hp": "https://saiyuki.co.jp/",
+    "insta": "https://www.instagram.com/saiyuki_yumcha?stkn=MWk0bmg1MHJqMmFzZA==",
     "lon": 139.64575,
     "lat": 35.44364,
     "id": "pmuwu27gocke"
