@@ -946,7 +946,8 @@ window.SPOTS = [
     ],
     "thumb": "pmux08yh81.jpg",
     "tabelog": "https://s.tabelog.com/tokyo/A1324/A132402/13299018/",
-    "hp": "https://www.instagram.com/marionjapan?stkn=dWo2Z214aWwybnF4",
+    "hp": "https://www.marion.co.jp/",
+    "insta": "https://www.instagram.com/marionjapan?stkn=dWo2Z214aWwybnF4",
     "chain": true,
     "more": [
       "北海道",
@@ -1063,6 +1064,8 @@ window.SPOTS = [
       "pmux1dfqt9.jpg",
       "pmux1dfr910.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/tokyo/A1304/A130402/13253328/",
+    "insta": "https://www.instagram.com/__nuibox?stkn=MTdwbW1tNzQyeTJ1OQ==",
     "lon": 139.71207,
     "lat": 35.68897,
     "id": "pmux1ds1c6gp"
