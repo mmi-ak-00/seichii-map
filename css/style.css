@@ -174,7 +174,8 @@ body::before{ /* 水玉 */
 .pin{cursor:pointer;outline:none}
 .pin-hit{fill:transparent;stroke:none}
 .pin.is-clu{display:none}
-.mini{touch-action:pan-y}.mini.zm{touch-action:none}
+html,body,a,button,select,label,summary,.pref-hit,.chip,.spot{touch-action:manipulation}
+.mini{touch-action:manipulation}.mini.zm{touch-action:none}
 .mapwrap{position:relative}
 .maphint,.mapreset{position:absolute;right:10px;font:inherit;font-size:12px;font-weight:700;color:var(--plum);background:rgba(255,255,255,.88);border-radius:999px;padding:3px 10px;pointer-events:none}
 .maphint{bottom:10px}.mapwrap.is-zm .maphint{display:none}

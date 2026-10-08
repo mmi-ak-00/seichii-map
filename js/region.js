@@ -633,6 +633,7 @@
     function d2(t) { return Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY); }
     function mid(t) { return [(t[0].clientX + t[1].clientX) / 2, (t[0].clientY + t[1].clientY) / 2]; }
     function markG() { gestured = true; if (gT) clearTimeout(gT); gT = setTimeout(function () { gestured = false; }, 400); }
+    svg.addEventListener('gesturestart', function (e) { e.preventDefault(); });
     svg.addEventListener('touchstart', function (e) {
       if (e.touches.length === 2) { var m = mid(e.touches); tp = { k: 'pinch', d: d2(e.touches), mx: m[0], my: m[1] }; }
       else if (e.touches.length === 1 && svg.classList.contains('zm')) tp = { k: 'pan', x: e.touches[0].clientX, y: e.touches[0].clientY };
