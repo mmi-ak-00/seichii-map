@@ -38,7 +38,7 @@ window.SPOTS = [
       "pmuwmbefp2.jpg"
     ],
     "tabelog": "https://s.tabelog.com/tokyo/A1306/A130602/13320295/",
-    "hp": "https://www.instagram.com/cups_omotesando?stkn=MXVkZ3A1dXo0MHQ0Mg==",
+    "insta": "https://www.instagram.com/cups_omotesando?stkn=MXVkZ3A1dXo0MHQ0Mg==",
     "chain": true,
     "more": [
       "東京"
