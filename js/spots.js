@@ -1314,12 +1314,18 @@ window.SPOTS = [
         "name": "TikTok",
         "url": "https://vt.tiktok.com/ZSbbXLbs1/",
         "date": "2026-04-01"
+      },
+      {
+        "name": "X(エイアイカ)",
+        "url": "https://x.com/aiika__official/status/2038995357930299654?s=46",
+        "date": "2026-04-01"
       }
     ],
     "photos": [
       "pmux3vws621.jpg",
       "pmux3vwsc22.jpg",
-      "pmuymkx426.jpg"
+      "pmuymkx426.jpg",
+      "pmuzws39b0.jpg"
     ],
     "thumb": "pmux3vwsc22.jpg",
     "lon": 139.70172,
