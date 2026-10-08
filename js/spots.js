@@ -253,9 +253,6 @@ window.SPOTS = [
     "region": "kanto",
     "name": "李暁七マーラータン 渋谷サクラステージ店",
     "address": "東京都渋谷区桜丘町3-4 SAKURAテラス106",
-    "works": [
-      "麻辣担"
-    ],
     "note": "",
     "sources": [
       {
@@ -265,7 +262,7 @@ window.SPOTS = [
       }
     ],
     "photos": [
-      "pmuwovh7q0.jpg"
+      "pmuzprxqf0.jpg"
     ],
     "tabelog": "https://s.tabelog.com/tokyo/A1303/A130301/13314698/",
     "hp": "https://www.maratanjp.com/",
