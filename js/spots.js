@@ -824,7 +824,8 @@ window.SPOTS = [
     ],
     "thumb": "pmuwyjqc812.jpg",
     "tabelog": "https://s.tabelog.com/tokyo/A1311/A131102/13231645/",
-    "hp": "https://www.instagram.com/asakusa777?stkn=MW00cGNrbTVkcWh4eQ==",
+    "hp": "https://kuroge.com/shop/asakusa/",
+    "insta": "https://www.instagram.com/asakusa777?stkn=MW00cGNrbTVkcWh4eQ==",
     "chain": true,
     "lon": 139.79628,
     "lat": 35.71154,
@@ -855,7 +856,7 @@ window.SPOTS = [
       "pmuwys3dv15.jpg"
     ],
     "tabelog": "https://s.tabelog.com/tokyo/A1311/A131102/13277751/",
-    "hp": "https://www.instagram.com/asakusa_tacotaco_koromo_bro?stkn=NWp3cGw0MngxdGdr",
+    "insta": "https://www.instagram.com/asakusa_tacotaco_koromo_bro?stkn=NWp3cGw0MngxdGdr",
     "lon": 139.79707,
     "lat": 35.71227,
     "id": "pmuwys4x5eke"
