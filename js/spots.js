@@ -250,9 +250,9 @@ window.SPOTS = [
     "id": "pmuwoh4b5y7t"
   },
   {
-    "region": "other",
-    "name": "李暁七マーラータン",
-    "address": "",
+    "region": "kanto",
+    "name": "李暁七マーラータン 渋谷サクラステージ店",
+    "address": "東京都渋谷区桜丘町3-4 SAKURAテラス106",
     "works": [
       "麻辣担"
     ],
@@ -267,14 +267,18 @@ window.SPOTS = [
     "photos": [
       "pmuwovh7q0.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/tokyo/A1303/A130301/13314698/",
+    "hp": "https://www.maratanjp.com/",
+    "insta": "https://www.instagram.com/rishouchi_maratan?stkn=MTFjYmM3cXAxenZ5MQ==",
     "chain": true,
-    "noPlace": true,
-    "pref": [
+    "more": [
       "埼玉",
       "東京",
       "富山",
       "大阪"
     ],
+    "lon": 139.70247,
+    "lat": 35.65661,
     "id": "pmuwovi9r44u"
   },
   {
