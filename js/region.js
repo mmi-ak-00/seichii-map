@@ -224,12 +224,18 @@
       pb.classList.toggle('is-done', on);
       box.classList.toggle('is-pinned', on);
       pb.setAttribute('aria-pressed', on ? 'true' : 'false');
-      pb.textContent = '📌';
       pb.setAttribute('aria-label', on ? 'ピン留めを外す' : '行きたいところとしてピン留めする');
       pb.title = on ? 'ピン留め中（押すと外れます）' : 'ピン留めする（行きたいところを一覧の上に出します）';
     }
+    pb.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">'
+      + '<ellipse class="pn-ring" cx="12" cy="20.5" rx="3" ry="1.1"/>'
+      + '<ellipse class="pn-sf" cx="12" cy="20.5" rx="5.5" ry="1.4"/>'
+      + '<g class="pn-g"><line class="pn-nd" x1="12" y1="12" x2="12" y2="20.4"/>'
+      + '<rect class="pn-nk" x="9.6" y="10" width="4.8" height="2.6" rx="1"/>'
+      + '<circle class="pn-hd" cx="12" cy="6.6" r="4.6"/><circle class="pn-hl" cx="10.4" cy="5" r="1.3"/></g></svg>';
     paintPn();
     pb.addEventListener('click', function () {
+      pb.classList.remove('is-pop'); void pb.offsetWidth; if (!want[s.name]) pb.classList.add('is-pop');
       if (want[s.name]) delete want[s.name]; else want[s.name] = 1;
       var olds = {}, t0 = box.getBoundingClientRect().top;
       Object.keys(cards).forEach(function (k) { if (cards[k].offsetParent) olds[k] = cards[k].getBoundingClientRect().top; });
