@@ -1481,6 +1481,13 @@ window.SPOTS = [
       "アーモンドマロンケーキ"
     ],
     "note": "※秋期限定メニュー\n※他店舗の可能性有",
+    "sources": [
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2100720964862681119?s=46",
+        "date": "2026-09-18"
+      }
+    ],
     "photos": [
       "pmuxtapvq1.jpg"
     ],
