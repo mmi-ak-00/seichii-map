@@ -64,20 +64,52 @@
     nDone.textContent = d;
   }
 
-  function lightbox(src) {
-    var b = el('button', 'lb');
-    b.type = 'button';
-    b.setAttribute('aria-label', '写真を閉じる');
+  function lightbox(srcs, idx) {
+    var n = srcs.length, cur = idx || 0;
+    var b = el('div', 'lb');
+    b.setAttribute('role', 'dialog');
+    b.setAttribute('aria-modal', 'true');
+    b.setAttribute('aria-label', '写真');
     var img = el('img');
-    img.src = src;
     img.alt = '';
     b.appendChild(img);
+    var cnt = el('span', 'lb-cnt');
+    var x = el('button', 'lb-x', '✕'); x.type = 'button'; x.setAttribute('aria-label', '写真を閉じる');
+    b.appendChild(x);
+    var pv, nx;
+    function show(i) {
+      cur = (i + n) % n; img.src = srcs[cur];
+      if (n > 1) cnt.textContent = (cur + 1) + ' / ' + n;
+    }
+    if (n > 1) {
+      b.appendChild(cnt);
+      pv = el('button', 'lb-nv lb-pv', '‹'); pv.type = 'button'; pv.setAttribute('aria-label', 'まえの写真');
+      nx = el('button', 'lb-nv lb-nx', '›'); nx.type = 'button'; nx.setAttribute('aria-label', 'つぎの写真');
+      b.appendChild(pv); b.appendChild(nx);
+      pv.addEventListener('click', function (e) { e.stopPropagation(); show(cur - 1); });
+      nx.addEventListener('click', function (e) { e.stopPropagation(); show(cur + 1); });
+    }
     function close() { document.removeEventListener('keydown', onKey); if (b.parentNode) b.parentNode.removeChild(b); }
-    function onKey(e) { if (e.key === 'Escape') close(); }
-    b.addEventListener('click', close);
+    function onKey(e) {
+      if (e.key === 'Escape') close();
+      else if (n > 1 && e.key === 'ArrowLeft') show(cur - 1);
+      else if (n > 1 && e.key === 'ArrowRight') show(cur + 1);
+    }
+    x.addEventListener('click', function (e) { e.stopPropagation(); close(); });
+    // 横にスワイプで切りかえ／ちょんとさわったら閉じる
+    var sx = null, sy = 0, moved = false;
+    b.addEventListener('touchstart', function (e) { if (e.touches.length !== 1) { sx = null; return; } sx = e.touches[0].clientX; sy = e.touches[0].clientY; moved = false; }, { passive: true });
+    b.addEventListener('touchend', function (e) {
+      if (sx === null) return;
+      var t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
+      sx = null;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) { moved = true; if (n > 1) show(cur + (dx < 0 ? 1 : -1)); }
+    }, { passive: true });
+    b.addEventListener('click', function (e) { if (moved) { moved = false; return; } close(); });
     document.addEventListener('keydown', onKey);
+    show(cur);
     document.body.appendChild(b);
-    b.focus();
+    x.focus();
   }
 
   var cards = {}, pinEls = {}, pinParts = [], selected = null;
@@ -146,7 +178,7 @@
         img.loading = 'lazy';
         img.addEventListener('error', function () { if (b.parentNode) b.parentNode.removeChild(b); });
         b.appendChild(img);
-        b.addEventListener('click', function () { lightbox(src); });
+        b.addEventListener('click', function () { lightbox(s.photos.map(function (p) { return '../photos/' + encodeURI(p); }), s.photos.indexOf(f)); });
         ph.appendChild(b);
       });
       li.appendChild(ph);
