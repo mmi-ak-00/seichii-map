@@ -127,6 +127,7 @@
       pinEls[k].setAttribute('aria-pressed', on ? 'true' : 'false');
       if (on && pins) pins.appendChild(pinEls[k]);
     });
+    if (typeof updateClusters === 'function') updateClusters();
     if (fromPin && selected && cards[selected]) {
       var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
       cards[selected].scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
@@ -384,7 +385,7 @@
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(s.name, true); }
       });
       pinEls[s.name] = g;
-      pinParts.push({ g: g, ring: ring, c: c, u: u, hit: hit });
+      pinParts.push({ g: g, ring: ring, c: c, u: u, hit: hit, x: x, y: y, name: s.name });
       pins.appendChild(g);
     });
     paintPins();
@@ -393,7 +394,8 @@
   // ===== 都道府県ごとの表示（地図タップ／ボタンで切りかえ、URLの # で共有できます） =====
   var hits = svg ? Array.prototype.slice.call(svg.querySelectorAll('.pref-hit')) : [];
   var labelsEl = svg ? Array.prototype.slice.call(svg.querySelectorAll('.pref-t')) : [];
-  var curW = null, curPref = null, anim = null;
+  var curW = null, curPref = null, anim = null, clusterSet = null;
+  var baseVB = vb0 ? vb0.slice() : [0, 0, 330, 450], mapwrap = null, clus = null;
   function layoutPins(w) {
     var r = w / 330 * 8;
     pinParts.forEach(function (p) {
@@ -415,6 +417,10 @@
     svg.setAttribute('viewBox', v.map(function (n) { return n.toFixed(2); }).join(' '));
     layoutPins(v[2]);
     svg.classList.toggle('zoomed', Math.abs(v[2] - vb0[2]) > 1);
+    var zmNow = v[2] < baseVB[2] - 1;
+    svg.classList.toggle('zm', zmNow);
+    if (mapwrap) mapwrap.classList.toggle('is-zm', zmNow);
+    updateClusters();
   }
   function animateVB(to) {
     var from = svg.getAttribute('viewBox').split(' ').map(Number);
@@ -489,8 +495,9 @@
     catch (e) { location.hash = h; return; }
     apply(n);
   }
-  function apply(n) {
+  function apply(n, keep) {
     if (n && !chips[n]) n = null;
+    if (!keep) clusterSet = null;
     curPref = n;
     Object.keys(chips).forEach(function (k) { chips[k].setAttribute('aria-pressed', (k === (n || '')) ? 'true' : 'false'); });
     hits.forEach(function (h) { h.classList.toggle('is-on', h.getAttribute('data-pref') === n); });
@@ -498,6 +505,7 @@
     var shown = 0, done = 0;
     spots.forEach(function (s) {
       var ok = !n || floats(s) || prefOf[s.name].indexOf(n) >= 0;
+      if (clusterSet && clusterSet.indexOf(s.name) < 0) ok = false;
       cards[s.name].hidden = !ok;
       if (pinEls[s.name]) pinEls[s.name].style.display = ok ? '' : 'none';
       if (ok) { shown++; if (visited[s.name]) done++; }
@@ -511,14 +519,158 @@
       if (!big.getAttribute('data-orig')) big.setAttribute('data-orig', big.textContent);
       big.textContent = (n && spots.length) ? n + 'には、まだスポットがないにゃ' : big.getAttribute('data-orig');
     }
-    if (svg) {
+    paintCluBar();
+    if (svg && !keep) {
       var target = vb0;
       if (n) {
         var hh = hits.filter(function (x) { return x.getAttribute('data-pref') === n; })[0];
         if (hh) target = hh.getAttribute('data-vb').split(' ').map(Number);
       }
+      baseVB = target.slice();
       animateVB(target);
     }
+    updateClusters();
+  }
+
+  // ===== 地図のピンチ拡大・ピンのまとめ表示 =====
+  var clubar = null;
+  function paintCluBar() {
+    if (!clubar) {
+      clubar = el('div', 'clubar'); clubar.hidden = true;
+      var tx = el('span', 'clu-msg'); clubar.appendChild(tx);
+      var bk = el('button', 'btn'); bk.type = 'button'; bk.textContent = 'ぜんぶ見る';
+      bk.addEventListener('click', function () { clusterSet = null; apply(curPref, true); });
+      clubar.appendChild(bk);
+      list.parentNode.insertBefore(clubar, list);
+    }
+    clubar.hidden = !clusterSet;
+    if (clusterSet) clubar.firstChild.textContent = '近くにある ' + clusterSet.length + '件だけを表示中';
+  }
+  function curView() { return svg.getAttribute('viewBox').split(' ').map(Number); }
+  function clampView(v) {
+    var aspect = v[3] / v[2];
+    var w = Math.max(vb0[2] / 6, Math.min(vb0[2], v[2])), h = w * aspect;
+    var x = Math.max(vb0[0], Math.min(vb0[0] + vb0[2] - w, v[0]));
+    var y = Math.max(vb0[1], Math.min(vb0[1] + vb0[3] - h, v[1]));
+    return [x, y, w, h];
+  }
+  function userView(v) { if (anim) { cancelAnimationFrame(anim); anim = null; } setVB(clampView(v)); }
+  function zoomAt(cx, cy, q) {
+    var v = curView(), rc = svg.getBoundingClientRect();
+    var px = (cx - rc.left) / rc.width, py = (cy - rc.top) / rc.height;
+    var ax = v[0] + px * v[2], ay = v[1] + py * v[3];
+    var w = Math.max(vb0[2] / 6, Math.min(vb0[2], v[2] / q)), h = w * v[3] / v[2];
+    userView([ax - px * w, ay - py * h, w, h]);
+  }
+  function panPx(dx, dy) {
+    var v = curView(), rc = svg.getBoundingClientRect();
+    userView([v[0] - dx * v[2] / rc.width, v[1] - dy * v[3] / rc.height, v[2], v[3]]);
+  }
+  function updateClusters() {
+    if (!svg || !pinParts.length || !clus) return;
+    clus.textContent = '';
+    var v = curView(), cw = svg.clientWidth || 330, k = cw / v[2];
+    var thr = 8 * cw / 330 * 2 * 1.05, cl = [];
+    pinParts.forEach(function (p) {
+      p.g.classList.remove('is-clu');
+      if (p.g.style.display === 'none' || p.name === selected) return;
+      var px = (p.x - v[0]) * k, py = (p.y - v[1]) * k;
+      for (var i = 0; i < cl.length; i++) {
+        if (Math.hypot(cl[i].px - px, cl[i].py - py) < thr) { cl[i].m.push(p); return; }
+      }
+      cl.push({ px: px, py: py, m: [p] });
+    });
+    var r = v[2] / 330 * 8;
+    cl.forEach(function (c) {
+      if (c.m.length < 2) return;
+      var sx = 0, sy = 0;
+      c.m.forEach(function (p) { sx += p.x; sy += p.y; p.g.classList.add('is-clu'); });
+      var cx = sx / c.m.length, cy = sy / c.m.length;
+      var g = document.createElementNS(NS, 'g');
+      g.setAttribute('class', 'clu'); g.setAttribute('role', 'button'); g.setAttribute('tabindex', '0');
+      g.setAttribute('aria-label', 'この近くに' + c.m.length + '件あります。ひろげる');
+      g.setAttribute('transform', 'translate(' + cx.toFixed(2) + ' ' + cy.toFixed(2) + ')');
+      var ci = document.createElementNS(NS, 'circle');
+      ci.setAttribute('class', 'clu-c'); ci.setAttribute('r', (r * 1.25).toFixed(2)); ci.setAttribute('stroke-width', (r * 0.28).toFixed(2));
+      var tx = document.createElementNS(NS, 'text');
+      tx.setAttribute('class', 'clu-t'); tx.style.fontSize = (r * 1.15).toFixed(2) + 'px';
+      tx.textContent = String(c.m.length);
+      var ht = document.createElementNS(NS, 'circle');
+      ht.setAttribute('class', 'pin-hit'); ht.setAttribute('r', Math.max(r * 1.8, v[2] / 330 * 11).toFixed(2));
+      g.appendChild(ci); g.appendChild(tx); g.appendChild(ht);
+      function open() { openCluster(c.m, cx, cy); }
+      g.addEventListener('click', open);
+      g.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+      clus.appendChild(g);
+    });
+  }
+  function openCluster(members, cx, cy) {
+    var v = curView(), minW = vb0[2] / 6;
+    var same = members.every(function (p) { return Math.hypot(p.x - members[0].x, p.y - members[0].y) < 0.05; });
+    if (same || v[2] / 2 < minW) {
+      clusterSet = members.map(function (p) { return p.name; });
+      apply(curPref, true);
+      return;
+    }
+    var w = v[2] / 2, h = v[3] / 2;
+    animateVB(clampView([cx - w / 2, cy - h / 2, w, h]));
+  }
+  if (svg && pinParts.length) {
+    mapwrap = el('div', 'mapwrap');
+    svg.parentNode.insertBefore(mapwrap, svg); mapwrap.appendChild(svg);
+    mapwrap.appendChild(el('span', 'maphint', '2本指で拡大'));
+    var rs = el('button', 'mapreset', 'もどす'); rs.type = 'button';
+    rs.addEventListener('click', function () { animateVB(baseVB.slice()); });
+    mapwrap.appendChild(rs);
+    clus = document.createElementNS(NS, 'g'); clus.setAttribute('id', 'clus');
+    pins.parentNode.appendChild(clus);
+    var tp = null, gestured = false, gT = null;
+    function d2(t) { return Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY); }
+    function mid(t) { return [(t[0].clientX + t[1].clientX) / 2, (t[0].clientY + t[1].clientY) / 2]; }
+    function markG() { gestured = true; if (gT) clearTimeout(gT); gT = setTimeout(function () { gestured = false; }, 400); }
+    svg.addEventListener('touchstart', function (e) {
+      if (e.touches.length === 2) { var m = mid(e.touches); tp = { k: 'pinch', d: d2(e.touches), mx: m[0], my: m[1] }; }
+      else if (e.touches.length === 1 && svg.classList.contains('zm')) tp = { k: 'pan', x: e.touches[0].clientX, y: e.touches[0].clientY };
+      else tp = null;
+    }, { passive: true });
+    svg.addEventListener('touchmove', function (e) {
+      if (!tp) return;
+      if (tp.k === 'pinch' && e.touches.length === 2) {
+        e.preventDefault(); markG();
+        var m = mid(e.touches), d = d2(e.touches);
+        panPx(m[0] - tp.mx, m[1] - tp.my);
+        if (tp.d > 0) zoomAt(m[0], m[1], d / tp.d);
+        tp.d = d; tp.mx = m[0]; tp.my = m[1];
+      } else if (tp.k === 'pan' && e.touches.length === 1) {
+        e.preventDefault(); markG();
+        var t = e.touches[0];
+        panPx(t.clientX - tp.x, t.clientY - tp.y);
+        tp.x = t.clientX; tp.y = t.clientY;
+      }
+    }, { passive: false });
+    svg.addEventListener('touchend', function (e) {
+      if (e.touches.length === 1 && svg.classList.contains('zm')) tp = { k: 'pan', x: e.touches[0].clientX, y: e.touches[0].clientY };
+      else if (e.touches.length === 0) tp = null;
+      if (tp && tp.k === 'pinch') tp = null;
+    }, { passive: true });
+    svg.addEventListener('touchcancel', function () { tp = null; }, { passive: true });
+    // パソコン：Ctrl（またはトラックパッドのピンチ）＋ホイールで拡大、ドラッグで移動
+    svg.addEventListener('wheel', function (e) {
+      if (!(e.ctrlKey || e.metaKey)) return;
+      e.preventDefault(); zoomAt(e.clientX, e.clientY, Math.exp(-e.deltaY * 0.01));
+    }, { passive: false });
+    var md = null;
+    svg.addEventListener('mousedown', function (e) { if (e.button === 0 && svg.classList.contains('zm')) md = { x: e.clientX, y: e.clientY, moved: 0 }; });
+    window.addEventListener('mousemove', function (e) {
+      if (!md) return;
+      var dx = e.clientX - md.x, dy = e.clientY - md.y; md.moved += Math.abs(dx) + Math.abs(dy);
+      md.x = e.clientX; md.y = e.clientY;
+      if (md.moved > 6) { markG(); panPx(dx, dy); }
+    });
+    window.addEventListener('mouseup', function () { md = null; });
+    // 動かした直後のタップは、ピンやけんの選択にしない
+    svg.addEventListener('click', function (e) { if (gestured) { e.stopPropagation(); e.preventDefault(); } }, true);
+    updateClusters();
   }
   var _count = count;
   count = function () { _count(); if (curPref !== null) { var s = 0, d = 0; spots.forEach(function (x) { if (floats(x) || prefOf[x.name].indexOf(curPref) >= 0) { s++; if (visited[x.name]) d++; } }); nAll.textContent = s; nAll2.textContent = s; nDone.textContent = d; } };
