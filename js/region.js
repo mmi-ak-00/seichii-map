@@ -127,7 +127,6 @@
     head.appendChild(th);
     head.appendChild(el('span', 'sp-nm', s.name));
     if (s.region !== key) head.appendChild(el('span', 'sp-oth', 'その他'));
-    head.appendChild(el('span', 'sp-pn', '📌'));
     head.appendChild(el('span', 'sp-vd', '✓'));
     head.appendChild(el('span', 'sp-chev', '›'));
     head.addEventListener('click', function () { select(s.name, false); });
@@ -225,7 +224,7 @@
       pb.classList.toggle('is-done', on);
       box.classList.toggle('is-pinned', on);
       pb.setAttribute('aria-pressed', on ? 'true' : 'false');
-      pb.textContent = '📌ピン';
+      pb.textContent = '📌';
       pb.setAttribute('aria-label', on ? 'ピン留めを外す' : '行きたいところとしてピン留めする');
       pb.title = on ? 'ピン留め中（押すと外れます）' : 'ピン留めする（行きたいところを一覧の上に出します）';
     }
@@ -252,15 +251,23 @@
       requestAnimationFrame(step);
     });
     row1.appendChild(v);
-    row2.appendChild(pb);
-    [['tabelog', '🍴食べログ'], ['hp', '🔗HP']].forEach(function (k) {
+    h3.appendChild(pb);
+    [['tabelog', '食べログ'], ['hp', '🔗HP'], ['insta', 'Instagram']].forEach(function (k) {
       var u = s[k[0]];
       if (!u || !/^https?:\/\//i.test(u)) return;
       var a = el('a', 'btn btn-lk', k[1]);
+      if (k[0] === 'tabelog') {
+        a.insertAdjacentHTML('afterbegin', '<svg class="ic-bowl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11h17a8.5 8.5 0 0 1-17 0z"/><path d="M9 20.5h6"/><path d="M8.5 7.5c0-1 .8-1.2.8-2.2M12 7.5c0-1 .8-1.2.8-2.2M15.5 7.5c0-1 .8-1.2.8-2.2"/></svg>');
+      }
+      if (k[0] === 'insta') {
+        a.className = 'btn btn-lk btn-ig';
+        a.insertAdjacentHTML('afterbegin', '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>');
+      }
       a.href = u; a.target = '_blank'; a.rel = 'noopener noreferrer';
       row2.appendChild(a);
     });
-    act.appendChild(row2); act.appendChild(row1);
+    if (row2.children.length) act.appendChild(row2);
+    act.appendChild(row1);
     li.appendChild(act);
     box.appendChild(li);
     return box;
