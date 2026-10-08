@@ -31,15 +31,15 @@ function safeEqual(a, b) {
 function normNick(n) { return String(n || '').normalize('NFKC').trim().toLowerCase(); }
 function checkNick(n) {
   const s = String(n || '').normalize('NFKC').trim();
-  if (!s) return 'ニックネームを入れてね。';
-  if ([...s].length > 20) return 'ニックネームは20文字までだよ。';
-  if (/[\u0000-\u001f\u007f<>"'&\\\/]/.test(s)) return 'ニックネームに使えない文字が入っているよ。';
+  if (!s) return 'ニックネームを入力してください。';
+  if ([...s].length > 20) return 'ニックネームは20文字までです。';
+  if (/[\u0000-\u001f\u007f<>"'&\\\/]/.test(s)) return 'ニックネームに使えない文字が含まれています。';
   return '';
 }
 function checkPass(p) {
   const s = String(p || '');
-  if (s.length < 6) return '合言葉は6文字以上にしてね。';
-  if (s.length > 72) return '合言葉は72文字までだよ。';
+  if (s.length < 6) return '合言葉は6文字以上にしてください。';
+  if (s.length > 72) return '合言葉は72文字までです。';
   return '';
 }
 function cookieOf(req, name) {
@@ -161,9 +161,9 @@ export async function onRequest(context) {
       const ne = checkNick(b.nick); if (ne) return fail(400, 'nick', ne);
       const pe = checkPass(b.pass); if (pe) return fail(400, 'pass', pe);
       const ip = request.headers.get('cf-connecting-ip') || 'x';
-      if (await tooMany(env, 'r:' + ip, 10)) return fail(429, 'busy', '登録が多すぎます。しばらくしてからためしてね。');
+      if (await tooMany(env, 'r:' + ip, 10)) return fail(429, 'busy', '登録が多すぎます。しばらくしてからもう一度お試しください。');
       const norm = normNick(b.nick);
-      if (await getUser(env, norm)) return fail(409, 'taken', 'そのニックネームは、もう使われているよ。別の名前にしてね。');
+      if (await getUser(env, norm)) return fail(409, 'taken', 'そのニックネームはすでに使われています。別の名前にしてください。');
       const salt = crypto.getRandomValues(new Uint8Array(16));
       const hash = await pbkdf2(String(b.pass), salt, ITER);
       const user = { nick: String(b.nick).normalize('NFKC').trim(), salt: hex(salt), hash: hex(hash), iter: ITER, ver: 0, created: Date.now(), visited: [] };
@@ -179,8 +179,8 @@ export async function onRequest(context) {
     if (route === 'login' && method === 'POST') {
       const b = await readBody(request);
       const norm = normNick(b.nick);
-      if (!norm || !b.pass) return fail(400, 'input', 'ニックネームと合言葉を入れてね。');
-      if (await tooMany(env, 'f:' + norm, 5)) return fail(429, 'locked', '何回か間違えたので、10分ほど待ってからためしてね。');
+      if (!norm || !b.pass) return fail(400, 'input', 'ニックネームと合言葉を入力してください。');
+      if (await tooMany(env, 'f:' + norm, 5)) return fail(429, 'locked', '何回か間違えたので、10分ほど待ってからもう一度お試しください。');
       const user = await getUser(env, norm);
       let ok = false;
       if (user) {
@@ -205,7 +205,7 @@ export async function onRequest(context) {
     // ---- 行ったにゃ：1件 ----
     if (route === 'visited' && method === 'PUT') {
       const s = await session(env, request);
-      if (!s) return fail(401, 'login', 'ログインが切れました。もう一度ログインしてね。');
+      if (!s) return fail(401, 'login', 'ログインが切れました。もう一度ログインしてください。');
       const b = await readBody(request);
       const ids = cleanIds([b.id]);
       if (!ids.length) return fail(400, 'id', 'スポットが正しくありません。');
@@ -222,7 +222,7 @@ export async function onRequest(context) {
     // ---- 行ったにゃ：まとめて追加（この端末の記録を引き継ぐ） ----
     if (route === 'visited/merge' && method === 'POST') {
       const s = await session(env, request);
-      if (!s) return fail(401, 'login', 'ログインが切れました。もう一度ログインしてね。');
+      if (!s) return fail(401, 'login', 'ログインが切れました。もう一度ログインしてください。');
       const b = await readBody(request);
       const set = new Set(s.user.visited || []);
       cleanIds(b.ids).forEach((x) => set.add(x));
@@ -239,8 +239,8 @@ export async function onRequest(context) {
       const b = await readBody(request);
       const norm = normNick(b.nick);
       const pe = checkPass(b.pass); if (pe) return fail(400, 'pass', pe);
-      if (!norm || !normCode(b.code)) return fail(400, 'input', 'ニックネームと再設定コードを入れてね。');
-      if (await tooMany(env, 'f:' + norm, 5)) return fail(429, 'locked', '何回か間違えたので、10分ほど待ってからためしてね。');
+      if (!norm || !normCode(b.code)) return fail(400, 'input', 'ニックネームと再設定コードを入力してください。');
+      if (await tooMany(env, 'f:' + norm, 5)) return fail(429, 'locked', '何回か間違えたので、10分ほど待ってからもう一度お試しください。');
       const user = await getUser(env, norm);
       let ok = false;
       if (user && user.rsalt) {
@@ -261,7 +261,7 @@ export async function onRequest(context) {
     // ---- 再設定コードを作り直す（ログイン中・合言葉が必要） ----
     if (route === 'newcode' && method === 'POST') {
       const s = await session(env, request);
-      if (!s) return fail(401, 'login', 'ログインが切れました。もう一度ログインしてね。');
+      if (!s) return fail(401, 'login', 'ログインが切れました。もう一度ログインしてください。');
       const b = await readBody(request);
       const h = await pbkdf2(String(b.pass || ''), unhex(s.user.salt), s.user.iter || ITER);
       if (!safeEqual(h, unhex(s.user.hash))) return fail(401, 'wrong', '合言葉が違います。');
@@ -273,7 +273,7 @@ export async function onRequest(context) {
     // ---- 退会（自分のデータを消す） ----
     if (route === 'leave' && method === 'POST') {
       const s = await session(env, request);
-      if (!s) return fail(401, 'login', 'ログインが切れました。もう一度ログインしてね。');
+      if (!s) return fail(401, 'login', 'ログインが切れました。もう一度ログインしてください。');
       const b = await readBody(request);
       const h = await pbkdf2(String(b.pass || ''), unhex(s.user.salt), s.user.iter || ITER);
       if (!safeEqual(h, unhex(s.user.hash))) return fail(401, 'wrong', '合言葉が違います。');

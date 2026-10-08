@@ -24,7 +24,7 @@
   }
   var l1 = h('ul', 'mn-l');
   l1.appendChild(link('index.html', '🏠 トップ'));
-  l1.appendChild(link('me.html', '📒 マイ記録', 'ログインして記録を残そう', 'mn-nick'));
+  l1.appendChild(link('me.html', '📒 マイ記録', 'ログインして記録を残しましょう', 'mn-nick'));
   mn.appendChild(l1);
   mn.appendChild(h('p', 'mn-s', '地方からさがす'));
   var l2 = h('ul', 'mn-l');

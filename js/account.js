@@ -20,7 +20,7 @@
       headers: body ? { 'content-type': 'application/json' } : {},
       body: body ? JSON.stringify(body) : undefined
     }).then(function (r) { return r.json().catch(function () { return { ok: false, message: 'うまく通信できませんでした。' }; }); })
-      .catch(function () { return { ok: false, message: 'ネットにつながっていないみたい。' }; });
+      .catch(function () { return { ok: false, message: 'ネットにつながっていないようです。' }; });
   }
 
   // サーバーの記録を、この端末の表示にそろえる（変わったときだけ再読み込み）
@@ -82,14 +82,14 @@
   function showCode(code, then, title) {
     dlg.innerHTML = '';
     var box = el('<div class="acct-in"><h2>' + (title || '再設定コード') + '</h2>'
-      + '<p class="acct-hint">合言葉を忘れたときに、このコードで自分で再設定できます。<b>管理者にも見えないので、いま書き留めるかスクショしてね。</b>この画面はもう一度は見られません。</p>'
+      + '<p class="acct-hint">合言葉を忘れたときに、このコードで自分で再設定できます。<b>管理者にも見えないので、いま書き留めるか、スクリーンショットを撮ってください。</b>この画面はもう一度は見られません。</p>'
       + '<p style="text-align:center;font-size:22px;font-weight:800;letter-spacing:1px;margin:14px 0;color:#e0558a;user-select:all" id="ac-c"></p>'
       + '<button class="acct-sub" type="button" id="ac-cp">コピーする</button>'
       + '<label style="display:flex;gap:8px;align-items:center;margin-top:12px;font-weight:700"><input type="checkbox" id="ac-ck" style="width:auto;min-height:0"> 控えました</label>'
       + '<button class="acct-go" type="button" id="ac-ok" disabled>つぎへ</button></div>').firstChild;
     dlg.appendChild(box);
     box.querySelector('#ac-c').textContent = code;
-    box.querySelector('#ac-cp').addEventListener('click', function () { try { navigator.clipboard.writeText(code); this.textContent = 'コピーしたよ'; } catch (e) {} });
+    box.querySelector('#ac-cp').addEventListener('click', function () { try { navigator.clipboard.writeText(code); this.textContent = 'コピーしました'; } catch (e) {} });
     var ck = box.querySelector('#ac-ck'), ok = box.querySelector('#ac-ok');
     ck.addEventListener('change', function () { ok.disabled = !ck.checked; });
     ok.addEventListener('click', then);
@@ -111,7 +111,7 @@
       + '<form><label for="rc-n">ニックネーム</label><input id="rc-n" maxlength="20" autocapitalize="off" autocomplete="username">'
       + '<label for="rc-c">再設定コード</label><input id="rc-c" autocapitalize="characters" autocomplete="off" placeholder="XXXX-XXXX-XXXX-XXXX">'
       + '<label for="rc-p">新しい合言葉</label><input id="rc-p" type="password" autocomplete="new-password" maxlength="72">'
-      + '<p class="acct-hint">コードをなくしたときは、再設定できません。別のニックネームで新しく登録してね。</p><p class="acct-msg" id="rc-m" role="alert"></p>'
+      + '<p class="acct-hint">コードをなくしたときは、再設定できません。別のニックネームで新しく登録してください。</p><p class="acct-msg" id="rc-m" role="alert"></p>'
       + '<button class="acct-go" type="submit">再設定する</button></form>'
       + '<button class="acct-sub" type="button" id="rc-b">もどる</button></div>').firstChild;
     dlg.appendChild(box);
@@ -147,8 +147,8 @@
       go.textContent = m === 'reg' ? '登録する' : 'ログイン';
       pw.setAttribute('autocomplete', m === 'reg' ? 'new-password' : 'current-password');
       hint.textContent = m === 'reg'
-        ? 'メールアドレスは要らないよ。合言葉は6文字以上。忘れたときは登録のあとに出る「再設定コード」で自分で再設定できます。この端末の「行ったにゃ」も引き継ぐよ。'
-        : 'ほかの端末でも、同じニックネームと合言葉で続きから使えるよ。';
+        ? 'メールアドレスは不要です。合言葉は6文字以上。忘れたときは登録のあとに出る「再設定コード」で自分で再設定できます。この端末の「行ったにゃ」も引き継がれます。'
+        : 'ほかの端末でも、同じニックネームと合言葉で続きから使えます。';
       msg.textContent = '';
     }
     tabs.forEach(function (t) { t.addEventListener('click', function () { setMode(t.getAttribute('data-m')); }); });
@@ -168,7 +168,7 @@
   function openMenu() {
     dlg.innerHTML = '';
     var box = el('<div class="acct-in"><h2>🐱 ' + esc(nick) + ' さん</h2>'
-      + '<p class="acct-hint" style="text-align:center">ログイン中。「行ったにゃ」はほかの端末でも同じになるよ。</p>'
+      + '<p class="acct-hint" style="text-align:center">ログイン中。「行ったにゃ」はほかの端末でも同じになります。</p>'
       + '<p class="acct-msg" id="ac-m" role="alert"></p>'
       + '<button class="acct-go" type="button" id="ac-out">ログアウト</button>'
       + '<button class="acct-sub" type="button" id="ac-x">とじる</button>'
@@ -181,7 +181,7 @@
       call('logout', 'POST', {}).then(function () { writeLocal({}); nick = null; location.reload(); });
     });
     box.querySelector('#ac-nc').addEventListener('click', function () {
-      var p = window.prompt('合言葉を入れてね。新しいコードを作ると、前のコードは使えなくなります。');
+      var p = window.prompt('合言葉を入力してください。新しいコードを作ると、前のコードは使えなくなります。');
       if (!p) return;
       call('newcode', 'POST', { pass: p }).then(function (r) {
         if (!r.ok) { msg.textContent = r.message || 'できませんでした。'; return; }
@@ -190,8 +190,8 @@
     });
     box.querySelector('#ac-leave').addEventListener('click', function () {
       var b = this;
-      if (!b.getAttribute('data-ask')) { b.setAttribute('data-ask', '1'); b.textContent = 'もう一度おすと、合言葉を聞くよ'; return; }
-      var p = window.prompt('退会します。記録はすべて消えて元に戻せません。合言葉を入れてね。');
+      if (!b.getAttribute('data-ask')) { b.setAttribute('data-ask', '1'); b.textContent = 'もう一度押すと、合言葉の入力画面が開きます'; return; }
+      var p = window.prompt('退会します。記録はすべて消えて元に戻せません。合言葉を入力してください。');
       if (!p) return;
       call('leave', 'POST', { pass: p }).then(function (r) {
         if (!r.ok) { msg.textContent = r.message || 'できませんでした。'; return; }

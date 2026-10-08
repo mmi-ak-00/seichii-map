@@ -261,7 +261,7 @@
       else if (kind === 'pref') { selPref = sel(ORDERP.map(function (p) { return [p, p]; }), selPref ? selPref.value : '東京'); opt.appendChild(selPref); }
       else if (kind === 'today') {
         var vis = cx.spots.filter(function (s) { return cx.visited[s.name]; });
-        if (!vis.length) { opt.appendChild(h('p', 'me-hint', 'まだ「行ったにゃ」の記録がないにゃ。')); }
+        if (!vis.length) { opt.appendChild(h('p', 'me-hint', 'まだ「行ったにゃ」の記録がありません。')); }
         else {
           // 日付が新しい順
           vis = vis.slice().sort(function (a, b) { return (cx.dates[b.name] || '').localeCompare(cx.dates[a.name] || ''); });
@@ -282,7 +282,7 @@
           });
           dateIn.addEventListener('change', upd);
           var pf = h('label', 'sh-lb', '写真（えらばなくてもOK）'); photoIn = h('input', 'sh-file'); photoIn.type = 'file'; photoIn.accept = 'image/*'; pf.appendChild(photoIn);
-          opt.appendChild(h('p', 'me-hint', '行った場所を1つえらんでね。'));
+          opt.appendChild(h('p', 'me-hint', '行った場所を1つ選んでください。'));
           opt.appendChild(list); opt.appendChild(lb); opt.appendChild(note); opt.appendChild(pf);
           opt.appendChild(h('p', 'me-hint', '写真はこの端末の中だけで使います。サーバーには送られません。'));
         }
@@ -295,7 +295,7 @@
       var fl = (document.fonts && document.fonts.load) ? Promise.all([document.fonts.load('800 40px "Zen Maru Gothic"'), document.fonts.load('700 40px "Zen Maru Gothic"')]).catch(function () {}) : Promise.resolve();
       var job;
       if (kind === 'today') {
-        if (!picked) { go.disabled = false; msg.textContent = '行った場所を1つえらんでね。'; return; }
+        if (!picked) { go.disabled = false; msg.textContent = '行った場所を1つ選んでください。'; return; }
         var sp = picked, dstr = dateIn.value || todayStr();
         var ph = new Promise(function (ok) {
           var f = photoIn && photoIn.files && photoIn.files[0]; if (!f) return ok(null);
@@ -331,7 +331,7 @@
           out.appendChild(h('p', 'me-hint', 'スマホでは、画像を長押しして保存もできます。'));
           out.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
         }, 'image/png');
-      }).catch(function (e) { console.error('SHERR',e&&e.stack||e); go.disabled = false; msg.textContent = '画像をつくれませんでした。もう一度ためしてね。'; });
+      }).catch(function (e) { console.error('SHERR',e&&e.stack||e); go.disabled = false; msg.textContent = '画像をつくれませんでした。もう一度お試しください。'; });
     });
     paint();
   }

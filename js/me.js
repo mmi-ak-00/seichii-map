@@ -11,7 +11,7 @@
   function call(path, method, body) {
     return fetch(API + path, { method: method, credentials: 'same-origin', headers: body ? { 'content-type': 'application/json' } : {}, body: body ? JSON.stringify(body) : undefined })
       .then(function (r) { return r.json().catch(function () { return { ok: false, message: 'うまく通信できませんでした。' }; }); })
-      .catch(function () { return { ok: false, message: 'ネットにつながっていないみたい。' }; });
+      .catch(function () { return { ok: false, message: 'ネットにつながっていないようです。' }; });
   }
   function h(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
   function card(title) { var c = h('section', 'me-card'); if (title) { var p = h('h2', 'pill', title); c.appendChild(p); } return c; }
@@ -42,10 +42,10 @@
   function showCode(code, then, title) {
     root.textContent = '';
     var c = card(title || '再設定コード');
-    c.appendChild(h('p', 'me-hint', '合言葉を忘れたときに、このコードで自分で再設定できます。管理者にも見えないので、いま書き留めるかスクショしてね。この画面はもう一度は見られません。'));
+    c.appendChild(h('p', 'me-hint', '合言葉を忘れたときに、このコードで自分で再設定できます。管理者にも見えないので、いま書き留めるか、スクリーンショットを撮ってください。この画面はもう一度は見られません。'));
     c.appendChild(h('p', 'me-code', code));
     var cp = h('button', 'me-sub', 'コピーする'); cp.type = 'button';
-    cp.addEventListener('click', function () { try { navigator.clipboard.writeText(code); cp.textContent = 'コピーしたよ'; } catch (e) {} });
+    cp.addEventListener('click', function () { try { navigator.clipboard.writeText(code); cp.textContent = 'コピーしました'; } catch (e) {} });
     c.appendChild(cp);
     var lb = h('label'); lb.style.cssText = 'display:flex;gap:8px;align-items:center;margin-top:12px;font-weight:700';
     var ck = h('input'); ck.type = 'checkbox'; ck.style.cssText = 'width:auto;min-height:0';
@@ -61,7 +61,7 @@
     mode = mode || 'login'; root.textContent = '';
     var c = card('ログイン');
     var loc = readLocal(), n = Object.keys(loc).length;
-    if (n) c.appendChild(h('p', 'me-loc', 'この端末には「行ったにゃ」が ' + n + '件あります。ログインすると、アカウントに引き継ぐよ。'));
+    if (n) c.appendChild(h('p', 'me-loc', 'この端末には「行ったにゃ」が ' + n + '件あります。ログインすると、アカウントに引き継ぎます。'));
     var tabs = h('div', 'me-tabs'); tabs.setAttribute('role', 'tablist');
     var tl = h('button', null, 'ログイン'), tr = h('button', null, 'はじめて');
     [tl, tr].forEach(function (t) { t.type = 'button'; t.setAttribute('role', 'tab'); tabs.appendChild(t); });
@@ -79,8 +79,8 @@
       go.textContent = m === 'reg' ? '登録する' : 'ログイン';
       pw.setAttribute('autocomplete', m === 'reg' ? 'new-password' : 'current-password');
       hint.textContent = m === 'reg'
-        ? 'メールアドレスは要らないよ。合言葉は6文字以上。忘れたときは登録のあとに出る「再設定コード」で自分で再設定できます。この端末の「行ったにゃ」も引き継ぐよ。'
-        : 'ほかの端末でも、同じニックネームと合言葉で続きから使えるよ。';
+        ? 'メールアドレスは不要です。合言葉は6文字以上。忘れたときは登録のあとに出る「再設定コード」で自分で再設定できます。この端末の「行ったにゃ」も引き継がれます。'
+        : 'ほかの端末でも、同じニックネームと合言葉で続きから使えます。';
       msg.textContent = '';
     }
     tl.addEventListener('click', function () { setMode('login'); }); tr.addEventListener('click', function () { setMode('reg'); });
@@ -100,7 +100,7 @@
     f.innerHTML = '<label for="rc-n">ニックネーム</label><input id="rc-n" type="text" maxlength="20" autocapitalize="off" autocomplete="username">'
       + '<label for="rc-c">再設定コード</label><input id="rc-c" type="text" autocapitalize="characters" autocomplete="off" placeholder="XXXX-XXXX-XXXX-XXXX">'
       + '<label for="rc-p">新しい合言葉</label><input id="rc-p" type="password" autocomplete="new-password" maxlength="72">'
-      + '<p class="me-hint">コードをなくしたときは、再設定できません。別のニックネームで新しく登録してね。</p><p class="me-msg" id="rc-m" role="alert"></p><button class="me-go" type="submit">再設定する</button>';
+      + '<p class="me-hint">コードをなくしたときは、再設定できません。別のニックネームで新しく登録してください。</p><p class="me-msg" id="rc-m" role="alert"></p><button class="me-go" type="submit">再設定する</button>';
     c.appendChild(f);
     var bk = h('button', 'me-sub', 'もどる'); bk.type = 'button'; bk.addEventListener('click', function () { loginView('login'); }); c.appendChild(bk);
     root.appendChild(c);
@@ -120,7 +120,7 @@
     var total = all.length, done = mine.length;
     var c = card('巡礼の記録');
     if (nick) { var w = h('p', 'me-who', '🐱 ' + nick + ' さん'); c.appendChild(w); }
-    else c.appendChild(h('p', 'me-loc', 'まだログインしていません。いまの記録は、この端末だけに保存されています。ログインすると、ほかの端末でも同じ記録が見られるよ。'));
+    else c.appendChild(h('p', 'me-loc', 'まだログインしていません。いまの記録は、この端末だけに保存されています。ログインすると、ほかの端末でも同じ記録を見られます。'));
     var sum = h('p', 'me-sum'); sum.appendChild(h('b', null, String(done))); sum.appendChild(document.createTextNode(' / ' + total + ' 件 行ったにゃ')); c.appendChild(sum);
     var bar = h('div', 'me-bar'); var bi = h('i'); bar.appendChild(bi); c.appendChild(bar);
     setTimeout(function () { bi.style.width = (total ? Math.round(done / total * 100) : 0) + '%'; }, 30);
@@ -136,7 +136,7 @@
     root.appendChild(c);
 
     var lc = card('行ったところ');
-    if (!mine.length) lc.appendChild(h('p', 'me-empty', 'まだ記録がないにゃ。\nスポットの「行ったにゃ？」を押すと、ここに並びます。'));
+    if (!mine.length) lc.appendChild(h('p', 'me-empty', 'まだ記録がありません。\nスポットの「行ったにゃ？」を押すと、ここに並びます。'));
     REG.forEach(function (r) {
       var g = mine.filter(function (s) { return s.region === r[0]; });
       if (!g.length) return;
@@ -193,20 +193,20 @@
       out.addEventListener('click', function () { call('logout', 'POST', {}).then(function () { writeLocal({}); nick = null; render(); }); });
       var nc = h('button', 'me-sub', '再設定コードを作り直す'); nc.type = 'button';
       nc.addEventListener('click', function () {
-        var p = window.prompt('合言葉を入れてね。新しいコードを作ると、前のコードは使えなくなります。'); if (!p) return;
+        var p = window.prompt('合言葉を入力してください。新しいコードを作ると、前のコードは使えなくなります。'); if (!p) return;
         call('newcode', 'POST', { pass: p }).then(function (r) { if (!r.ok) { msg.textContent = r.message || 'できませんでした。'; return; } showCode(r.code, render, '新しい再設定コード'); });
       });
       var lv = h('button', 'me-sub me-danger', '退会して記録を消す'); lv.type = 'button';
       lv.addEventListener('click', function () {
-        if (!lv.getAttribute('data-ask')) { lv.setAttribute('data-ask', '1'); lv.textContent = 'もう一度おすと、合言葉を聞くよ'; return; }
-        var p = window.prompt('退会します。記録はすべて消えて元に戻せません。合言葉を入れてね。'); if (!p) return;
+        if (!lv.getAttribute('data-ask')) { lv.setAttribute('data-ask', '1'); lv.textContent = 'もう一度押すと、合言葉の入力画面が開きます'; return; }
+        var p = window.prompt('退会します。記録はすべて消えて元に戻せません。合言葉を入力してください。'); if (!p) return;
         call('leave', 'POST', { pass: p }).then(function (r) { if (!r.ok) { msg.textContent = r.message || 'できませんでした。'; return; } writeLocal({}); nick = null; render(); });
       });
       ac.appendChild(out); ac.appendChild(nc); ac.appendChild(lv); ac.appendChild(msg);
     }
     root.appendChild(ac);
   }
-  function render() { recordsView(); var s = document.getElementById('mn-nick'); if (s) s.textContent = nick ? '🐱 ' + nick + ' さん' : 'ログインして記録を残そう'; }
+  function render() { recordsView(); var s = document.getElementById('mn-nick'); if (s) s.textContent = nick ? '🐱 ' + nick + ' さん' : 'ログインして記録を残しましょう'; }
 
   root.appendChild(h('p', 'me-empty', '読みこみ中…'));
   call('me', 'GET').then(function (r) {
