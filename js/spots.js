@@ -1094,14 +1094,14 @@ window.SPOTS = [
     ],
     "photos": [
       "pmux37iil4.jpg",
-      "pmux37ijn5.jpg",
-      "pmux37iks6.jpg",
-      "pmux37ils7.jpg",
-      "pmux37imv8.jpg",
-      "pmux37inx9.jpg",
+      "pmuz5llct0.jpg",
+      "pmuz5lld91.jpg",
+      "pmuz5lldq2.jpg",
+      "pmuz5lle73.jpg",
+      "pmuz5lleo4.jpg",
       "pmux37io510.jpg"
     ],
-    "thumb": "pmux37ils7.jpg",
+    "thumb": "pmuz5llct0.jpg",
     "lon": 139.75215,
     "lat": 35.70315,
     "id": "pmux382kiepv"
