@@ -322,7 +322,11 @@
     row.querySelector('.br-addr').addEventListener('input', function () { row.removeAttribute('data-lon'); row.removeAttribute('data-lat'); st.textContent = '位置：まだありません（「位置をさがす」を押してね）'; });
     var x = el('button', 'btn src-x', '✕ 消す'); x.type = 'button';
     x.addEventListener('click', function () { row.remove(); });
-    bar.appendChild(fb); bar.appendChild(x);
+    var up = el('button', 'btn', '↑ 上へ'); up.type = 'button';
+    var dn = el('button', 'btn', '↓ 下へ'); dn.type = 'button';
+    up.addEventListener('click', function () { var p = row.previousElementSibling; if (p) row.parentNode.insertBefore(row, p); });
+    dn.addEventListener('click', function () { var n = row.nextElementSibling; if (n) row.parentNode.insertBefore(n, row); });
+    bar.appendChild(up); bar.appendChild(dn); bar.appendChild(fb); bar.appendChild(x);
     row.appendChild(st); row.appendChild(bar);
     $('brs').appendChild(row);
     return row;
