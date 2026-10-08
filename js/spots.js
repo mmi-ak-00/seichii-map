@@ -51,18 +51,26 @@ window.SPOTS = [
     "region": "chubu",
     "name": "こふり",
     "address": "岐阜県岐阜市鏡島南4-5-5",
-    "work": "ドバイチョコ（かき氷）",
+    "works": [
+      "ドバイチョコ（かき氷）"
+    ],
     "note": "",
-    "srcName": "Instagram",
-    "srcUrl": "https://www.instagram.com/p/Dc8biwEkwcl/?stkn=MTUxc3piMzV2MmJ5OA==",
-    "postDate": "2026-09-06",
-    "lon": 136.71194,
-    "lat": 35.40206,
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/Dc8biwEkwcl/?stkn=MTUxc3piMzV2MmJ5OA==",
+        "date": "2026-09-06"
+      }
+    ],
     "photos": [
       "pmuwmk76l0.jpg",
       "pmuwmk76z1.jpg",
       "pmuwmk77d2.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/gifu/A2101/A210101/21025035/",
+    "insta": "https://www.instagram.com/6kofuri?stkn=MTdxbGdocGFkcWtpeQ==",
+    "lon": 136.71194,
+    "lat": 35.40206,
     "id": "pmuwmkl318wn"
   },
   {
@@ -88,6 +96,8 @@ window.SPOTS = [
       "pmuwnjf7o2.jpg",
       "pmuwnjf893.jpg"
     ],
+    "hp": "https://www.inabasan.com/",
+    "insta": "https://www.instagram.com/inaba_jinja?stkn=cTNnNzRib2U1Z3E1",
     "lon": 136.7697,
     "lat": 35.42786,
     "id": "pmuwnguo93n6"
@@ -222,16 +232,21 @@ window.SPOTS = [
     "region": "chubu",
     "name": "珈琲と紅茶 あるてあ",
     "address": "岐阜県岐阜市鵜川町5-3",
-    "work": "",
     "note": "",
-    "srcName": "X",
-    "srcUrl": "https://x.com/chii_nyan02/status/2095282580493136349?s=46",
-    "postDate": "2026-09-03",
-    "lon": 136.77054,
-    "lat": 35.44238,
+    "sources": [
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2095282580493136349?s=46",
+        "date": "2026-09-03"
+      }
+    ],
     "photos": [
       "pmuwoh2p90.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/gifu/A2101/A210101/21008592/",
+    "insta": "https://www.instagram.com/alutea.gifu?stkn=MW80YWVqdXZyeTZldg==",
+    "lon": 136.77054,
+    "lat": 35.44238,
     "id": "pmuwoh4b5y7t"
   },
   {
@@ -351,7 +366,7 @@ window.SPOTS = [
       "岐阜タンメン",
       "半チャーハン"
     ],
-    "note": "",
+    "note": "※食べログのリンクは岐阜本店を引用",
     "sources": [
       {
         "name": "TikTok(エイアイ過多)",
@@ -375,6 +390,9 @@ window.SPOTS = [
       "pmuwqlvev1.jpg"
     ],
     "thumb": "pmuwsqq9b1.jpg",
+    "tabelog": "https://s.tabelog.com/gifu/A2101/A210101/21010010/",
+    "hp": "https://gifu-tanmen.com/",
+    "insta": "https://www.instagram.com/gifu_tanmen?stkn=MXdlampicGNuOWVpbw==",
     "chain": true,
     "noPlace": true,
     "pref": "岐阜",
@@ -430,9 +448,11 @@ window.SPOTS = [
   },
   {
     "region": "chubu",
-    "name": "KOYO BASE",
+    "name": "CLAY Table（KOYO BASE）",
     "address": "岐阜県土岐市泉町久尻1496-5",
-    "work": "ひのき牛と飛騨豚のハンバーグとお野菜のセット",
+    "works": [
+      "ひのき牛と飛騨豚のハンバーグとお野菜のセット"
+    ],
     "note": "",
     "sources": [
       {
@@ -446,6 +466,9 @@ window.SPOTS = [
       "pmuwrbldq7.jpg",
       "pmuwrble78.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/gifu/A2103/A210301/21021677/",
+    "hp": "https://koyobase.com/",
+    "insta": "https://www.instagram.com/koyobase.official?stkn=YzRtY2VsM2Nrem44",
     "lon": 137.16991,
     "lat": 35.35616,
     "id": "pmuwrbmoxtm2"
@@ -454,7 +477,6 @@ window.SPOTS = [
     "region": "chubu",
     "name": "土岐プレミアム・アウトレット",
     "address": "岐阜県土岐市土岐ヶ丘1-2",
-    "work": "",
     "note": "",
     "sources": [
       {
@@ -479,6 +501,8 @@ window.SPOTS = [
       "pmuwroo9o12.jpg",
       "pmuwrooa513.jpg"
     ],
+    "hp": "https://www.premiumoutlets.co.jp/toki/",
+    "insta": "https://www.instagram.com/tokipremiumoutlets?stkn=ZDJscWIzZmNoN2Ru",
     "lon": 137.16518,
     "lat": 35.34062,
     "id": "pmuwrdhxxobz"
@@ -508,6 +532,9 @@ window.SPOTS = [
       "pmuwswdt22.jpg"
     ],
     "thumb": "pmuwswdt22.jpg",
+    "tabelog": "https://s.tabelog.com/aichi/A2301/A230103/23041519/",
+    "hp": "https://www.pancake-hoihoi.com/",
+    "insta": "https://www.instagram.com/hoihoi724?stkn=MW5mZXhzNTJ5eDQwaQ==",
     "chain": true,
     "more": [
       "愛知"
@@ -658,6 +685,9 @@ window.SPOTS = [
       "pmuwvd29e5.jpg"
     ],
     "thumb": "pmuwvd28x4.jpg",
+    "tabelog": "https://s.tabelog.com/aichi/A2301/A230105/23067494/",
+    "hp": "https://rockin-robin.com/",
+    "insta": "https://www.instagram.com/rockin_robin_hamburger_osu?stkn=OWlnaHczcnl2YTAy",
     "chain": true,
     "more": [
       "愛知"
@@ -684,6 +714,9 @@ window.SPOTS = [
     "photos": [
       "pmuwvm78m7.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/aichi/A2301/A230105/23075674/",
+    "hp": "https://www.yabaton.com/",
+    "insta": "https://www.instagram.com/yabaton_official?stkn=d216ZnNlNjA4MWd4",
     "chain": true,
     "more": [
       "東京",
@@ -711,6 +744,9 @@ window.SPOTS = [
     "photos": [
       "pmuwvsmhk8.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/aichi/A2301/A230105/23093020/",
+    "hp": "https://www.asakuma.co.jp/shoplist/curry_osu.html",
+    "insta": "https://www.instagram.com/asakuma_curry?stkn=dm1mcmR4YnFqcXVv",
     "chain": true,
     "more": [
       "愛知"
@@ -1404,6 +1440,8 @@ window.SPOTS = [
     "photos": [
       "pmuxszeqy0.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/aichi/A2301/A230104/23020176/",
+    "insta": "https://www.instagram.com/aoicafe?stkn=MWI4eDZ4NG9kdTM0YQ==",
     "lon": 136.92119,
     "lat": 35.1712,
     "id": "pmuxszjsfzgj"
