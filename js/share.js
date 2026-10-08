@@ -189,7 +189,7 @@
       var r = M.regions[val], nm = REGN.filter(function (x) { return x[0] === val; })[0][1];
       var sp = all.filter(function (s) { return s.region === val; });
       var labels = r.labels.slice(); if (r.note) { var m = r.note.match(/x="([\d.]+)" y="([\d.]+)"/); if (m) labels.push(['沖縄', +m[1], +m[2], 7]); }
-      return { title: nm + ' 巡礼マップ', spots: sp, view: r.vb, region: val, lines: [val], labels: labels, sub: nm + ' 行ったにゃ' };
+      return { title: nm + ' 聖ちぃ巡礼マップ', spots: sp, view: r.vb, region: val, lines: [val], labels: labels, sub: nm + ' 行ったにゃ' };
     }
     // 都道府県
     var pref = val, rk = null, hit = null;
@@ -199,7 +199,7 @@
     var sp2 = all.filter(function (s) { return prefsOf(s).indexOf(pref) >= 0; });
     var view = pref === '沖縄' ? OKIVB : pref === '北海道' ? pad(M.regions.hokkaido.vb, 0) : pad(hit.vb, .06);
     var lab = hit ? [[pref, hit.vb[0] + hit.vb[2] / 2, hit.vb[1] + 1.2, 3.0]] : [];
-    return { title: pref + ' 巡礼マップ', spots: sp2, view: view, region: rk, lines: rk ? [rk] : [], hit: hit, labels: [], sub: pref + ' 行ったにゃ', labelScale: 1 };
+    return { title: pref + ' 聖ちぃ巡礼マップ', spots: sp2, view: view, region: rk, lines: rk ? [rk] : [], hit: hit, labels: [], sub: pref + ' 行ったにゃ', labelScale: 1 };
   }
 
   /* ---------- 今日の記録の画像 ---------- */
