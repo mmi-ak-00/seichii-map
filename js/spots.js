@@ -178,7 +178,7 @@ window.SPOTS = [
       "pmuwo3q6r3.jpg"
     ],
     "tabelog": "https://s.tabelog.com/tokyo/A1306/A130602/13145525/",
-    "hp": "https://restaurant.idoltokyo.jp/omotesando/",
+    "hp": "https://www.instagram.com/idoltokyo?stkn=cW1qNHBmcmhmYzRj",
     "lon": 139.71199,
     "lat": 35.66189,
     "id": "pmuwo3rihoqe"
@@ -918,7 +918,7 @@ window.SPOTS = [
     ],
     "thumb": "pmux08yh81.jpg",
     "tabelog": "https://s.tabelog.com/tokyo/A1324/A132402/13299018/",
-    "hp": "https://www.marion.co.jp/",
+    "hp": "https://www.instagram.com/marionjapan?stkn=dWo2Z214aWwybnF4",
     "chain": true,
     "more": [
       "北海道",
