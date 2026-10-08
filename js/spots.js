@@ -165,10 +165,6 @@ window.SPOTS = [
     "tabelog": "https://s.tabelog.com/tokyo/A1317/A131706/13145455/",
     "hp": "https://www.cafethesunliveshere.com/",
     "insta": "https://www.instagram.com/cafethesunliveshere?stkn=NHU5MXNoNnFrMGc=",
-    "chain": true,
-    "more": [
-      "東京"
-    ],
     "lon": 139.67227,
     "lat": 35.6407,
     "id": "pmuwnuspfzhm"
