@@ -1133,6 +1133,8 @@ window.SPOTS = [
       "pmux2rbmb2.jpg"
     ],
     "thumb": "pmux2rbmb2.jpg",
+    "tabelog": "https://s.tabelog.com/tokyo/A1304/A130401/13277618/",
+    "insta": "https://www.instagram.com/linocafebar?stkn=MXc5eXh0cHd4bnE2Yg==",
     "lon": 139.70201,
     "lat": 35.69623,
     "id": "pmux2unm3aih"
@@ -1169,6 +1171,7 @@ window.SPOTS = [
       "pmux37io510.jpg"
     ],
     "thumb": "pmuz5llct0.jpg",
+    "hp": "https://www.tokyo-dome.co.jp/dome/",
     "lon": 139.75215,
     "lat": 35.70315,
     "id": "pmux382kiepv"
@@ -1190,6 +1193,7 @@ window.SPOTS = [
       "pmux3dgau13.jpg",
       "pmux3dgb814.jpg"
     ],
+    "hp": "https://www.marines.co.jp/stadium/",
     "lon": 140.03113,
     "lat": 35.64552,
     "id": "pmux3dkrbpaj"
@@ -1277,6 +1281,9 @@ window.SPOTS = [
     "photos": [
       "pmux42dgy23.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/tokyo/A1303/A130301/13192788/",
+    "hp": "https://tintocoffee.jp/",
+    "insta": "https://www.instagram.com/tintotokyo?stkn=MW56ODA2dWpoN202Ng==",
     "lon": 139.70743,
     "lat": 35.66063,
     "id": "pmux42hu52vc"
