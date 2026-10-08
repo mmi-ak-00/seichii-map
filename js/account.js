@@ -4,6 +4,8 @@
   var API = '/api/';
   var nick = null;
   var ready = false;
+  var SRC = document.currentScript && document.currentScript.src;
+  var ME_URL = SRC ? SRC.replace(/js\/[^\/?#]*([?#].*)?$/, 'me.html') : 'me.html';
 
   function hash(s) { var h = 5381; for (var i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0; return h.toString(36); }
   function idOf(s) { return s.id || ('n' + hash(s.name)); }
@@ -191,7 +193,7 @@
     dlg.showModal();
   }
 
-  btn.addEventListener('click', function () { if (nick) openMenu(); else openLogin('login'); });
+  btn.addEventListener('click', function () { location.href = ME_URL; });
 
   // 「行ったにゃ」を押したとき、ログイン中ならサーバーにも保存
   window.ChiiAcct = {
