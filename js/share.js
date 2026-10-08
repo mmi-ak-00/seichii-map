@@ -51,7 +51,7 @@
   function todayStr() { var d = new Date(); return d.getFullYear() + '-' + two(d.getMonth() + 1) + '-' + two(d.getDate()); }
   function fmtDate(s) {
     var p = s.split('-'); var d = new Date(+p[0], +p[1] - 1, +p[2]);
-    return { y: p[0], md: p[1] + '.' + p[2], full: p[0] + '.' + p[1] + '.' + p[2], w: '日月火水木金土'.charAt(d.getDay()) };
+    return { y: p[0], md: p[1] + '/' + p[2], full: p[0] + '.' + p[1] + '.' + p[2], w: '日月火水木金土'.charAt(d.getDay()), dow: d.getDay() };
   }
 
   /* ---------- 地図（陸地）のSVG ---------- */
@@ -206,12 +206,16 @@
   function drawToday(cx, ctx0, dateStr, s, photo) {
     var c = cx, d = fmtDate(dateStr);
     background(c); titlePill(c, (ctx0.nick ? ctx0.nick + 'の' : '') + '聖ちぃ巡礼記録', 84);
-    c.textAlign = 'center'; c.textBaseline = 'alphabetic';
-    c.fillStyle = '#d94b86'; c.font = FONT(800, 92);
-    var dtxt = d.y + '.' + d.md; var fs0 = fit(c, dtxt, W - 160, 92, 800); c.font = FONT(800, fs0); c.fillText(dtxt, W / 2, 330);
-    c.fillStyle = '#5a4560'; c.font = FONT(800, 38); c.fillText('（' + d.w + '）に行ったにゃ', W / 2, 384);
+    c.textAlign = 'left'; c.textBaseline = 'alphabetic';
+    var wcol = d.dow === 6 ? '#4fa3d9' : d.dow === 0 ? '#e5484d' : '#d94b86';
+    c.font = FONT(800, 112); var w1 = c.measureText(d.md).width; c.font = FONT(800, 66); var w2 = c.measureText(d.w).width;
+    var gap = 18, x0 = (W - w1 - w2 - gap) / 2;
+    c.fillStyle = '#a37cae'; c.font = FONT(700, 40); c.fillText(d.y, x0 + 4, 262);
+    c.fillStyle = '#d94b86'; c.font = FONT(800, 112); c.fillText(d.md, x0, 360);
+    c.fillStyle = wcol; c.font = FONT(800, 66); c.fillText(d.w, x0 + w1 + gap, 360);
+    c.textAlign = 'center'; c.fillStyle = '#5a4560'; c.font = FONT(800, 32); c.fillText('に行ったにゃ', W / 2, 404);
     // 写真
-    var PX = 90, PY = 420, PW = W - 180, PH = 600;
+    var PX = 90, PY = 430, PW = W - 180, PH = 590;
     c.save(); rr(c, PX, PY, PW, PH, 44);
     c.shadowColor = 'rgba(120,40,80,.18)'; c.shadowBlur = 24; c.shadowOffsetY = 8; c.fillStyle = '#fff'; c.fill(); c.restore();
     c.save(); rr(c, PX + 10, PY + 10, PW - 20, PH - 20, 36); c.clip();
@@ -292,7 +296,8 @@
     go.addEventListener('click', function () {
       var cx = getCtx(); go.disabled = true; msg.className = 'me-msg'; msg.textContent = 'つくっています…';
       var cv = document.createElement('canvas'); cv.width = W; cv.height = H; var c = cv.getContext('2d');
-      var fl = (document.fonts && document.fonts.load) ? Promise.all([document.fonts.load('800 40px "Zen Maru Gothic"'), document.fonts.load('700 40px "Zen Maru Gothic"')]).catch(function () {}) : Promise.resolve();
+      var ftxt = '0123456789./年月日()・、。 聖ちぃ巡礼記録マップ行ったにゃ今日全国地方都道府県か所これまでに巡※ファンによる非公式サイトです日月火水木金土東西南北' + (cx.nick || '') + ORDERP.join('') + REGN.map(function (r) { return r[1]; }).join('') + cx.spots.map(function (x) { return x.name + (x.address || '') + (Array.isArray(x.pref) ? x.pref.join('') : (x.pref || '')); }).join('');
+      var fl = (document.fonts && document.fonts.load) ? Promise.all(['500', '700', '800'].map(function (w) { return document.fonts.load(w + ' 40px "Zen Maru Gothic"', ftxt); })).catch(function () {}) : Promise.resolve();
       var job;
       if (kind === 'today') {
         if (!picked) { go.disabled = false; msg.textContent = '行った場所を1つ選んでください。'; return; }
