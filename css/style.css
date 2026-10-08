@@ -197,13 +197,14 @@ body::before{ /* 水玉 */
 .spot{display:block;padding:10px 12px;background:#fff;border:3px solid var(--line);border-radius:26px;box-shadow:0 4px 0 var(--line)}
 .spot h3{margin:0;font-size:17px;line-height:1.4}
 .spot-head{display:flex;align-items:center;gap:12px;width:100%;min-height:64px;padding:0;background:none;border:0;font:inherit;color:inherit;text-align:left;cursor:pointer;border-radius:18px}
-.sp-h{position:relative}.sp-h .sp-nm{margin-right:50px}.sp-h .btn-pn{position:absolute;right:30px;top:50%;margin-top:-18px;width:36px;min-width:36px;height:36px;min-height:36px;padding:0;font-size:17px;border-width:2px;box-shadow:none}.sp-h .btn-pn.is-done{box-shadow:0 2px 0 #e6a817}
+.sp-h{position:relative}.sp-gap{flex:none;width:36px;height:36px}.sp-h .btn-pn{position:absolute;right:36px;top:50%;margin-top:-18px;width:36px;min-width:36px;height:36px;min-height:36px;padding:0;font-size:17px;border-width:2px;box-shadow:none}.sp-h .btn-pn.is-done{box-shadow:0 2px 0 #e6a817}
 .spot-head:focus-visible{outline:3px solid var(--pink-d);outline-offset:3px}
 .sp-th{flex:none;width:64px;height:64px;border-radius:16px;border:3px solid var(--line);overflow:hidden;background:var(--c,#fde);display:flex;align-items:center;justify-content:center}
 .sp-th img{display:block;width:100%;height:100%;object-fit:cover}
 .sp-th.is-none svg{width:30px;height:30px;fill:#fff;filter:drop-shadow(0 1px 0 rgba(90,69,96,.25))}
 .sp-nm{flex:1;min-width:0;font-weight:800;font-size:17px;line-height:1.4;overflow-wrap:anywhere}
-.sp-vd{display:none;flex:none;width:26px;height:26px;border-radius:50%;background:#4fc3a8;color:#fff;font-size:15px;font-weight:800;align-items:center;justify-content:center}
+.sp-thw{position:relative;flex:none;display:block}
+.sp-vd{display:none;position:absolute;right:-5px;bottom:-5px;width:20px;height:20px;border-radius:50%;background:#4fc3a8;border:2px solid #fff;color:#fff;font-size:11px;line-height:1;font-weight:800;align-items:center;justify-content:center;box-sizing:border-box}
 .spot.is-visited .sp-vd{display:inline-flex}
 .sp-chev{flex:none;font-size:24px;line-height:1;color:var(--pink-d);transition:transform .2s}
 .spot.is-sel .sp-chev{transform:rotate(90deg)}
@@ -233,6 +234,7 @@ body::before{ /* 水玉 */
 @media (prefers-reduced-motion:reduce){.pn-g{transition:none}.btn-pn.is-pop .pn-ring{animation:none}}
 .btn-pinned{border-color:#f0b84a;color:#8a5a00;background:#fff;box-shadow:0 3px 0 #ffe2a8}.btn-pinned.is-done{background:#ffc94d;color:#5c3b00;box-shadow:0 3px 0 #e6a817}
 .sp-pn{display:none;flex:none;font-size:18px;line-height:1}.spot.is-pinned .sp-pn{display:inline}
+.spot.is-visited{border-color:#9adcc9;background:#f6fdfa}
 .spot.is-pinned{border-color:#f5c451}
 .btn-visit{border-color:var(--pink);color:var(--pink-d);box-shadow:0 3px 0 #ffc2d8}
 .btn-visit.is-done{background:var(--pink);color:#fff;box-shadow:0 3px 0 #f06fa0}

@@ -156,10 +156,11 @@
       ti.addEventListener('error', noPhoto);
       th.appendChild(ti);
     } else noPhoto();
-    head.appendChild(th);
+    var thw = el('span', 'sp-thw'); thw.appendChild(th); thw.appendChild(el('span', 'sp-vd', '✓'));
+    head.appendChild(thw);
     head.appendChild(el('span', 'sp-nm', s.name));
     if (s.region !== key) head.appendChild(el('span', 'sp-oth', 'その他'));
-    head.appendChild(el('span', 'sp-vd', '✓'));
+    head.appendChild(el('span', 'sp-gap'));
     head.appendChild(el('span', 'sp-chev', '›'));
     head.addEventListener('click', function () { select(s.name, false); });
     h3.appendChild(head);
