@@ -563,6 +563,7 @@ window.SPOTS = [
     "photos": [
       "pmuwtup4x2.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/kanagawa/A1401/A140104/14050265/",
     "chain": true,
     "more": [
       "神奈川"
