@@ -1746,10 +1746,10 @@ window.SPOTS = [
     ],
     "photos": [
       "pmuyofpk73.jpg",
-      "pmuyofpko4.jpg",
+      "pmuzr9lp00.jpg",
       "pmuyofpl15.jpg"
     ],
-    "thumb": "pmuyofpko4.jpg",
+    "thumb": "pmuzr9lp00.jpg",
     "hp": "https://harborland.co.jp/",
     "insta": "https://www.instagram.com/kobeharborland?stkn=MWFmcWM1M2tpNm42NA==",
     "lon": 135.18196,
