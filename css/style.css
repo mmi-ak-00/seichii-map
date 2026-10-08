@@ -184,7 +184,7 @@ body::before{ /* 水玉 */
 @keyframes pinhop{0%{transform:scale(1) translateY(0)}40%{transform:scale(1.6) translateY(-3px)}100%{transform:scale(1.5)}}
 @keyframes pinring{0%{transform:scale(1);opacity:.9}100%{transform:scale(2.4);opacity:0}}
 .pin-ring{transform-box:fill-box;transform-origin:center}
-.spot{transition:border-color .2s,box-shadow .2s,transform .2s}
+.spot{transition:border-color .2s,box-shadow .2s,transform .2s}.spot.is-flip{transition:border-color .2s,box-shadow .2s}
 .sp-oth{flex:none;font-size:11px;font-weight:800;color:#7d5cc0;background:#efe6fb;border-radius:999px;padding:2px 8px}
 .chain{margin:4px 0 0;font-size:13px;font-weight:700;color:#9a7ad6}
 .src{margin:6px 0 0;font-size:13px;color:#8a7683;line-height:1.7;overflow-wrap:anywhere}.src{display:flex;align-items:flex-start;gap:0}.src .nw{white-space:nowrap;flex:none}.src .bd{flex:1;min-width:0}.src .dt{white-space:nowrap;display:inline-block;margin-left:2px}.src a{color:var(--pink-d);font-weight:700}

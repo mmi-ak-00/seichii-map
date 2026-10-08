@@ -232,10 +232,24 @@
     paintPn();
     pb.addEventListener('click', function () {
       if (want[s.name]) delete want[s.name]; else want[s.name] = 1;
-      var t0 = box.getBoundingClientRect().top;
+      var olds = {}, t0 = box.getBoundingClientRect().top;
+      Object.keys(cards).forEach(function (k) { if (cards[k].offsetParent) olds[k] = cards[k].getBoundingClientRect().top; });
       wsave(); paintPn(); reorder();
       var d = box.getBoundingClientRect().top - t0;
-      if (d) window.scrollBy(0, d);   // 押したスポットが指の下のまま、ページも一緒に動く
+      // 押したスポットは指の下のまま、ページがすーっと動いて、ほかのスポットが入れかわる
+      var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (still || !d) { if (d) window.scrollBy(0, d); return; }
+      var offs = {}; Object.keys(olds).forEach(function (k) { offs[k] = olds[k] - cards[k].getBoundingClientRect().top; });
+      var y0 = window.pageYOffset, T0 = null, DUR = 450;
+      Object.keys(offs).forEach(function (k) { cards[k].classList.add('is-flip'); cards[k].style.transform = 'translateY(' + offs[k] + 'px)'; });
+      function step(t) {
+        if (T0 === null) T0 = t;
+        var p = Math.min(1, (t - T0) / DUR), e = 1 - Math.pow(1 - p, 3);
+        window.scrollTo(0, y0 + d * e);
+        Object.keys(offs).forEach(function (k) { cards[k].style.transform = p < 1 ? 'translateY(' + (offs[k] * (1 - e)) + 'px)' : ''; if (p >= 1) cards[k].classList.remove('is-flip'); });
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
     });
     row1.appendChild(v);
     row2.appendChild(pb);

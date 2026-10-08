@@ -334,8 +334,6 @@ window.SPOTS = [
       "pmuwpmimx3.jpg",
       "pmuwpmine4.jpg"
     ],
-    "tabelog": "https://s.tabelog.com/tokyo/A1306/A130603/13311802/",
-    "hp": "https://www.instagram.com/cafeparoparo?stkn=Z2JwYndvamV3bGJw",
     "lon": 139.71223,
     "lat": 35.6725,
     "id": "pmuwpmjt9f1s"
