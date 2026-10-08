@@ -101,6 +101,30 @@ function cleanDates(o) {
   }
   return out;
 }
+function cleanPlace(p) {
+  if (!p || typeof p !== 'object') return null;
+  const n = typeof p.n === 'string' ? p.n.slice(0, 40) : '', a = typeof p.a === 'string' ? p.a.slice(0, 120) : '';
+  if (!n && !a) return null;
+  const o = { n, a };
+  if (typeof p.x === 'number' && typeof p.y === 'number' && p.x > 100 && p.x < 160 && p.y > 15 && p.y < 50) { o.x = +p.x.toFixed(5); o.y = +p.y.toFixed(5); }
+  return o;
+}
+function cleanPlaces(o) {
+  const out = {};
+  if (!o || typeof o !== 'object') return out;
+  let n = 0;
+  for (const k of Object.keys(o)) {
+    if (!k || k.length > 64 || !/^[\w.\-]+$/.test(k)) continue;
+    const p = cleanPlace(o[k]); if (!p) continue;
+    out[k] = p; if (++n >= 500) break;
+  }
+  return out;
+}
+function placesOf(u) {
+  const vis = new Set(u.visited || []), out = {}, d = u.places || {};
+  for (const k of Object.keys(d)) if (vis.has(k)) out[k] = d[k];
+  return out;
+}
 function datesOf(u) {
   const vis = new Set(u.visited || []), out = {}, d = u.dates || {};
   for (const k of Object.keys(d)) if (vis.has(k)) out[k] = d[k];
@@ -152,7 +176,7 @@ export async function onRequest(context) {
     if (route === 'me' && method === 'GET') {
       const s = await session(env, request);
       if (!s) return json({ ok: true, nick: null });
-      return json({ ok: true, nick: s.user.nick, visited: s.user.visited || [], dates: datesOf(s.user) });
+      return json({ ok: true, nick: s.user.nick, visited: s.user.visited || [], dates: datesOf(s.user), places: placesOf(s.user) });
     }
 
     // ---- 新規登録 ----
@@ -192,7 +216,7 @@ export async function onRequest(context) {
       if (!ok) { await bump(env, 'f:' + norm, 600); return fail(401, 'wrong', 'ニックネームか合言葉が違います。'); }
       await env.USERS.delete('f:' + norm);
       const ck = await startSession(env, url, norm, user);
-      return json({ ok: true, nick: user.nick, visited: user.visited || [], dates: datesOf(user) }, 200, { 'set-cookie': ck });
+      return json({ ok: true, nick: user.nick, visited: user.visited || [], dates: datesOf(user), places: placesOf(user) }, 200, { 'set-cookie': ck });
     }
 
     // ---- ログアウト ----
@@ -215,6 +239,10 @@ export async function onRequest(context) {
       const dts = s.user.dates || {};
       if (b.on && okDate(b.date)) dts[ids[0]] = b.date; else if (!b.on) delete dts[ids[0]];
       s.user.dates = dts;
+      const pls = s.user.places || {};
+      const pc = b.on ? cleanPlace(b.place) : null;
+      if (b.on) { if (pc) pls[ids[0]] = pc; } else delete pls[ids[0]];
+      s.user.places = pls;
       await putUser(env, s.norm, s.user);
       return json({ ok: true, count: s.user.visited.length });
     }
@@ -230,8 +258,11 @@ export async function onRequest(context) {
       const dts = s.user.dates || {}, add = cleanDates(b.dates);
       for (const k of Object.keys(add)) if (set.has(k) && !dts[k]) dts[k] = add[k];
       s.user.dates = dts;
+      const pls2 = s.user.places || {}, addp = cleanPlaces(b.places);
+      for (const k of Object.keys(addp)) if (set.has(k) && !pls2[k]) pls2[k] = addp[k];
+      s.user.places = pls2;
       await putUser(env, s.norm, s.user);
-      return json({ ok: true, visited: s.user.visited, dates: datesOf(s.user) });
+      return json({ ok: true, visited: s.user.visited, dates: datesOf(s.user), places: placesOf(s.user) });
     }
 
     // ---- 合言葉を忘れたとき：再設定コードで本人が再設定 ----
@@ -255,7 +286,7 @@ export async function onRequest(context) {
       await putUser(env, norm, user);
       await env.USERS.delete('f:' + norm);
       const ck = await startSession(env, url, norm, user);
-      return json({ ok: true, nick: user.nick, visited: user.visited || [], dates: datesOf(user), code }, 200, { 'set-cookie': ck });
+      return json({ ok: true, nick: user.nick, visited: user.visited || [], dates: datesOf(user), places: placesOf(user), code }, 200, { 'set-cookie': ck });
     }
 
     // ---- 再設定コードを作り直す（ログイン中・合言葉が必要） ----

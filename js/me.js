@@ -30,14 +30,10 @@
 
   function mergeAndGo(r) {
     // この端末の「行ったにゃ」をアカウントに合流させてから、表示をそろえる
-    var loc = readLocal(), mine = spots().filter(function (s) { return loc[s.name]; }).map(idOf);
-    function fin(ids, ds) {
-      var set = {}; ids.forEach(function (i) { set[i] = 1; });
-      applyDates(ids, ds);
-      writeLocal(next0(set)); nick = r.nick; render();
-    }
-    if (mine.length) call('visited/merge', 'POST', { ids: mine, dates: localDatesById() }).then(function (m) { fin(m.ok ? m.visited : (r.visited || []), m.ok ? m.dates : r.dates); });
-    else fin(r.visited || [], r.dates);
+    var pl = ChiiBr.localPayload();
+    function fin(ids, ds, ps) { ChiiBr.fromServer(ids, ds, ps); nick = r.nick; render(); }
+    if (pl.ids.length) call('visited/merge', 'POST', pl).then(function (m) { fin(m.ok ? m.visited : (r.visited || []), m.ok ? m.dates : r.dates, m.ok ? m.places : r.places); });
+    else fin(r.visited || [], r.dates, r.places);
   }
   function showCode(code, then, title) {
     root.textContent = '';
@@ -143,54 +139,79 @@
       var gh = h('h3', 'me-gh', r[1]); gh.appendChild(h('span', null, g.length + '件')); lc.appendChild(gh);
       var ul = h('ul', 'me-sp');
       g.forEach(function (s) {
-        var li = h('li'), t = h('span', 'nm', s.name);
-        var ad = (Array.isArray(s.pref) ? s.pref.join('・') : (s.pref || s.address || ''));
-        if (ad) t.appendChild(h('span', 'ad', ad));
-        var dw = h('span', 'dtw'); t.appendChild(dw);
-        function paintDate() {
-          dw.textContent = ''; var cur = readDates()[s.name];
-          var eb = h('button', 'dt', '📅 ' + (cur ? cur.replace(/-/g, '/') : '日付を入れる') + (cur ? ' ✎' : '')); eb.type = 'button';
-          eb.setAttribute('aria-label', '行った日を変える');
-          eb.addEventListener('click', function () {
-            dw.textContent = '';
-            var inp = h('input', 'dt-in'); inp.type = 'date'; inp.value = cur || ''; inp.max = '2100-12-31';
-            var ok = h('button', 'dt-ok', '保存'); ok.type = 'button';
-            var no = h('button', null, 'やめる'); no.type = 'button';
-            ok.addEventListener('click', function () {
-              if (!/^\d{4}-\d{2}-\d{2}$/.test(inp.value)) { inp.focus(); return; }
-              var dd = readDates(); dd[s.name] = inp.value; writeDates(dd);
-              if (nick) call('visited', 'PUT', { id: idOf(s), on: true, date: inp.value });
-              paintDate();
+        var ents = ChiiBr.list(s); if (!ents.length) ents = [null];
+        ents.forEach(function (e) {
+          var k = e ? e.k : '_', isB = !!(e && e.k !== '_');
+          var li = h('li'), t = h('span', 'nm', s.name);
+          if (isB) t.appendChild(h('span', 'brn', e.n));
+          var ad = isB ? (e.a ? '📍 ' + e.a : '') : (Array.isArray(s.pref) ? s.pref.join('・') : (s.pref || s.address || ''));
+          if (ad) t.appendChild(h('span', 'ad', ad));
+          var dw = h('span', 'dtw'); t.appendChild(dw);
+          function getD() { if (!e) return readDates()[s.name]; var f = ChiiBr.list(s).filter(function (x) { return x.k === k; })[0]; return f ? f.d : ''; }
+          function putD(d) { if (e) ChiiBr.setDate(s, k, d); else { var dd = readDates(); dd[s.name] = d; writeDates(dd); } if (nick) call('visited', 'PUT', { id: ChiiBr.visitId(s, k), on: true, date: d }); }
+          function paintDate() {
+            dw.textContent = ''; var cur = getD();
+            var eb = h('button', 'dt', '📅 ' + (cur ? cur.replace(/-/g, '/') : '日付を入れる') + (cur ? ' ✎' : '')); eb.type = 'button';
+            eb.setAttribute('aria-label', '行った日を変える');
+            eb.addEventListener('click', function () {
+              dw.textContent = '';
+              var inp = h('input', 'dt-in'); inp.type = 'date'; inp.value = cur || ''; inp.max = '2100-12-31';
+              var ok = h('button', 'dt-ok', '保存'); ok.type = 'button';
+              var no = h('button', null, 'やめる'); no.type = 'button';
+              ok.addEventListener('click', function () {
+                if (!/^\d{4}-\d{2}-\d{2}$/.test(inp.value)) { inp.focus(); return; }
+                putD(inp.value); paintDate();
+              });
+              no.addEventListener('click', paintDate);
+              dw.appendChild(inp); dw.appendChild(ok); dw.appendChild(no); inp.focus();
             });
-            no.addEventListener('click', paintDate);
-            dw.appendChild(inp); dw.appendChild(ok); dw.appendChild(no); inp.focus();
+            dw.appendChild(eb);
+          }
+          paintDate();
+          li.appendChild(t);
+          var b = h('button', null, 'とりけす'); b.type = 'button';
+          b.addEventListener('click', function () {
+            if (e) ChiiBr.remove(s, k);
+            else { var v = readLocal(); delete v[s.name]; writeLocal(v); var dd = readDates(); delete dd[s.name]; writeDates(dd); }
+            if (nick) call('visited', 'PUT', { id: ChiiBr.visitId(s, k), on: false });
+            recordsView();
           });
-          dw.appendChild(eb);
-        }
-        paintDate();
-        li.appendChild(t);
-        var b = h('button', null, 'とりけす'); b.type = 'button';
-        b.addEventListener('click', function () {
-          var v = readLocal(); delete v[s.name]; writeLocal(v);
-          var dd = readDates(); delete dd[s.name]; writeDates(dd);
-          if (nick) call('visited', 'PUT', { id: idOf(s), on: false });
-          recordsView();
+          li.appendChild(b); ul.appendChild(li);
         });
-        li.appendChild(b); ul.appendChild(li);
       });
       lc.appendChild(ul);
     });
     root.appendChild(lc);
 
     var sc = card('シェア画像'); var sh = h('div', 'sh-host'); sc.appendChild(sh); root.appendChild(sc);
-    if (window.ChiiShare) window.ChiiShare.mount(sh, function () { return { spots: spots(), visited: readLocal(), dates: readDates(), nick: nick, setDate: function (s, d) { var dd = readDates(); dd[s.name] = d; writeDates(dd); if (nick) call('visited', 'PUT', { id: idOf(s), on: true, date: d }); } }; });
+    function shareCtx() {
+      var vis = readLocal(), dts = readDates(), items = [], dd = {};
+      spots().forEach(function (s) {
+        if (!vis[s.name]) return;
+        var ents = ChiiBr.list(s);
+        if (!ents.length) { items.push(s); if (dts[s.name]) dd[s.name] = dts[s.name]; return; }
+        ents.forEach(function (e) {
+          var nm = e.k === '_' ? s.name : s.name + ' ' + e.n, it = {};
+          Object.keys(s).forEach(function (q) { it[q] = s[q]; });
+          it.name = nm; it._s = s; it._k = e.k;
+          if (e.k !== '_' && e.a) { it.address = e.a; it._br = true; }
+          items.push(it); if (e.d) dd[nm] = e.d;
+        });
+      });
+      return { spots: spots(), visited: vis, dates: dd, items: items, nick: nick, setDate: function (it, d) {
+        var s = it._s || it, k = it._k || '_';
+        if (it._s) ChiiBr.setDate(s, k, d); else { var x = readDates(); x[s.name] = d; writeDates(x); }
+        if (nick) call('visited', 'PUT', { id: ChiiBr.visitId(s, k), on: true, date: d });
+      } };
+    }
+    if (window.ChiiShare) window.ChiiShare.mount(sh, shareCtx);
     var ac = card(nick ? 'アカウント' : 'ログイン');
     if (!nick) {
       var lb = h('button', 'me-go', 'ログイン・はじめて'); lb.type = 'button'; lb.addEventListener('click', function () { loginView('login'); }); ac.appendChild(lb);
     } else {
       var msg = h('p', 'me-msg'); msg.setAttribute('role', 'alert');
       var out = h('button', 'me-go', 'ログアウト'); out.type = 'button';
-      out.addEventListener('click', function () { call('logout', 'POST', {}).then(function () { writeLocal({}); nick = null; render(); }); });
+      out.addEventListener('click', function () { call('logout', 'POST', {}).then(function () { writeLocal({}); try { localStorage.removeItem('chii-br-v1'); } catch (e) {} nick = null; render(); }); });
       var nc = h('button', 'me-sub', '再設定コードを作り直す'); nc.type = 'button';
       nc.addEventListener('click', function () {
         var p = window.prompt('合言葉を入力してください。新しいコードを作ると、前のコードは使えなくなります。'); if (!p) return;
@@ -200,7 +221,7 @@
       lv.addEventListener('click', function () {
         if (!lv.getAttribute('data-ask')) { lv.setAttribute('data-ask', '1'); lv.textContent = 'もう一度押すと、合言葉の入力画面が開きます'; return; }
         var p = window.prompt('退会します。記録はすべて消えて元に戻せません。合言葉を入力してください。'); if (!p) return;
-        call('leave', 'POST', { pass: p }).then(function (r) { if (!r.ok) { msg.textContent = r.message || 'できませんでした。'; return; } writeLocal({}); nick = null; render(); });
+        call('leave', 'POST', { pass: p }).then(function (r) { if (!r.ok) { msg.textContent = r.message || 'できませんでした。'; return; } writeLocal({}); try { localStorage.removeItem('chii-br-v1'); } catch (e) {} nick = null; render(); });
       });
       ac.appendChild(out); ac.appendChild(nc); ac.appendChild(lv); ac.appendChild(msg);
     }
@@ -212,8 +233,7 @@
   call('me', 'GET').then(function (r) {
     if (r && r.ok && r.nick) {
       nick = r.nick;
-      var set = {}; (r.visited || []).forEach(function (i) { set[i] = 1; });
-      applyDates(r.visited || [], r.dates); writeLocal(next0(set));
+      ChiiBr.fromServer(r.visited || [], r.dates, r.places);
     } else if (r && r.error === 'not_configured') notConf = true;
     render();
   });

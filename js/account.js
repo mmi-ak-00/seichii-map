@@ -27,20 +27,7 @@
   var DS = 'chii-vdate-v1';
   function readDates() { try { return JSON.parse(localStorage.getItem(DS) || '{}') || {}; } catch (e) { return {}; } }
   function localDates() { var d = readDates(), o = {}; allSpots().forEach(function (s) { if (d[s.name]) o[idOf(s)] = d[s.name]; }); return o; }
-  function applyServer(ids, dates) {
-    var set = {}; ids.forEach(function (i) { set[i] = 1; });
-    var next = {}, nd = {}, od = readDates(); dates = dates || {};
-    allSpots().forEach(function (s) {
-      var i = idOf(s);
-      if (set[i]) { next[s.name] = 1; var d = dates[i] || od[s.name]; if (d) nd[s.name] = d; }
-    });
-    var cur = readLocal();
-    var a = Object.keys(next).sort().join('\n'), b = Object.keys(cur).sort().join('\n');
-    var a2 = JSON.stringify(nd), b2 = JSON.stringify(od);
-    writeLocal(next);
-    try { localStorage.setItem(DS, a2); } catch (e) {}
-    return a !== b || a2 !== b2;
-  }
+  function applyServer(ids, dates, places) { return window.ChiiBr ? ChiiBr.fromServer(ids, dates, places) : false; }
 
   /* ---------- 見た目 ---------- */
   var css = document.createElement('style');
@@ -97,11 +84,11 @@
   }
   function afterAuth(r) {
     nick = r.nick;
-    var mine = localIds();
-    var fin = function (ids, ds) { applyServer(ids, ds); location.reload(); };
+    var pl = window.ChiiBr ? ChiiBr.localPayload() : { ids: localIds(), dates: localDates(), places: {} };
+    var fin = function (ids, ds, ps) { applyServer(ids, ds, ps); location.reload(); };
     var go = function () {
-      if (mine.length) call('visited/merge', 'POST', { ids: mine, dates: localDates() }).then(function (m) { fin(m.ok ? m.visited : (r.visited || []), m.ok ? m.dates : r.dates); });
-      else fin(r.visited || [], r.dates);
+      if (pl.ids.length) call('visited/merge', 'POST', pl).then(function (m) { fin(m.ok ? m.visited : (r.visited || []), m.ok ? m.dates : r.dates, m.ok ? m.places : r.places); });
+      else fin(r.visited || [], r.dates, r.places);
     };
     if (r.code) showCode(r.code, go); else go();
   }
@@ -178,7 +165,7 @@
     var msg = box.querySelector('#ac-m');
     box.querySelector('#ac-x').addEventListener('click', function () { dlg.close(); });
     box.querySelector('#ac-out').addEventListener('click', function () {
-      call('logout', 'POST', {}).then(function () { writeLocal({}); nick = null; location.reload(); });
+      call('logout', 'POST', {}).then(function () { writeLocal({}); try { localStorage.removeItem('chii-br-v1'); } catch (e) {} nick = null; location.reload(); });
     });
     box.querySelector('#ac-nc').addEventListener('click', function () {
       var p = window.prompt('合言葉を入力してください。新しいコードを作ると、前のコードは使えなくなります。');
@@ -195,7 +182,7 @@
       if (!p) return;
       call('leave', 'POST', { pass: p }).then(function (r) {
         if (!r.ok) { msg.textContent = r.message || 'できませんでした。'; return; }
-        writeLocal({}); location.reload();
+        writeLocal({}); try { localStorage.removeItem('chii-br-v1'); } catch (e) {} location.reload();
       });
     });
     dlg.showModal();
@@ -205,9 +192,10 @@
 
   // 「行ったにゃ」を押したとき、ログイン中ならサーバーにも保存
   window.ChiiAcct = {
-    push: function (s, on, date) {
+    push: function (s, on, date, k, place) {
       if (!nick) return;
-      call('visited', 'PUT', { id: idOf(s), on: !!on, date: on ? (date || readDates()[s.name]) : undefined }).then(function (r) {
+      var vid = window.ChiiBr ? ChiiBr.visitId(s, k) : idOf(s);
+      call('visited', 'PUT', { id: vid, on: !!on, date: on ? (date || readDates()[s.name]) : undefined, place: (on && place) ? { n: place.n, a: place.a, x: place.x, y: place.y } : undefined }).then(function (r) {
         if (!r.ok && r.error === 'login') { nick = null; paintBtn(); }
       });
     }
@@ -216,7 +204,7 @@
   call('me', 'GET').then(function (r) {
     if (r && r.ok && r.nick) {
       nick = r.nick; paintBtn();
-      if (applyServer(r.visited || [], r.dates)) location.reload();
+      if (applyServer(r.visited || [], r.dates, r.places)) location.reload();
     } else if (r && r.error === 'not_configured') { wrap.hidden = true; }
   });
 })();

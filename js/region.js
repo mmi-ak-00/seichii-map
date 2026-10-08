@@ -135,6 +135,7 @@
   }
   function paintPins() {
     Object.keys(pinEls).forEach(function (k) { pinEls[k].classList.toggle('is-done', !!visited[k]); });
+    brParts.forEach(function (p) { p.g.classList.add('is-done'); });
   }
 
   function card(s) {
@@ -238,15 +239,24 @@
 
     var v = el('button', 'btn btn-visit');
     v.type = 'button';
+    var brp = s.chain ? el('p', 'addr br-done') : null;
     function paint() {
       var on = !!visited[s.name];
+      var bl = (window.ChiiBr && s.chain) ? ChiiBr.list(s) : [];
+      if (brp) { brp.hidden = !bl.length; brp.textContent = bl.length ? '📍 行った店舗：' + bl.map(function (e) { return e.k === '_' ? '店舗未指定' : e.n; }).join('・') : ''; }
       v.classList.toggle('is-done', on);
       box.classList.toggle('is-visited', on);
       v.setAttribute('aria-pressed', on ? 'true' : 'false');
-      v.textContent = on ? '✓ 行ったにゃ♡' : '行ったにゃ？';
+      v.textContent = on ? ('✓ 行ったにゃ♡' + (bl.length > 1 ? '（' + bl.length + '店舗）' : '')) : '行ったにゃ？';
     }
     paint();
+    function afterSheet() {
+      try { var nv = JSON.parse(localStorage.getItem(STORE) || '{}') || {}; Object.keys(visited).forEach(function (k) { delete visited[k]; }); Object.keys(nv).forEach(function (k) { visited[k] = nv[k]; }); } catch (e) {}
+      paint(); count(); paintPins(); rebuildBr();
+    }
+    function openBr() { if (window.ChiiBr) ChiiBr.openSheet(s, afterSheet); }
     v.addEventListener('click', function () {
+      if (window.ChiiBr && ChiiBr.has(s)) { openBr(); return; }
       if (visited[s.name]) delete visited[s.name]; else visited[s.name] = 1;
       try {
         var dd = JSON.parse(localStorage.getItem('chii-vdate-v1') || '{}') || {};
@@ -315,7 +325,12 @@
       row2.appendChild(a);
     });
     if (row2.children.length) act.appendChild(row2);
+    if (s.chain && window.ChiiBr) {
+      var rb = el('div', 'act-r is-set'), sb = el('button', 'btn btn-br', '📍 行った店舗を選ぶ');
+      sb.type = 'button'; sb.addEventListener('click', openBr); rb.appendChild(sb); act.appendChild(rb);
+    }
     act.appendChild(row1);
+    if (brp) li.appendChild(brp);
     li.appendChild(act);
     box.appendChild(li);
     return box;
@@ -335,14 +350,15 @@
   count();
 
   // 地方の地図にピンを立てる（日本地図の描き方と同じ式で位置を決めます）
+  var addPin = null, brParts = [], brReady = false;
   var svg = document.getElementById('mini');
   var pins = document.getElementById('pins');
   if (svg && pins) {
     var vb = svg.getAttribute('viewBox').split(' ').map(Number);
     var vb0 = vb.slice();
     var r = vb[2] / 330 * 8;
-    spots.forEach(function (s) {
-      if (s.region !== key || typeof s.lon !== 'number' || typeof s.lat !== 'number') return;
+    addPin = function (s, isBr) {
+      if ((!isBr && s.region !== key) || typeof s.lon !== 'number' || typeof s.lat !== 'number') return;
       var x, y;
       if (s.lat < 28) {
         // 沖縄は左下の枠（別の縮尺）に描いているので、枠の中の位置に直す
@@ -385,14 +401,15 @@
       hit.setAttribute('class', 'pin-hit');
       hit.setAttribute('r', (r * 1.8).toFixed(2));
       g.appendChild(hit);
-      g.addEventListener('click', function () { select(s.name, true); });
+      g.addEventListener('click', function () { select(s.base || s.name, true); });
       g.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(s.name, true); }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(s.base || s.name, true); }
       });
       pinEls[s.name] = g;
-      pinParts.push({ g: g, ring: ring, c: c, u: u, hit: hit, x: x, y: y, name: s.name });
+      pinParts.push({ g: g, ring: ring, c: c, u: u, hit: hit, x: x, y: y, name: s.name, base: s.base });
       pins.appendChild(g);
-    });
+    };
+    spots.forEach(function (s) { addPin(s); });
     paintPins();
   }
 
@@ -467,6 +484,27 @@
   }
   var prefOf = {};
   spots.forEach(function (s) { prefOf[s.name] = prefOfSpot(s); });
+  // 行った店舗（住所の位置がわかるもの）を、地図にピンで立てる
+  function rebuildBr() {
+    if (!svg || !pins || !addPin || !window.ChiiBr) return;
+    brParts.forEach(function (p) { if (p.g.parentNode) p.g.parentNode.removeChild(p.g); var i = pinParts.indexOf(p); if (i >= 0) pinParts.splice(i, 1); delete pinEls[p.name]; });
+    brParts = [];
+    var names = hits.map(function (h) { return h.getAttribute('data-pref'); });
+    spots.forEach(function (s) {
+      if (!s.chain) return;
+      ChiiBr.list(s).forEach(function (e) {
+        if (typeof e.x !== 'number' || typeof e.y !== 'number') return;
+        var ps = { name: '\u0001' + s.name + '\u0001' + e.k, base: s.name, lon: e.x, lat: e.y, region: key, address: e.a };
+        var pb = prefBase(ps).filter(function (p) { return names.indexOf(p) >= 0; });
+        if (!pb.length) return;
+        var n0 = pinParts.length; addPin(ps, true);
+        if (pinParts.length > n0) { var p = pinParts[pinParts.length - 1]; p.pref = pb[0]; brParts.push(p); }
+      });
+    });
+    paintPins();
+    if (brReady) { layoutPins(curView()[2]); apply(curPref, true); }
+  }
+  rebuildBr();
 
   var bar = null, chips = {};
   if (svg && hits.length) {
@@ -515,6 +553,7 @@
       if (pinEls[s.name]) pinEls[s.name].style.display = ok ? '' : 'none';
       if (ok) { shown++; if (visited[s.name]) done++; }
     });
+    brParts.forEach(function (p) { p.g.style.display = ((!n || p.pref === n) && !(clusterSet && clusterSet.indexOf(p.base) < 0)) ? '' : 'none'; });
     if (selected && cards[selected] && cards[selected].hidden) select(selected, true);
     nAll.textContent = shown; nAll2.textContent = shown; nDone.textContent = done;
     empty.hidden = shown > 0;
@@ -613,7 +652,7 @@
     var v = curView(), minW = vb0[2] / 16;
     var same = members.every(function (p) { return Math.hypot(p.x - members[0].x, p.y - members[0].y) < 0.05; });
     if (same || v[2] / 2 < minW) {
-      clusterSet = members.map(function (p) { return p.name; });
+      clusterSet = members.map(function (p) { return p.base || p.name; });
       apply(curPref, true);
       return;
     }
@@ -727,4 +766,5 @@
       count = function () { if (curOther) { var s2 = 0, d2 = 0; spots.forEach(function (x) { if (PL(x).indexOf(curOther) >= 0) { s2++; if (visited[x.name]) d2++; } }); nAll.textContent = s2; nAll2.textContent = s2; nDone.textContent = d2; } else _c2(); };
     }
   }
+  brReady = true;
 })();

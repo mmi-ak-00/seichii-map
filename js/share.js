@@ -33,6 +33,7 @@
   }
   function prefsOf(s) {
     var out = [];
+    if (s._br && s.address) { var p0 = prefName(s.address); if (p0) return [p0]; }
     var pl = Array.isArray(s.pref) ? s.pref : (s.pref ? [s.pref] : []);
     if (pl.length) out = pl.slice(); else { var p = prefName(s.address); if (p) out.push(p); }
     if (Array.isArray(s.more)) s.more.forEach(function (p) { if (out.indexOf(p) < 0) out.push(p); });
@@ -209,7 +210,7 @@
     c.textAlign = 'left'; c.textBaseline = 'alphabetic';
     var wcol = d.dow === 6 ? '#4fa3d9' : d.dow === 0 ? '#e5484d' : '#d94b86';
     c.font = FONT(800, 112); var w1 = c.measureText(d.md).width; c.font = FONT(800, 66); var w2 = c.measureText(d.w).width;
-    var gap = 18, x0 = (W - w1 - w2 - gap) / 2;
+    var gap = 18; var x0 = (W - w1 - w2 - gap) / 2;
     c.fillStyle = '#a37cae'; c.font = FONT(700, 40); c.fillText(d.y, x0 - 24, 262);
     c.fillStyle = '#d94b86'; c.font = FONT(800, 112); c.fillText(d.md, x0, 360);
     c.fillStyle = wcol; c.font = FONT(800, 66); c.fillText(d.w, x0 + w1 + gap, 360);
@@ -264,7 +265,7 @@
       if (kind === 'region') { selReg = sel(REGN, selReg && selReg.value); opt.appendChild(selReg); }
       else if (kind === 'pref') { selPref = sel(ORDERP.map(function (p) { return [p, p]; }), selPref ? selPref.value : '東京'); opt.appendChild(selPref); }
       else if (kind === 'today') {
-        var vis = cx.spots.filter(function (s) { return cx.visited[s.name]; });
+        var vis = cx.items ? cx.items.slice() : cx.spots.filter(function (s) { return cx.visited[s.name]; });
         if (!vis.length) { opt.appendChild(h('p', 'me-hint', 'まだ「行ったにゃ」の記録がありません。')); }
         else {
           // 日付が新しい順

@@ -12,6 +12,7 @@
     "css/style.css",
     "index.html",
     "js/account.js",
+    "js/branch.js",
     "js/counts.js",
     "js/main.js",
     "js/me.js",
@@ -287,6 +288,59 @@
   }
   $('b-addsrc').addEventListener('click', function () { addSrcRow().querySelector('.src-name').focus(); });
 
+  // チェーン店の店舗リスト
+  function brId() { return 'b' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5); }
+  function addBrRow(o) {
+    o = o || {};
+    var row = el('div', 'srcrow brrow');
+    row.setAttribute('data-id', o.id || brId());
+    if (isFinite(o.lon) && isFinite(o.lat)) { row.setAttribute('data-lon', o.lon); row.setAttribute('data-lat', o.lat); }
+    function inp(cls, ph, val, label) {
+      var i = document.createElement('input');
+      i.type = 'text'; i.className = cls; i.placeholder = ph; i.value = val || ''; i.autocomplete = 'off'; i.setAttribute('aria-label', label);
+      return i;
+    }
+    row.appendChild(inp('br-name', '店舗名（例：原宿店）', o.name, '店舗名'));
+    row.appendChild(inp('br-addr', '住所（例：東京都渋谷区神宮前1-14-30）', o.address, '住所'));
+    var st = el('p', 'hint br-pos', isFinite(o.lon) ? '位置：決まっています' : '位置：まだありません');
+    var bar = el('div', 'src-bar');
+    var fb = el('button', 'btn', '位置をさがす'); fb.type = 'button';
+    fb.addEventListener('click', function () {
+      var a = row.querySelector('.br-addr').value.trim();
+      if (!a) { st.textContent = '先に住所を入れてね。'; return; }
+      fb.disabled = true; st.textContent = 'さがしています…';
+      fetch('https://msearch.gsi.go.jp/address-search/AddressSearch?q=' + encodeURIComponent(a))
+        .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
+        .then(function (j) {
+          if (!j || !j.length || !j[0].geometry) { st.textContent = '見つかりませんでした。住所を少し変えてみてね。'; return; }
+          var c = j[0].geometry.coordinates; row.setAttribute('data-lon', c[0]); row.setAttribute('data-lat', c[1]);
+          st.textContent = '位置：決まりました（' + ((j[0].properties && j[0].properties.title) || a) + '）';
+        })
+        .catch(function () { st.textContent = '位置をさがせませんでした。'; })
+        .then(function () { fb.disabled = false; });
+    });
+    row.querySelector('.br-addr').addEventListener('input', function () { row.removeAttribute('data-lon'); row.removeAttribute('data-lat'); st.textContent = '位置：まだありません（「位置をさがす」を押してね）'; });
+    var x = el('button', 'btn src-x', '✕ 消す'); x.type = 'button';
+    x.addEventListener('click', function () { row.remove(); });
+    bar.appendChild(fb); bar.appendChild(x);
+    row.appendChild(st); row.appendChild(bar);
+    $('brs').appendChild(row);
+    return row;
+  }
+  function readBrs() {
+    var out = [];
+    Array.prototype.forEach.call($('brs').querySelectorAll('.brrow'), function (r) {
+      var n = r.querySelector('.br-name').value.trim(); if (!n) return;
+      var o = { id: r.getAttribute('data-id'), name: n }, a = r.querySelector('.br-addr').value.trim();
+      if (a) o.address = a;
+      var lo = parseFloat(r.getAttribute('data-lon')), la = parseFloat(r.getAttribute('data-lat'));
+      if (isFinite(lo) && isFinite(la)) { o.lon = +lo.toFixed(5); o.lat = +la.toFixed(5); }
+      out.push(o);
+    });
+    return out;
+  }
+  $('b-addbr').addEventListener('click', function () { addBrRow().querySelector('.br-name').focus(); });
+
   var PREFS = {"other": ["北海道", "青森", "岩手", "宮城", "秋田", "山形", "福島", "茨城", "栃木", "群馬", "埼玉", "千葉", "東京", "神奈川", "新潟", "富山", "石川", "福井", "山梨", "長野", "岐阜", "静岡", "愛知", "三重", "滋賀", "京都", "大阪", "兵庫", "奈良", "和歌山", "鳥取", "島根", "岡山", "広島", "山口", "徳島", "香川", "愛媛", "高知", "福岡", "佐賀", "長崎", "熊本", "大分", "宮崎", "鹿児島", "沖縄"], "tohoku": ["青森", "秋田", "岩手", "山形", "宮城", "福島"], "kanto": ["群馬", "栃木", "茨城", "埼玉", "東京", "神奈川", "千葉"], "chubu": ["長野", "新潟", "岐阜", "静岡", "愛知", "山梨", "富山", "石川", "福井"], "kinki": ["兵庫", "京都", "滋賀", "三重", "奈良", "和歌山", "大阪"], "chugoku-shikoku": ["鳥取", "島根", "岡山", "広島", "山口", "徳島", "香川", "愛媛", "高知"], "kyushu-okinawa": ["福岡", "佐賀", "長崎", "熊本", "大分", "宮崎", "鹿児島", "沖縄"]};
   var isOther = function () { return $('f-region').value === 'other'; };
   function prefsOf(s) { return Array.isArray(s.pref) ? s.pref.slice() : (s.pref ? [s.pref] : []); }
@@ -318,6 +372,7 @@
     fillPrefs();
     fillMore();
     $('wrap-more').hidden = !($('f-chain').checked && !isOther());
+    $('wrap-br').hidden = !$('f-chain').checked;
     $('wrap-pref').hidden = !((np || isOther()) && (PREFS[$('f-region').value] || []).length);
   }
   $('f-chain').addEventListener('change', syncChain);
@@ -469,7 +524,7 @@
     editing = -1; pos = null; cur = []; curThumb = '';
     $('works').textContent = '';
     $('f-chain').checked = false; $('f-noplace').checked = false; fillPrefs([]); fillMore([]); syncChain();
-    $('srcs').textContent = '';
+    $('srcs').textContent = ''; $('brs').textContent = '';
     ['f-name', 'f-addr', 'f-note', 'f-lon', 'f-lat', 'f-tabelog', 'f-hp', 'f-insta'].forEach(function (i) { $(i).value = ''; });
     $('pos-msg').textContent = 'まだ決まっていません。';
     $('f-err').textContent = '';
@@ -492,6 +547,7 @@
     $('f-noplace').checked = !!s.noPlace || (!!s.chain && !s.address && !isFinite(s.lon));   // 前の形（チェーン店＝場所なし）も引き継ぐ
     fillPrefs(prefsOf(s)); fillMore(Array.isArray(s.more) ? s.more : []); syncChain();
     srcsOf(s).forEach(addSrcRow);
+    (Array.isArray(s.branches) ? s.branches : []).forEach(addBrRow);
     if (isFinite(s.lon) && isFinite(s.lat)) setPos(+s.lon, +s.lat);
     cur = (s.photos || []).map(function (n) {
       return store[n] ? { name: n, url: URL.createObjectURL(store[n]), isNew: true } : { name: n, url: '../photos/' + encodeURI(n), isNew: false };
@@ -550,7 +606,7 @@
     if (igv) s.insta = igv;
     if (!srcs.length) delete s.sources;
     if (!s.works.length) delete s.works;
-    if (isChain) s.chain = true;
+    if (isChain) { s.chain = true; var brs = readBrs(); if (brs.length) s.branches = brs; }
     if (noPlace) s.noPlace = true;
     if (noPlace || loose) { var pp = pickedPrefs(); if (pp.length) s.pref = pp.length === 1 ? pp[0] : pp; }
     if (isChain && !isOther()) { var mm = pickedMore(); if (mm.length) s.more = mm; }

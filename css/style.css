@@ -263,6 +263,8 @@ html,body,a,button,select,label,summary,.pref-hit,.chip,.spot{touch-action:manip
 .spot.is-visited{border-color:#9adcc9;background:#f6fdfa}
 .spot.is-pinned{border-color:#f5c451}
 .btn-visit{border-color:var(--pink);color:var(--pink-d);box-shadow:0 3px 0 #ffc2d8}
+.brn{display:inline-block;margin-left:6px;font-size:12px;background:#efe6ff;color:#6b49b5;border-radius:99px;padding:1px 9px;font-weight:700}
+.btn-br{border-color:#d9c5f5;color:#6b49b5;background:#f6efff;box-shadow:0 3px 0 #e4d6f7}.br-done{color:#6b49b5;font-weight:700}
 .btn-visit.is-done{background:var(--pink);color:#fff;box-shadow:0 3px 0 #f06fa0}
 .phs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
 .phs button{flex:none;padding:0;border:0;background:none;cursor:zoom-in;border-radius:16px}
