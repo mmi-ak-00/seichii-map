@@ -1038,6 +1038,8 @@ window.SPOTS = [
       "pmux0pg8k3.jpg",
       "pmux0pg914.jpg"
     ],
+    "hp": "https://junglia.jp/",
+    "insta": "https://www.instagram.com/junglia_okinawa_official?stkn=MXhla2xwdzBnZWsxNQ==",
     "lon": 127.96958,
     "lat": 26.64299,
     "id": "pmux0ru7upk8"
