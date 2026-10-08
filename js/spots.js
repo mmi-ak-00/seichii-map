@@ -835,6 +835,8 @@ window.SPOTS = [
       "pmuwys3dk14.jpg",
       "pmuwys3dv15.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/tokyo/A1311/A131102/13277751/",
+    "hp": "https://www.instagram.com/asakusa_tacotaco_koromo_bro?stkn=NWp3cGw0MngxdGdr",
     "lon": 139.79707,
     "lat": 35.71227,
     "id": "pmuwys4x5eke"
