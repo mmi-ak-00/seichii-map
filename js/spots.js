@@ -625,6 +625,9 @@ window.SPOTS = [
       "pmuwujx3r1.jpg",
       "pmuwujx492.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/tokyo/A1304/A130401/13292323/",
+    "hp": "https://caldo-shinjuku.jp/",
+    "insta": "https://www.instagram.com/caldo.cafe.shinjuku?stkn=MWs5bGpkdDR2MzRuYg==",
     "lon": 139.69777,
     "lat": 35.69582,
     "id": "pmuwuk2jg88s"
