@@ -790,6 +790,9 @@ window.SPOTS = [
     "photos": [
       "pmuwydxbs10.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/tokyo/A1311/A131102/13253090/",
+    "hp": "https://unana.jp/",
+    "insta": "https://www.instagram.com/asakusaunana?stkn=dTkzcW4wbmpxZGFn",
     "lon": 139.79437,
     "lat": 35.7152,
     "id": "pmuwye1dfjrz"
