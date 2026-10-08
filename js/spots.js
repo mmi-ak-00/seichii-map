@@ -1510,6 +1510,8 @@ window.SPOTS = [
       "pmuylyi8h0.jpg",
       "pmuylyi8w1.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/tokyo/A1301/A130101/13208559/",
+    "hp": "https://www.tau-hiroshima.jp/store/2f/koikoi",
     "lon": 139.76732,
     "lat": 35.67424,
     "id": "pmuym0lm36bv"
