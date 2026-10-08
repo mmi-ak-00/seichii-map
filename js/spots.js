@@ -762,6 +762,7 @@ window.SPOTS = [
       "pmuwy498s7.jpg",
       "pmuwy49998.jpg"
     ],
+    "hp": "https://www.tokyodisneyresort.jp/tdl/",
     "lon": 139.87433,
     "lat": 35.63126,
     "id": "pmuwy4ay8epu"
