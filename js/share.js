@@ -205,7 +205,7 @@
   /* ---------- 今日の記録の画像 ---------- */
   function drawToday(cx, ctx0, dateStr, s, photo) {
     var c = cx, d = fmtDate(dateStr);
-    background(c); titlePill(c, '今日の聖ちぃ巡礼', 84);
+    background(c); titlePill(c, (ctx0.nick ? ctx0.nick + 'の' : '') + '聖ちぃ巡礼記録', 84);
     c.textAlign = 'center'; c.textBaseline = 'alphabetic';
     c.fillStyle = '#d94b86'; c.font = FONT(800, 92);
     var dtxt = d.y + '.' + d.md; var fs0 = fit(c, dtxt, W - 160, 92, 800); c.font = FONT(800, fs0); c.fillText(dtxt, W / 2, 330);
@@ -237,8 +237,8 @@
   function h(t, cls, x) { var e = document.createElement(t); if (cls) e.className = cls; if (x != null) e.textContent = x; return e; }
   function mount(host, getCtx) {
     host.textContent = '';
-    var kinds = [['nation', '全国'], ['region', '地方'], ['pref', '都道府県'], ['today', '今日の記録']];
-    var kind = 'nation';
+    var kinds = [['today', '聖ちぃ巡礼記録'], ['nation', '全国'], ['region', '地方'], ['pref', '都道府県']];
+    var kind = 'today';
     var tabs = h('div', 'sh-tabs'); tabs.setAttribute('role', 'tablist');
     var btns = {};
     kinds.forEach(function (k) {

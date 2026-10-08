@@ -334,7 +334,7 @@ html,body,a,button,select,label,summary,.pref-hit,.chip,.spot{touch-action:manip
 .me-empty{white-space:pre-line;margin:6px 0 0;padding:18px 10px;text-align:center;font-size:13.5px;line-height:1.7;color:#8a7683}
 .me-who{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 0 6px;font-size:18px;font-weight:800}
 .me-loc{margin:0 0 4px;padding:8px 12px;border-radius:14px;background:#fff0f6;font-size:12.5px;line-height:1.6;color:#8a5b94;text-align:center}
-.sh-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:0 0 12px}.sh-tabs button{appearance:none;font:inherit;font-weight:700;font-size:13px;border:2.5px solid var(--line);background:#fff;color:var(--pink-d);border-radius:999px;padding:6px 2px;min-height:42px;cursor:pointer}
+.sh-tabs{display:grid;grid-template-columns:7.4fr 3fr 3fr 5.2fr;gap:6px;margin:0 0 12px}.sh-tabs button{appearance:none;font:inherit;font-weight:700;font-size:13px;border:2.5px solid var(--line);background:#fff;color:var(--pink-d);border-radius:999px;padding:6px 2px;min-height:42px;cursor:pointer}
 .sh-tabs button[aria-selected="true"]{background:var(--pink);border-color:var(--pink);color:#fff}
 .sh-opt{margin:0 0 4px}
 .sh-sel,.sh-date{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px 12px;border:2.5px solid var(--line);border-radius:14px;min-height:46px;background:#fff;color:var(--plum)}
