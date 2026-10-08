@@ -916,7 +916,14 @@ window.SPOTS = [
       "pmux2me7s0.jpg",
       "pmux2me861.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/tokyo/A1304/A130401/13156065/",
+    "hp": "https://kichimusubi.co.jp/shop/hand-bakes-shinjuku/",
+    "insta": "https://www.instagram.com/handbakes.shinjuku?stkn=cnd3N2EzMDZ2MGM3",
     "chain": true,
+    "more": [
+      "埼玉",
+      "東京"
+    ],
     "lon": 139.70094,
     "lat": 35.6918,
     "id": "pmuwzpzaqamm"
