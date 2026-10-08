@@ -258,7 +258,7 @@
     });
     row1.appendChild(v);
     h3.appendChild(pb);
-    [['tabelog', '食べログ'], ['hp', 'HP'], ['insta', 'Instagram']].forEach(function (k) {
+    [['tabelog', '食べログ'], ['insta', 'Instagram'], ['hp', 'HP']].forEach(function (k) {
       var u = s[k[0]];
       if (!u || !/^https?:\/\//i.test(u)) return;
       var a = el('a', 'btn btn-lk', k[1]);
