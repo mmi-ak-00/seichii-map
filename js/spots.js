@@ -1066,6 +1066,8 @@ window.SPOTS = [
       "pmux1lb3d15.jpg"
     ],
     "thumb": "pmux1lb3d15.jpg",
+    "hp": "https://www.umikajiterrace.com/",
+    "insta": "https://www.instagram.com/umikajiterrace?stkn=ODJjdHBwcHJ4Mjdz",
     "lon": 127.64978,
     "lat": 26.17591,
     "id": "pmux0wzkze3i"
