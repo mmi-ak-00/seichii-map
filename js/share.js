@@ -210,10 +210,10 @@
     var wcol = d.dow === 6 ? '#4fa3d9' : d.dow === 0 ? '#e5484d' : '#d94b86';
     c.font = FONT(800, 112); var w1 = c.measureText(d.md).width; c.font = FONT(800, 66); var w2 = c.measureText(d.w).width;
     var gap = 18, x0 = (W - w1 - w2 - gap) / 2;
-    c.fillStyle = '#a37cae'; c.font = FONT(700, 40); c.fillText(d.y, x0 + 4, 262);
+    c.fillStyle = '#a37cae'; c.font = FONT(700, 40); c.fillText(d.y, x0 - 24, 262);
     c.fillStyle = '#d94b86'; c.font = FONT(800, 112); c.fillText(d.md, x0, 360);
     c.fillStyle = wcol; c.font = FONT(800, 66); c.fillText(d.w, x0 + w1 + gap, 360);
-    c.textAlign = 'center'; c.fillStyle = '#5a4560'; c.font = FONT(800, 32); c.fillText('に行ったにゃ', W / 2, 404);
+    c.textAlign = 'left'; c.fillStyle = '#5a4560'; c.font = FONT(800, 36); c.fillText('に行ったにゃ', x0 + w1 + gap, 406);
     // 写真
     var PX = 90, PY = 430, PW = W - 180, PH = 590;
     c.save(); rr(c, PX, PY, PW, PH, 44);
