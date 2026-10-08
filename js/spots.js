@@ -1342,6 +1342,7 @@ window.SPOTS = [
       "pmux5tq3j34.jpg",
       "pmux5tq3x35.jpg"
     ],
+    "hp": "https://www.tokyo-park.or.jp/park/yoyogi/index.html",
     "lon": 139.70166,
     "lat": 35.66917,
     "id": "pmux5twho4p0"
@@ -1418,6 +1419,8 @@ window.SPOTS = [
     "photos": [
       "pmuxtapvq1.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/tokyo/A1314/A131403/13313600/",
+    "hp": "https://www.harbs.co.jp/",
     "chain": true,
     "more": [
       "東京",
@@ -1457,6 +1460,9 @@ window.SPOTS = [
       "pmuy9ap1l1.jpg",
       "pmuy9ap292.jpg"
     ],
+    "tabelog": "https://s.tabelog.com/tokyo/A1304/A130401/13299609/",
+    "hp": "https://hotel.wpu.co/ja/shinjuku/cafe/",
+    "insta": "https://www.instagram.com/wpushinjuku?stkn=MWlndnA3aHQ3bzVsZA==",
     "lon": 139.69817,
     "lat": 35.69376,
     "id": "pmuy9artj4w2"
