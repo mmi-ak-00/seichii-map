@@ -373,8 +373,15 @@
     fillMore();
     $('wrap-more').hidden = !($('f-chain').checked && !isOther());
     $('wrap-br').hidden = !$('f-chain').checked;
+    $('wrap-chn').hidden = !$('f-chain').checked;
     $('wrap-pref').hidden = !((np || isOther()) && (PREFS[$('f-region').value] || []).length);
   }
+  function composeName() {
+    var c = $('f-chainname').value.trim(), b = $('f-branch').value.trim();
+    if (c) $('f-name').value = b ? c + ' ' + b : c;
+  }
+  $('f-chainname').addEventListener('input', composeName);
+  $('f-branch').addEventListener('input', composeName);
   $('f-chain').addEventListener('change', syncChain);
   $('f-noplace').addEventListener('change', syncChain);
   $('f-region').addEventListener('change', syncChain);
@@ -523,7 +530,7 @@
   function resetForm() {
     editing = -1; pos = null; cur = []; curThumb = '';
     $('works').textContent = '';
-    $('f-chain').checked = false; $('f-noplace').checked = false; fillPrefs([]); fillMore([]); syncChain();
+    $('f-chain').checked = false; $('f-noplace').checked = false; $('f-chainname').value = ''; $('f-branch').value = ''; fillPrefs([]); fillMore([]); syncChain();
     $('srcs').textContent = ''; $('brs').textContent = '';
     ['f-name', 'f-addr', 'f-note', 'f-lon', 'f-lat', 'f-tabelog', 'f-hp', 'f-insta'].forEach(function (i) { $(i).value = ''; });
     $('pos-msg').textContent = 'まだ決まっていません。';
@@ -546,6 +553,11 @@
     $('f-chain').checked = !!s.chain;
     $('f-noplace').checked = !!s.noPlace || (!!s.chain && !s.address && !isFinite(s.lon));   // 前の形（チェーン店＝場所なし）も引き継ぐ
     fillPrefs(prefsOf(s)); fillMore(Array.isArray(s.more) ? s.more : []); syncChain();
+    if (s.chain) {
+      var cn = s.chainName || '', bn = s.branch || '';
+      if (!cn) { var sm = /^(\S+)[ \u3000]+(.+)$/.exec(s.name || ''); if (sm) { cn = sm[1]; bn = sm[2]; } }   // 前の形（店名にチェーン名も入っている）は、最初の空白で分けて入れておく
+      $('f-chainname').value = cn; $('f-branch').value = bn;
+    }
     srcsOf(s).forEach(addSrcRow);
     (Array.isArray(s.branches) ? s.branches : []).forEach(addBrRow);
     if (isFinite(s.lon) && isFinite(s.lat)) setPos(+s.lon, +s.lat);
@@ -606,7 +618,7 @@
     if (igv) s.insta = igv;
     if (!srcs.length) delete s.sources;
     if (!s.works.length) delete s.works;
-    if (isChain) { s.chain = true; var brs = readBrs(); if (brs.length) s.branches = brs; }
+    if (isChain) { s.chain = true; var brs = readBrs(); if (brs.length) s.branches = brs; var cnv = $('f-chainname').value.trim(), bnv = $('f-branch').value.trim(); if (cnv) { s.chainName = cnv; if (bnv) s.branch = bnv; s.name = bnv ? cnv + ' ' + bnv : cnv; } }
     if (noPlace) s.noPlace = true;
     if (noPlace || loose) { var pp = pickedPrefs(); if (pp.length) s.pref = pp.length === 1 ? pp[0] : pp; }
     if (isChain && !isOther()) { var mm = pickedMore(); if (mm.length) s.more = mm; }

@@ -141,10 +141,10 @@
       g.forEach(function (s) {
         var ents = ChiiBr.list(s); if (!ents.length) ents = [null];
         ents.forEach(function (e) {
-          var k = e ? e.k : '_', isB = !!(e && e.k !== '_');
-          var li = h('li'), t = h('span', 'nm', s.name);
-          if (isB) t.appendChild(h('span', 'brn', e.n));
-          var ad = isB ? (e.a ? '📍 ' + e.a : '') : (Array.isArray(s.pref) ? s.pref.join('・') : (s.pref || s.address || ''));
+          var k = e ? e.k : '_', isB = !!(e && (e.k !== '_' || s.branch));
+          var li = h('li'), t = h('span', 'nm', (isB && s.chainName) ? s.chainName : s.name);
+          if (isB) t.appendChild(h('span', 'brn', e.k === '_' ? s.branch : e.n));
+          var ad = isB ? ((e.k === '_' ? s.address : e.a) ? '📍 ' + (e.k === '_' ? s.address : e.a) : '') : (Array.isArray(s.pref) ? s.pref.join('・') : (s.pref || s.address || ''));
           if (ad) t.appendChild(h('span', 'ad', ad));
           var dw = h('span', 'dtw'); t.appendChild(dw);
           function getD() { if (!e) return readDates()[s.name]; var f = ChiiBr.list(s).filter(function (x) { return x.k === k; })[0]; return f ? f.d : ''; }
@@ -191,7 +191,7 @@
         var ents = ChiiBr.list(s);
         if (!ents.length) { items.push(s); if (dts[s.name]) dd[s.name] = dts[s.name]; return; }
         ents.forEach(function (e) {
-          var nm = e.k === '_' ? s.name : s.name + ' ' + e.n, it = {};
+          var nm = e.k === '_' ? s.name : (s.chainName || s.name) + ' ' + e.n, it = {};
           Object.keys(s).forEach(function (q) { it[q] = s[q]; });
           it.name = nm; it._s = s; it._k = e.k;
           if (e.k !== '_' && e.a) { it.address = e.a; it._br = true; }

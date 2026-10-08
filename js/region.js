@@ -243,7 +243,7 @@
     function paint() {
       var on = !!visited[s.name];
       var bl = (window.ChiiBr && s.chain) ? ChiiBr.list(s) : [];
-      if (brp) { brp.hidden = !bl.length; brp.textContent = bl.length ? '📍 行った店舗：' + bl.map(function (e) { return e.k === '_' ? '店舗未指定' : e.n; }).join('・') : ''; }
+      if (brp) { brp.hidden = !bl.length; brp.textContent = bl.length ? '📍 行った店舗：' + bl.map(function (e) { return e.k === '_' ? (s.branch || '店舗未指定') : e.n; }).join('・') : ''; }
       v.classList.toggle('is-done', on);
       box.classList.toggle('is-visited', on);
       v.setAttribute('aria-pressed', on ? 'true' : 'false');
@@ -493,7 +493,7 @@
     spots.forEach(function (s) {
       if (!s.chain) return;
       ChiiBr.list(s).forEach(function (e) {
-        if (typeof e.x !== 'number' || typeof e.y !== 'number') return;
+        if (e.k === '_' || typeof e.x !== 'number' || typeof e.y !== 'number') return;
         var ps = { name: '\u0001' + s.name + '\u0001' + e.k, base: s.name, lon: e.x, lat: e.y, region: key, address: e.a };
         var pb = prefBase(ps).filter(function (p) { return names.indexOf(p) >= 0; });
         if (!pb.length) return;

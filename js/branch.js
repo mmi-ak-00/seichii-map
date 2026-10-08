@@ -38,6 +38,7 @@
     sync(s, st); return e;
   }
   function remove(s, k) { var st = rd(BS); if (st[s.name]) delete st[s.name][k]; sync(s, st); }
+  function chiiRow(s) { return s.branch ? { k: '_', n: s.branch, a: s.address || '', x: s.lon, y: s.lat, chii: true } : null; }
   function setDate(s, k, d) { var st = rd(BS); if (st[s.name] && st[s.name][k]) { st[s.name][k].d = d; sync(s, st); } }
   function custKey(n, a) { return 'c' + hash(a + '|' + n); }
 
@@ -112,7 +113,8 @@
       + '.br-add input{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px 12px;border:2.5px solid var(--line,#f6cfe0);border-radius:12px;color:inherit;background:#fff}'
       + '.br-find{margin-top:8px;padding:10px 16px;border-radius:999px;border:2.5px solid var(--pink,#ff8fb8);background:#fff;color:var(--pink-d,#e0558a);font-weight:800;font-size:14px}'
       + '.br-msg{min-height:18px;margin:8px 0 0;font-size:13px;color:#d33a64;line-height:1.5}.br-msg.ok{color:#2f8f5b}'
-      + '.br-hit{background:#fff;border-style:solid}';
+      + '.br-hit{background:#fff;border-style:solid}'
+      + '.br-chii{display:block;font-style:normal;font-size:11px;font-weight:700;color:#6b49b5;margin-bottom:2px}';
     document.head.appendChild(st);
   }
   function h(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
@@ -131,18 +133,20 @@
       dlg.textContent = '';
       var box = h('div', 'br-in'); dlg.appendChild(box);
       box.appendChild(h('h2', null, 'どの店舗に行きましたか？'));
-      box.appendChild(h('p', 'br-sub', s.name + '　行った店舗にチェックを入れてください'));
+      box.appendChild(h('p', 'br-sub', (s.chainName || s.name) + '　行った店舗にチェックを入れてください'));
       var cur = {}; listOf(s).forEach(function (e) { cur[e.k] = e; });
-      var rows = [];
+      if (!Object.keys(cur).length && rd(VS)[s.name]) cur['_'] = { k: '_', d: rd(DS)[s.name] || '' };   // 前の形で記録していた分
+      var rows = [], ch = chiiRow(s);
+      if (ch) rows.push(ch);
       regOf(s).forEach(function (b) { rows.push({ k: b.id, n: b.name, a: b.address || '', x: b.lon, y: b.lat }); });
       listOf(s).forEach(function (e) { if (e.c) rows.push({ k: e.k, n: e.n, a: e.a, x: e.x, y: e.y, c: 1 }); });
-      if (cur['_']) rows.push({ k: '_', n: '店舗を決めずに記録した分', a: '' });
+      if (!ch && cur['_']) rows.push({ k: '_', n: '店舗を決めずに記録した分', a: '' });
       if (!rows.length) box.appendChild(h('p', 'br-sub', 'まだ登録されている店舗がありません。下の「リストにない店舗」から足せます。'));
       rows.forEach(function (r) {
         var on = !!cur[r.k];
         var b = h('button', 'br-row'); b.type = 'button'; b.setAttribute('aria-pressed', on ? 'true' : 'false');
         b.appendChild(h('span', 'br-ck', on ? '✓' : ''));
-        var tx = h('span', 'br-tx', r.n); if (r.a) tx.appendChild(h('small', null, r.a)); b.appendChild(tx);
+        var tx = h('span', 'br-tx', r.n); if (r.chii) tx.appendChild(h('em', 'br-chii', 'ちぃちゃんが行った店舗')); if (r.a) tx.appendChild(h('small', null, r.a)); b.appendChild(tx);
         if (on && cur[r.k].d) b.appendChild(h('span', 'br-d', fmtD(cur[r.k].d)));
         b.addEventListener('click', function () {
           if (on) { remove(s, r.k); push(false, r.k, null, r); }
@@ -211,6 +215,6 @@
 
   window.ChiiBr = {
     idOf: idOf, visitId: visitId, list: listOf, has: has, add: add, remove: remove, setDate: setDate,
-    registered: regOf, localPayload: localPayload, fromServer: fromServer, openSheet: openSheet, today: today
+    registered: regOf, chiiRow: chiiRow, localPayload: localPayload, fromServer: fromServer, openSheet: openSheet, today: today
   };
 })();
