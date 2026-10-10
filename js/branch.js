@@ -103,7 +103,7 @@
       + '.br-row[aria-pressed="true"] .br-ck{background:var(--pink,#ff8fb8)}'
       + '.br-tx{flex:1;min-width:0;font-weight:800;font-size:15px}.br-tx small{display:block;font-weight:500;font-size:12px;color:#8a7683;margin-top:2px;word-break:break-all}'
       + '.br-d{flex:none;font-size:12px;color:#a37cae;font-weight:700}'
-      + '.br-more,.br-x,.br-go2,.br-find{appearance:none;font:inherit;cursor:pointer}'
+      + '.br-more,.br-x,.br-go2,.br-find{appearance:none;font:inherit;cursor:pointer}a.br-row{text-decoration:none}'
       + '.br-more{display:block;width:100%;margin-top:10px;padding:11px;border-radius:999px;border:2.5px dashed #c9a8e0;background:#fff;color:#7a55a8;font-weight:800;font-size:14px}'
       + '.br-x{display:block;width:100%;margin-top:10px;padding:11px;border-radius:999px;border:2px solid var(--line,#f6cfe0);background:#fff;color:#8a7683;font-weight:700;font-size:14px}'
       + '.br-go2{display:block;width:100%;margin-top:10px;padding:12px;border-radius:999px;border:0;background:var(--pink,#ff8fb8);color:#fff;font-weight:800;font-size:15px;box-shadow:0 4px 0 #e96aa0}'
@@ -213,7 +213,41 @@
     render(); dlg.showModal();
   }
 
+  // 「地図アプリで開く」前に、どの店舗の地図を開くかえらぶ
+  function mapChoices(s) {
+    var out = [], seen = {};
+    function push(n, a, tag) { var k = n + '|' + a; if (!n || seen[k]) return; seen[k] = 1; out.push({ n: n, a: a || '', tag: tag || '' }); }
+    if (s.branch) push(s.branch, s.address, 'ちぃちゃんが行った店舗');
+    regOf(s).forEach(function (r) { push(r.name, r.address); });
+    listOf(s).forEach(function (e) { if (e.c) push(e.n, e.a, 'あなたが追加した店舗'); });
+    return out;
+  }
+  function mapUrl(q) { return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q); }
+  function openMapSheet(s) {
+    css();
+    var chain = s.chainName || s.name;
+    var dlg = h('dialog', 'br-dlg'); document.body.appendChild(dlg);
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('close', function () { if (dlg.parentNode) dlg.parentNode.removeChild(dlg); });
+    var box = h('div', 'br-in'); dlg.appendChild(box);
+    box.appendChild(h('h2', null, 'どの店舗の地図を開きますか？'));
+    box.appendChild(h('p', 'br-sub', chain + '　えらぶと、地図アプリが開きます'));
+    function row(n, a, tag, q) {
+      var l = h('a', 'br-row'); l.href = mapUrl(q); l.target = '_blank'; l.rel = 'noopener noreferrer';
+      var tx = h('span', 'br-tx', n); if (tag) tx.insertBefore(h('em', 'br-chii', tag), tx.firstChild);
+      if (a) tx.appendChild(h('small', null, a));
+      l.appendChild(tx); l.appendChild(h('span', 'br-d', '↗'));
+      l.addEventListener('click', function () { setTimeout(function () { dlg.close(); }, 200); });
+      box.appendChild(l);
+    }
+    mapChoices(s).forEach(function (c) { row(c.n, c.a, c.tag, chain + ' ' + c.n + (c.a ? ' ' + c.a : '')); });
+    row('近くの店舗をさがす', 'いまいる場所の近くの ' + chain + ' を探します', '', chain);
+    var x = h('button', 'br-x', 'とじる'); x.type = 'button'; x.addEventListener('click', function () { dlg.close(); }); box.appendChild(x);
+    dlg.showModal();
+  }
+
   window.ChiiBr = {
+    mapChoices: mapChoices, openMapSheet: openMapSheet,
     idOf: idOf, visitId: visitId, list: listOf, has: has, add: add, remove: remove, setDate: setDate,
     registered: regOf, chiiRow: chiiRow, localPayload: localPayload, fromServer: fromServer, openSheet: openSheet, today: today
   };

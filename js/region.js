@@ -235,6 +235,10 @@
     map.href = 'https://www.google.com/maps/search/?api=1&query=' + q;
     map.target = '_blank';
     map.rel = 'noopener noreferrer';
+    if (s.chain && window.ChiiBr && ChiiBr.mapChoices(s).length) {
+      map.textContent = '地図アプリで開く ↗';
+      map.addEventListener('click', function (e) { e.preventDefault(); ChiiBr.openMapSheet(s); });
+    }
     var row1 = el('div', 'act-r'), row2 = el('div', 'act-r');
     row1.classList.add('is-set');
     row1.appendChild(map);
