@@ -378,11 +378,14 @@
     $('wrap-more').hidden = !($('f-chain').checked && !isOther());
     $('wrap-br').hidden = !$('f-chain').checked;
     $('wrap-chn').hidden = !$('f-chain').checked;
+    $('wrap-name').hidden = $('f-chain').checked;
+    composeName();
     $('wrap-pref').hidden = !((np || isOther()) && (PREFS[$('f-region').value] || []).length);
   }
   function composeName() {
     var c = $('f-chainname').value.trim(), b = $('f-branch').value.trim();
     if (c) $('f-name').value = b ? c + ' ' + b : c;
+    $('chn-pv').textContent = c ? 'カードに出る名前：' + (b ? c + ' ' + b : c) : '';
   }
   $('f-chainname').addEventListener('input', composeName);
   $('f-branch').addEventListener('input', composeName);
@@ -560,7 +563,8 @@
     if (s.chain) {
       var cn = s.chainName || '', bn = s.branch || '';
       if (!cn) { var sm = /^(\S+)[ \u3000]+(.+)$/.exec(s.name || ''); if (sm) { cn = sm[1]; bn = sm[2]; } }   // 前の形（店名にチェーン名も入っている）は、最初の空白で分けて入れておく
-      $('f-chainname').value = cn; $('f-branch').value = bn;
+      if (!cn) cn = s.name || '';
+      $('f-chainname').value = cn; $('f-branch').value = bn; composeName();
     }
     srcsOf(s).forEach(addSrcRow);
     (Array.isArray(s.branches) ? s.branches : []).forEach(addBrRow);
@@ -597,6 +601,7 @@
   $('spot-form').addEventListener('submit', function (e) {
     e.preventDefault();
     var err = $('f-err');
+    if ($('f-chain').checked) { composeName(); if (!$('f-chainname').value.trim()) { $('f-err').textContent = 'チェーン名を入れてね。'; $('f-chainname').focus(); return; } }
     var name = $('f-name').value.trim(), addr = $('f-addr').value.trim();
     if (!loaded) { err.textContent = '登録ずみのスポットを読み込めていないので、保存できません。'; return; }
     if (!name) { err.textContent = 'スポット名を入れてね。'; $('f-name').focus(); return; }

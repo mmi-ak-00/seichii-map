@@ -40,7 +40,7 @@
 <label for="f-region">地方</label>
 <select id="f-region"><option value="hokkaido">北海道</option><option value="tohoku">東北</option><option value="kanto">関東</option><option value="chubu">中部</option><option value="kinki">近畿</option><option value="chugoku-shikoku">中国・四国</option><option value="kyushu-okinawa">九州・沖縄</option><option value="other">その他</option></select>
 </div>
-<div class="field">
+<div class="field" id="wrap-name">
 <label for="f-name">スポット名 <em>必須</em></label>
 <input id="f-name" type="text" autocomplete="off">
 </div>
@@ -48,11 +48,12 @@
 <label class="chk"><input type="checkbox" id="f-chain"> チェーン店</label>
 <p class="hint">オンにすると、カードに「🏪 チェーン店」と出ます。住所や位置を決めたお店でも使えます。</p>
 <div id="wrap-chn" hidden>
-<label for="f-chainname">チェーン名</label>
+<label for="f-chainname">チェーン名（スポット名）<em>必須</em></label>
 <input id="f-chainname" type="text" autocomplete="off" placeholder="例：HARBS">
 <label for="f-branch">ちぃちゃんが行った店舗名</label>
 <input id="f-branch" type="text" autocomplete="off" placeholder="例：ニュウマン高輪店">
-<p class="hint">2つを入れると、スポット名は「チェーン名 店舗名」で自動で入ります（上のスポット名を直接直す必要はありません）。カードの見た目はこれまでと同じです。行った人が「他の店舗」をえらぶときは、ここがちぃちゃんの店舗として一番上に出ます。</p>
+<p class="hint">チェーン店のときは、スポット名の欄のかわりに、この2つを入れます。カードには「チェーン名 店舗名」とつながって出ます（いまの見た目と同じです）。行った人が「他の店舗」をえらぶときは、ここがちぃちゃんの店舗として一番上に出ます。</p>
+<p class="hint" id="chn-pv"></p>
 </div>
 <label class="chk"><input type="checkbox" id="f-noplace"> 場所がきまっていない</label>
 <p class="hint">オンにすると、住所と位置は入れなくてOKです。地図にピンは出さず、「近くのお店をさがす」ボタンで探せるようになります。</p>
