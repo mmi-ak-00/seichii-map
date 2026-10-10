@@ -123,7 +123,10 @@
         var b = el('button', 'row'); b.type = 'button';
         b.setAttribute('aria-label', s.name + ' を直す');
         var t = el('span', 'rt');
-        t.appendChild(el('b', null, s.name));
+        var cn0 = s.chainName, bn0 = s.branch;
+        if (s.chain && !cn0 && !bn0) { var m0 = /^(.+?)[ \u3000]+(\S*店)$/.exec(s.name || ''); if (m0) { cn0 = m0[1]; bn0 = m0[2]; } }
+        t.appendChild(el('b', null, (cn0 && bn0) ? cn0 : s.name));
+        if (cn0 && bn0) t.appendChild(el('span', 'rt-br', bn0));
         var sub = [s.chain ? 'チェーン店' : '', worksOf(s).join('・'), s.address].filter(Boolean).join(' ／ ');
         if (sub) t.appendChild(el('small', null, sub));
         b.appendChild(t);

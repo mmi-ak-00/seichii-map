@@ -78,6 +78,7 @@ body.view-form .v-home{display:none}
 .row .rt{flex:1;min-width:0;display:grid;gap:1px}
 .row .rt b{font-size:15px;line-height:1.4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .row .rt small{font-size:12px;color:#8a7490;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .rt .rt-br{font-size:12px;font-weight:700;color:#a58bb0;line-height:1.35;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .row .ph{flex:none;font-size:12px;font-weight:700;color:var(--pink-d);background:#ffe3ee;border-radius:999px;padding:2px 8px}
 .row .chev{flex:none;font-size:22px;line-height:1;color:var(--pink)}
 .qinfo{display:grid;gap:4px;padding:12px;margin-top:2px;border-radius:16px;background:#fff7fb;border:2px dashed var(--pink)}
