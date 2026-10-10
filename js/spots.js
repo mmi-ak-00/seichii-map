@@ -1627,6 +1627,8 @@ window.SPOTS = [
         "lat": 35.63556
       }
     ],
+    "chainName": "HARBS",
+    "branch": "ニュウマン高輪店",
     "more": [
       "東京",
       "神奈川",
