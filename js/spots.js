@@ -2005,5 +2005,24 @@ window.SPOTS = [
     "lon": 136.66299,
     "lat": 36.56519,
     "id": "pmv2iw18bi9t"
+  },
+  {
+    "region": "chubu",
+    "name": "JR金沢駅",
+    "address": "石川県金沢市木ノ新保町1-1",
+    "note": "",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DeUSCydky2s/?exln=MTVuNGJiN3pnZ2Qxbw==",
+        "date": "2026-10-10"
+      }
+    ],
+    "photos": [
+      "pmv2iyh6m5.jpg"
+    ],
+    "lon": 136.64767,
+    "lat": 36.57717,
+    "id": "pmv2iyra0qh4"
   }
 ];
