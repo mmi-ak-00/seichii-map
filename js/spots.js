@@ -1897,5 +1897,26 @@ window.SPOTS = [
     "lon": 135.18196,
     "lat": 34.67908,
     "id": "pmuyofyp12he"
+  },
+  {
+    "region": "chubu",
+    "name": "金沢21世紀美術館",
+    "address": "石川県金沢市広坂1-2-1",
+    "note": "",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DeUSCydky2s/?rpxt=MTVuNGJiN3pnZ2Qxbw==",
+        "date": "2026-10-10"
+      }
+    ],
+    "photos": [
+      "pmv2hma8x0.jpg",
+      "pmv2hma9h1.jpg"
+    ],
+    "hp": "https://www.kanazawa21.jp/",
+    "lon": 136.65707,
+    "lat": 36.56033,
+    "id": "pmv2hn2astfq"
   }
 ];
