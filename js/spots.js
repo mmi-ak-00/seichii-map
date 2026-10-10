@@ -574,6 +574,8 @@ window.SPOTS = [
     "tabelog": "https://s.tabelog.com/kanagawa/A1401/A140105/14040668/",
     "hp": "https://houtenkaku.com/",
     "chain": true,
+    "chainName": "鵬天閣",
+    "branch": "新館",
     "more": [
       "神奈川"
     ],
