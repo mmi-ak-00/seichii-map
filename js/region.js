@@ -113,6 +113,7 @@
   }
 
   var cards = {}, pinEls = {}, pinParts = [], selected = null;
+  function areaNow() { return { pref: (typeof curPref !== 'undefined' ? curPref : null), prefs: REGP[key] || [] }; }
   function select(name, fromPin) {
     selected = (selected === name && !fromPin) ? null : name;
     if (fromPin && selected === null) selected = name;
@@ -237,7 +238,7 @@
     map.rel = 'noopener noreferrer';
     if (s.chain && window.ChiiBr && ChiiBr.mapChoices(s).length) {
       map.textContent = '地図アプリで開く ↗';
-      map.addEventListener('click', function (e) { e.preventDefault(); ChiiBr.openMapSheet(s); });
+      map.addEventListener('click', function (e) { e.preventDefault(); ChiiBr.openMapSheet(s, areaNow); });
     }
     var row1 = el('div', 'act-r'), row2 = el('div', 'act-r');
     row1.classList.add('is-set');
@@ -260,7 +261,7 @@
       try { var nv = JSON.parse(localStorage.getItem(STORE) || '{}') || {}; Object.keys(visited).forEach(function (k) { delete visited[k]; }); Object.keys(nv).forEach(function (k) { visited[k] = nv[k]; }); } catch (e) {}
       paint(); count(); paintPins(); rebuildBr();
     }
-    function openBr() { if (window.ChiiBr) ChiiBr.openSheet(s, afterSheet); }
+    function openBr() { if (window.ChiiBr) ChiiBr.openSheet(s, afterSheet, areaNow); }
     v.addEventListener('click', function () {
       if (window.ChiiBr && (s.chain || ChiiBr.has(s))) { openBr(); return; }
       if (visited[s.name]) delete visited[s.name]; else visited[s.name] = 1;

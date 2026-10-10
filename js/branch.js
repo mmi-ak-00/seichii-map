@@ -40,6 +40,17 @@
   function remove(s, k) { var st = rd(BS); if (st[s.name]) delete st[s.name][k]; sync(s, st); }
   function chiiRow(s) { return s.branch ? { k: '_', n: s.branch, a: s.address || '', x: s.lon, y: s.lat, chii: true } : null; }
   function setDate(s, k, d) { var st = rd(BS); if (st[s.name] && st[s.name][k]) { st[s.name][k].d = d; sync(s, st); } }
+  // 開いているページ（地方・都道府県）のお店を先に並べる
+  function fullPref(p) { return p === '北海道' ? p : p === '東京' ? '東京都' : (p === '大阪' || p === '京都') ? p + '府' : p + '県'; }
+  function inPref(a, p) { return !!a && !!p && a.indexOf(fullPref(p)) >= 0; }
+  function rankOf(a, area) {
+    if (!area || !a) return 2;
+    if (area.pref) { if (inPref(a, area.pref)) return 0; return (area.prefs || []).some(function (p) { return inPref(a, p); }) ? 1 : 2; }
+    return (area.prefs || []).some(function (p) { return inPref(a, p); }) ? 0 : 2;
+  }
+  function byArea(list, area, getA) {
+    return list.map(function (x, i) { return [x, i, rankOf(getA(x), area)]; }).sort(function (p, q) { return p[2] - q[2] || p[1] - q[1]; }).map(function (x) { return x[0]; });
+  }
   function custKey(n, a) { return 'c' + hash(a + '|' + n); }
 
   // この端末の記録を、サーバーに送る形にする
@@ -120,7 +131,7 @@
   function h(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
   function fmtD(d) { return d ? d.replace(/-/g, '/') : ''; }
 
-  function openSheet(s, onChange) {
+  function openSheet(s, onChange, areaFn) {
     css();
     var dlg = h('dialog', 'br-dlg'); document.body.appendChild(dlg);
     dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
@@ -138,8 +149,10 @@
       if (!Object.keys(cur).length && rd(VS)[s.name]) cur['_'] = { k: '_', d: rd(DS)[s.name] || '' };   // 前の形で記録していた分
       var rows = [], ch = chiiRow(s);
       if (ch) rows.push(ch);
-      regOf(s).forEach(function (b) { rows.push({ k: b.id, n: b.name, a: b.address || '', x: b.lon, y: b.lat }); });
-      listOf(s).forEach(function (e) { if (e.c) rows.push({ k: e.k, n: e.n, a: e.a, x: e.x, y: e.y, c: 1 }); });
+      var rest = [];
+      regOf(s).forEach(function (b) { rest.push({ k: b.id, n: b.name, a: b.address || '', x: b.lon, y: b.lat }); });
+      listOf(s).forEach(function (e) { if (e.c) rest.push({ k: e.k, n: e.n, a: e.a, x: e.x, y: e.y, c: 1 }); });
+      rows = rows.concat(byArea(rest, areaFn ? areaFn() : null, function (r) { return r.a; }));
       if (!ch) rows.push({ k: '_', n: '店舗を決めずに記録する', a: '' });
       rows.forEach(function (r) {
         var on = !!cur[r.k];
@@ -222,7 +235,7 @@
     return out;
   }
   function mapUrl(q) { return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q); }
-  function openMapSheet(s) {
+  function openMapSheet(s, areaFn) {
     css();
     var chain = s.chainName || s.name;
     var dlg = h('dialog', 'br-dlg'); document.body.appendChild(dlg);
@@ -239,7 +252,8 @@
       l.addEventListener('click', function () { setTimeout(function () { dlg.close(); }, 200); });
       box.appendChild(l);
     }
-    mapChoices(s).forEach(function (c) { row(c.n, c.a, c.tag, chain + ' ' + c.n + (c.a ? ' ' + c.a : '')); });
+    var mc = mapChoices(s), first = mc.filter(function (c) { return c.tag === 'ちぃちゃんが行った店舗'; }), others = mc.filter(function (c) { return c.tag !== 'ちぃちゃんが行った店舗'; });
+    first.concat(byArea(others, areaFn ? areaFn() : null, function (c) { return c.a; })).forEach(function (c) { row(c.n, c.a, c.tag, chain + ' ' + c.n + (c.a ? ' ' + c.a : '')); });
     row('近くの店舗をさがす', 'いまいる場所の近くの ' + chain + ' を探します', '', chain);
     var x = h('button', 'br-x', 'とじる'); x.type = 'button'; x.addEventListener('click', function () { dlg.close(); }); box.appendChild(x);
     dlg.showModal();
