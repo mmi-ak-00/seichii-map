@@ -1958,5 +1958,52 @@ window.SPOTS = [
     "lon": 136.6517,
     "lat": 36.56015,
     "id": "pmv2iayoktqo"
+  },
+  {
+    "region": "chubu",
+    "name": "箔一 兼六園店",
+    "address": "石川県金沢市兼六町2-10",
+    "works": [
+      "金箔のかがやきソフトクリーム"
+    ],
+    "note": "※金箔ソフトを置いている店舗のみ掲載",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DeUSCydky2s/?vrfl=MTVuNGJiN3pnZ2Qxbw==",
+        "date": "2026-10-10"
+      }
+    ],
+    "photos": [
+      "pmv2ivzlb4.jpg"
+    ],
+    "tabelog": "https://s.tabelog.com/ishikawa/A1701/A170101/17006400/",
+    "hp": "https://kanazawa.hakuichi.co.jp/",
+    "chain": true,
+    "branches": [
+      {
+        "id": "bmv2imgjra1k",
+        "name": "本店 箔巧館",
+        "address": "石川県金沢市森戸2丁目1番地1",
+        "lon": 136.59804,
+        "lat": 36.56126
+      },
+      {
+        "id": "bmv2ipvft390",
+        "name": "東山店",
+        "address": "石川県金沢市東山 1-15-4",
+        "lon": 136.66647,
+        "lat": 36.57239
+      }
+    ],
+    "chainName": "箔一",
+    "branch": "兼六園店",
+    "more": [
+      "東京",
+      "富山"
+    ],
+    "lon": 136.66299,
+    "lat": 36.56519,
+    "id": "pmv2iw18bi9t"
   }
 ];
