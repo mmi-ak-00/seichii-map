@@ -1918,5 +1918,45 @@ window.SPOTS = [
     "lon": 136.65707,
     "lat": 36.56033,
     "id": "pmv2hn2astfq"
+  },
+  {
+    "region": "chubu",
+    "name": "川端鮮魚店 片町店",
+    "address": "石川県金沢市片町2-2-20 木谷ビル 2F",
+    "works": [
+      "刺身盛り合わせ",
+      "スプーンでほじくるなかおち",
+      "炭火焼き 殻付焼きガキ"
+    ],
+    "note": "",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DeUSCydky2s/?img_index=5&cplk=MTVuNGJiN3pnZ2Qxbw==",
+        "date": "2026-10-10"
+      }
+    ],
+    "photos": [
+      "pmv2i75m82.jpg",
+      "pmv2i75mp3.jpg"
+    ],
+    "tabelog": "https://s.tabelog.com/ishikawa/A1701/A170101/17005272/",
+    "hp": "https://kawabatasengyoten-katamachi.owst.jp/",
+    "chain": true,
+    "branches": [
+      {
+        "id": "bmv2hvciq25h",
+        "name": "本店",
+        "address": "石川県金沢市木倉町2-4 西野ビル 1F"
+      }
+    ],
+    "chainName": "川端鮮魚店",
+    "branch": "片町店",
+    "more": [
+      "石川"
+    ],
+    "lon": 136.6517,
+    "lat": 36.56015,
+    "id": "pmv2iayoktqo"
   }
 ];
