@@ -19,7 +19,7 @@
 window.SPOTS = [
   {
     "region": "kanto",
-    "name": "Muffin&Bowls cafe CUPS",
+    "name": "Muffin&Bowls cafe CUPS 表参道店",
     "address": "東京都渋谷区神宮前3-5-1",
     "works": [
       "いちごタルト（かき氷）"
@@ -49,8 +49,8 @@ window.SPOTS = [
         "lat": 35.54055
       }
     ],
-    "chainName": "Muffin&Bowls",
-    "branch": "cafe CUPS",
+    "chainName": "Muffin&Bowls cafe CUPS",
+    "branch": "表参道店",
     "more": [
       "東京"
     ],
