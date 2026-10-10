@@ -646,6 +646,13 @@ window.SPOTS = [
         "address": "兵庫県神戸市中央区元町通1丁目10-3 1F~3F",
         "lon": 135.18829,
         "lat": 34.68872
+      },
+      {
+        "id": "bmv2tndfyf9m",
+        "name": "福岡天神店",
+        "address": "福岡市中央区渡辺通5-26-4 GALEND.BLD01 1F~3F",
+        "lon": 130.40269,
+        "lat": 33.58857
       }
     ],
     "chainName": "楊国福",
