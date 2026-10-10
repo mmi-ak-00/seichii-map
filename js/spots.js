@@ -40,6 +40,17 @@ window.SPOTS = [
     "tabelog": "https://s.tabelog.com/tokyo/A1306/A130602/13320295/",
     "insta": "https://www.instagram.com/cups_omotesando?stkn=MXVkZ3A1dXo0MHQ0Mg==",
     "chain": true,
+    "branches": [
+      {
+        "id": "bmv2s2qqbr4v",
+        "name": "町田本店",
+        "address": "東京都町田市原町田3-1-4 町田ターミナルプラザ2F",
+        "lon": 139.44917,
+        "lat": 35.54055
+      }
+    ],
+    "chainName": "Muffin&Bowls",
+    "branch": "cafe CUPS",
     "more": [
       "東京"
     ],
