@@ -262,7 +262,7 @@
     }
     function openBr() { if (window.ChiiBr) ChiiBr.openSheet(s, afterSheet); }
     v.addEventListener('click', function () {
-      if (window.ChiiBr && ChiiBr.has(s)) { openBr(); return; }
+      if (window.ChiiBr && (s.chain || ChiiBr.has(s))) { openBr(); return; }
       if (visited[s.name]) delete visited[s.name]; else visited[s.name] = 1;
       try {
         var dd = JSON.parse(localStorage.getItem('chii-vdate-v1') || '{}') || {};
@@ -331,10 +331,6 @@
       row2.appendChild(a);
     });
     if (row2.children.length) act.appendChild(row2);
-    if (s.chain && window.ChiiBr) {
-      var rb = el('div', 'act-r is-set'), sb = el('button', 'btn btn-br', '📍 行った店舗を選ぶ');
-      sb.type = 'button'; sb.addEventListener('click', openBr); rb.appendChild(sb); act.appendChild(rb);
-    }
     act.appendChild(row1);
     if (brp) li.appendChild(brp);
     li.appendChild(act);

@@ -140,8 +140,7 @@
       if (ch) rows.push(ch);
       regOf(s).forEach(function (b) { rows.push({ k: b.id, n: b.name, a: b.address || '', x: b.lon, y: b.lat }); });
       listOf(s).forEach(function (e) { if (e.c) rows.push({ k: e.k, n: e.n, a: e.a, x: e.x, y: e.y, c: 1 }); });
-      if (!ch && cur['_']) rows.push({ k: '_', n: '店舗を決めずに記録した分', a: '' });
-      if (!rows.length) box.appendChild(h('p', 'br-sub', 'まだ登録されている店舗がありません。下の「リストにない店舗」から足せます。'));
+      if (!ch) rows.push({ k: '_', n: '店舗を決めずに記録する', a: '' });
       rows.forEach(function (r) {
         var on = !!cur[r.k];
         var b = h('button', 'br-row'); b.type = 'button'; b.setAttribute('aria-pressed', on ? 'true' : 'false');
