@@ -562,7 +562,7 @@
     fillPrefs(prefsOf(s)); fillMore(Array.isArray(s.more) ? s.more : []); syncChain();
     if (s.chain) {
       var cn = s.chainName || '', bn = s.branch || '';
-      if (!cn) { var sm = /^(\S+)[ \u3000]+(.+)$/.exec(s.name || ''); if (sm) { cn = sm[1]; bn = sm[2]; } }   // 前の形（店名にチェーン名も入っている）は、最初の空白で分けて入れておく
+      if (!cn) { var sm = /^(.+?)[ \u3000]+(\S*店)$/.exec(s.name || '') || /^(\S+)[ \u3000]+(.+)$/.exec(s.name || ''); if (sm) { cn = sm[1]; bn = sm[2]; } }   // 前の形（店名にチェーン名も入っている）は、最初の空白で分けて入れておく
       if (!cn) cn = s.name || '';
       $('f-chainname').value = cn; $('f-branch').value = bn; composeName();
     }

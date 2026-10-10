@@ -245,6 +245,13 @@
     dlg.showModal();
   }
 
+  // まだ「チェーン名」「店舗名」を分けていないチェーン店は、名前の最後が「〜店」のとき、最後の空白で分けて扱う
+  spots().forEach(function (s) {
+    if (!s.chain || s.chainName || s.branch || typeof s.name !== 'string') return;
+    var m = /^(.+?)[ \u3000]+(\S*店)$/.exec(s.name.trim());
+    if (m) { s.chainName = m[1]; s.branch = m[2]; }
+  });
+
   window.ChiiBr = {
     mapChoices: mapChoices, openMapSheet: openMapSheet,
     idOf: idOf, visitId: visitId, list: listOf, has: has, add: add, remove: remove, setDate: setDate,
