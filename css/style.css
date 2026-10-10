@@ -229,6 +229,7 @@ html,body,a,button,select,label,summary,.pref-hit,.chip,.spot{touch-action:manip
 .sp-th img{display:block;width:100%;height:100%;object-fit:cover}
 .sp-th.is-none svg{width:30px;height:30px;fill:#fff;filter:drop-shadow(0 1px 0 rgba(90,69,96,.25))}
 .sp-nm{flex:1;min-width:0;font-weight:800;font-size:17px;line-height:1.4;overflow-wrap:anywhere}
+.sp-br{display:block;font-weight:700;font-size:12.5px;line-height:1.35;color:#a58bb0;margin-top:1px}
 .sp-thw{position:relative;flex:none;display:block}
 .sp-vd{display:none;position:absolute;right:-5px;bottom:-5px;width:20px;height:20px;border-radius:50%;background:#4fc3a8;border:2px solid #fff;color:#fff;font-size:11px;line-height:1;font-weight:800;align-items:center;justify-content:center;box-sizing:border-box}
 .spot.is-visited .sp-vd{display:inline-flex}
