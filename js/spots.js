@@ -1297,6 +1297,24 @@ window.SPOTS = [
     "hp": "https://asakusa-kagetudo.com/",
     "insta": "https://www.instagram.com/asakusa.kagetsudo?stkn=Mng1ZTR2d2x3OTNy",
     "chain": true,
+    "branches": [
+      {
+        "id": "bmv423nvogum",
+        "name": "本店",
+        "address": "東京都台東区浅草2-7-13",
+        "lon": 139.79411,
+        "lat": 35.71457
+      },
+      {
+        "id": "bmv425ho0vh3",
+        "name": "浅草さくら",
+        "address": "東京都台東区浅草1-32-14",
+        "lon": 139.79704,
+        "lat": 35.71186
+      }
+    ],
+    "chainName": "浅草花月堂",
+    "branch": "雷門店",
     "more": [
       "東京"
     ],
