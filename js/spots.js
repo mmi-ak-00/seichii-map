@@ -957,6 +957,17 @@ window.SPOTS = [
     ],
     "tabelog": "https://s.tabelog.com/kanagawa/A1401/A140104/14050265/",
     "chain": true,
+    "branches": [
+      {
+        "id": "bmv41zefue4i",
+        "name": "横浜大世界店",
+        "address": "神奈川県横浜市中区山下町97",
+        "lon": 139.64867,
+        "lat": 35.44238
+      }
+    ],
+    "chainName": "開華楼",
+    "branch": "横浜博覧館店",
     "more": [
       "神奈川"
     ],
