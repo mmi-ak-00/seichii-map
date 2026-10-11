@@ -1216,7 +1216,7 @@ window.SPOTS = [
     "works": [
       "雷門チーズメンチ"
     ],
-    "note": "",
+    "note": "※チーズメンチは浅草雷門店のみ",
     "sources": [
       {
         "name": "Instagram",
@@ -1239,6 +1239,8 @@ window.SPOTS = [
     "hp": "https://kuroge.com/shop/asakusa/",
     "insta": "https://www.instagram.com/asakusa777?stkn=MW00cGNrbTVkcWh4eQ==",
     "chain": true,
+    "chainName": "くろげ",
+    "branch": "浅草雷門店",
     "lon": 139.79628,
     "lat": 35.71154,
     "id": "pmuwyjsd2gk2"
