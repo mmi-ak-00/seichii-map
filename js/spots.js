@@ -912,6 +912,22 @@ window.SPOTS = [
     "tabelog": "https://s.tabelog.com/kanagawa/A1401/A140105/14040668/",
     "hp": "https://houtenkaku.com/",
     "chain": true,
+    "branches": [
+      {
+        "id": "bmv41tfv9fl4",
+        "name": "点心舖",
+        "address": "神奈川県横浜市中区山下町186 中華街大通り",
+        "lon": 139.64735,
+        "lat": 35.44307
+      },
+      {
+        "id": "bmv41uhvvp4t",
+        "name": "酒家",
+        "address": "神奈川県横浜市中区山下町144-3",
+        "lon": 139.64471,
+        "lat": 35.44264
+      }
+    ],
     "chainName": "鵬天閣",
     "branch": "新館",
     "more": [
