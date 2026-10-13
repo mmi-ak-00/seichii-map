@@ -2410,5 +2410,56 @@ window.SPOTS = [
     "lon": 136.64767,
     "lat": 36.57717,
     "id": "pmv2iyra0qh4"
+  },
+  {
+    "region": "chugoku-shikoku",
+    "name": "チー坊パーラー",
+    "address": "",
+    "works": [
+      "チー坊（ストロベリー）"
+    ],
+    "note": "※写真は広島ふるさとまつり出演時\n※食べログは大手町店を掲載",
+    "sources": [
+      {
+        "name": "X(1)",
+        "url": "https://x.com/chii_nyan02/status/2010664325795721309?s=46",
+        "date": "2026-01-12"
+      },
+      {
+        "name": "X(2)",
+        "url": "https://x.com/chii_nyan02/status/2017007608369197061?s=46",
+        "date": "2026-01-30"
+      }
+    ],
+    "photos": [
+      "pmv76tya70.jpg",
+      "pmv76tyan1.jpg"
+    ],
+    "tabelog": "https://s.tabelog.com/hiroshima/A3401/A340116/34032112/",
+    "hp": "https://www.setouchi-trip.jp/chibo-parlor",
+    "insta": "https://instagram.com/chibohiroshima?vrfl=MXc3cXNvdWc0OGd0MA%3D%3D",
+    "chain": true,
+    "branches": [
+      {
+        "id": "bmv76pmhgq1x",
+        "name": "大手町店",
+        "address": "広島県広島市中区大手町1-5-3",
+        "lon": 132.45598,
+        "lat": 34.39442
+      },
+      {
+        "id": "bmv76qb6x1w3",
+        "name": "ジ・アウトレット店",
+        "address": "広島県広島市佐伯区石内東4丁目1-1",
+        "lon": 132.39763,
+        "lat": 34.41009
+      }
+    ],
+    "chainName": "チー坊パーラー",
+    "noPlace": true,
+    "more": [
+      "広島"
+    ],
+    "id": "pmv770vo2kbw"
   }
 ];
