@@ -1296,6 +1296,17 @@ window.SPOTS = [
     "hp": "https://rockin-robin.com/",
     "insta": "https://www.instagram.com/rockin_robin_hamburger_osu?stkn=OWlnaHczcnl2YTAy",
     "chain": true,
+    "branches": [
+      {
+        "id": "bmv792lejff8",
+        "name": "栄店",
+        "address": "愛知県名古屋市中区栄4-12-21 第2栄スカイタウン 1A",
+        "lon": 136.91104,
+        "lat": 35.16679
+      }
+    ],
+    "chainName": "ロッキンロビン",
+    "branch": "大須店",
     "more": [
       "愛知"
     ],
@@ -1560,6 +1571,17 @@ window.SPOTS = [
     "hp": "https://www.asakuma.co.jp/shoplist/curry_osu.html",
     "insta": "https://www.instagram.com/asakuma_curry?stkn=dm1mcmR4YnFqcXVv",
     "chain": true,
+    "branches": [
+      {
+        "id": "bmv790h22kzy",
+        "name": "栄スカイル店",
+        "address": "愛知県名古屋市中区栄3-4-5 栄スカイル 9階",
+        "lon": 136.90631,
+        "lat": 35.16866
+      }
+    ],
+    "chainName": "カレーのあさくま",
+    "branch": "大須店",
     "more": [
       "愛知"
     ],
