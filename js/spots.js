@@ -1096,6 +1096,24 @@ window.SPOTS = [
     "hp": "https://www.pancake-hoihoi.com/",
     "insta": "https://www.instagram.com/hoihoi724?stkn=MW5mZXhzNTJ5eDQwaQ==",
     "chain": true,
+    "branches": [
+      {
+        "id": "bmv78wsliwrg",
+        "name": "HoiHoi Handa Branch（半田市）",
+        "address": "愛知県半田市青山4-5-7",
+        "lon": 136.9066,
+        "lat": 34.8817
+      },
+      {
+        "id": "bmv78ym71yts",
+        "name": "Foodie's Stand & PancakeHouseHoiHoi（セントレア）",
+        "address": "愛知県常滑市セントレア1丁目1番地 フライトオブドリームズ内2F",
+        "lon": 136.80902,
+        "lat": 34.85851
+      }
+    ],
+    "chainName": "PancakeHouse HoiHoi",
+    "branch": "栄本店",
     "more": [
       "愛知"
     ],
