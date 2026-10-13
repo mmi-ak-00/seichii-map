@@ -252,9 +252,9 @@
       l.addEventListener('click', function () { setTimeout(function () { dlg.close(); }, 200); });
       box.appendChild(l);
     }
+    row('近くの店舗をさがす', 'いまいる場所の近くの ' + chain + ' を探します', '', chain);
     var mc = mapChoices(s), first = mc.filter(function (c) { return c.tag === 'ちぃちゃんが行った店舗'; }), others = mc.filter(function (c) { return c.tag !== 'ちぃちゃんが行った店舗'; });
     first.concat(byArea(others, areaFn ? areaFn() : null, function (c) { return c.a; })).forEach(function (c) { row(c.n, c.a, c.tag, chain + ' ' + c.n + (c.a ? ' ' + c.a : '')); });
-    row('近くの店舗をさがす', 'いまいる場所の近くの ' + chain + ' を探します', '', chain);
     var x = h('button', 'br-x', 'とじる'); x.type = 'button'; x.addEventListener('click', function () { dlg.close(); }); box.appendChild(x);
     dlg.showModal();
   }
