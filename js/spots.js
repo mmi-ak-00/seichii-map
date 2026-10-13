@@ -1352,6 +1352,17 @@ window.SPOTS = [
     "hp": "https://kichimusubi.co.jp/shop/hand-bakes-shinjuku/",
     "insta": "https://www.instagram.com/handbakes.shinjuku?stkn=cnd3N2EzMDZ2MGM3",
     "chain": true,
+    "branches": [
+      {
+        "id": "bmv7773ivc0n",
+        "name": "イオンレイクタウンkaze店",
+        "address": "埼玉県越谷市レイクタウン4-2-2 イオンレイクタウンkaze 2F",
+        "lon": 139.82506,
+        "lat": 35.87777
+      }
+    ],
+    "chainName": "HAND BAKES",
+    "branch": "ルミネ新宿店",
     "more": [
       "埼玉",
       "東京"
