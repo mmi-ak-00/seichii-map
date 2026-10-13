@@ -232,7 +232,9 @@
     // 店名
     c.textAlign = 'center'; c.textBaseline = 'alphabetic';
     c.fillStyle = '#5a4560'; var px = fit(c, s.name, W - 160, 62, 800); c.font = FONT(800, px); c.fillText(s.name, W / 2, 1100);
-    var ad = prefsOf(s).join('・'); if (ad) { c.fillStyle = '#8a7683'; c.font = FONT(600, 30); c.fillText(ad, W / 2, 1148); }
+    var lp = null; if ((s._br || s.chain) && s.address) { var p1 = prefName(s.address); if (p1) lp = [p1]; }   // 行った店舗がわかるチェーン店は、その店舗の県だけ出す
+    var ad = (lp || (s.chain || s._br ? [] : prefsOf(s))).join('・');   // 行った店舗がわからないチェーン店は、県を出さない
+    if (ad) { c.fillStyle = '#8a7683'; c.font = FONT(600, 30); c.fillText(ad, W / 2, 1148); }
     var all = ctx0.spots, done = all.filter(function (x) { return ctx0.visited[x.name]; }).length;
     c.fillStyle = '#8a5b94'; c.font = FONT(700, 32); c.fillText('これまでに ' + done + ' / ' + all.length + ' か所 巡ったにゃ', W / 2, 1226);
     footer(c, ctx0.nick);
