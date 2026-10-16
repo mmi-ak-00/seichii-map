@@ -221,8 +221,19 @@
     c.shadowColor = 'rgba(120,40,80,.18)'; c.shadowBlur = 24; c.shadowOffsetY = 8; c.fillStyle = '#fff'; c.fill(); c.restore();
     c.save(); rr(c, PX + 10, PY + 10, PW - 20, PH - 20, 36); c.clip();
     if (photo) {
-      var iw = photo.naturalWidth || photo.width, ih = photo.naturalHeight || photo.height, sc = Math.max((PW - 20) / iw, (PH - 20) / ih);
-      var dw = iw * sc, dh = ih * sc; c.drawImage(photo, PX + 10 + (PW - 20 - dw) / 2, PY + 10 + (PH - 20 - dh) / 2, dw, dh);
+      var FX = PX + 10, FY = PY + 10, FW = PW - 20, FH = PH - 20;
+      var iw = photo.naturalWidth || photo.width, ih = photo.naturalHeight || photo.height;
+      var sc0 = Math.min(FW / iw, FH / ih), sc1 = Math.max(FW / iw, FH / ih);
+      if (sc1 / sc0 <= 1.25) {   // 枠に近い形の写真は、枠いっぱいに広げる（切れるのは2割まで）
+        var dw = iw * sc1, dh = ih * sc1; c.drawImage(photo, FX + (FW - dw) / 2, FY + (FH - dh) / 2, dw, dh);
+      } else {   // 縦長・横長の写真は、全体が入るように収めて、すき間はぼかした同じ写真で埋める
+        var bw = 28, bh = Math.max(1, Math.round(bw * FH / FW)), bc = document.createElement('canvas'); bc.width = bw; bc.height = bh;
+        var bx = bc.getContext('2d'), bs = Math.max(bw / iw, bh / ih); bx.imageSmoothingQuality = 'high';
+        bx.drawImage(photo, (bw - iw * bs) / 2, (bh - ih * bs) / 2, iw * bs, ih * bs);
+        c.imageSmoothingEnabled = true; c.imageSmoothingQuality = 'high'; c.drawImage(bc, FX, FY, FW, FH);
+        c.fillStyle = 'rgba(255,255,255,.35)'; c.fillRect(FX, FY, FW, FH);
+        var dw2 = iw * sc0, dh2 = ih * sc0; c.drawImage(photo, FX + (FW - dw2) / 2, FY + (FH - dh2) / 2, dw2, dh2);
+      }
     } else {
       var g = c.createLinearGradient(0, PY, 0, PY + PH); g.addColorStop(0, '#ffeaf3'); g.addColorStop(1, '#efe6ff'); c.fillStyle = g; c.fillRect(PX, PY, PW, PH);
       paw(c, W / 2, PY + PH / 2, 260, 'rgba(255,170,205,.7)');
