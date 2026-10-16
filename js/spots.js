@@ -3056,5 +3056,27 @@ window.SPOTS = [
     "lon": 138.78026,
     "lat": 35.4861,
     "id": "pmvawa5fnlzk"
+  },
+  {
+    "region": "chubu",
+    "name": "飛騨牛グリルばくろ",
+    "address": "岐阜県岐阜市米屋町9",
+    "note": "",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/Ddtt_V6E9ny/?mdxt=ZG00MXloMDBvY3l3",
+        "date": "2026-09-25"
+      }
+    ],
+    "photos": [
+      "pmvbcawez0.jpg"
+    ],
+    "tabelog": "https://s.tabelog.com/gifu/A2101/A210101/21010723/",
+    "hp": "http://grill.bakuroichidai.co.jp/",
+    "insta": "https://www.instagram.com/bakuroichidai_official?psln=cjZkaWF5OTAzdWVw",
+    "lon": 136.76646,
+    "lat": 35.42957,
+    "id": "pmvbcazub6zo"
   }
 ];
