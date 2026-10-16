@@ -111,8 +111,7 @@
   function footer(c, nick) {
     c.textAlign = 'center'; c.textBaseline = 'alphabetic';
     c.fillStyle = '#a37cae'; c.font = FONT(700, 30);
-    c.fillText('🐱 聖ちぃ巡礼マップ' + (nick ? '  ・  ' + nick + ' さん' : ''), W / 2, 1296);
-    c.fillStyle = '#b79bbb'; c.font = FONT(500, 22); c.fillText('※ファンによる非公式サイトです', W / 2, 1330);
+    c.fillText('🐱 聖ちぃ巡礼マップ' + (nick ? '  ・  ' + nick + ' さん' : ''), W / 2, 1310);
   }
   function statBlock(c, done, total, label, y) {
     c.textAlign = 'center'; c.textBaseline = 'alphabetic';
@@ -310,7 +309,7 @@
     go.addEventListener('click', function () {
       var cx = getCtx(); go.disabled = true; msg.className = 'me-msg'; msg.textContent = 'つくっています…';
       var cv = document.createElement('canvas'); cv.width = W; cv.height = H; var c = cv.getContext('2d');
-      var ftxt = '0123456789./年月日()・、。 聖ちぃ巡礼記録マップ行ったにゃ今日全国地方都道府県か所これまでに巡※ファンによる非公式サイトです日月火水木金土東西南北' + (cx.nick || '') + ORDERP.join('') + REGN.map(function (r) { return r[1]; }).join('') + cx.spots.map(function (x) { return x.name + (x.address || '') + (Array.isArray(x.pref) ? x.pref.join('') : (x.pref || '')); }).join('');
+      var ftxt = '0123456789./年月日()・、。 聖ちぃ巡礼記録マップ行ったにゃ今日全国地方都道府県か所これまでに巡日月火水木金土東西南北' + (cx.nick || '') + ORDERP.join('') + REGN.map(function (r) { return r[1]; }).join('') + cx.spots.map(function (x) { return x.name + (x.address || '') + (Array.isArray(x.pref) ? x.pref.join('') : (x.pref || '')); }).join('');
       var fl = (document.fonts && document.fonts.load) ? Promise.all(['500', '700', '800'].map(function (w) { return document.fonts.load(w + ' 40px "Zen Maru Gothic"', ftxt); })).catch(function () {}) : Promise.resolve();
       var job;
       if (kind === 'today') {
