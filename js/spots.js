@@ -2930,5 +2930,31 @@ window.SPOTS = [
       "広島"
     ],
     "id": "pmv770vo2kbw"
+  },
+  {
+    "region": "chubu",
+    "name": "うどんほうとう あまの",
+    "address": "山梨県富士吉田市新西原4-11-8",
+    "works": [
+      "野菜ほうとう"
+    ],
+    "note": "",
+    "sources": [
+      {
+        "name": "TikTok(エイアイカ)",
+        "url": "https://vt.tiktok.com/ZSgNqaBmx/",
+        "date": "2026-10-15"
+      }
+    ],
+    "photos": [
+      "pmvavo2341.jpg",
+      "pmvavo22m0.jpg"
+    ],
+    "tabelog": "https://s.tabelog.com/yamanashi/A1903/A190301/19012061/",
+    "hp": "https://nbzw700.gorp.jp/",
+    "insta": "https://www.instagram.com/udon.houtou_amano?mdxt=MXY5bWFoNmp2dTgzOQ==",
+    "lon": 138.78278,
+    "lat": 35.48137,
+    "id": "pmvavoc8nhar"
   }
 ];
