@@ -2956,5 +2956,105 @@ window.SPOTS = [
     "lon": 138.78278,
     "lat": 35.48137,
     "id": "pmvavoc8nhar"
+  },
+  {
+    "region": "chubu",
+    "name": "oimo&coco. 富士急ハイランド店",
+    "address": "山梨県富士吉田市新西原5-6-1 富士急ハイランド",
+    "note": "",
+    "sources": [
+      {
+        "name": "TikTok(エイアイカ)",
+        "url": "https://vt.tiktok.com/ZSgNqwx5E/",
+        "date": "2026-10-15"
+      }
+    ],
+    "photos": [
+      "pmvavurk92.jpg",
+      "pmvavurkn3.jpg"
+    ],
+    "tabelog": "https://s.tabelog.com/yamanashi/A1903/A190301/19013383/",
+    "hp": "https://oimo-coco.jp/",
+    "insta": "https://www.instagram.com/oimococo_fujiq?psln=enZoZzVhaGxkMzM1",
+    "chain": true,
+    "branches": [
+      {
+        "id": "bmvavwygxmnx",
+        "name": "本店",
+        "address": "静岡県静岡市葵区与左衛門新田26-1",
+        "lon": 138.35706,
+        "lat": 35.01214
+      },
+      {
+        "id": "bmvavydtll5t",
+        "name": "彦根店",
+        "address": "滋賀県彦根市本町1丁目11番地22号原ビル1階",
+        "lon": 136.25146,
+        "lat": 35.26908
+      },
+      {
+        "id": "bmvavyjqjr2q",
+        "name": "石神井公園店",
+        "address": "東京都練馬区石神井町7丁目1-14 石神井スカイビル1F",
+        "lon": 139.60228,
+        "lat": 35.74449
+      },
+      {
+        "id": "bmvaw28snrd3",
+        "name": "江ノ島すばな通り店",
+        "address": "神奈川県藤沢市片瀬海岸1丁目13-11 すばな通り上",
+        "lon": 139.48595,
+        "lat": 35.30892
+      },
+      {
+        "id": "bmvaw3u308zy",
+        "name": "上足洗店",
+        "address": "静岡県静岡市葵区上足洗2丁目11-53",
+        "lon": 138.39427,
+        "lat": 34.99274
+      },
+      {
+        "id": "bmvaw500ecng",
+        "name": "清水月見町店",
+        "address": "静岡県静岡市清水区月見町3-30",
+        "lon": 138.48149,
+        "lat": 35.00333
+      },
+      {
+        "id": "bmvaw66wg89x",
+        "name": "藤枝店",
+        "address": "静岡県藤枝市五十海4丁目18-15",
+        "lon": 138.26388,
+        "lat": 34.88229
+      },
+      {
+        "id": "bmvaw7rkt199",
+        "name": "大阪野江店",
+        "address": "大阪府大阪市城東区成育1-1-13-101",
+        "lon": 135.54175,
+        "lat": 34.70542
+      },
+      {
+        "id": "bmvaw8zyhg0s",
+        "name": "深谷店",
+        "address": "埼玉県深谷市上柴町西3丁目4-16",
+        "lon": 139.30118,
+        "lat": 36.18492
+      }
+    ],
+    "chainName": "oimo&coco.",
+    "branch": "富士急ハイランド店",
+    "more": [
+      "埼玉",
+      "東京",
+      "神奈川",
+      "山梨",
+      "静岡",
+      "滋賀",
+      "大阪"
+    ],
+    "lon": 138.78026,
+    "lat": 35.4861,
+    "id": "pmvawa5fnlzk"
   }
 ];
