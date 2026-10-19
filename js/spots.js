@@ -3086,7 +3086,7 @@ window.SPOTS = [
     "note": "※モニュメント・フォトスポットの設置終了日は未定",
     "sources": [
       {
-        "name": "X",
+        "name": "X(1)",
         "url": "https://x.com/chii_nyan02/status/2112138894305280424?s=46",
         "date": "2026-10-19"
       },
@@ -3094,6 +3094,11 @@ window.SPOTS = [
         "name": "Instagram",
         "url": "https://www.instagram.com/p/DerSihDk6i7/?img_index=10&vrfl=MTgybHFoZXZsNnphMw==",
         "date": "2026-10-19"
+      },
+      {
+        "name": "X(2)",
+        "url": "https://x.com/chii_nyan02/status/2112316511432126625?s=46",
+        "date": "2026-10-20"
       }
     ],
     "photos": [
@@ -3102,7 +3107,8 @@ window.SPOTS = [
       "pmvf5t0t22.jpg",
       "pmvf5t0t93.jpg",
       "pmvfaa5xr3.jpg",
-      "pmvfaa5y84.jpg"
+      "pmvfaa5y84.jpg",
+      "pmvfux8vd0.jpg"
     ],
     "thumb": "pmvf5t0sr1.jpg",
     "hp": "https://www.pref.gifu.lg.jp/page/513147.html",
