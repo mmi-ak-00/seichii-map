@@ -3112,6 +3112,13 @@ window.SPOTS = [
       "カフェ・ラテ"
     ],
     "note": "",
+    "sources": [
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DerSihDk6i7/?xtok=MTgybHFoZXZsNnphMw==",
+        "date": "2026-10-19"
+      }
+    ],
     "photos": [
       "pmvf9wojy0.jpg",
       "pmvf9wokj1.jpg",
