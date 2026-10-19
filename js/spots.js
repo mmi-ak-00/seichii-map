@@ -3078,5 +3078,29 @@ window.SPOTS = [
     "lon": 136.76646,
     "lat": 35.42957,
     "id": "pmvbcazub6zo"
+  },
+  {
+    "region": "chubu",
+    "name": "岐阜県庁",
+    "address": "岐阜県岐阜市薮田南2丁目1番1号",
+    "note": "",
+    "sources": [
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2112138894305280424?s=46",
+        "date": "2026-10-19"
+      }
+    ],
+    "photos": [
+      "pmvf5t0se0.jpg",
+      "pmvf5t0sr1.jpg",
+      "pmvf5t0t22.jpg",
+      "pmvf5t0t93.jpg"
+    ],
+    "thumb": "pmvf5t0sr1.jpg",
+    "hp": "https://www.pref.gifu.lg.jp/page/513147.html",
+    "lon": 136.72272,
+    "lat": 35.39169,
+    "id": "pmvf5tmpwj4s"
   }
 ];
