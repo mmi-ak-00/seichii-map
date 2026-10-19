@@ -3102,5 +3102,55 @@ window.SPOTS = [
     "lon": 136.72272,
     "lat": 35.39169,
     "id": "pmvf5tmpwj4s"
+  },
+  {
+    "region": "chubu",
+    "name": "ラスティコ ツー",
+    "address": "岐阜県岐阜市薮田南4-6-10",
+    "works": [
+      "モーニングプレート",
+      "カフェ・ラテ"
+    ],
+    "note": "",
+    "photos": [
+      "pmvf9wojy0.jpg",
+      "pmvf9wokj1.jpg",
+      "pmvf9wokz2.jpg"
+    ],
+    "thumb": "pmvf9wokj1.jpg",
+    "tabelog": "https://s.tabelog.com/gifu/A2101/A210101/21014254/",
+    "insta": "https://www.instagram.com/r_u_s_t_i_c_o?vrfl=MWMxOXZyZWlueXNmcw==",
+    "chain": true,
+    "branches": [
+      {
+        "id": "bmvf9wyofctx",
+        "name": "（ワン）",
+        "address": "岐阜県岐阜市福光西3-1-1",
+        "lon": 136.77051,
+        "lat": 35.45484
+      },
+      {
+        "id": "bmvf9xj72m38",
+        "name": "スリー",
+        "address": "岐阜県岐阜市東川手2-44",
+        "lon": 136.76416,
+        "lat": 35.38832
+      },
+      {
+        "id": "bmvf9yxd8jgk",
+        "name": "フォー",
+        "address": "岐阜県岐阜市玉井町12",
+        "lon": 136.77115,
+        "lat": 35.43706
+      }
+    ],
+    "chainName": "ラスティコ",
+    "branch": "ツー",
+    "more": [
+      "岐阜"
+    ],
+    "lon": 136.71907,
+    "lat": 35.38856,
+    "id": "pmvfa0teqxp8"
   }
 ];
