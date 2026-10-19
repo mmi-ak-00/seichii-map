@@ -3089,13 +3089,20 @@ window.SPOTS = [
         "name": "X",
         "url": "https://x.com/chii_nyan02/status/2112138894305280424?s=46",
         "date": "2026-10-19"
+      },
+      {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/p/DerSihDk6i7/?img_index=10&vrfl=MTgybHFoZXZsNnphMw==",
+        "date": "2026-10-19"
       }
     ],
     "photos": [
       "pmvf5t0se0.jpg",
       "pmvf5t0sr1.jpg",
       "pmvf5t0t22.jpg",
-      "pmvf5t0t93.jpg"
+      "pmvf5t0t93.jpg",
+      "pmvfaa5xr3.jpg",
+      "pmvfaa5y84.jpg"
     ],
     "thumb": "pmvf5t0sr1.jpg",
     "hp": "https://www.pref.gifu.lg.jp/page/513147.html",
