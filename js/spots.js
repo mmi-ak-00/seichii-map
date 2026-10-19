@@ -3083,7 +3083,7 @@ window.SPOTS = [
     "region": "chubu",
     "name": "岐阜県庁",
     "address": "岐阜県岐阜市薮田南2丁目1番1号",
-    "note": "",
+    "note": "※モニュメント・フォトスポットの設置終了日は未定",
     "sources": [
       {
         "name": "X",
