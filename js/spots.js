@@ -2944,12 +2944,19 @@ window.SPOTS = [
         "name": "TikTok(エイアイカ)",
         "url": "https://vt.tiktok.com/ZSgNqaBmx/",
         "date": "2026-10-15"
+      },
+      {
+        "name": "X",
+        "url": "https://x.com/chii_nyan02/status/2113039727360381321?s=46",
+        "date": "2026-10-22"
       }
     ],
     "photos": [
       "pmvavo2341.jpg",
-      "pmvavo22m0.jpg"
+      "pmvavo22m0.jpg",
+      "pmvipi1bl0.jpg"
     ],
+    "thumb": "pmvipi1bl0.jpg",
     "tabelog": "https://s.tabelog.com/yamanashi/A1903/A190301/19012061/",
     "hp": "https://nbzw700.gorp.jp/",
     "insta": "https://www.instagram.com/udon.houtou_amano?mdxt=MXY5bWFoNmp2dTgzOQ==",
