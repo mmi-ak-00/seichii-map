@@ -267,7 +267,7 @@
     var go = h('button', 'me-go', '画像をつくる'); go.type = 'button'; host.appendChild(go);
     var msg = h('p', 'me-msg'); msg.setAttribute('role', 'status'); host.appendChild(msg);
     var out = h('div', 'sh-out'); out.hidden = true; host.appendChild(out);
-    var selReg, selPref, dateIn, photoIn, picked, chk = {};
+    var selReg, selPref, dateIn, photoIn, picked, phPick = null, phBox, chk = {};
     function sel(list, init) {
       var s = h('select', 'sh-sel'); list.forEach(function (o) { var op = h('option', null, o[1]); op.value = o[0]; s.appendChild(op); }); if (init) s.value = init; return s;
     }
@@ -294,20 +294,41 @@
             var l = h('label', 'sh-ck'), i = h('input'); i.type = 'radio'; i.name = 'sh-pick'; i.value = s.name;
             l.appendChild(i); var t = h('span', null, s.name); l.appendChild(t);
             if (cx.dates[s.name]) t.appendChild(h('small', null, ' ' + cx.dates[s.name].replace(/-/g, '/')));
-            i.addEventListener('change', function () { picked = s; if (cx.dates[s.name]) dateIn.value = cx.dates[s.name]; upd(); });
+            i.addEventListener('change', function () { picked = s; if (cx.dates[s.name]) dateIn.value = cx.dates[s.name]; upd(); buildPh(s); });
             list.appendChild(l);
           });
           dateIn.addEventListener('change', upd);
-          var pf = h('label', 'sh-lb', '写真（えらばなくてもOK）'); photoIn = h('input', 'sh-file'); photoIn.type = 'file'; photoIn.accept = 'image/*'; pf.appendChild(photoIn);
+          phBox = h('div', 'sh-phs');
+          function buildPh(sp) {
+            phBox.textContent = ''; phPick = null;
+            if (!sp || !sp.photos || !sp.photos.length) return;
+            phPick = null;
+            phBox.appendChild(h('p', 'sh-lb', 'この場所の写真を、そのままいっしょに投稿する（1枚）'));
+            var grid = h('div', 'sh-pg');
+            function tile(f, label) {
+              var l = h('label', 'sh-pp'), r = h('input'); r.type = 'radio'; r.name = 'sh-pp'; r.checked = (f === null);
+              r.addEventListener('change', function () { phPick = f; });
+              l.appendChild(r);
+              if (f) { var im = h('img'); im.src = 'photos/' + encodeURI(f); im.alt = label; im.loading = 'lazy'; l.appendChild(im); }
+              else { l.appendChild(h('span', 'sh-pn', 'つけない')); }
+              grid.appendChild(l);
+            }
+            sp.photos.forEach(function (f, i) { tile(f, sp.name + ' の写真' + (i + 1)); });
+            tile(null, '写真をつけない');
+            phBox.appendChild(grid);
+          }
+          var pf = h('label', 'sh-lb', '画像の中に入れる自分の写真（えらばなくてもOK）'); photoIn = h('input', 'sh-file'); photoIn.type = 'file'; photoIn.accept = 'image/*'; pf.appendChild(photoIn);
           opt.appendChild(h('p', 'me-hint', '行った場所を1つ選んでください。'));
-          opt.appendChild(list); opt.appendChild(lb); opt.appendChild(note); opt.appendChild(pf);
-          opt.appendChild(h('p', 'me-hint', '写真はこの端末の中だけで使います。サーバーには送られません。'));
+          opt.appendChild(list); opt.appendChild(phBox); opt.appendChild(lb); opt.appendChild(note); opt.appendChild(pf);
+          opt.appendChild(h('p', 'me-hint', '自分の写真は、この端末の中だけで使います。サーバーには送られません。場所の写真は、画像とは別に、そのままの写真が付きます。'));
         }
       }
       msg.textContent = ''; out.hidden = true;
     }
     go.addEventListener('click', function () {
       var cx = getCtx(); go.disabled = true; msg.className = 'me-msg'; msg.textContent = 'つくっています…';
+      var extra = (kind === 'today' && phPick) ? phPick : null;
+      var extraP = extra ? fetch('photos/' + encodeURI(extra)).then(function (r) { return r.ok ? r.blob() : null; }).catch(function () { return null; }) : Promise.resolve(null);
       var cv = document.createElement('canvas'); cv.width = W; cv.height = H; var c = cv.getContext('2d');
       var ftxt = '0123456789./年月日()・、。 聖ちぃ巡礼記録マップ行ったにゃ今日全国地方都道府県か所これまでに巡日月火水木金土東西南北' + (cx.nick || '') + ORDERP.join('') + REGN.map(function (r) { return r[1]; }).join('') + cx.spots.map(function (x) { return x.name + (x.address || '') + (Array.isArray(x.pref) ? x.pref.join('') : (x.pref || '')); }).join('');
       var fl = (document.fonts && document.fonts.load) ? Promise.all(['500', '700', '800'].map(function (w) { return document.fonts.load(w + ' 40px "Zen Maru Gothic"', ftxt); })).catch(function () {}) : Promise.resolve();
@@ -334,20 +355,32 @@
           go.disabled = false;
           if (!blob) { msg.textContent = '画像をつくれませんでした。'; return; }
           msg.textContent = '';
+          extraP.then(function (eb) {
           var url = URL.createObjectURL(blob); out.textContent = ''; out.hidden = false;
           var im = h('img', 'sh-img'); im.src = url; im.alt = 'できあがった画像'; out.appendChild(im);
           var name = 'chii-' + kind + '-' + todayStr() + '.png';
           var row = h('div', 'sh-row');
           var dl = h('a', 'me-go sh-dl', '保存する'); dl.href = url; dl.download = name; row.appendChild(dl);
-          var file = null; try { file = new File([blob], name, { type: 'image/png' }); } catch (e) {}
-          if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+          var file = null, pfile = null; try { file = new File([blob], name, { type: 'image/png' }); } catch (e) {}
+          if (eb) { try { pfile = new File([eb], extra, { type: eb.type || 'image/jpeg' }); } catch (e) {} }
+          var files = file ? (pfile ? [file, pfile] : [file]) : [];
+          if (pfile && !(navigator.canShare && navigator.canShare({ files: files }))) files = [file];
+          if (file && navigator.canShare && navigator.canShare({ files: files })) {
             var sh = h('button', 'me-sub sh-sh', 'シェアする'); sh.type = 'button';
-            sh.addEventListener('click', function () { navigator.share({ files: [file], text: '#聖ちぃ巡礼\n#ちぃむみーてぃんぐ2026' }).catch(function () {}); });
+            sh.addEventListener('click', function () { navigator.share({ files: files, text: '#聖ちぃ巡礼\n#ちぃむみーてぃんぐ2026' }).catch(function () {}); });
             row.appendChild(sh);
           }
           out.appendChild(row);
+          if (eb) {
+            var pu = URL.createObjectURL(eb), pr = h('div', 'sh-extra');
+            var pi = h('img'); pi.src = pu; pi.alt = 'いっしょに投稿する場所の写真'; pr.appendChild(pi);
+            var pt = h('div', 'sh-xt'); pt.appendChild(h('p', 'me-hint', files.length > 1 ? 'この写真も、そのままの形でいっしょに投稿されます。' : 'この端末では写真を同時に送れないので、保存して、投稿のときに足してください。'));
+            var pd = h('a', 'me-sub sh-dl2', '場所の写真を保存する'); pd.href = pu; pd.download = extra; pt.appendChild(pd);
+            pr.appendChild(pt); out.appendChild(pr);
+          }
           out.appendChild(h('p', 'me-hint', 'スマホでは、画像を長押しして保存もできます。'));
           out.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          });
         }, 'image/png');
       }).catch(function (e) { console.error('SHERR',e&&e.stack||e); go.disabled = false; msg.textContent = '画像をつくれませんでした。もう一度お試しください。'; });
     });
